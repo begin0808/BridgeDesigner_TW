@@ -1,0 +1,242 @@
+<!-- Copyright (c) 2026 BridgeDesigner_TW Contributors
+     SPDX-License-Identifier: GPL-3.0-or-later -->
+
+@if (isOpen) {
+  <div
+    class="qs-backdrop"
+    (click)="close()"
+  >
+    <div
+      class="qs-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="新手圖文速成指南"
+      (click)="$event.stopPropagation()"
+    >
+      <header class="qs-header">
+        <div class="qs-header-title">
+          <span class="qs-badge">高中生活科技教學版</span>
+          <h2>📖 橋梁結構設計師 — 新手圖文速成指南</h2>
+        </div>
+        <button
+          type="button"
+          class="qs-close"
+          title="關閉（Esc）"
+          (click)="close()"
+        >
+          ✕
+        </button>
+      </header>
+
+      <nav class="qs-tabs">
+        <button
+          type="button"
+          class="qs-tab"
+          [class.active]="activeTab === 'steps'"
+          (click)="selectTab('steps')"
+        >
+          🚀 5 步驟快速上手
+        </button>
+        <button
+          type="button"
+          class="qs-tab"
+          [class.active]="activeTab === 'tools'"
+          (click)="selectTab('tools')"
+        >
+          🛠️ 工具圖示對照表
+        </button>
+        <button
+          type="button"
+          class="qs-tab"
+          [class.active]="activeTab === 'mechanics'"
+          (click)="selectTab('mechanics')"
+        >
+          ⚡ 紅藍受力與選材祕訣
+        </button>
+        <button
+          type="button"
+          class="qs-tab"
+          [class.active]="activeTab === 'faq'"
+          (click)="selectTab('faq')"
+        >
+          ❓ 常見失敗原因排解
+        </button>
+      </nav>
+
+      <div class="qs-content">
+        @if (activeTab === 'steps') {
+          <div class="steps-intro">
+            第一次使用嗎？只要照著以下 <strong>5 個步驟</strong>，3 分鐘內就能完成你的第一座桁架橋並通過載重測試！
+          </div>
+          <ol class="step-cards">
+            <li>
+              <div class="step-num">1</div>
+              <div>
+                <h3>設定場地或選擇範本</h3>
+                <p>透過「建立新設計」依序選擇橋台高度、橋墩與橋面條件；建議新手在設定精靈中勾選一個<strong>設計範本</strong>（如標準普拉特桁架 Pratt Truss），畫布上就會出現灰色參考線。</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-num">2</div>
+              <div>
+                <h3>用「節點工具 <img src="img/joint.png" alt="節點" class="inline-icon" />」點出橋梁節點</h3>
+                <p>橋面上方的圓點已經幫你畫好了。請使用左側「繪圖工具」中的節點工具，沿著灰色範本的圓圈逐一點擊，建立桁架上層的節點。</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-num">3</div>
+              <div>
+                <h3>用「桿件工具 <img src="img/member.png" alt="桿件" class="inline-icon" />」連成三角形桁架</h3>
+                <p>切換到桿件工具，在兩個相鄰節點間<strong>按住滑鼠左鍵拖曳</strong>畫出鋼材桿件。請確保所有區域都分割成穩固的<strong>三角形</strong>（不要留下沒有斜撐的四邊形）。</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-num">4</div>
+              <div>
+                <h3>點擊「載重測試 <img src="img/loadtest.png" alt="載重測試" class="inline-icon" />」觀看模擬動畫</h3>
+                <p>上方狀態燈號轉為綠色 <img src="img/good.png" alt="通過" class="inline-icon" /> 代表結構完整！按下「載重測試」，讓標準載重卡車開過橋面，觀察橋梁變形與桿件拉壓顏色。</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-num">5</div>
+              <div>
+                <h3>觀察受力優化成本，並匯出中文 PDF <img src="img/print.png" alt="列印" class="inline-icon" /></h3>
+                <p>回到繪圖區，用「選取工具 <img src="img/arrow.png" alt="選取" class="inline-icon" />」針對過載桿件補強、針對冗餘桿件減細省錢。最後點「報告 → 載重測試結果」或「檔案 → 列印」即可輸出中文 PDF 繳交作業！</p>
+              </div>
+            </li>
+          </ol>
+        }
+
+        @if (activeTab === 'tools') {
+          <div class="tool-grid">
+            @for (item of toolItems; track item.name) {
+              <div class="tool-item">
+                <div class="tool-icon-box">
+                  <img
+                    [src]="item.icon"
+                    [alt]="item.name"
+                  />
+                </div>
+                <div class="tool-text">
+                  <h4>{{ item.name }}</h4>
+                  <p>{{ item.desc }}</p>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        @if (activeTab === 'mechanics') {
+          <div class="mechanics-section">
+            <h3>1. 桿件顏色代表什麼力？</h3>
+            <div class="color-legend">
+              <div class="legend-box legend-red">
+                <strong>🔴 紅色：受壓力（Compression）</strong>
+                <p>桿件被兩端往內擠壓，受力越大顏色越深。太細長的受壓桿件容易發生<strong>挫屈（彎折）</strong>！</p>
+              </div>
+              <div class="legend-box legend-blue">
+                <strong>🔵 藍色：受拉力（Tension）</strong>
+                <p>桿件被兩端往外拉扯，受力越大顏色越深。抗拉強度只取決於<strong>截面積與鋼材種類</strong>，不受長度影響。</p>
+              </div>
+              <div class="legend-box legend-magenta">
+                <strong>🟣 洋紅色：細長比過高（Slenderness）</strong>
+                <p>桿件過長過細不符合橋梁規範，必須加粗斷面、改用空心方管或縮短長度。</p>
+              </div>
+            </div>
+
+            <h3>2. 怎麼看右側「桿件明細表」？</h3>
+            <div class="ratio-box">
+              <p><strong>受力／強度比 ＝ 桿件承受的最大內力 ÷ 桿件能承受的極限強度</strong></p>
+              <ul>
+                <li><span class="tag-ok">≤ 1.00</span>：安全通過！越接近 0.90～0.99 代表材料利用越精準省錢。</li>
+                <li><span class="tag-fail">&gt; 1.00</span>：<strong>結構破壞！</strong>表格會標示紅底（壓力超標）或藍底（拉力超標），請務必補強這些桿件。</li>
+                <li><span class="tag-tip">小於 0.40</span>：代表這支桿件「用太粗了」，可以縮小尺寸大幅降低總造價！</li>
+              </ul>
+            </div>
+
+            <h3>3. 實心方鋼 vs 空心方管 & 三種鋼材選用祕訣</h3>
+            <div class="tips-two-col">
+              <div class="mini-card">
+                <h4>🧱 實心方鋼 vs 🟦 空心方管</h4>
+                <p><strong>受壓桿件（紅色）優先選「空心方管」</strong>！相同重量下，空心方管把材料分布在外部，慣性矩大得多，抗挫屈能力遠勝實心方鋼且更省錢。<strong>受拉桿件（藍色）</strong>則可依成本挑選較細實心方鋼或高強度鋼。</p>
+              </div>
+              <div class="mini-card">
+                <h4>⚙️ 三種鋼材比較</h4>
+                <ul>
+                  <li><strong>碳鋼 (CS)</strong>：最便宜、強度基本，適合多數受壓或低受力桿件。</li>
+                  <li><strong>高強度低合金鋼 (HSS)</strong>：強度高、價格中等，高CP值主力鋼材。</li>
+                  <li><strong>淬火調質鋼 (QTS)</strong>：強度最高但單價最貴，適合少數受大拉力的關鍵桿件。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === 'faq') {
+          <div class="faq-list">
+            <div class="faq-item">
+              <h4>Q1：按下「載重測試」跳出「橋梁結構不穩定」，怎麼辦？</h4>
+              <p>最常見的 3 個原因：(1) 出現沒有斜桿支撐的四邊形（請補畫斜桿切成三角形）；(2) 有節點完全懸空或只接了 1 支桿件；(3) 忘記把兩端橋台或中間橋墩的支承節點連進桁架中。</p>
+            </div>
+            <div class="faq-item">
+              <h4>Q2：出現「細長比檢核未通過」是什麼意思？</h4>
+              <p>代表某支桿件「太長又太細」，在實務上容易因自重或震動彎折。點開右側表格找到<strong>洋紅色背景</strong>的桿件，將它改成<strong>空心方管</strong>或加大一兩級尺寸即可解決！</p>
+            </div>
+            <div class="faq-item">
+              <h4>Q3：為什麼載重測試按鈕呈現灰色按不下去？</h4>
+              <p>代表目前畫布上的橋梁還沒有完成最基本的桿件連接（例如尚未畫任何桿件，或橋面預設節點還沒連接）。請先點選節點工具與桿件工具完成桁架繪製。</p>
+            </div>
+            <div class="faq-item">
+              <h4>Q4：想直接看一座會動的範例橋來學習原理？</h4>
+              <p>沒問題！點擊下方「載入範例橋梁來觀察」按鈕，即可開啟內建的 6 座經典桁架橋範例，直接按下「載重測試」觀看受力動畫與成本分析！</p>
+            </div>
+          </div>
+        }
+      </div>
+
+      <footer class="qs-footer">
+        <div class="qs-footer-left">
+          <button
+            type="button"
+            class="btn-outline"
+            (click)="loadSampleBridge()"
+          >
+            🌉 載入範例橋梁來觀察
+          </button>
+          <button
+            type="button"
+            class="btn-outline"
+            (click)="openFullHelp()"
+          >
+            📚 開啟完整說明書（178 篇）
+          </button>
+          <a
+            class="btn-outline"
+            style="text-decoration: none"
+            href="https://www.asce.org/career-growth/pre-college-outreach/bridge-designer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            🌐 官方英文網站 ↗
+          </a>
+        </div>
+        <div class="qs-footer-right">
+          <button
+            type="button"
+            class="btn-primary"
+            (click)="startInteractiveGuide()"
+          >
+            🎓 啟動課堂 5 步驟互動引導
+          </button>
+          <button
+            type="button"
+            class="btn-secondary"
+            (click)="close()"
+          >
+            關閉
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+}

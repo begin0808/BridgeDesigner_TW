@@ -62,33 +62,33 @@ export class DesignIterationDialogComponent implements AfterViewInit {
   // prettier-ignore
   private static readonly COLUMNS_TEMPLATE: jqwidgets.GridColumn[] = [
       {
-        text: 'Based on...',
+        text: '衍生來源',
         datafield: 'baseIndicator',
         align: 'left',
         width: 123,
       },
       { 
-        text: 'Status',
+        text: '狀態',
         datafield: 'status',
         align: 'center',
         cellsalign: 'center',
         width: 60,
       }, {
-        text: 'Iteration',
+        text: '版本',
         datafield: 'iterationNumber',
         align: 'center',
         cellsalign: 'center',
         width: 64,
         cellsformat: 'd',
       }, {
-        text: 'Cost',
+        text: '成本',
         datafield: 'cost',
         align: 'center',
         cellsalign: 'right',
         width: 100,
         cellsformat: 'c2',
       }, {
-        text: 'Project ID',
+        text: '專案編號',
         datafield: 'projectId',
         align: 'center',
         width: 250,

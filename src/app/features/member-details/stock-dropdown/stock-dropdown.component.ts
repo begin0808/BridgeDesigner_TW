@@ -66,14 +66,14 @@ export class StockDropdownComponent implements OnChanges {
   selectionRenderer(_obj?: any, index?: number): string {
     // jqWidgets sends odd stuff. Filter it out.
     if (typeof index !== 'number' || index < 0) { 
-      return '<div style="display:grid;padding:4px 0 4px 0">No selection</div>';
+      return '<div style="display:grid;padding:4px 0 4px 0">未選取</div>';
     }
     return this.formatMemberMaterial(this.membersPartitionedByStock[index]);
   }
 
   private formatMemberMaterial(members: Member[] | undefined): string {
     if (!members || !members[0]) {
-      return '<div style="display:grid;padding:4px 0 4px 0">none</div>';
+      return '<div style="display:grid;padding:4px 0 4px 0">無</div>';
     }
     const member = members[0];
     return `<div style="display:grid;grid-template-columns:180px 80px auto;padding:4px 0 4px 0">

@@ -20,9 +20,9 @@ export class Labels {
 @Injectable({ providedIn: 'root' })
 export class LabelsService implements DraggableService {
   public static readonly MOVE_CURSOR = StandardCursor.VERTICAL_MOVE;
-  private static readonly BEAM_LABEL_TEXT = 'Floor beam';
-  private static readonly DECK_LABEL_TEXT = 'Concrete deck';
-  private static readonly ROAD_LABEL_TEXT = 'Asphalt road surface';
+  private static readonly BEAM_LABEL_TEXT = '橋面橫梁';
+  private static readonly DECK_LABEL_TEXT = '混凝土橋面';
+  private static readonly ROAD_LABEL_TEXT = '柏油路面';
   private static readonly X_INTER_LABEL_GAP = 100;
   private static readonly X_LABEL_LEADING = 16;
   private static readonly X_LABEL_OFFSET = 32;

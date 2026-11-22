@@ -40,33 +40,33 @@ export class MemberTableComponent implements AfterViewInit {
       width: 30,
       renderer: MemberTableComponent.renderHeader,
     }, {
-      text: 'Material type',
+      text: '材料種類',
       datafield: 'materialShortName',
       cellsalign: 'center', 
       width: 60,
       renderer: MemberTableComponent.renderHeader,
     }, {
-      text: 'Cross section',
+      text: '斷面形狀',
       datafield: 'crossSectionShortName',
       cellsalign: 'center', 
       width: 60,
       renderer: MemberTableComponent.renderHeader,
     }, { 
-      text: 'Size (mm)', 
+      text: '尺寸<br>(mm)', 
       datafield: 'materialSizeMm', 
       cellsalign: 'right', 
       cellsformat: 'f0',
       width: 44, 
       renderer: MemberTableComponent.renderHeader
     }, { 
-      text: 'Length (m)', 
+      text: '長度<br>(m)', 
       datafield: 'lengthM', 
       cellsalign: 'right', 
       cellsformat: 'f2',
       width: 48, 
       renderer: MemberTableComponent.renderHeader
     }, {
-      text: 'Slender- ness', 
+      text: '細長比', 
       datafield: 'slenderness',
       cellsalign: 'right', 
       cellsformat: 'f2',
@@ -74,7 +74,7 @@ export class MemberTableComponent implements AfterViewInit {
       renderer: MemberTableComponent.renderHeader,
       cellsrenderer: this.renderSlenderness.bind(this),
     }, { 
-      text: 'Compression force/strength', 
+      text: '壓力<br>受力／強度比', 
       datafield: 'compressionForceStrengthRatio',
       cellsalign: 'center', 
       cellsformat: 'f2',
@@ -82,7 +82,7 @@ export class MemberTableComponent implements AfterViewInit {
       renderer: MemberTableComponent.renderHeader,
       cellsrenderer: this.renderCompressionForceStrengthRatio.bind(this),
     }, { 
-      text: 'Tension force/strength', 
+      text: '拉力<br>受力／強度比', 
       datafield: 'tensionForceStrengthRatio',
       cellsalign: 'center', 
       cellsformat: 'f2',
@@ -96,6 +96,13 @@ export class MemberTableComponent implements AfterViewInit {
     localdata: [], // replaced
     datatype: 'array',
     datafields: MemberTableComponent.MEMBER_DATA_FIELDS,
+  };
+  readonly localization: any = {
+    emptydatastring: '尚未繪製桿件 — 請用左側「繪圖工具」先點選節點，再拖曳連接桿件',
+    sortascendingstring: '遞增排序',
+    sortdescendingstring: '遞減排序',
+    sortremovestring: '移除排序',
+    loadtext: '載入中…',
   };
   readonly dataAdapter: any;
   /**

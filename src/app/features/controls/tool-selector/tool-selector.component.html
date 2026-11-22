@@ -16,11 +16,12 @@
       src="img/tools.png"
       class="header-icon"
     />
-    Tools
+    繪圖工具
   </div>
   <div class="content">
     <jqxToggleButton
       #jointsButton
+      title="繪製節點"
       [imgSrc]="'img/joint.png'"
       [imgWidth]="imgSize"
       [imgHeight]="imgSize"
@@ -30,6 +31,7 @@
     ></jqxToggleButton>
     <jqxToggleButton
       #membersButton
+      title="繪製桿件"
       [imgSrc]="'img/member.png'"
       [imgWidth]="imgSize"
       [imgHeight]="imgSize"
@@ -38,6 +40,7 @@
     ></jqxToggleButton>
     <jqxToggleButton
       #selectButton
+      title="選取與移動"
       [imgSrc]="'img/arrow.png'"
       [imgWidth]="imgSize"
       [imgHeight]="imgSize"
@@ -46,6 +49,7 @@
     ></jqxToggleButton>
     <jqxToggleButton
       #eraseButton
+      title="橡皮擦（刪除節點或桿件）"
       [imgSrc]="'img/eraser.png'"
       [imgWidth]="imgSize"
       [imgHeight]="imgSize"

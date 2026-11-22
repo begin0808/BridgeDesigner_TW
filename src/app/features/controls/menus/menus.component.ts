@@ -8,6 +8,7 @@ import { EventBrokerService } from '../../../shared/services/event-broker.servic
 import { ModifierMask, UiStateService } from '../management/ui-state.service';
 import { HelpTab } from '../../help/help-dialog/types';
 import { TipDialogKind } from '../../tips/tip-dialog/tip-dialog.component';
+import { TutorialService } from '../../tutorial/tutorial.service';
 
 /** Component for handling all menu selections and global hot keys by sending brokered events. */
 @Component({
@@ -23,10 +24,32 @@ export class MenusComponent implements AfterViewInit {
   constructor(
     private readonly uiStateService: UiStateService,
     private readonly eventBrokerService: EventBrokerService,
+    private readonly tutorialService: TutorialService,
   ) {}
 
   handleItemClick(event: any): void {
     const liElement = event.args as HTMLElement;
+    switch (liElement.id) {
+      case 'quickStartGuide':
+        this.tutorialService.openQuickStart();
+        return;
+      case 'classroomGuide':
+        this.tutorialService.showGuide(true);
+        return;
+      case 'officialSite':
+        window.open(
+          'https://www.asce.org/career-growth/pre-college-outreach/bridge-designer',
+          '_blank',
+          'noopener,noreferrer',
+        );
+        return;
+      case 'upstreamRepo':
+        window.open('https://github.com/gene-ressler/bridge-designer', '_blank', 'noopener,noreferrer');
+        return;
+      case 'twRepo':
+        window.open('https://github.com/begin0808/BridgeDesigner_TW', '_blank', 'noopener,noreferrer');
+        return;
+    }
     this.uiStateService.handleMenuItemClicked(liElement.id);
   }
 

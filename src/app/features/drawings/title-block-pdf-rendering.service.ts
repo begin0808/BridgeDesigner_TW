@@ -11,13 +11,14 @@ import { DOLLARS_FORMATTER, Utility } from '../../shared/classes/utility';
 import { SaveMarkService } from '../save-load/save-mark.service';
 import { AnalysisService } from '../../shared/services/analysis.service';
 import { AnalysisValidityService } from '../controls/management/analysis-validity.service';
+import { PDF_ZH_FONT } from '../../shared/services/pdf-font.service';
 
 const ANALYSIS_STATUS_DESCRIPTIONS: string[] = [
-  '<none>',
-  'member slenderness exceeds maximum',
-  'structure unstable',
-  'fails load test',
-  'passes all tests',
+  '（未測試）',
+  '部分桿件細長比超過上限',
+  '結構不穩定',
+  '未通過載重測試',
+  '通過所有檢核測試',
 ];
 
 @Injectable({ providedIn: 'root' })
@@ -31,7 +32,7 @@ export class TitleBlockPdfRenderingService {
   ) {}
 
   /** Draws the title block and returns the y-coordinate of its top edge. */
-  public draw(doc: jsPDF, sheetName: string = 'Main Truss Elevation (meters)', sheetNumber: number = 1): number {
+  public draw(doc: jsPDF, sheetName: string = '主桁架立面圖（公尺）', sheetNumber: number = 1): number {
     const projectName = this.bridgeService.bridge.projectName;
     const designedBy = this.bridgeService.bridge.designedBy;
     const savedFileName = this.saveMarkService.savedFileName;
@@ -51,19 +52,19 @@ export class TitleBlockPdfRenderingService {
           content: sheetName,
           colSpan: 3,
         },
-        `Sheet: ${sheetNumber}`,
+        `圖號：${sheetNumber}`,
       ],
       [
         {
-          content: `Cost: ${DOLLARS_FORMATTER.format(this.bridgeCostService.allCosts)}`,
+          content: `成本：${DOLLARS_FORMATTER.format(this.bridgeCostService.allCosts)}`,
           colSpan: 2,
         },
-        `Date: ${Utility.getStandardDate()}`,
-        `Iteration: ${this.bridgeService.bridge.iterationNumber}`,
+        `日期：${Utility.getStandardDate()}`,
+        `版本：${this.bridgeService.bridge.iterationNumber}`,
       ],
       /\S/.test(designedBy)
         ? [
-            'Designed by:',
+            '設計者：',
             {
               content: designedBy,
               colSpan: 3,
@@ -71,7 +72,7 @@ export class TitleBlockPdfRenderingService {
           ]
         : null,
       [
-        'Project ID:',
+        '專案編號：',
         {
           content: this.bridgeService.bridge.taggedProjectId,
           colSpan: 3,
@@ -79,7 +80,7 @@ export class TitleBlockPdfRenderingService {
       ],
       savedFileName !== undefined
         ? [
-            'File:',
+            '檔案名稱：',
             {
               content: savedFileName,
               colSpan: 3,
@@ -87,11 +88,11 @@ export class TitleBlockPdfRenderingService {
           ]
         : null,
       [
-        'Status:',
+        '測試狀態：',
         {
           content: this.analysisValidityService.isLastAnalysisValid
             ? ANALYSIS_STATUS_DESCRIPTIONS[status]
-            : 'no valid load test',
+            : '尚未執行有效載重測試',
           colSpan: 3,
         },
       ],
@@ -100,13 +101,13 @@ export class TitleBlockPdfRenderingService {
     const fontSize = 8;
     const horizontalPadding = 0.8;
     const verticalPadding = 0.5;
-    const textHeight = doc.getTextDimensions('#MaterialCrossSizeLength0', { fontSize }).h * doc.getLineHeightFactor();
+    const textHeight = doc.getTextDimensions('主桁架立面圖0', { fontSize }).h * doc.getLineHeightFactor();
     const rowHeightMm = textHeight + 2 * verticalPadding + DRAWING_LINE_WIDTH_MM;
     const blockHeight = rowHeightMm * body.length;
     const pageSize = doc.internal.pageSize;
     const startY = pageSize.getHeight() - blockHeight - DRAWING_MARGIN_MM;
-    const width0 = 18;
-    const width1 = 10;
+    const width0 = 20;
+    const width1 = 12;
     const width2 = 28;
     const width3 = 20;
     const blockWidth = width0 + width1 + width2 + width3 + 4 * DRAWING_LINE_WIDTH_MM;
@@ -118,6 +119,7 @@ export class TitleBlockPdfRenderingService {
       tableLineColor: 'black',
       tableLineWidth: DRAWING_LINE_WIDTH_MM,
       styles: {
+        font: PDF_ZH_FONT,
         textColor: 'black',
         lineColor: 'black',
         lineWidth: DRAWING_LINE_WIDTH_MM,

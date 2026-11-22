@@ -54,33 +54,33 @@ export class ToolbarBComponent implements AfterViewInit {
         this.componentService.load(InventorySelectorComponent, tool[0]);
         break;
       case Tools.SIZE_UP:
-        WidgetHelper.initToolbarImgButton('Upsize selected members', 'img/sizeup.png', tool, true);
+        WidgetHelper.initToolbarImgButton('加大所選桿件尺寸', 'img/sizeup.png', tool, true);
         break;
       case Tools.SIZE_DOWN:
-        WidgetHelper.initToolbarImgButton('Downsize selected members', 'img/sizedown.png', tool, true);
+        WidgetHelper.initToolbarImgButton('縮小所選桿件尺寸', 'img/sizedown.png', tool, true);
         break;
       case Tools.MEMBER_NUMBERS:
-        WidgetHelper.initToolbarImgToggleButton('Show/hide member numbers', 'img/numbers.png', tool);
+        WidgetHelper.initToolbarImgToggleButton('顯示／隱藏桿件編號', 'img/numbers.png', tool);
         break;
       case Tools.GUIDES:
-        WidgetHelper.initToolbarImgToggleButton('Show/hide drawing guides', 'img/guides.png', tool);
+        WidgetHelper.initToolbarImgToggleButton('顯示／隱藏對稱參考線', 'img/guides.png', tool);
         break;
       case Tools.TEMPLATE:
-        WidgetHelper.initToolbarImgToggleButton('Show/hide template', 'img/template.png', tool, { toggled: true });
+        WidgetHelper.initToolbarImgToggleButton('顯示／隱藏設計範本', 'img/template.png', tool, { toggled: true });
         break;
       case Tools.COARSE_GRID:
-        WidgetHelper.initToolbarImgToggleButton('Use coarse drawing grid', 'img/coarsegrid.png', tool, {
+        WidgetHelper.initToolbarImgToggleButton('使用粗格線', 'img/coarsegrid.png', tool, {
           toggled: true,
         });
         break;
       case Tools.MEDIUM_GRID:
-        WidgetHelper.initToolbarImgToggleButton('Use medium drawing grid', 'img/mediumgrid.png', tool);
+        WidgetHelper.initToolbarImgToggleButton('使用中格線', 'img/mediumgrid.png', tool);
         break;
       case Tools.FINE_GRID:
-        WidgetHelper.initToolbarImgToggleButton('Use fine drawing grid', 'img/finegrid.png', tool);
+        WidgetHelper.initToolbarImgToggleButton('使用細格線', 'img/finegrid.png', tool);
         break;
       case Tools.MEMBER_TABLE:
-        WidgetHelper.initToolbarImgToggleButton('Hide member table', 'img/close.png', tool, {
+        WidgetHelper.initToolbarImgToggleButton('顯示／隱藏桿件明細表', 'img/close.png', tool, {
           toggled: true,
           height: 16,
         });

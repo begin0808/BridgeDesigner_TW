@@ -6,13 +6,13 @@
   [isModal]="true"
   [autoOpen]="false"
   [width]="840"
-  [height]="292"
+  [height]="322"
 >
   <div
     #header
     class="header"
   >
-    Welcome to…
+    歡迎使用橋梁結構設計師…
   </div>
   <div class="content">
     <div class="banner">
@@ -33,7 +33,7 @@
           [groupName]="'startOptions'"
           [checked]="true"
         >
-          <span>Create a new bridge design</span>
+          <span>建立新的橋梁設計</span>
         </jqxRadioButton>
       </div>
       <div class="radio-selection">
@@ -46,7 +46,7 @@
           style="display: inline-block"
           [groupName]="'startOptions'"
         >
-          <span>Load a sample bridge design</span>
+          <span>載入範例橋梁設計</span>
         </jqxRadioButton>
       </div>
       <div class="radio-selection">
@@ -59,19 +59,18 @@
           style="display: inline-block"
           [groupName]="'startOptions'"
         >
-          <span>Continue work on a saved bridge design</span>
+          <span>繼續編輯已儲存的橋梁設計</span>
         </jqxRadioButton>
       </div>
     </div>
     <fieldset class="design-tip">
-      <legend class="dialog-topic">Design tip:</legend>
+      <legend class="dialog-topic">設計提示：</legend>
       <div>
         <img
           class="tip-icon"
           src="img/tipicon.png"
         />
-        Your objective is to use the ASCE Bridge Designer to design a truss bridge that costs as little as possible,
-        while still passing the load test with no member failures. Good luck!
+        您的目標是使用「橋梁結構設計師」設計一座成本盡可能低廉，且能順利通過載重測試、無任何桿件破壞的桁架橋。祝您設計順利！
       </div>
     </fieldset>
     <div class="button-column">
@@ -79,27 +78,33 @@
         <img
           class="motif"
           src="img/motif01.png"
-          title="Lehigh Gap, Pennsylvania, US"
-          alt="Lehigh Gap, Pennsylvania, US"
+          title="美國賓夕法尼亞州 Lehigh Gap"
+          alt="美國賓夕法尼亞州 Lehigh Gap"
         />
       </div>
       <jqxButton
         style="margin-top: 8px; margin-right: 2px"
         [width]="208"
+        (onClick)="handleQuickStartButton()"
+        >📖 新手速成指南…</jqxButton
+      >
+      <jqxButton
+        style="margin-top: 8px; margin-right: 2px"
+        [width]="208"
         (onClick)="handleAboutButton()"
-        >About…</jqxButton
+        >關於…</jqxButton
       >
       <jqxButton
         style="margin-top: 8px; margin-right: 2px"
         [width]="208"
         (onClick)="dialog.close()"
-        >Cancel</jqxButton
+        >取消</jqxButton
       >
       <jqxButton
         style="margin-top: 8px; margin-right: 2px"
         [width]="208"
         (onClick)="handleOkButton()"
-        >OK</jqxButton
+        >確定</jqxButton
       >
     </div>
   </div>

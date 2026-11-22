@@ -8,8 +8,8 @@ import { Joint } from './joint.model';
 
 /** POTO member object. Shouldn't ever contain business logic. */
 export class Member implements Editable {
-  private static readonly OK = 'ok';
-  private static readonly FAILED = 'fail';
+  private static readonly OK = '通過';
+  private static readonly FAILED = '失敗';
   public static readonly UNKNOWN = '--';
 
   constructor(
@@ -77,7 +77,7 @@ export class Member implements Editable {
   }
 
   public get crossSectionShortName(): string {
-    return this.shape.section.shortName;
+    return this.shape.section.displayShortName;
   }
 
   public get materialSizeMm(): number {

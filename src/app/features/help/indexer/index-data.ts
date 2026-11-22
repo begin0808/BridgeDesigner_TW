@@ -1,1975 +1,1349 @@
+/* Copyright (c) 2025-2026 Gene Ressler
+   SPDX-License-Identifier: GPL-3.0-or-later */
+
 type HelpIndexData = {
-  id: string,
-  title: string,
-  text: string,
+  id: string;
+  title: string;
+  text: string;
 };
 
 export const HELP_INDEX_DATA: HelpIndexData[] = [
   {
-    id: 'glos_aashto',
-    title: 'AASHTO',
-    text: 'aashto american association state highway transportation officials governing body writes publishes d' +
-          'esign codes highway bridges united states'
-  },
-  {
     id: 'hlp_aashto_h20x44',
-    title: 'AASHTO H25 truck loading',
-    text: 'aashto h25 loading hypothetical cargo truck similar one pictured truck two axles spaced approximatel' +
-          'y 4 meters apart truck total weight 225 kilonewtons kn 44 kn applied front axle 181 kn rear aashto t' +
-          'ruck loading used design bridge axle weights generally increased factor called dynamic load allowanc' +
-          'e accounts effects moving load structural engineer designs actual bridge must ensure members structu' +
-          're safely carry forces generated one aashto truck loading applied every traffic lane bridge deck tru' +
-          'ck loading positioned anywhere along length bridge indicated design specifications bridge designer a' +
-          'llows design bridge either two highway loading conditions two lanes highway traffic represented one ' +
-          'h25 truck lane single 480 kn permit loading centered laterally roadway first load case two traffic l' +
-          'anes two main trusses must carry weight one lane thus loading used bridge designer consists one h25 ' +
-          'truck total weight 225 kn second case single truck centered roadway two main trusses must carry one ' +
-          'half total truck weight thus permit loading used bridge designer consists 240 kn 120 kn applied axle' +
-          ' location cases dynamic load allowance 1.33'
-  },
-  {
-    id: 'hlp_browser',
-    title: 'About your browser...',
-    text: 'best make bridge designer work computing devices mouse similar gadget plus broad range date browser ' +
-          'software work phones sorry dont support pure touch devices like smart phones pads mouse browsers dat' +
-          'e versions fine based recent chromium google chrome microsoft edge chromium open source opera firefo' +
-          'x chromium firefox based browsers may work fine unfortunately cant support apple safari screen resol' +
-          'ution least 1200 800 pixels better mouse accurate mouse like pointing device example track pad track' +
-          ' ball fine fix problems switch browsers upgrade startup warning complained unsupported browser missi' +
-          'ng html css features try installing current version one supported browsers device unable try latest ' +
-          'possible version google chrome thats best chance success adjust settings hardware needed startup war' +
-          'ning included screen resolution mouse youll need adjust replace hardware pro tips screen resolution ' +
-          'usually choice check operating systems display settings screen resolutions around minimum set browse' +
-          'r full screen mode use possible pixels many devices support adding mouse often dollars check web tak' +
-          'e chances bridge designer might okay current browser despite warnings though features likely disable' +
-          'd work poorly youll notified disabled features. give try clicking cancel warning dialog'
-  },
-  {
-    id: 'glos_abutment',
-    title: 'Abutment',
-    text: 'abutment stone concrete wall supports one end bridge span abutment also acts retaining wall holding ' +
-          'back earth embankments approaches bridge abutment part substructure bridge'
-  },
-  {
-    id: 'hlp_animation_controls',
-    title: 'Animation controls',
-    text: 'column seven faded icons displayed top animation image light mouse gets close walk click icon drag w' +
-          'alk animation pan click icon drag shift horizontally vertically without going forward back head turn' +
-          ' click icon drag turn head standing still home click move back starting view whole bridge truck view' +
-          ' click icon see truck driver traverses bridge drag turn head click walk pan head turn home quit truc' +
-          'k view pause/play click pause unpause animation test failed click see failure settings click show hi' +
-          'de settings dialog selecting animation settings view menu dont touch navigation controls truck makes' +
-          ' two complete passes seconds bridge fails view automatically start orbit meters terrain touching nav' +
-          'igation control cancels orbit puts back control retest bridge orbit'
-  },
-  {
-    id: 'hlp_animation_settings',
-    title: 'Animation settings',
-    text: 'dialog provides options modify animations appearance move around animation play/pause see animation ' +
-          'controls shadows controls whether sun casts shadows within simulated scene sky controls whether sky ' +
-          'drawn clouds sun hills horizon simple blue background terrain controls whether ground water around b' +
-          'ridge drawn wind turbine controls whether wind generator close bridge drawn abutments controls wheth' +
-          'er bridge abutments road surfaces drawn truck controls whether cartoon truck loading shown hidden co' +
-          'lors controls whether member forces depicted colors box checked compression represented red tension ' +
-          'blue load moves across bridge deck color brightness corresponds intense loading load indicated flat ' +
-          'gray exaggeration controls whether member deflections exaggerated make visible unchecked animation r' +
-          'ealistic checked changes shape truss load multiplied 20 order make visible move speed slider change ' +
-          'speed truck move brightness slider account differences displays making whole image darker brighter n' +
-          'otes tips smoothness animation depends speed computers processor graphics system motion looks jerky ' +
-          'try turning animation features shadows likely greatest effect slowing truck speed makes easier see m' +
-          'embers take release load test proceeds turning colors exaggeration provides realistic view bridge jo' +
-          'b'
-  },
-  {
-    id: 'glos_arch_abutments',
-    title: 'Arch abutments',
-    text: 'bridge designer arch abutments substructure elements use arch supports hold bridge transmit weight s' +
-          'oil'
-  },
-  {
-    id: 'glos_arch_supports',
-    title: 'Arch supports',
-    text: 'arch supports consist pin end span arch supports allow lateral movement bridge thus provide restrain' +
-          't simple supports'
-  },
-  {
-    id: 'glos_asphalt',
-    title: 'Asphalt',
-    text: 'asphalt mixture gravel bitumen product petroleum refining process asphalt commonly used pavement wea' +
-          'ring surface bridge decks'
-  },
-  {
-    id: 'hlp_3dprint_assembly',
-    title: 'Assembling your bridge model',
-    text: 'instructions assume youve already printed parts model using instructions exporting obj files prepare' +
-          ' build things youll need assemble printed parts flat clean work surface protected glue spills paper ' +
-          'shelf paper large paper bag flattened work cyanoacrylate glue crazy glue another plastic glue bond p' +
-          'arts xacto knife box cutter single edge razor blade trim parts needed fine sand paper 150 220 grit n' +
-          'ail file tool expand holes diameter equal minimum feature size slightly larger theyre small fit corr' +
-          'esponding pins tapered xacto blade work micro drill bit pin vice tool spin bit ideal careful begin l' +
-          'aying parts type good way avoid confusion draw grid nine boxes three inches square build surface cov' +
-          'ering paper label 1 9 sort parts ref name qty 1 support cross member 2 5 2 deck end panel 2 3 deck m' +
-          'id panel varies 4 pin cross member varies 5 join deck beam 1 7 truss 2 8 abutment 2 9 pier 0 1 impor' +
-          'tant notes tell difference deck end mid panels looking tabs slots fit together mid panel end panels ' +
-          'tabs abutments look bit different picture one associated anchorage case extra step tab support cross' +
-          ' member pillow used connect anchored members build steps complete model step use trimming tool and/o' +
-          'r hole drill make joint fit well gaps excessive tightness applying glue may take time patient glue t' +
-          'wo support cross members 1 slots two deck end panels 2 set aside grid square 2 dry bridge pier deck ' +
-          'height glue another support cross member 1 deck mid panel 3 otherwise go next step set aside grid sq' +
-          'uare 3 dry glue pin cross member 4 deck join beam 5 glue remaining pin cross members 4 remaining dec' +
-          'k mid panels 3 numbers match glue deck join beam 5 onto one deck end panels 2 return assembly square' +
-          ' 5 dry take break wait glue applied far solid dry fit whole deck arranging deck panels 2 3 4 5 top s' +
-          'ide shown diagram glue end panels go end deck level pier panel one must also right position use tool' +
-          's ensure panels fit together completely test pair panels make sure joint pins farther apart deck joi' +
-          'nts truss wont able attach remove material panel tabs sandpaper file keep panels dry fit left right ' +
-          'order avoid confusion assembling deck tune cross member pins truss holes needed pin fits hole should' +
-          'er shown. tuning means using cutter sandpaper nail file hole drill needle needed make pin hole sizes' +
-          ' match identify insides trusses smooth flat assembled inside surfaces point toward deck opposite sid' +
-          'es thickened gusset joint. >outside truss point away deck attach two leftmost deck joints trusses 7 ' +
-          'four pins deck join beam assembly 5 . make sure inside truss points toward deck take break wait deck' +
-          ' join beam connections trusses solid add deck panels one time working right deck join beam assembly ' +
-          'gluing go sure keep panels correct order dry fitted take break let deck panels dry completely add re' +
-          'st pin cross members 4 truss joints make sure skip support joints abutments pier anchorages well get' +
-          ' later glue support cross member 1 pillows triangular sections abutment 8 tab fits slot bridge ancho' +
-          'rages theres second tab second support cross member glue pillow finally bridge pier glue last pillow' +
-          ' tab attach truss abutments fit abutment pins corresponding truss pin holes includes anchorage pins ' +
-          'bridge glue yet make sure abutments sitting flat surface add drop glue joint take break make sure br' +
-          'ide attachment abutments solid attache glue piers pins truss one make sure abutments pier sitting fl' +
-          'at surface glue sets youre done notes tips consider printing blueprint bridge assembly instructions ' +
-          'paper truss configuration ready reference steps ticking go strangely satisfying bridge parts particu' +
-          'larly big spans anchorages tiny youre feeling crafty try printing truss two pieces obtain bridge twi' +
-          'ce scale one print would allow need cut truss half slicer software print half separately glue togeth' +
-          'er first step assembly assembling bridge model challenging methodical work steadily something goes w' +
-          'rong reprint parts need try good luck project'
-  },
-  {
-    id: 'glos_astm',
-    title: 'ASTM',
-    text: 'american society testing materials astm profit organization manufacturers consumers researchers gove' +
-          'rnment officials purpose write standards production testing use building materials astm standards en' +
-          'sure materials uniformly understood engineering properties appropriate level quality'
-  },
-  {
-    id: 'hlp_auto_correct_errors',
-    title: 'Auto-correct errors check box',
-    text: 'checking menu entry tools auto correct errors causes bridge designer attempt repairs common minor er' +
-          'rors automatically load test notes tips usually best enable auto correction feature cant harm undesi' +
-          'red changes makes removed undo analysis complete'
-  },
-  {
-    id: 'glos_bearing',
-    title: 'Bearing',
-    text: 'bearing another word support supports joints structure attached foundation'
-  },
-  {
-    id: 'glos_bridge_design_file',
-    title: 'Bridge design file',
-    text: 'bridge design file specially formatted text file created bridge designer save bridge design future u' +
-          'se'
-  },
-  {
-    id: 'hlp_bridge_design_window',
-    title: 'Bridge design window',
-    text: 'bridge design window graphical environment create test optimize record bridge design diagram shows m' +
-          'ajor functional components make bridge design window learn component click corresponding area diagra' +
-          'm notes tips best keep bridge design window maximized working design reducing window size makes draw' +
-          'ing editing structural model difficult'
-  },
-  {
-    id: 'glos_buckling',
-    title: 'Buckling',
-    text: 'buckling principal failure mode member loaded compression member buckles bends sideways compressed a' +
-          'xially failure usually sudden catastrophic members long slender particularly susceptible buckling'
-  },
-  {
-    id: 'glos_cable_anchorages',
-    title: 'Cable anchorages',
-    text: 'cable anchorage foundation structure cables suspension bridge connected cables support weight suspen' +
-          'sion bridge anchorages massive often extend far surface earth bridge designer cable anchorages repre' +
-          'sented pinned supports'
-  },
-  {
-    id: 'hlp_change_member_properties',
-    title: 'Change the properties of a member',
-    text: 'change properties member structural model click select tool design tools palette select member want ' +
-          'modify either clicking member clicking entry member list member turn light blue selected click drop ' +
-          'button member properties list property want change material cross section member size select materia' +
-          'l cross section member size respective list new property assigned selected member notes tips change ' +
-          'properties several members simultaneously use multiple selection choose new material cross section m' +
-          'ember size appropriate member properties list increase decrease size selected members next larger sm' +
-          'aller one select members want modify click increase member size button decrease member size button u' +
-          'se multiple selection either button selected members wont necessarily end size. theyll increase decr' +
-          'ease independently want change properties members structural model click select button choose new ma' +
-          'terial cross section member size change properties member appearance member change drawing board cha' +
-          'nging material cause color displayed member change changing size cause width member change according' +
-          'ly changing cross section solid bar hollow tube cause displayed member change single line double lin' +
-          'e vice versa'
-  },
-  {
-    id: 'hlp_choose_optimum',
-    title: 'Choose the optimum design',
-    text: 'design bridge go back one step go forward one step bridge designer optimum design one costs least co' +
-          'nsidered many different alternative site truss configurations possible choose one lowest total cost ' +
-          'final design notes tips design actual bridge many criteria would taken account selecting desirable a' +
-          'lternative include aesthetics ease construction ease maintenance local availability materials enviro' +
-          'nmental impact'
-  },
-  {
-    id: 'glos_chords',
-    title: 'Chords',
-    text: 'chords main horizontal load carrying members truss truss bridge top chords normally carry compressio' +
-          'n bottom chords normally carry tension'
-  },
-  {
-    id: 'glos_client',
-    title: 'Client',
-    text: 'client person organization hires professional like engineer doctor lawyer perform specialized servic' +
-          'e'
-  },
-  {
-    id: 'hlp_component_parts',
-    title: 'Component parts of a truss bridge',
-    text: 'major component parts typical truss bridge chords top bottom verticals also called vertical members ' +
-          'diagonals also called diagonal members floor beams deck pinned support also called fixed bearing rol' +
-          'ler support also called expansion bearing abutments piers component parts illustrated 3 dimensional ' +
-          'view elevation side view notes tips number standard truss configurations commonly used bridge struct' +
-          'ures defined primarily geometry vertical diagonal members'
-  },
-  {
-    id: 'glos_compression',
-    title: 'Compression',
-    text: 'compression internal axial member force tends >>>shorten<<< member'
-  },
-  {
-    id: 'hlp_compressive_strength',
-    title: 'Compressive strength',
-    text: 'compressive strength member internal force causes become unsafe compression actual member force exce' +
-          'eds compressive strength member might fail compressive strength calculations performed bridge design' +
-          'er based buckling failure mode compressive strength represented symbol ϕp n measured units force kil' +
-          'onewtons abbreviated kn compressive strength calculated using following equations λ ≤ 2.25 ϕp n = ϕ ' +
-          '0.66 λ f y λ > 2.25 ϕp n = ϕ 0.88 f y ⁄ λ λ = f y al 2 ⁄ π 2 ei dimensionless parameter differentiat' +
-          'es inelastic λ ≤ 2.25 elastic λ > 2.25 buckling failure modes ϕ = 0.90 resistance factor member comp' +
-          'ression f y yield stress cross sectional area member π 3.14159.. e modulus elasticity material momen' +
-          't inertia member l length member notes tips equations taken 1994 aashto lrfd bridge design specifica' +
-          'tions see graph compressive strength function member length see member analysis report menu testing ' +
-          'bridge obtain numerical values f y e given material given cross section member size first test bridg' +
-          'e select member analysis report menu use toolbar button bridge designer calculates compressive stren' +
-          'gth member structural model load test compressive strength member always less tensile strength membe' +
-          'r relatively long slender difference quite substantial number 0.88 equation accounts fact actual str' +
-          'uctural members never perfectly straight slight crookedness actual structural members buckle interna' +
-          'l force average 12% lower theory predicts'
-  },
-  {
-    id: 'glos_concrete',
-    title: 'Concrete',
-    text: 'concrete mixture portland cement sand gravel water perhaps special additives concrete hardens forms ' +
-          'solid rock like substance used build many kinds structures'
-  },
-  {
-    id: 'glos_connections',
-    title: 'Connections',
-    text: 'connection assembly steel plates bolts and/or welds attach two members together structure connection' +
-          's real structure represented joints bridge designer structural models'
-  },
-  {
-    id: 'hlp_context_widgets',
-    title: 'Context widgets',
-    text: 'drawing board provides controls called context widgets speed work theyre invoked right clicking mous' +
-          'e location right click determines controls appear right click selected member shows dialog controls ' +
-          'support editing selected members member properties lists increase member size button decrease member' +
-          ' size button delete selection button view/hide member list button right click anywhere else shows me' +
-          'nu controls common editing needs design tools selector select button view/hide member list button gr' +
-          'id resolution buttons'
-  },
-  {
-    id: 'hlp_cost',
-    title: 'Cost of the design',
-    text: 'bridge designer automatically calculates cost bridge design create cost continuously updated display' +
-          'ed status toolbar cost calculated bridge designer accurately represent total cost actual bridge proj' +
-          'ect rather intended give general appreciation competing factors influence cost typical engineering p' +
-          'roject learning tool total cost bridge design consists two major components site cost truss cost sit' +
-          'e cost turn sum three components excavation cost deck cost support cost truss cost also includes thr' +
-          'ee components material cost connection cost product cost cost components described specific numerica' +
-          'l cost factors listed design specifications site cost site cost consists costs associated selection ' +
-          'site configuration deck height span length support configuration bridge excavation cost select deck ' +
-          'height determine amount soil must excavated achieve correct highway elevation lower deck excavation ' +
-          'required real world construction excavation priced cubic yard cubic meter bridge designer determines' +
-          ' required volume soil excavation based selected deck elevation deck cost selection deck height also ' +
-          'determines overall span length bridge higher deck results longer span increases truss cost cost rein' +
-          'forced concrete deck bridge designer also select material deck made either medium strength high stre' +
-          'ngth concrete medium strength concrete costs less high strength concrete lower strength requires dec' +
-          'k thicker thicker deck weighs thinner high strength concrete deck thus increase loading truss increa' +
-          'sed loading cause truss cost increase result cheaper deck tends require expensive truss vice versa e' +
-          'ither case cost deck specified lump sum cost 4 meter deck panel support cost select type abutments p' +
-          'iers cable anchorages used bridge bridge designer determines costs associated constructing supports ' +
-          'support configuration unique cost given type abutment standard arch cost tends increase span length ' +
-          'longer spans weigh shorter spans thus transmit greater loads supports general standard abutments cos' +
-          't less arch abutments given span length costs arch abutments piers also vary significantly height hi' +
-          'gher abutments piers use material shorter ones cost cable anchorages single lump sum cost truss cost' +
-          ' truss cost consists costs associated structural steel members connections make two main trusses pri' +
-          'ncipal load carrying elements bridge material cost structural steel normally priced weight mass e.g.' +
-          ' dollars per pound dollars per kilogram thus cost structure depends part total weight material used ' +
-          'build bridge designer calculates material cost determining total mass three available materials carb' +
-          'on steel high strength steel quenched tempered steel structural model multiplying mass material type' +
-          ' corresponding unit cost dollars per kilogram adding together get total material cost noted design s' +
-          'pecifications three different types steel different unit cost carbon steel least expensive quenched ' +
-          'tempered steel expensive given material hollow tubes expensive per kilogram solid bars connection co' +
-          'st real structures cost fabricating building connections join members together significant thus brid' +
-          'ge designer includes cost per joint part total cost structure actual three dimensional bridge two ma' +
-          'in trusses number connections used basis calculation double number joints two dimensional structural' +
-          ' model product cost structural design construction economical design often one simply minimizes mate' +
-          'rial cost often total cost structure reduced standardizing materials member sizes members structure ' +
-          'different materials sizes cost ordering fabricating constructing members relatively high many member' +
-          's fabrication construction costs relatively lower reason bridge designer includes cost per product p' +
-          'art total cost truss product defined unique combination material cross section member size structura' +
-          'l model cost calculations see cost factors cost per kilogram cost per joint cost per product site co' +
-          'st actual cost calculations current design click report cost calculations button site design wizard ' +
-          'also displays detailed calculations component site cost minimizing total cost attempt minimize total' +
-          ' cost bridge design find never minimize site cost material cost connection cost product cost simulta' +
-          'neously minimizing total cost always compromise among four competing factors minimize site cost woul' +
-          'd simply select site configuration costs least least expensive site configuration requires simply su' +
-          'pported truss spanning full 44 meters configuration require relatively heavy truss one high material' +
-          ' cost minimize material cost must make member light possibly without failing truss configurations ac' +
-          'hieving condition requires use solid bars hollow tubes wide variety different sizes minimizing mater' +
-          'ial cost requires use lot different products result product cost quite high minimize connection cost' +
-          ' must use smallest possible number joints minimize number joints inevitably long members structural ' +
-          'model long member subjected compressive loading require large member size keep failing member gets l' +
-          'onger compressive strength decreases significantly. thus minimizing connection cost usually results ' +
-          'high material cost minimize product cost would need use single material cross section size every mem' +
-          'ber structural model single member size would large enough ensure heavily loaded member structure fa' +
-          'il result many members would much stronger therefore much heavier really need material cost would ex' +
-          'tremely high clearly tradeoffs among site cost material cost connection cost product cost minimizing' +
-          ' one always increases one others task designer find best compromise'
-  },
-  {
-    id: 'hlp_crossxsection',
-    title: 'Cross-section',
-    text: 'cross section shape formed cutting member perpendicular axis cross section solid bar square measurin' +
-          'g w side cross section hollow tube open square measuring w side wall thickness cross sectional area ' +
-          'member surface area cross section picture light blue shaded region'
-  },
-  {
-    id: 'glos_cut',
-    title: 'Cut',
-    text: 'cut excavation lowers elevation roadway existing surface land'
-  },
-  {
-    id: 'hlp_truss_configuration',
-    title: 'Decide on a truss configuration',
-    text: 'design bridge go back one step go forward one step youve selected site configuration must decide ove' +
-          'rall configuration bridge bridge designer allows truss configuration long stable notes tips developi' +
-          'ng stable structural model tricky recommend new inexperienced users start standard truss configurati' +
-          'on decide use standard truss configuration load display template help correctly draw joints members'
-  },
-  {
-    id: 'glos_deck',
-    title: 'Deck',
-    text: 'deck floor bridge directly supports vehicles pedestrians crossing bridge bridge decks usually made r' +
-          'einforced concrete'
-  },
-  {
-    id: 'hlp_deck_truss',
-    title: 'Deck truss',
-    text: 'deck truss one deck located level top chord. vehicles crossing deck truss bridge supported trusses'
-  },
-  {
-    id: 'glos_deck_truss',
-    title: 'Deck truss',
-    text: 'deck truss deck located top chord vehicles supported trusses cross bridge'
-  },
-  {
-    id: 'hlp_decrease_member',
-    title: 'Decrease member size button',
-    text: 'click decrease member size button decrease size currently selected member next smaller notes tips de' +
-          'crease member size button located member properties toolbar one member selected clicking button decr' +
-          'ease size selected members even different sizes example 50mm member 90mm member 120mm member selecte' +
-          'd clicking button change 45mm 80mm 110mm respectively use decrease member size button member size li' +
-          'st updated reflect change use decrease member size button two member properties lists material cross' +
-          ' section type change'
-  },
-  {
-    id: 'hlp_delete_joint',
-    title: 'Delete a joint',
-    text: 'delete joint structural model click select tool design tools palette click joint want delete turn li' +
-          'ght blue indicate selected click delete button notes tips must working drawing board delete joint de' +
-          'lete key keyboard performs function delete button toolbar delete one joint time multiple selection j' +
-          'oints allowed delete joint members attached joint also deleted cannot delete joints created automati' +
-          'cally bridge designer started design also delete joint structural model erasing accidentally delete ' +
-          'joint click undo button restore'
-  },
-  {
-    id: 'hlp_delete_member',
-    title: 'Delete a member',
-    text: 'delete member structural model click select tool design tools palette select member want delete eith' +
-          'er clicking member clicking entry member list member turn light blue indicate selected click delete ' +
-          'button delete selected member notes tips must drawing board mode delete member want delete one membe' +
-          'r time use multiple selection click delete button delete key keyboard performs function delete butto' +
-          'n toolbar delete member members higher member numbers re numbered fill gap also remove member struct' +
-          'ural model erasing accidentally delete member click undo button restore'
-  },
-  {
-    id: 'hlp_delete',
-    title: 'Delete button',
-    text: 'click delete button delete currently selected joint delete currently selected member notes tips dele' +
-          'te button located main toolbar also available edit menu use delete key keyboard perform exactly func' +
-          'tion delete button also use eraser tool delete joints members'
-  },
-  {
-    id: 'hlp_design_specifications',
-    title: 'Design specifications',
-    text: 'specifications listed built bridge designer follow design process bridge designer ensure satisfy spe' +
-          'cifications listed better understand sorts requirements constraints engineers consider design real b' +
-          'ridges problem youre civil engineer working state department transportation assigned responsibility ' +
-          'design truss bridge carry two lane highway across river valley shown design objective satisfy specif' +
-          'ications listed keeping total cost project low possible bridge configuration bridge may cross valley' +
-          ' elevation high water level 24 meters high water level elevation bridge deck 24 meters excavation ri' +
-          'ver banks required achieve correct highway elevation amount excavation required deck elevation deter' +
-          'mined automatically bridge designer provide clearance overhead power lines shown highest point bridg' +
-          'e may exceed elevation 32.5 meters high water level 8.5 meters top river banks bridge substructure m' +
-          'ay consist either standard abutments simple supports arch abutments arch supports necessary bridge m' +
-          'ay also use one intermediate pier located near center valley necessary bridge may also use cable anc' +
-          'horages located 8 meters behind one abutments main truss 100 joints 200 members bridge flat reinforc' +
-          'ed concrete deck two types concrete available medium strength concrete requires deck thickness 23 ce' +
-          'ntimeters 0.23 meter high strength concrete requires deck thickness 15 centimeters 0.15 meter either' +
-          ' case deck supported transverse floor beams spaced 4 meter intervals see component parts truss bridg' +
-          'e information terms. accommodate floor beams structural model must row deck support joints spaced 4 ' +
-          'meters apart deck level joints created automatically begin new design bridge deck 10 meters wide all' +
-          'owing accommodate two lanes traffic member properties materials member truss made carbon steel high ' +
-          'strength low alloy steel quenched tempered steel cross sections members truss either solid bars holl' +
-          'ow tubes types cross sections square member size cross sections available variety standard sizes loa' +
-          'ds bridge must capable safely carrying following loads weight reinforced concrete deck weight 5 cm t' +
-          'hick asphalt wearing surface might applied time future weight steel floor beams supplemental bracing' +
-          ' members apply 12.0 kn load deck support joint weight main trusses weight either two possible truck ' +
-          'loadings one standard h25 truck loading per lane including appropriate allowance dynamic effects mov' +
-          'ing load since bridge carries two lanes traffic main truss must safely carry one h25 vehicle placed ' +
-          'anywhere along length deck. single 480 kn permit loading including allowance dynamic effects moving ' +
-          'load since permit loading assumed centered laterally main truss must safely carry one half total veh' +
-          'icle weight placed anywhere along length deck structural safety bridge comply structural safety prov' +
-          'isions 1994 lrfd aashto bridge design specification lrfd refers load resistance factor design. inclu' +
-          'des material densities load combinations tensile strength members compressive strength members cost ' +
-          'cost design calculated using following factors material cost carbon steel bars $4.50 per kilogram ca' +
-          'rbon steel tubes $6.30 per kilogram high strength steel bars $5.00 per kilogram high strength steel ' +
-          'tubes $7.00 per kilogram quenched tempered steel bars $5.55 per kilogram quenched tempered steel tub' +
-          'es $7.75 per kilogram connection cost $500.00 per joint product cost $1000.00 per product site cost ' +
-          'reinforced concrete deck medium strength $5 150 per 4 meter panel reinforced concrete deck high stre' +
-          'ngth $5 300 per 4 meter panel excavation $1.00 per cubic meter see site design wizard excavation vol' +
-          'ume supports abutments pier cost varies see site design wizard specific values cable anchorages $6 0' +
-          '00 per anchorage notes tips bridge designer ensures design satisfies design specifications listed dr' +
-          'awing board automatically set bridge correct span length height supports bridge designer automatical' +
-          'ly calculates loads resulting member forces run load test performs aashto structural safety checks m' +
-          'embers structural model strong enough tells ones need strengthened also calculates cost design aasht' +
-          'o safety standards simplified considerably bridge designer thats one important reason software educa' +
-          'tional use information see realistic bd'
-  },
-  {
-    id: 'hlp_design_tools',
-    title: 'Design tools palette',
-    text: 'design tools palette free floating toolbar positioned anywhere bridge design window contains followi' +
-          'ng tools creating modifying structural model joint tool member tool select tool eraser tool notes ti' +
-          'ps move design tools palette new location click drag title bar palette'
-  },
-  {
-    id: 'glos_diagonals',
-    title: 'Diagonals',
-    text: 'diagonals truss members oriented diagonally usually connect top bottom chords'
-  },
-  {
-    id: 'glos_displacement',
-    title: 'Displacement',
-    text: 'displacement movement joint occurs loads applied structure'
-  },
-  {
-    id: 'hlp_draw_joint',
-    title: 'Draw joints',
-    text: 'design bridge go back one step go forward one step create structural model must first draw joints co' +
-          'nnections structural members joined together draw joint select joint tool design tools palette posit' +
-          'ion mouse pointer location drawing board want add joint click left mouse button create new joint not' +
-          'es tips draw joint must drawing board mode joints placed snap points drawing board joints cannot pla' +
-          'ced outside maximum minimum elevation restrictions noted design specifications two joints cannot pla' +
-          'ced location accidentally place joint wrong location click undo button remove also delete joint move' +
-          ' joint new location start new design series joints created automatically project setup wizard joints' +
-          ' support deck cant moved deleted movable joints black outline light grey center immovable joints gre' +
-          'y outline white center joints create cannot attached abutments piers words cant create additional su' +
-          'pports supports permitted created automatically project setup wizard site configurations high pier j' +
-          'oints cannot drawn pier structural model limited 50 joints'
-  },
-  {
-    id: 'hlp_draw_member',
-    title: 'Draw members',
-    text: 'design bridge go back one step go forward one step drawn joints connect truss draw members make stru' +
-          'cture members must drawn joint joint draw member select member tool design tools palette position mo' +
-          'use pointer joint highlighted show ready connected click left mouse button hold drag mouse pointer a' +
-          'nother joint release button new member created first joint second notes tips draw member must drawin' +
-          'g board mode create new member member properties currently displayed member properties lists automat' +
-          'ically assigned new member changed later see change properties member information create new members' +
-          ' member numbers assigned automatically display member numbers click view member numbers button two m' +
-          'embers cannot drawn pair joints attempt draw member crosses one joints ends two members automaticall' +
-          'y created theyll properties accidentally draw member wrong location click undo button remove delete ' +
-          'member site configurations high pier members cannot drawn intermediate pier structural model 120 mem' +
-          'bers'
-  },
-  {
-    id: 'hlp_drawing_board',
-    title: 'Drawing board',
-    text: 'drawing board portion bridge design window create structural model drawing joints members mouse usin' +
-          'g drawing board also edit structural model moving adding deleting joints changing member properties ' +
-          'adding deleting members notes tips use drawing board button return drawing board load test bridge ab' +
-          'utments floor beams concrete deck asphalt road surface high water level displayed drawing board time' +
-          's see component parts truss bridge information terms. size position based site configuration youve s' +
-          'elected drawing board covered drawing grid cant see there. draw joints create structural model mouse' +
-          ' snaps grid line intersections called snap points joints drawn snap points drawing grid set low medi' +
-          'um high resolution use grid resolution buttons switch among three often easiest create structural mo' +
-          'del using low resolution grid switch medium high resolution settings editing horizontal vertical rul' +
-          'ers displayed left bottom edges drawing board help accurately position joints structural model symme' +
-          'try guides displayed drawing board help position joints structural model symmetrical title block dis' +
-          'played lower right hand corner drawing board title block shows name bridge design project name desig' +
-          'ner project identification name number designer project names changed time start new design may chos' +
-          'e display truss template drawing board help easily design stable structural model'
-  },
-  {
-    id: 'hlp_drawing_board_button',
-    title: 'Drawing board button',
-    text: 'click drawing board button return drawing board mode load test notes tips drawing board button locat' +
-          'ed main toolbar also available test menu drawing board button load test button work pair. one presse' +
-          'd time'
-  },
-  {
-    id: 'glos_drawing_grid',
-    title: 'Drawing grid',
-    text: 'drawing grid invisible set snap points drawing board lie intersections two sets parallel lines one h' +
-          'orizontal one vertical lines spaced 0.25 0.5 1.0 meters apart depending current grid resolution join' +
-          'ts located snap points grid locations indicated ticks vertical horizontal rulers located left bottom' +
-          ' edges drawing board'
-  },
-  {
-    id: 'glos_dynamic_load_allowance',
-    title: 'Dynamic load allowance',
-    text: 'dynamic load allowance factor used bridge design represent effect moving loads bridge designer uses ' +
-          'dynamic load allowance 33% means moving truck causes 33% force bridge members stationary truck'
-  },
-  {
-    id: 'hlp_erase',
-    title: 'Erase a joint or member',
-    text: 'erase joint member structural model click eraser tool design tools palette click joint member want e' +
-          'rase notes tips must drawing board mode erase joint member erase one joint member time erase joint m' +
-          'embers attached joint also erased cannot erase joints created automatically bridge designer started ' +
-          'new design erase member members higher member numbers re numbered fill gap also delete joint delete ' +
-          'member remove structural model accidentally erase joint member click undo button restore'
-  },
-  {
-    id: 'hlp_erase_tool',
-    title: 'Eraser tool',
-    text: 'use eraser tool erase joint member directly without select first notes tips eraser tool located desi' +
-          'gn tools palette also available tools menu eraser tool use mouse pointer appears pencil cross showin' +
-          'g cursor location move eraser tool drawing board joints members highlighted indicate item erased lef' +
-          't button click'
-  },
-  {
-    id: 'hlp_export_to_3dprint',
-    title: 'Export files to 3d print',
-    text: 'use 3d print button file menu item export files obj format imported 3d printer slicer program printe' +
-          'd result parts realistic scale model bridge suitable display dialog appear asking important paramete' +
-          'rs smallest printable feature size model bridge members printed scale thin print minimum feature siz' +
-          'e given millimeters used instead scale size cases one millimeter minimum larger values sacrifice sca' +
-          'le appearance slightly make printing assembly easier wiggle room 3d printers place bit much material' +
-          ' around small features like holes pegs used align model bridge parts value used adjust sizes good fi' +
-          't every printer different trial error may needed find good value 0.20mm starting point parts fit tig' +
-          'htly try larger wiggle room value vice versa scale establishes models overall size move slider try d' +
-          'ifferent values. dialog show resulting maximum object dimensions make sure maximums fit within print' +
-          'ers build volume base file name determines start obj file name containing bridge parts ready click o' +
-          'k three files sent browsers downloads folder base_file_name trusses.obj base_file_name abutments.obj' +
-          ' base_file_name cross members.obj base_file_name substituted name dialog file contains collection pi' +
-          'eces placed theyre likely fit print volume however guaranteed may want arrange print batches differe' +
-          'ntly use slicer software printer usual import obj files print parts item file separate object obj fi' +
-          'le format slicer software let position individually delete ones dont fit single print necessary some' +
-          'times splitting command required see separate objects prusa slicer example requires highlight import' +
-          ' press button multi colored bridge e.g one color trusses another cross members third deck also organ' +
-          'ize objects per intended color parts thin brims extra material added help printer bed adhesion must ' +
-          'trimmed away prior use errors kinds bridges complex export often cause short members happens dialog ' +
-          'display error notes tips bridge complex export try increasing scale far printer allows example use d' +
-          'iagonal bed described cases allow export succeed biggest pieces model usually trusses goal make bigg' +
-          'est possible model try printing trusses one time oriented diagonally printer bed minimum feature siz' +
-          'e consider using multiple printers nozzle size thats least one millimeter. example nozzle 0.4mm try ' +
-          '1.2 1.6 see tips assembling bridge model important details youve printed parts'
-  },
-  {
-    id: 'hlp_find_opt_substructure',
-    title: 'Find the optimum site configuration and load case',
-    text: 'design bridge go back one step go forward one step point design process optimized design one particu' +
-          'lar site configuration load case one particular combination deck height span length support configur' +
-          'ation deck material truck loading. wont know design truly optimal considered site configurations loa' +
-          'd cases bridge designer allows 98 possible site configurations consisting various combinations deck ' +
-          'elevation support type support height also four possible load cases consisting various combinations ' +
-          'deck material truck loading total cost bridge equals site cost plus truss cost site configuration su' +
-          'pports bridge different way thus different site cost load case different effect steel truss thus lik' +
-          'ely result different truss cost even though site cost makes major portion bridges total cost picking' +
-          ' configuration lowest site cost necessarily result lowest total cost site configurations low site co' +
-          'st tend relatively high truss costs vice versa site configuration high deck elevation generally rela' +
-          'tively low site cost requires little excavation yet configuration high deck elevation also greater s' +
-          'pan length longer spans require larger heavier trusses leads higher truss costs arch abutments cost ' +
-          'standard abutments tall arch abutments cost short ones thus site configurations use arches tend high' +
-          'er site cost v shape river valley allows arch abutments reduce span length given deck height taller ' +
-          'abutment shorter span arch abutments also provide lateral restraint standard abutments factors tend ' +
-          'lower truss cost arches building pier middle river quite expensive thus configurations piers signifi' +
-          'cantly higher site costs without pier also divides one long span two short ones two short trusses us' +
-          'ually much less expensive single long one cable anchorages also expensive provide additional support' +
-          ' thus reduce truss cost significantly example cable supports cable stayed bridge choice deck materia' +
-          'l affects site cost loads applied load test medium strength concrete less expensive high strength co' +
-          'ncrete results thicker deck heavier high strength concrete expensive results thinner deck lighter th' +
-          'us less expensive deck material tends result higher truss cost expensive deck material results lower' +
-          ' truss cost choice truck loading effect site cost significant effect truss cost lesson learned engin' +
-          'eering design always involves tradeoffs tradeoff cost structure cost supporting substructure critica' +
-          'lly important aspect real world bridge designs site configuration load case result lowest total cost' +
-          ' way answer question trial error combined careful logical reasoning find optimum substructure config' +
-          'uration click new design button project setup wizard displayed select one site configurations load c' +
-          'ases havent tried yet best change one variable time draw valid conclusions effect change example sup' +
-          'pose first design single span standard abutments deck height 24 meters second design might try arch ' +
-          'leave deck height 24 meters cost difference two trials directly attributed different support type ch' +
-          'ange support type deck height simultaneously wont know factors affects cost repeat previous eight st' +
-          'eps design process new site configuration load case decide truss configuration draw joints draw memb' +
-          'ers load test design strengthen unsafe members optimize member properties optimize shape truss optim' +
-          'ize truss configuration compare results two trials draw logical conclusion one variable changed seco' +
-          'nd trial particular deck height standard abutments arch abutments result lower cost large difference' +
-          ' two large might able draw general conclusion two support types two results close youll probably nee' +
-          'd trials try another site configuration load case change one characteristic second trial 4 meter hig' +
-          'h arch might use 12 meter 16 meter height next trial repeat entire design process optimize truss new' +
-          ' site configuration compare results previous trials use comparison logical basis new exploration con' +
-          'duct trials able eliminate uneconomical site configurations load cases youve eliminated one optimum'
-  },
-  {
-    id: 'hlp_try_new_configuration',
-    title: 'Find the optimum truss configuration',
-    text: 'design bridge go back one step go forward one step design iterative process achieve optimal design p' +
-          'robably need try many different truss configurations might guess millions possible configurations pr' +
-          'obably wont time try find optimum without modeling testing every possible truss configuration one ap' +
-          'proach consider alternative configurations systematic way select configuration optimize member prope' +
-          'rties carefully observe changes configuration affected cost design keep track changes produce reduct' +
-          'ions cost use observations guide selection next configuration find optimum truss configuration try d' +
-          'ifferent deck location first design deck truss try corresponding truss vice versa try different stan' +
-          'dard truss configuration example first design pratt truss try howe warren configuration try reducing' +
-          ' lengths compression members truss compressive strength member function length member gets longer co' +
-          'mpressive strength decreases substantially much less resistance buckling reason cost truss design so' +
-          'metimes reduced shortening one compression members example lets start standard warren truss top chor' +
-          'ds simple span truss bridge always compression might able reduce cost warren truss subdividing top c' +
-          'hord members like consider standard pratt truss configuration top chords verticals normally compress' +
-          'ion could subdivide top chords verticals like length compression member reduced half designer usuall' +
-          'y able use much smaller member size achieve required compressive strength note also subdivide member' +
-          ' always need add additional joints members maintain stability stable truss generally must made serie' +
-          's interconnected triangles subdivide compression member bridge designer must normally delete compres' +
-          'sion member want subdivide add new joint near midpoint member deleted add two new members replace or' +
-          'iginal member add additional members ensure stability optimize member properties new members reducin' +
-          'g length compression members may may reduce total cost design depending whether cost saving using sm' +
-          'aller member sizes enough offset increased cost additional joints members try reducing number joints' +
-          ' cost design includes fixed cost per joint thus may able reduce total cost reducing number joints st' +
-          'ructural model example consider standard howe deck truss configuration improved simply removing join' +
-          't midpoint bottom chord like delete joint three attached members deleted well need add single new me' +
-          'mber replace two bottom chord members deleted modification often effective tension members like bott' +
-          'om chord members example tensile strength function length removing joint top chord truss shown less ' +
-          'likely effective deleting top chord joint replacing two chord members one would double length compre' +
-          'ssion member making much weaker would need much larger size steel make member strong enough pass loa' +
-          'd test benefit reduced number joints would probably lost try inventing truss configuration copy conf' +
-          'iguration actual bridge examples real bridge configurations might consider trusses shown could also ' +
-          'designed deck truss notes tips youre confident place new joint exactly member divide go ahead bridge' +
-          ' designer automatically split member new joint verify watching member list otherwise use delete add ' +
-          'procedure'
-  },
-  {
-    id: 'glos_floor_beams',
-    title: 'Floor beams',
-    text: 'floor beams transverse members support bridge deck transmit loads deck joints main trusses'
-  },
-  {
-    id: 'glos_footing',
-    title: 'Footing',
-    text: 'footing base abutment pier foundation rests directly soil transmits load structure soil'
-  },
-  {
-    id: 'glos_forces',
-    title: 'Forces',
-    text: 'force push pull weight common example force force measured pounds us system measurement newtons si s' +
-          'ystem bridge designer forces kilonewtons kn'
-  },
-  {
-    id: 'glossary',
-    title: 'Glossary',
-    text: 'aashto abutment arch abutments arch supports asphalt astm b bearing bridge design file buckling c ca' +
-          'ble anchorages chords client compression concrete connections cut d deck deck truss diagonals displa' +
-          'cement drawing grid dynamic load allowance f floor beams footing forces j joints k kilonewton kn l l' +
-          'oad factors load test loads m mass density member force member numbers member properties member size' +
-          ' members modulus elasticity moment inertia p pier r reinforced concrete resistance factor safe sessi' +
-          'on simple supports site cost slope snap points span standard abutments structural analysis structura' +
-          'l model substructure supports symmetrical template tension truss u unsafe v verticals w wearing surf' +
-          'ace y yield stress yielding'
-  },
-  {
-    id: 'hlp_go_back',
-    title: 'Go back button',
-    text: 'click go back button display previous design iteration drawing board notes tips go back button locat' +
-          'ed main toolbar also available edit menu used go back button display previous design iteration use g' +
-          'o forward button display recent iteration also use go iteration button display design iteration brid' +
-          'ge designer remembers design iterations long remember work checked edit menu unchecked iterations lo' +
-          'st time browser refreshed restarted'
-  },
-  {
-    id: 'hlp_go_forward',
-    title: 'Go forward button',
-    text: 'click go forward button display recent design iteration drawing board notes tips go forward button l' +
-          'ocated main toolbar also available edit menu go forward button activated used go back button least a' +
-          'lso use go iteration button display design iteration bridge designer remembers design iterations lon' +
-          'g remember work checked edit menu unchecked iterations lost time browser refreshed restarted'
-  },
-  {
-    id: 'hlp_go_to',
-    title: 'Go to iteration button',
-    text: 'click go iteration button display design iteration browser use browser load drawing board design ite' +
-          'ration browser displayed select iteration click ok alternately double click iteration notes tips use' +
-          ' tree view tab see design iterations related go iteration button located main toolbar also available' +
-          ' edit menu design iteration browser provides preview window help select iteration actually loading d' +
-          'rawing board also display previous design iterations go back button bridge designer remembers design' +
-          ' iterations long remember work checked edit menu unchecked iterations lost time browser refreshed re' +
-          'started'
-  },
-  {
-    id: 'hlp_grid_resolution',
-    title: 'Grid resolution buttons',
-    text: 'use grid resolution buttons set resolution drawing grid drawing board covered invisible grid draw mo' +
-          've joints mouse snaps grid intersections select low medium high resolution pressing respective butto' +
-          'n low resolution setting grid 1.0 meter spacing medium high resolution 0.5 meter 0.25 meters respect' +
-          'ively notes tips grid resolution buttons located display toolbar theyre also available view menu con' +
-          'text menu click grid resolution button tick marks rulers drawing updated show corresponding grid spa' +
-          'cing often best create structural model using low resolution grid easier control joint member placem' +
-          'ent mode begin optimizing design might switch medium high resolution refine shape structural model p' +
-          'recisely always select joint use keyboard arrows move 0.25 meter increments allows small adjustments' +
-          ' regardless current grid resolution setting'
-  },
-  {
-    id: 'hlp_how_wpbd_works',
-    title: 'How the bridge designer works',
-    text: 'bridge designer intended educational purposes use bridge designer experience engineering design proc' +
-          'ess simplified form design highway bridge much way practicing civil engineers design real highway br' +
-          'idges presented requirement design steel truss bridge carry two lane highway across river may choose' +
-          ' wide variety different site configurations bridge cause bridge carry loads different way different ' +
-          'site cost develop design bridge drawing picture computer screen first design attempt complete bridge' +
-          ' designer test bridge see strong enough carry specified highway loads test includes full color anima' +
-          'tion showing truck crossing bridge design strong enough truck able cross successfully structure coll' +
-          'apse bridge collapses strengthen changing properties structural components make bridge changing conf' +
-          'iguration bridge bridge successfully carry highway loading without collapsing continue refine design' +
-          ' objective minimizing cost still ensuring strong enough carry specified loads bridge designer gives ' +
-          'complete flexibility create designs using shape configuration want creating design quick experiment ' +
-          'many different alternative configurations work toward best possible one process youll use quite simi' +
-          'lar one used practicing civil engineers design real structures indeed bridge designer quite similar ' +
-          'computer aided design cad software used practicing engineers help way cad software helps taking care' +
-          ' heavy duty mathematical calculations concentrate creative part design process good luck notes tips ' +
-          'learn bridge designer cloud edition differs earlier versions see whats new bridge designer . bridge ' +
-          'designer developed brigadier general retired stephen ressler re engineered twice open source brigadi' +
-          'er general retired eugene ressler distributed freely provisions gnu public license version 3 intende' +
-          'd solely educational use'
-  },
-  {
-    id: 'hlp_how_to',
-    title: 'How to design a bridge',
-    text: 'use bridge designer experience engineering design process simplified form design steel truss bridge ' +
-          'much way practicing civil engineers design real highway bridges objective create optimal bridge desi' +
-          'gn optimal design one satisfies design specifications passes simulated load test costs little possib' +
-          'le diagram shows effective method develop optimal design learn methodology click block diagram detai' +
-          'led description particular step or.. click browse design process one step time'
-  },
-  {
-    id: 'hlp_increase_member',
-    title: 'Increase member size button',
-    text: 'click increase member size button increase size currently selected members next larger notes tips in' +
-          'crease member size button located member properties toolbar one member selected clicking button incr' +
-          'ease size selected members even different example 50mm member 90mm member 120mm member selected clic' +
-          'king button change 55mm 100mm 130mm respectively use increase member size button member size list up' +
-          'dated reflect change use increase member size button two member properties lists material cross sect' +
-          'ion type changed'
-  },
-  {
-    id: 'hlp_joint_tool',
-    title: 'Joint tool',
-    text: 'use joint tool draw joints create structural model notes tips joint tool located design tools palett' +
-          'e also available tools menu joint tool selected mouse pointer appears cross hair'
-  },
-  {
-    id: 'glos_joints',
-    title: 'Joints',
-    text: 'joint point ends two members connected truss joint assumed act like frictionless pin hinge allows co' +
-          'nnected members rotate'
-  },
-  {
-    id: 'glos_kilonewton',
-    title: 'Kilonewton',
-    text: 'kilonewton kn measurement force si metric system kilonewton 1000 newtons equivalent 225 pounds'
-  },
-  {
-    id: 'glos_kn',
-    title: 'kN',
-    text: 'kn abbreviation kilonewton metric unit force. equivalent 225 pounds'
-  },
-  {
-    id: 'hlp_load_a_template',
-    title: 'Load and display a template',
-    text: 'bridge designer includes variety truss templates load display drawing board light gray outlines trac' +
-          'e template joints members create stable structural model load display template click load template f' +
-          'ile menu select template click ok else double click template displayed drawing board notes tips must' +
-          ' drawing board mode load template template loaded hide clicking template button toolbar view menu en' +
-          'try'
-  },
-  {
-    id: 'hlp_load_combinations',
-    title: 'Load combinations',
-    text: 'structural engineers use load combinations account fact structures often experience several differen' +
-          't types loads time example bridge must simultaneously carry weight plus weight traffic pedestrians c' +
-          'rossing it. bridge might also need carry loads caused high winds snow ice even earthquake highly unl' +
-          'ikely extreme loads occur time reason structural design codes specify several different load combina' +
-          'tions corresponds particular extreme event really heavy truck loading really strong earthquake examp' +
-          'le load combination extreme loading combined average loads might present time 1994 aashto bridge des' +
-          'ign specification requires bridge engineers check eleven different load combinations bridge design b' +
-          'ridge designer uses one total load = 1.25 w + 1.5 w w + 1.75 1 + dla w = weight structure including ' +
-          'deck structural components w w = weight asphalt wearing surface = weight aashto truck loading dla = ' +
-          'dynamic load allowance numbers 1.25 1.5 1.75 load factors notes tips fact bridge designer considers ' +
-          'one eleven different code specified load combinations one important reason software educational use ' +
-          'reasons see realistic bridge designer'
-  },
-  {
-    id: 'glos_load_factors',
-    title: 'Load factors',
-    text: 'load factor number greater one multiplied design load order represent extreme loading structure exam' +
-          'ple load factor 1.75 multiplied standard aashto h25 truck loading represent extremely heavy truck re' +
-          'presents heaviest truck might reasonably expected cross bridge lifetime different kinds loads differ' +
-          'ent load factors loads unpredictable others example weight bridge predictable weight heavy truck loa' +
-          'd factor bridge weight much lower'
-  },
-  {
-    id: 'hlp_load_template',
-    title: 'Load template',
-    text: 'click load template button load standard truss template display drawing board notes tips load templa' +
-          'te button available file menu'
-  },
-  {
-    id: 'glos_load_test',
-    title: 'Load test',
-    text: 'bridge designer load test simulation shows well design would perform built placed service load test ' +
-          'bridge subjected self weight weight standard aashto h25 truck loading. every member structural model' +
-          ' checked structural safety'
-  },
-  {
-    id: 'hlp_load_test3',
-    title: 'Load test animation',
-    text: 'load test animation graphical simulation bridge undergoing load test start animation click load test' +
-          ' button animation begins bridge subjected weight steel structural elements concrete deck asphalt wea' +
-          'ring surface self weight applied aashto h25 truck moves across bridge left right loads applied bridg' +
-          'e bends displacements bridge may exaggerated factor 10 illustrate truss members shorten elongate car' +
-          'ry load member forces increase members change color red compression blue tension intense color close' +
-          'r member failure one members found unsafe animation shows members failing bridge might look begins c' +
-          'ollapse notes tips pause rewind restart animation time using animation controls change appearance lo' +
-          'ad test animation opt show changing load test options whenever member found unsafe load test animati' +
-          'on depicts failure member either yielding buckling failure mode entirely realistic engineers always ' +
-          'build margin safety structural members margin represented load factors code specified load combinati' +
-          'ons resistance factors equations tensile strength compressive strength unsafe member might fail migh' +
-          't continue carry load reduced margin safety actual bridge possible one members fail without causing ' +
-          'total collapse structure however member found unsafe bridge designer considers design unsuccessful'
-  },
-  {
-    id: 'hlp_load_test_button',
-    title: 'Load test button',
-    text: 'click load test button load test current design notes tips load test button located main toolbar als' +
-          'o available test menu load test button drawing board button work tandem one depressed given time cli' +
-          'ck one remains depressed click exception youve turned show animation option test menu causes mode sw' +
-          'itch back drawing board immediately test complete'
-  },
-  {
-    id: 'hlp_load_test_options',
-    title: 'Load test options',
-    text: 'auto correct errors check box test menu causes bridge designer attempt identify source instability u' +
-          'nstable structural model modify load tested modifications might include deleting unattached joint me' +
-          'mber adding new required members. modifications might successful depending type extent instability s' +
-          'till best keep option switched unless theres good reason turn show animation check box test menu swi' +
-          'tched load test animation displayed every load test animation shown user returned immediately drawin' +
-          'g board mode load test exaggeration check box animation settings switched bending bridge exaggerated' +
-          ' factor 20 show clearly truss members shorten elongate carry load option displacements exaggerated m' +
-          'ember colors check box animation settings switched members change color animation show magnitude mem' +
-          'ber force red compression blue tension intense color closer member failure switched members change c' +
-          'olor animation notes tips animation starts exaggeration member colors options turned make bridge app' +
-          'ear realistic possible shadows animation tax graphics hardware computer animation slow rough turning' +
-          ' may improvement'
-  },
-  {
-    id: 'hlp_load_test_status',
-    title: 'Load test status',
-    text: 'current status design displayed icon status toolbar design always one three possible states construc' +
-          'tion structural model yet completed changed since last load test unsafe structural model load tested' +
-          ' one members strong enough safely carry specified loads safe structural model load tested members st' +
-          'rong enough safely carry specified loads notes tips anytime make change structural model status chan' +
-          'ge construction another load test run get detailed numerical results recent load test click report l' +
-          'oad test results button member list also summary'
-  },
-  {
-    id: 'hlp_run_load_test',
-    title: 'Load test your design',
-    text: 'design bridge go back one step go forward one step complete stable structural model must run simulat' +
-          'ed load test ensure members design strong enough carry loads prescribed design specification 5 load ' +
-          'test design click load test button sit back watch bridge designer perform load test display animatio' +
-          'n update load test status display walk ride test using animation controls ready click drawing board ' +
-          'button return continue work design notes tips click load test button bridge designer automatically p' +
-          'erform following actions create pin roller supports appropriate locations structural model calculate' +
-          ' weight members apply forces structure loads calculate weight concrete bridge deck asphalt wearing s' +
-          'urface floor beams see design specification 5 information apply corresponding loads structure apply ' +
-          'aashto h25 truck loading structure multiple positions representing movement truck across bridge chec' +
-          'k structural model stability structural model unstable bridge designer attempt fix problem unsuccess' +
-          'ful stop load test inform problem provide suggestions return drawing board perform structural analys' +
-          'is considering combined effects bridge self weight truck loading truck position calculate displaceme' +
-          'nt joint member force member structural model member compare calculated member forces truck position' +
-          's determine absolute maximum tension force absolute maximum compression force. critical forces deter' +
-          'mine whether given member safe calculate tensile strength compressive strength member member compare' +
-          ' absolute maximum tension force tensile strength compare absolute maximum compression force compress' +
-          'ive strength force exceeds strength either case member unsafe member safe prepare display load test ' +
-          'animation update load test status display save time run load test without displaying animation see l' +
-          'oad test options turn automatic fixing stability problems also explained'
-  },
-  {
-    id: 'glos_loads',
-    title: 'Loads',
-    text: 'loads forces applied structure highway bridge loads include weight vehicles cross bridge weight brid' +
-          'ge cases weight snow ice structure forces caused high winds earthquakes'
-  },
-  {
-    id: 'hlp_local_contest',
-    title: 'Local contest code',
-    text: 'bridge designer includes support local bridge design contests 6 character local contest code may ent' +
-          'ered design project setup wizard code causes automatic selection site conditions including load case' +
-          ' task design best possible bridge conditions future enhancement bridge designer depends suitable fun' +
-          'ding automatically produce scoreboard designs code youll manually track whos winning enter local con' +
-          'test code click new design button display project setup wizard step 2 wizard check yes enter code te' +
-          'xt box notes tips first three characters local contest code used uniquely identify contest e.g. nhs ' +
-          'northampton high school next two two digit number representing site configuration i.e. deck elevatio' +
-          'n supports final character letter b c d designating load case load case consists one two truck avail' +
-          'able loadings combined one two available concrete deck thicknesses soon valid 6 character local cont' +
-          'est code entered design project setup wizard corresponding site configuration load case displayed pr' +
-          'eview window'
-  },
-  {
-    id: 'glos_mass_density',
-    title: 'Mass density',
-    text: 'mass density material mass per unit volume mass density steel significantly higher concrete asphalt'
-  },
-  {
-    id: 'hlp_material_densities',
-    title: 'Material density',
-    text: 'density material mass per unit volume bridge designer uses material densities specified 1994 aashto ' +
-          'bridge design specifications follows reinforced concrete 2400 kg per cubic meter asphalt 2250 kg per' +
-          ' cubic meter steel types 7850 kg per cubic meter'
-  },
-  {
-    id: 'hlp_materials',
-    title: 'Materials',
-    text: 'bridge designer allows use three different materials design carbon steel common grade structural ste' +
-          'el composed primarily iron 0.26% carbon high strength low alloy steel increasingly popular structura' +
-          'l steel similar carbon steel significantly stronger higher strength attained small amounts manganese' +
-          ' columbium vanadium alloying elements added manufacturing process quenched tempered low alloy steel ' +
-          'high strength steel similar high strength low alloy steel strength increased special heat treating p' +
-          'rocess notes tips material best choice given structural design answer depends largely relative impor' +
-          'tance cost strength yield stress design carbon steel least expensive three alternatives also lowest ' +
-          'strength high strength low alloy steel somewhat expensive 40% stronger carbon steel quenched tempere' +
-          'd low alloy steel strongest expensive three three materials approximately density modulus elasticity' +
-          ' best material often varies structure structure design may use one youll need experiment determine m' +
-          'aterials best design determine numerical values yield stress mass density modulus elasticity given m' +
-          'aterial select member analysis report menu testing bridge determine costs materials check cost calcu' +
-          'lations report'
-  },
-  {
-    id: 'glos_member_force',
-    title: 'Member force',
-    text: 'member force internal force developed member result loads applied structure member force either tens' +
-          'ion compression'
-  },
-  {
-    id: 'hlp_member_list',
-    title: 'Member list',
-    text: 'member list grid optionally displayed right hand side bridge design window member list reduces space' +
-          ' available drawing board hide clicking small close button upper right make space editing structural ' +
-          'model member list following lists members current structural model lists engineering properties incl' +
-          'uding length material cross section member size slenderness ratio member provides recent load test r' +
-          'esults member allows selecting one members order edit allows sorting members grid column notes tips ' +
-          'member list load test results shown ratios member force strength compression tension ratio greater o' +
-          'ne member unsafe members unsafe tension highlighted blue unsafe compression highlighted red ratio le' +
-          'ss one member safe ratio much less one member much stronger needs probably uneconomical addition clo' +
-          'se button member list hidden restored view member list menu item select member click corresponding r' +
-          'ow member list selected member highlighted light blue member list drawing board click drag mouse but' +
-          'ton select range members alternately select range clicking one member holding shift key clicking sec' +
-          'ond member selects clicked members members select one member range hold ctrl key clicking rows membe' +
-          'r list sort member list click heading column sort example sort members length click heading length c' +
-          'olumn first time click column heading list sorted ascending order click sorted descending order thir' +
-          'd click restores default sort order number member list used efficiently optimize member properties s' +
-          'tructural model. immediately following load test sort compression load test results clicking compres' +
-          'sion force/strength column heading. list sorted safe least safe unsafe members bottom list highlight' +
-          'ed red excessively strong i.e. uneconomical members top select block members needs made larger small' +
-          'er using click drag shift key selection use increase member size button decrease member size button ' +
-          'change selected rows repeat tension load test results'
-  },
-  {
-    id: 'hlp_view_member_list',
-    title: 'Member list hide and restore',
-    text: 'member list hidden provide space drawing bridge design use close button upper right click button app' +
-          'ears place reopen notes tips view menus member list item also hides restores member list'
-  },
-  {
-    id: 'glos_member_numbers',
-    title: 'Member numbers',
-    text: 'every member structural model member number. numbers assigned order create members . physical signif' +
-          'icance member numbers used reference member properties load test results reported member number'
-  },
-  {
-    id: 'glos_member_properties',
-    title: 'Member properties',
-    text: 'properties member 1 material made 2 type cross section e.g solid tube 3 cross section size'
-  },
-  {
-    id: 'hlp_member_properties',
-    title: 'Member properties lists',
-    text: 'use three member properties lists define material cross section member size member structural model ' +
-          'choose member property click drop button reveal list items click item want member size list also upd' +
-          'ated using increase member size decrease member size buttons notes tips member properties lists loca' +
-          'ted member properties toolbar adding new members material cross section size currently displayed mem' +
-          'ber properties lists automatically assigned new member created editing structural model member prope' +
-          'rties lists used change properties currently selected members members selected member properties lis' +
-          'ts show properties used largest number members current design'
-  },
-  {
-    id: 'glos_member_size',
-    title: 'Member size',
-    text: 'size member dimensions cross section millimeters'
-  },
-  {
-    id: 'hlp_member_tool',
-    title: 'Member tool',
-    text: 'use member tool draw members create structural model notes tips member tool located design tools pal' +
-          'ette also available tools menu member tool selected mouse pointer appears pencil'
-  },
-  {
-    id: 'glos_members',
-    title: 'Members',
-    text: 'members individual structural elements make truss connected joints'
-  },
-  {
-    id: 'hlp_menu_bar',
-    title: 'Menu bar',
-    text: 'menu bar located top bridge design window immediately title bar menu bar provides following commands' +
-          ' file new design open file save file save open sample design load template print design export files' +
-          ' 3d print recently opened files exit edit select delete undo redo go back go forward go iteration in' +
-          'crease member size decrease member size remember work view design tools animation settings member li' +
-          'st rulers title block member numbers symmetry guides template grid resolution drawing tools joint to' +
-          'ol member tool select tool eraser tool test drawing board load test show animation auto correct erro' +
-          'rs report cost calculations load test results member analysis help tip day'
-  },
-  {
-    id: 'glos_modulus_of_elasticity',
-    title: 'Modulus of elasticity',
-    text: 'modulus elasticity measure materials stiffness resistance deformation material high modulus elastici' +
-          'ty deforms little loaded vice versa modulus elasticity represented symbol e expressed units force pe' +
-          'r unit area'
-  },
-  {
-    id: 'glos_moment_of_inertia',
-    title: 'Moment of inertia',
-    text: 'moment inertia measure members resistance bending buckling function shape dimensions member cross se' +
-          'ction represented symbol expressed units length raised fourth power'
-  },
-  {
-    id: 'hlp_move_joint',
-    title: 'Move a joint',
-    text: 'move joint mouse click select tool design tools palette position mouse pointer joint want move press' +
-          ' left mouse button hold move mouse pointer new joint location release button joint redrawn new locat' +
-          'ion move joint keyboard click select tool design tools palette click joint want move selected joint ' +
-          'turn light blue use arrow keys keyboard move joint desired direction 0.25 meter increments notes tip' +
-          's must drawing board mode move joint joint already members attached members automatically reposition' +
-          'ed along joint joints created automatically bridge designer start new design cannot moved cannot mov' +
-          'e one joint top another joint site configurations high pier joints cannot moved onto pier joint drag' +
-          'ged mouse joint moves increments corresponding current resolution drawing grid joint moved keyboard ' +
-          'moves 0.25 meter increments regardless current grid resolution thus keyboard technique good making s' +
-          'mall adjustments position joint'
-  },
-  {
-    id: 'hlp_multiple_selection',
-    title: 'Multiple selection of members',
-    text: 'use multiple selection change properties several members simultaneously delete several members simul' +
-          'taneously five different ways multiple selection drag box click select tool design tools palette hol' +
-          'ding left button mouse drag box around members want select release mouse button members entirely enc' +
-          'losed within box selected drag left right members completely inside box selected drag right left mem' +
-          'bers either inside box touching selected ctrl click drawing board click select tool design tools pal' +
-          'ette hold ctrl key keyboard drawing board individually click members want select ctrl click member l' +
-          'ist hold ctrl key keyboard member list individually click members want select shift click member lis' +
-          't block selection member list click one member start block. hold shift key keyboard member list clic' +
-          'k second member complete block members listed first second inclusive selected click drag member list' +
-          ' block selection member list click one member start block. drag release select desired block select ' +
-          'click select button main toolbar every member structural model selected notes tips selected members ' +
-          'turn light blue drawing board member list de select selected members click anywhere drawing board me' +
-          'mber de select single member without de selecting remaining members multiple selection hold ctrl key' +
-          ' click member want de select'
-  },
-  {
-    id: 'hlp_new_design',
-    title: 'New design button',
-    text: 'click new design button start new bridge design click button project setup wizard displayed notes ti' +
-          'ps new design button located main toolbar also available file menu'
-  },
-  {
-    id: 'hlp_open_sample_design',
-    title: 'Open a sample design',
-    text: 'bridge designer includes variety sample designs open modify load test stable truss configurations no' +
-          'ne optimized minimum cost load sample design click open sample design entry file menu select sample ' +
-          'design click ok double click sample design displayed drawing board notes tips must drawing board mod' +
-          'e load sample design current structural model saved prompted save sample design loaded'
-  },
-  {
-    id: 'hlp_open_existing',
-    title: 'Open an existing bridge design file',
-    text: 'open existing bridge design file click open file button main toolbar choose disk drive folder filena' +
-          'me want open click ok notes tips file extension bridge design files created bridge designer .bdc sor' +
-          'ry cloud edition files compatible earlier bridge designer files current design saved prompted save o' +
-          'pen file browser security makes file save restore little different applications installed computer e' +
-          'specially true firefox chrome edge chromium based browsers provide better experience'
-  },
-  {
-    id: 'hlp_open_file',
-    title: 'Open file button',
-    text: 'click open file button open existing bridge design file notes tips open file button located main too' +
-          'lbar also available file menu'
-  },
-  {
-    id: 'hlp_optimize_member_selection',
-    title: 'Optimize the member properties',
-    text: 'design bridge go back one step go forward one step structural model unsafe members design successful' +
-          ' however design optimal minimize cost first step optimizing design minimize cost current truss confi' +
-          'guration optimizing member properties material cross section member size stage design process change' +
-          ' shape configuration current structural model optimize member properties ensure understand bridge de' +
-          'signer calculates cost design particular understand trade material cost product cost minimize materi' +
-          'al cost several approaches might use minimize material cost following procedure recommended inexperi' +
-          'enced designers start using lowest cost weakest available material carbon steel members select appro' +
-          'priate cross section member usually best use solid bars tension members hollow tubes compression mem' +
-          'bers information see solid bar hollow tube use systematic trial error procedure determine smallest p' +
-          'ossible member size every member structural model starting successful design decrease size every mem' +
-          'ber next smaller available size see change properties member information. run load test member fails' +
-          ' size small change back previous larger size member safe decrease size run load test keep reducing s' +
-          'ize running load test member fails increase size one use process systematically every member structu' +
-          'ral model ensure every member small inexpensive possibly without failing finally go back check using' +
-          ' either two materials high strength steel quenched tempered steel reduce overall cost design steels ' +
-          'significantly higher yield stress carbon steel using allow reduce size members without reducing stre' +
-          'ngth high strength steel quenched tempered steel expensive dollars per kilogram carbon steel need us' +
-          'e trial error determine benefit increased strength sufficient offset greater cost high strength stee' +
-          'ls permissible use two three different materials design adjusted materials cross sections member siz' +
-          'es minimize material cost design sure run load test ensure members safe optimize based product cost ' +
-          'minimized material cost probably introduced large number different products design thus even though ' +
-          'material cost low product cost probably quite high total cost almost certainly optimum use following' +
-          ' procedure find best balance two competing cost factors check cost calculations report see many prod' +
-          'ucts currently included design particular identify products used members structural model change pro' +
-          'perties particular members match next larger next stronger available product current design example ' +
-          'suppose design includes two 40 mm solid carbon steel bars four 60 mm solid carbon steel bars change ' +
-          'two 40 mm bars 60 mm bars modification increase material cost somewhat reduce number products one mo' +
-          'dification probably reduce safety structure since making two 40 mm members stronger reduction produc' +
-          't cost exceeds increase material cost change good one reject change clicking undo button continue tr' +
-          'ial error process selectively increasing member sizes using stronger materials reduce total number p' +
-          'roducts design generally find reducing number products creates substantial cost savings first howeve' +
-          'r degree standardization increases cost savings get progressively less ultimately much standardizati' +
-          'on cause total cost design rise design minimizes total cost optimum moving next step design process ' +
-          'sure run load test one time even modifications involved making members larger increasing size member' +
-          ' makes member stronger heavier member weights increase total weight truss increases result increase ' +
-          'load member forces also increase members previously safe might become unsafe notes tips optimize mem' +
-          'ber properties efficiently taking full advantage sorting multiple selection capabilities member list'
-  },
-  {
-    id: 'hlp_optimize_configuration',
-    title: 'Optimize the shape of the truss',
-    text: 'design bridge go back one step go forward one step point design process optimized member properties ' +
-          'one specific truss configuration probably configurations result economical designs design inherently' +
-          ' iterative process achieve truly optimal design need experiment many different configurations carefu' +
-          'lly observe changes truss geometry affect cost design try totally new truss configuration first opti' +
-          'mize shape current structural model change shape truss moving one joints dragging new location mouse' +
-          ' keyboard modification easy produce significant reductions cost design optimize shape current struct' +
-          'ural model try changing depth truss example suppose started standard pratt truss current design migh' +
-          't try reducing depth might try increasing depth first glance reducing depth truss might seem like be' +
-          'tter alternative reducing depth make verticals diagonals shorter since members require less material' +
-          ' cost decrease. however reducing depth truss also causes member force top bottom chords increase thu' +
-          's probably need increase size cost top bottom chord members ensure design still passes load test inc' +
-          'rease depth truss opposite effects occur verticals diagonals get longer thus increase cost member fo' +
-          'rces top bottom chords decrease allowing use smaller less expensive members chords trade two competi' +
-          'ng factors 1 member force top bottom chords 2 length verticals diagonals every truss optimum depth r' +
-          'epresents best compromise two factors best way find optimum depth design trial error try changing ov' +
-          'erall shape truss example suppose started standard pratt truss current design try moving top chord j' +
-          'oints create rounded shape often minor adjustment reduce cost design significantly truss rounded sha' +
-          'pe member forces tend nearly equal every member top chord thus get shape right use single optimum me' +
-          'mber size entire top chord resulting substantial reduction product cost changing rounded shape also ' +
-          'effective bottom chord deck truss notes tips whenever change shape truss need repeat previous three ' +
-          'steps design process 1 run load test 2 identify strengthen unsafe members 3 optimize member properti' +
-          'es determine whether change effective reducing cost design iteration tracking feature bridge designe' +
-          'r helps track optimization steps revert previous one current one didnt work'
-  },
-  {
-    id: 'glos_pier',
-    title: 'Pier',
-    text: 'pier part bridge substructure provides intermediate support multi span bridge'
-  },
-  {
-    id: 'hlp_pinned_support',
-    title: 'Pinned support',
-    text: 'pinned support represented symbol prevents joint structural model moving horizontally vertically'
-  },
-  {
-    id: 'hlp_print_drawing',
-    title: 'Print a drawing',
-    text: 'click print button main toolbar prepare black white drawing design pdf format saved printed printer ' +
-          'notes tips printed drawing shows configuration truss annotated member numbers dimensions member prop' +
-          'erties shown tabular format bottom page'
-  },
-  {
-    id: 'hlp_print_load_test',
-    title: 'Print or copy the load test results',
-    text: 'print report recent load test ensure printer connected line click report load test results button st' +
-          'atus toolbar load test results report shown table separate window click print button follow browsers' +
-          ' printing instructions send report printer notes tips report also copied clipboard clicking copy but' +
-          'ton since data tab delimited text format pasted directly spreadsheet google sheets microsoft excel o' +
-          'thers'
-  },
-  {
-    id: 'hlp_printer',
-    title: 'Printers and printing',
-    text: 'print bridge report bridge designer creates pdf file asks browser preview send printer cases window ' +
-          'pops show printed youll need press another button send alternately download pdf chrome buttons look ' +
-          'like'
-  },
-  {
-    id: 'hlp_purposes',
-    title: 'Purposes',
-    text: 'purposes bridge designer provide opportunity learn engineering design process provide realistic hand' +
-          's experience help understand civil engineers design structures demonstrate engineers use computer to' +
-          'ol improve effectiveness efficiency design process provide tool visualizing structural behavior tool' +
-          ' help understand structures work notes tips overview software functions see bridge designer works br' +
-          'idge designer developed brigadier general retired stephen ressler subsequent versions developed brig' +
-          'adier general retired gene ressler versions distributed freely provisions gnu general public license' +
-          ' intended solely educational use'
-  },
-  {
-    id: 'hlp_record_design',
-    title: 'Record your design',
-    text: 'design bridge go back one step youve completed design record document efforts use reference future d' +
-          'esigns record final design save design bridge design file print drawing design print load test resul' +
-          'ts export files 3d print design notes tips dont wait design complete save bridge design file save ea' +
-          'rly save often case... keep remember work checked unless theres great reason bridge designer remembe' +
-          'r design even computer fails'
-  },
-  {
-    id: 'hlp_redo',
-    title: 'Redo button',
-    text: 'click redo button restore change structural model previously undone redo multiple changes clicking a' +
-          'rrow right selecting previous change notes tips redo button located main toolbar also found edit men' +
-          'u redo button works together undo button'
-  },
-  {
-    id: 'glos_reinforced_concrete',
-    title: 'Reinforced concrete',
-    text: 'reinforced concrete concrete steel rods embedded inside added strength concrete strong compression c' +
-          'omparatively weak tension reinforcing bars substantially increase ability concrete carry tension'
-  },
-  {
-    id: 'hlp_remember_my_work',
-    title: 'Remember my work',
-    text: 'bridge designer keep track work still even refresh close restart browser computer fails enable featu' +
-          're check remember work entry bottom edit menu best keep checked nearly time exception using shared l' +
-          'ogin id others computer unchecking box leave prevents seeing design'
-  },
-  {
-    id: 'hlp_report_cost',
-    title: 'Report cost calculations button',
-    text: 'click report cost calculations button show cost current design calculated report shown table printed' +
-          ' copied clipboard notes tips cost calculations report button located status toolbar next bridges cos' +
-          't also available report menu use print button make pdf file browser easily send printer use copy but' +
-          'ton send report computers clipboard formatted paste easily spreadsheet programs example google sheet' +
-          's'
-  },
-  {
-    id: 'hlp_report_load_test',
-    title: 'Report load test results button',
-    text: 'click report load test results button display detailed numerical results recent load test report sho' +
-          'wn table printed copied computers clipboard use report basis strengthening failed members optimizing' +
-          ' members structural model notes tips report load test results button located status toolbar also ava' +
-          'ilable report menu report includes following member structural model absolute maximum compression fo' +
-          'rce member kilonewtons kn compressive strength member kn compression status ok buckles absolute maxi' +
-          'mum tension force member kn tensile strength member kn tension status ok yields use print button mak' +
-          'e pdf file browser easily send printer use copy button send report computers clipboard formatted pas' +
-          'te easily spreadsheet programs example google sheets'
-  },
-  {
-    id: 'hlp_member_details',
-    title: 'Report member analysis button',
-    text: 'click report member analysis button display member analysis report interactive explorer shows detail' +
-          'ed engineering information materials cross sections sizes members current design also shows member s' +
-          'trength vs forces acted member previous load test member analysis includes material properties yield' +
-          ' stress modulus elasticity mass density cross section properties cross sectional area moment inertia' +
-          ' graph member strength vs length tension yielding compression buckling maximum member length passing' +
-          ' slenderness test also shown cost per meter member made selected material cross section size members' +
-          ' grouped material cross section use material specification menu top pick one graphs show correspondi' +
-          'ng strength vs length curve member material group data spike labeled number shown spikes except one ' +
-          'ghosts drawn pale colors pick member highlight slider labeled select member see ghost spikes entire ' +
-          'bridge rather one material group uncheck focus box members failing slenderness check close dotted ve' +
-          'rtical magenta line maximum length member material spec allowed notes tips currently selected member' +
-          ' also highlighted member list drawing board check top either force range data spike higher correspon' +
-          'ding strength member fails. otherwise carries load successfully forces range vary truck load moves a' +
-          'cross bridge force ranges may hard see forces near zero'
-  },
-  {
-    id: 'glos_resistance_factor',
-    title: 'Resistance factor',
-    text: 'resistance factor dimensionless number used calculation tensile compressive strength structural memb' +
-          'ers resistance factor provides margin safety design accounts uncertainty material strength member di' +
-          'mensions construction quality resistance factor always less equal one'
-  },
-  {
-    id: 'hlp_restrictions',
-    title: 'Restrictions on the use of Bridge Designer',
-    text: 'bridge designer intended educational use warranty kind expressed implied authors use software commer' +
-          'cial construction purposes prohibited notes tips understand bridge designer good designing real brid' +
-          'ge see realistic bd try would invite disaster destruction injury death need design real bridge must ' +
-          'obtain services registered professional civil engineer'
-  },
-  {
-    id: 'hlp_roller_support',
-    title: 'Roller support',
-    text: 'roller support represented symbol prevents joint structural model moving vertically joint still free' +
-          ' move horizontally however'
-  },
-  {
-    id: 'hlp_rulers',
-    title: 'Rulers',
-    text: 'horizontal vertical rulers displayed left bottom edges drawing board rulers allow accurately determi' +
-          'ne position mouse draw move joints structural model notes tips rulers calibrated meters marks rulers' +
-          ' show locations snap points drawing grid snap points three possible resolutions low medium high swit' +
-          'ch among grid resolution buttons measurement marks rulers reflect current setting low resolution eas' +
-          'iest new users also creating first rough version design medium fine require little skill mouse let t' +
-          'une design get lowest possible price switch among grid resolution buttons measurement marks rulers c' +
-          'hange accordingly hide display rulers using view rulers button hide rulers drawing board becomes sli' +
-          'ghtly larger help computer screen fewer pixels rulers show limits drawing grid defined design specif' +
-          'ications horizontal ruler begins zero ends specified span length vertical ruler reflects specified m' +
-          'inimum maximum elevations ground level'
-  },
-  {
-    id: 'glos_safe',
-    title: 'Safe',
-    text: 'member safe internal member force less strength member tension compression'
-  },
-  {
-    id: 'hlp_save_as',
-    title: 'Save as button',
-    text: 'click save button save current design new file name notes tips save button file menu want change fil' +
-          'e name associated current design use save file button'
-  },
-  {
-    id: 'hlp_save_file',
-    title: 'Save file button',
-    text: 'click save button save current design bridge design file saved model previously prompted file name s' +
-          'aved bridge previously clicking save button causes design saved file notes tips save button located ' +
-          'main toolbar also file menu wish save structural model new filename use save button'
-  },
-  {
-    id: 'hlp_save_your_design',
-    title: 'Save the current design',
-    text: 'time design process save current design bridge design file three different ways save design previous' +
-          'ly saved design click save file button main toolbar follow prompts provided browser previously saved' +
-          ' design want save new work click save file button previously saved design want save new file name cl' +
-          'ick save button file menu follow prompts provided browser notes tips typing ctrl shortcut selecting ' +
-          'save file button file extension bridge design files created bridge designer .bdc bridge design files' +
-          ' created bridge designer cloud edition cant read earlier versions save structural model time even in' +
-          'complete'
-  },
-  {
-    id: 'hlp_select_project',
-    title: 'Select a site configuration and load case',
-    text: 'design bridge go forward one step start bridge designer first time welcome dialog box offer followin' +
-          'g three options select create new bridge design option click ok project setup wizard displayed revie' +
-          'w design requirement familiarize project site displayed preview window click next button youre parti' +
-          'cipating local contest click yes enter local contest code. otherwise click next entered valid local ' +
-          'contest code site configuration load case automatically selected dont enter code may choose 98 site ' +
-          'configurations four load cases click next make selections site configuration site configuration cons' +
-          'ists elevation deck high water level choice standard abutments simple supports arch abutments arch s' +
-          'upports height arch abutments used choice pier pier height pier used choice zero one two cable ancho' +
-          'rages selections affects site cost displayed near bottom setup wizard see cost calculations click ar' +
-          'row lower right made selections click next select load case load case load case consists choice medi' +
-          'um strength high strength concrete deck choice two aashto h25 truck loads one traffic lane single 66' +
-          '0 kn permit loading laterally centered deck made selections may click finish complete setup go drawi' +
-          'ng board notes tips wizard finished way change site configuration load case start new design. clicki' +
-          'ng new design button display setup wizard 98 possible site configurations mentioned four possible lo' +
-          'ad cases consisting two deck materials two truck loadings overall makes 392 possible choices represe' +
-          'nts different type support loading different cost consistent design specifications total cost bridge' +
-          ' equals site cost plus truss cost picking configuration lowest site cost unlikely result lowest tota' +
-          'l cost general configurations low site cost tend require relatively high cost truss vice versa findi' +
-          'ng best balance engineers example configuration high deck elevation relatively low site cost require' +
-          's little excavation high deck elevation also greater span length requires larger heavier truss high ' +
-          'truss cost arch abutments cost standard abutments tall arch abutments cost short ones thus site conf' +
-          'igurations use arches tend higher site cost. v shape river valley arch abutments also reduce span le' +
-          'ngth given deck height taller abutment shorter span arch abutments also provide lateral restraint st' +
-          'andard abutments tend decrease truss costs building pier middle river expensive means configurations' +
-          ' piers higher site costs without pier also divides one long span two short ones two short trusses us' +
-          'ually much less expensive single long one cable anchorages also expensive provide additional support' +
-          ' e.g. cable supports cable stayed bridge reduce truss cost significantly choice deck material affect' +
-          's site cost loads applied load test medium strength concrete less expensive high strength results th' +
-          'icker deck heavier high strength concrete expensive results thinner deck lighter thus less expensive' +
-          ' deck material tends result higher truss cost expensive deck material results lower truss cost choic' +
-          'e truck loading effect site cost significant effect truss cost engineering design always involves tr' +
-          'adeoffs tradeoff cost structure cost supporting substructure critically important aspect real world ' +
-          'bridge designs site configuration load case result lowest total cost dont worry take best guess move' +
-          ' next step design process well find optimum site configuration later process'
-  },
-  {
-    id: 'hlp_select_all',
-    title: 'Select all button',
-    text: 'click select button select every member current structural model members selected change member prop' +
-          'erties simultaneously notes tips select button located main toolbar also found edit menu'
-  },
-  {
-    id: 'hlp_select_tool',
-    title: 'Select tool',
-    text: 'use select tool edit structural model need move joint delete joint change member properties delete m' +
-          'ember youll need select joint member first clicking select tool notes tips select tool located desig' +
-          'n tools palette also available tools menu select tool use mouse pointer appears arrow move select to' +
-          'ol drawing board joints members highlighted indicate pointer close enough select'
-  },
-  {
-    id: 'glos_session',
-    title: 'Session',
-    text: 'initiate new session anytime start new design load sample design open existing bridge design file wi' +
-          'thin given session design iterations preserved revert previous design iteration time session clickin' +
-          'g go back button'
-  },
-  {
-    id: 'hlp_setup_wizard',
-    title: 'Setup wizard',
-    text: 'project setup wizard automatically displayed every time start bridge designer choose create new desi' +
-          'gn display wizard time click new design button project setup wizard erase drawing board set new desi' +
-          'gn prompt read understand design requirement enter local contest code optional skip unless youre par' +
-          'ticipating local bridge design contest select deck elevation support configuration bridge select dec' +
-          'k material truck loading used design optionally select standard truss template guide design enter de' +
-          'signers name project identification name number title block step site design click next button advan' +
-          'ce click back button return previous page change selections click finish button accept selections re' +
-          'turn drawing board click cancel button reject selections return drawing board click finish button wi' +
-          'zard automatically create joints support bridge deck see design specification 3.g information also c' +
-          'reate additional supports site configuration youve selected notes tips deck elevation support config' +
-          'uration deck material choose determine site cost project cost displayed bottom setup wizard automati' +
-          'cally updated change deck elevation support configuration see details showing site cost calculated c' +
-          'lick arrow near lower right hand corner project setup wizard youve selected deck elevation support c' +
-          'onfiguration click finish button time rest setup optional'
-  },
-  {
-    id: 'hlp_show_animation',
-    title: 'Show animation check box',
-    text: 'checking menu entry tools show animation causes 3d load test animation shown immediately every load ' +
-          'test. uncheck box continue drafting immediately load test notes tips disabling animation allows quic' +
-          'ker design iterations'
-  },
-  {
-    id: 'glos_simple_supports',
-    title: 'Simple supports',
-    text: 'simple supports consist pin one end span roller end roller allows lateral expansion contraction brid' +
-          'ge due loads temperature changes bridge designer standard abutments use simple supports'
-  },
-  {
-    id: 'glos_site_cost',
-    title: 'Site cost',
-    text: 'bridge designer site cost includes cost substructure abutments piers support bridge cost concrete de' +
-          'ck site cost must added truss cost determine total project cost'
-  },
-  {
-    id: 'hlp_slenderness',
-    title: 'Slenderness check',
-    text: 'slender members difficult handle construction site. theyre easily bent buckled fabrication slenderne' +
-          'ss check reduces likelihood accidental damage occur slenderness check performed bridge designer base' +
-          'd american institute steel construction design code member passes slenderness check slenderness rati' +
-          'o l / r meets following condition l / r < 300 l length member r radius gyration member cross section' +
-          ' radius gyration r calculated moment inertia member cross sectional area member member fails slender' +
-          'ness check considered unserviceable notes tips bridge designer slenderness check performed automatic' +
-          'ally draw new member change cross section properties existing member member fails slenderness check ' +
-          'i.e. l / r greater 300 member highlighted magenta one members fail slenderness check bridge designer' +
-          ' perform load test fix member fails slenderness check decrease length increase member size given mem' +
-          'ber size hollow tubes lower l / r solid bars thus solid bar fails slenderness check might also fixed' +
-          ' changing hollow tube see maximum length member given cross section member size without failing slen' +
-          'derness check click report member properties button maximum length indicated vertical line colored m' +
-          'agenta obtain numerical values given cross section member size click report member properties button'
-  },
-  {
-    id: 'glos_slenderness',
-    title: 'Slenderness ratio',
-    text: 'slenderness ratio number describes thickness member members long comparison cross sections higher sl' +
-          'enderness ratios vice versa slender members likely buckle damaged handling slenderness check ensures' +
-          ' members slenderness ratios 300 overly slender member causes bridge fail'
-  },
-  {
-    id: 'glos_slope',
-    title: 'Slope',
-    text: 'slope roadway embankment measure steepness expressed ratio vertical horizontal distance example rive' +
-          'r bank slope 2 1 rises two meters every one meter horizontal distance'
-  },
-  {
-    id: 'glos_snap_points',
-    title: 'Snap points',
-    text: 'snap point intersection two grid lines drawing grid joints drawn snap points thus draw move joints s' +
-          'tructural model mouse pointer automatically snaps nearest one grid lines invisible locations indicat' +
-          'ed ticks vertical horizontal rulers left bottom edges drawing board'
-  },
-  {
-    id: 'hlp_bars_or_tubes',
-    title: 'Solid bar or hollow tube?',
-    text: 'optimize member properties design one important decisions make selection cross section type solid ba' +
-          'r hollow tube member structural model making decision consider effect different cross sections membe' +
-          'r strength tension compression compression members given material hollow tubes somewhat expensive so' +
-          'lid bars dollars per kilogram compared solid bar mass though hollow tube provides much larger moment' +
-          ' inertia thus hollow tube resists buckling efficiently solid bar compressive strength usually substa' +
-          'ntially greater compression members increased compressive strength tube often outweighs increased co' +
-          'st per kilogram usually economical use hollow tubes members carry load primarily compression tension' +
-          ' members given material solid bars somewhat less expensive hollow tubes dollars per kilogram however' +
-          ' tensile strength depends cross sectional area member moment inertia solid bar hollow tube mass also' +
-          ' cross sectional area therefore tensile strength since solid bar costs less hollow tube offers stren' +
-          'gth advantage tension solid bars usually better choice tension members usually economical use solid ' +
-          'bars members carry load primarily tension'
-  },
-  {
-    id: 'glos_span',
-    title: 'Span',
-    text: 'span bridge length support support'
-  },
-  {
-    id: 'glos_standard_abutments',
-    title: 'Standard abutments',
-    text: 'bridge designer standard abutments substructure elements use simple supports hold bridge transmit we' +
-          'ight soil'
-  },
-  {
-    id: 'hlp_standard_truss',
-    title: 'Standard truss configurations',
-    text: 'truss bridge deck located top chord called deck truss truss bridge deck located bottom chord called ' +
-          'truss number standard truss configurations commonly used bridge structures defined primarily geometr' +
-          'y vertical diagonal members three common configurations pictured below. named 19th century engineers' +
-          ' developed howe trusses howe truss howe deck truss pratt trusses pratt truss pratt deck truss warren' +
-          ' trusses warren truss warren deck truss regardless configuration trusses basic component parts'
-  },
-  {
-    id: 'hlp_start_new_design',
-    title: 'Start a new bridge design',
-    text: 'start new bridge design click new design button main toolbar project setup wizard displayed review d' +
-          'esign requirement click next participating local bridge design contest enter local contest code clic' +
-          'k next enter local contest code previous step site configuration automatically selected choose site ' +
-          'configuration would like use click next choose deck material determines deck thickness hence deck we' +
-          'ight also choose load configuration design want use template choose one click next desired enter nam' +
-          'e project id title block click finish notes tips chosen site configuration deck material load config' +
-          'uration click finish return drawing board immediately selecting template filling title block optiona' +
-          'l make selections deck height support configuration deck material bridge corresponding site cost aut' +
-          'omatically calculated displayed near bottom setup wizard see detailed cost calculations click arrow ' +
-          'right site cost display click finish wizard automatically create series joints level bridge deck sat' +
-          'isfy requirements design specification 3.g abutments deck wearing surface water level displayed draw' +
-          'ing board arch supports pier also created automatically included substructure selected current desig' +
-          'n saved youll prompted save start new design'
-  },
-  {
-    id: 'hlp_strengthen_failed',
-    title: 'Strengthen all unsafe members',
-    text: 'design bridge go back one step go forward one step design successful members structural model safe r' +
-          'ecent load test load test must strengthen members found unsafe determine unsafe members structural m' +
-          'odel use one following methods load test complete return drawing board look structural model member ' +
-          'highlighted red unsafe compression member highlighted blue unsafe tension members highlighted struct' +
-          'ural model safe check two load test result columns right side member list row highlighted red unsafe' +
-          ' compression highlighted blue unsafe tension strengthen unsafe member use one following methods incr' +
-          'ease member size run load test see larger member strong enough repeat member passes load test use st' +
-          'ronger material unsafe member carbon steel try high strength steel even stronger quenched tempered s' +
-          'teel run load test see new material strong enough either method changes member properties notes tips' +
-          ' best solution one makes structure strong enough support load least cost many cases increasing membe' +
-          'r size best method simply far member sizes available materials member unsafe compression using stron' +
-          'ger material may produce little increase strength compressive strength relatively slender members de' +
-          'pended yield stress material change properties unsafe member red blue highlighting disappear doesnt ' +
-          'necessarily mean member safe. true status member determined re running load test'
-  },
-  {
-    id: 'glos_structural_analysis',
-    title: 'Structural analysis',
-    text: 'structural analysis mathematical analysis structural model determine member forces resulting given s' +
-          'et loads bridge designer uses structural analysis formulation called direct stiffness method'
-  },
-  {
-    id: 'glos_structural_model',
-    title: 'Structural model',
-    text: 'structural model mathematical idealization actual structure model allows us predict actual structure' +
-          ' behave loaded structural model truss following idealized characteristics composed members interconn' +
-          'ected joints member connected exactly two joints one end joints assumed act like hinges hold members' +
-          ' together prevent rotating respect members carry axial force either compression tension bend loads a' +
-          'pplied structure joints supports placed joints'
-  },
-  {
-    id: 'hlp_structural_stability',
-    title: 'Structural stability',
-    text: 'truss stable members form rigid framework stability usually achieved making truss interconnected tri' +
-          'angles example simple truss composed six joints nine members form four interconnected triangles abf ' +
-          'bcf cef cde member cf removed however truss becomes unstable without diagonal member center panel tr' +
-          'uss consists rectangle bcef rather triangles configuration unstable nothing prevent rectangle distor' +
-          'ting parallelogram triangular arrangement members ensures truss structure rigid framework fix unstab' +
-          'le truss look panel structural model triangle add one members make notes tips trouble creating stabl' +
-          'e structural model try loading template use guide drawing joints members real bridge structure unsta' +
-          'ble collapse also turns structural analysis unstable structure mathematically impossible leads divis' +
-          'ion zero structural model unstable bridge designer detect attempt fix instability load test attempte' +
-          'd fix unsuccessful bridge designer display warning message youll return drawing board eliminate inst' +
-          'ability though trusses composed interconnected triangles possible one non triangular panels stable t' +
-          'russ particularly true complex trusses arch supports cases probably wont able tell whether truss sta' +
-          'ble looking youll need run load test'
-  },
-  {
-    id: 'glos_substructure',
-    title: 'Substructure',
-    text: 'substructure foundation bridge consists abutments piers support bridge transmit weight earth'
-  },
-  {
-    id: 'glos_supports',
-    title: 'Supports',
-    text: 'support joint structure attached foundation truss bridge two different types supports 1 pinned suppo' +
-          'rts restrain horizontal vertical movement associated joint 2 roller supports restrain vertical movem' +
-          'ent allow horizontal expansion structure'
-  },
-  {
-    id: 'glos_symmetrical',
-    title: 'Symmetrical',
-    text: 'term symmetrical apply structure loading symmetrical structure left right hand sides structure mirro' +
-          'r images symmetrical loading loads applied either side bridge centerline identical'
-  },
-  {
-    id: 'glos_template',
-    title: 'Template',
-    text: 'bridge designer template diagram depicting standard truss configuration load template displayed draw' +
-          'ing board gray template shows locate joints members create stable truss'
-  },
-  {
-    id: 'hlp_tensile_strength',
-    title: 'Tensile strength',
-    text: 'tensile strength member internal member force member becomes unsafe tension actual member force exce' +
-          'eds tensile strength member may fail bridge designer tensile strength based yielding failure mode te' +
-          'nsile strength represented symbol measured units force kilonewtons kn calculated using following equ' +
-          'ation f = 0.95 resistance factor member tension f y yield stress cross sectional area member notes t' +
-          'ips equation taken 1994 aashto lrfd bridge design specifications obtain numerical value f y given ma' +
-          'terial given cross section member size click report member properties button bridge designer calcula' +
-          'tes tensile strength member structural model load test tensile strength member always greater compre' +
-          'ssive strength member relatively long slender difference quite substantial'
-  },
-  {
-    id: 'glos_tension',
-    title: 'Tension',
-    text: 'tension internal axial member force tends <<<lengthen>>> member'
-  },
-  {
-    id: 'hlp_the_engineering',
-    title: 'The engineering design process',
-    text: 'engineering design process application math science technology create system component process meets' +
-          ' human need practice engineering design really specialized form problem solving . consider simple 7 ' +
-          'step problem solving process identify problem define problem develop alternative solutions analyze c' +
-          'ompare alternative solutions select best alternative implement solution evaluate results civil engin' +
-          'eers design bridge usually use process identify problem client hires team engineers design highway b' +
-          'ridge cross river define problem engineers investigate proposed site work client determine exactly f' +
-          'unctional requirements bridge located many lanes traffic required characteristics river width depth ' +
-          'speed current river used ships wide navigable channel much overhead clearance vessels need owns land' +
-          ' either side river sort soil rock located engineers also determine aesthetic requirements structure ' +
-          'perhaps importantly find much money client willing pay new bridge project budget develop alternative' +
-          ' solutions engineers develop several alternative concept designs new bridge perhaps truss arch suspe' +
-          'nsion bridge analyze compare alternative solutions engineers analyze design alternative determine st' +
-          'rengths weaknesses respect project requirements constraints identified step 2 also consider environm' +
-          'ental impact constructability proposed option select best alternative carefully analyzing alternativ' +
-          'es engineers select one best satisfies project requirements present selection recommendation client ' +
-          'makes final decision implement solution client approved concept design team completes final design p' +
-          'repares plans specifications hands construction contractor build evaluate results end project engine' +
-          'ers evaluate completed structure identify aspects project went well others could improved observatio' +
-          'ns help improve quality future projects design bridge bridge designer follow process identify proble' +
-          'm project design truss bridge carry two lane highway across river define problem fully define unders' +
-          'tand problem carefully read design specifications familiarize project site develop alternative solut' +
-          'ions achieve high quality design need investigate several different site configurations truss config' +
-          'urations analyze compare alternative solutions optimize alternative configuration minimum cost compa' +
-          're results select best alternative select alternative costs least still passing load test implement ' +
-          'solution finalize design record saving printing drawing printing copy load test results perhaps prin' +
-          'ting 3d model also build test cardboard model design check learning activities manual available free' +
-          ' http //bridgecontest.org/resources/file folder bridges evaluate results think learned design proces' +
-          's structural behavior designed bridge apply lessons improve efficiency effectiveness next design not' +
-          'es tips description specific procedures use design bridge bridge designer see design bridge'
-  },
-  {
-    id: 'hlp_through_truss',
-    title: 'Through truss',
-    text: 'truss one deck located level bottom chord vehicles crossing truss bridge supported two main trusses'
-  },
-  {
-    id: 'glos_through_truss',
-    title: 'Through truss',
-    text: 'truss deck located bottom chord vehicles pass two main trusses cross bridge'
-  },
-  {
-    id: 'hlp_tip_of',
-    title: 'Tip of the day',
-    text: 'tip day provides general information hints help use bridge designer covers programs advanced feature' +
-          's optimizing designs quickly effectively new tip automatically displayed every time start start fres' +
-          'h design session also view tips clicking help menu selecting tip day notes tips want see dialog ever' +
-          'y new session uncheck show tips startup box restart tips day new session click help menu tip day che' +
-          'ck show tips startup box'
-  },
-  {
-    id: 'hlp_title_bar',
-    title: 'Title bar',
-    text: 'browsers title bar tab displays words bridge designer followed name current bridge design file notes' +
-          ' tips possible run bridge designer one tab browser isnt recommended work automatically saved browser' +
-          ' local storage tab last tab closed remembered confusing resume work later'
-  },
-  {
-    id: 'hlp_titleblock',
-    title: 'Title block',
-    text: 'title block lower right hand corner drawing board shows name project name designer project id name d' +
-          'esigner optional provide included printed output notes tips project id consists two parts separated ' +
-          'dash first part local contest code entered one started design otherwise code corresponding site cond' +
-          'itions chose part project id cannot changed second part optional name number helps identify design s' +
-          'tart new design setup wizard prompt designers name project id want enter change designers name proje' +
-          'ct id begun design click appropriate box drawing boards title block cursor appears enter desired tex' +
-          't hide display title block using view title block menu entry'
-  },
-  {
-    id: 'hlp_toolbars',
-    title: 'Toolbars',
-    text: 'bridge design window includes two rows buttons menu bar theyre called toolbars also free floating to' +
-          'ol palette drawing board finally context menu dialog commonly used functions available right clickin' +
-          'g drafting panel collection includes controls needed create test optimize record bridge design edit ' +
-          'status toolbar toolbar controls creating recording bridges testing iterating design viewing reports ' +
-          'cost test results member material details new design button open file button save file button print ' +
-          'button export files 3d print button drawing board button load test button select button delete butto' +
-          'n undo controls redo controls go back iteration button go forward iteration button go iteration butt' +
-          'on current cost report cost calculations button current load test status report load test results bu' +
-          'tton report member analysis button member display properties toolbar toolbar controls choosing mater' +
-          'ials changing material sizes opting different ways display edit current design member properties lis' +
-          'ts increase member size button decrease member size button view member list button view rulers butto' +
-          'n view title block button view member numbers button view symmetry guides button view template butto' +
-          'n grid resolution buttons palettes design tools animation settings notes tips many toolbar controls ' +
-          'available quickly via context widgets'
-  },
-  {
-    id: 'hlp_truss_bridges',
-    title: 'Trusses and truss bridges',
-    text: 'truss truss arrangement structural members connected together form rigid framework trusses members a' +
-          'rranged interconnected triangles shown example result configuration truss members carry load primari' +
-          'ly axial tension compression rigid carry load efficiently trusses able span large distances minimum ' +
-          'material truss bridges trusses used extensively bridges since early 19th century early truss bridges' +
-          ' made wood. classic american covered bridges trusses though wooden truss members covered walls roof ' +
-          'protection elements later truss bridges made cast iron wrought iron modern trusses made structural s' +
-          'teel truss bridges found many different configurations virtually basic component parts many types br' +
-          'idges beam bridges arches suspension bridges cable stayed bridges'
-  },
-  {
-    id: 'hlp_undo',
-    title: 'Undo button',
-    text: 'click undo button undo recent change structural model notes tips undo button located main toolbar al' +
-          'so available edit menu undo multiple changes clicking arrow right selecting previous change undo but' +
-          'ton works conjunction redo button'
-  },
-  {
-    id: 'glos_unsafe',
-    title: 'Unsafe',
-    text: 'member unsafe internal member force exceeds strength member member unsafe tension maximum tension fo' +
-          'rce exceeds tensile strength unsafe compression maximum compression force exceeds compressive streng' +
-          'th'
-  },
-  {
-    id: 'hlp_using_undo',
-    title: 'Using undo and redo',
-    text: 'make mistake creating editing structural model click undo button undo error mistakenly undo change r' +
-          'estore using redo button undo redo multiple changes clicking respective arrow selecting previous cha' +
-          'nge notes tips following actions undone add joint member move joint change properties member delete ' +
-          'joint member move drawing labels action undone also restored using redo bridge designer allows 1000 ' +
-          'levels undo undo 1000 recent changes structural model undo changes made current design iteration rev' +
-          'ert previous design iteration use go back button detailed explanation see whats difference go back u' +
-          'ndo'
-  },
-  {
-    id: 'glos_verticals',
-    title: 'Verticals',
-    text: 'verticals truss members oriented vertically usually connect top bottom chords'
-  },
-  {
-    id: 'hlp_view_animation_settings',
-    title: 'View animation settings button',
-    text: 'show hide animation settings clicking pale gear animation controls load test animation progress alte' +
-          'rnately click animation settings button view menu notes tips wont able show animation settings drawi' +
-          'ng board use'
-  },
-  {
-    id: 'hlp_view_tools',
-    title: 'View design tools button',
-    text: 'click view design tools button view menu display hide design tools palette notes tips wont able show' +
-          ' hide design tools palette load test animation progress'
-  },
-  {
-    id: 'hlp_view_member_numbers',
-    title: 'View member numbers button',
-    text: 'click view member numbers button display hide member numbers drawing board notes tips view member nu' +
-          'mbers button located display toolbar also available view menu'
-  },
-  {
-    id: 'hlp_view_rulers',
-    title: 'View rulers button',
-    text: 'click view rulers button display hide rulers hiding increases space available draw bridge notes tips' +
-          ' view rulers button available view menu'
-  },
-  {
-    id: 'hlp_view_symmetry',
-    title: 'View symmetry guides button',
-    text: 'click view symmetry guides button display hide set two vertical one horizontal guide lines drawing b' +
-          'oard use drawing moving joints ensure structural model symmetrical move dragging handles located lef' +
-          't side bottom drawing theyre positioned joint opposite intersection shows symmetrical joint location' +
-          ' side truss notes tips view symmetry guides button located display toolbar also available view menu ' +
-          'several site configurations pier located along centerline bridge cases optimal design probably wont ' +
-          'symmetrical'
-  },
-  {
-    id: 'hlp_view_template',
-    title: 'View template button',
-    text: 'click view template button hide display current template drawing board notes tips view template butt' +
-          'on located display toolbar also available view menu whenever new template loaded view template butto' +
-          'n toggled display template always displayed behind structural model drawing board'
-  },
-  {
-    id: 'hlp_view_title',
-    title: 'View title block',
-    text: 'click view title block menu entry hide display title block notes tips computer small screen title bl' +
-          'ock interfere drawing bridge hiding fix problem'
-  },
-  {
-    id: 'glos_wearing_surface',
-    title: 'Wearing surface',
-    text: 'wearing surface layer pavement material normally asphalt concrete placed top bridge deck protect dam' +
-          'age vehicle traffic'
-  },
-  {
-    id: 'hlp_not_realistic',
-    title: 'What is  not  realistic about the Bridge Designer?',
-    text: 'one purposes bridge designer provide realistic hands experience help understand civil engineers desi' +
-          'gn real structures many aspects software accurately reflect structural design process however number' +
-          ' significant compromises made keep program getting complex bridge designer intended introduction eng' +
-          'ineering design emphasis design process rather detailed technical aspects structural design bottom l' +
-          'ine aspects bridge designer realistic important understand difference following aspects bridge desig' +
-          'ner accurately reflect process practicing civil engineers use design real bridges designing actual b' +
-          'ridge engineers must develop detailed designs cost estimates abutments piers roadway deck complete t' +
-          'hree dimensional structural system including main trusses connections concrete deck supporting steel' +
-          ' framing many secondary members engineers would also need consider environmental impact bridge effec' +
-          'ts water ice river channel integral part design bridge designer design main trusses make preliminary' +
-          ' decisions configurations roadway supports design strictly two dimensional thus account three dimens' +
-          'ional stability designing actual bridge engineers must consider effects fatigue tendency structural ' +
-          'material fail prematurely result repetitive loading caused vehicular traffic bridge designer conside' +
-          'r fatigue designing actual bridge engineers must consider many different types loading include sever' +
-          'al different forms vehicular loads self weight wind snow collision vehicles ships earthquakes must c' +
-          'onsider longitudinal lateral position vehicular loads bridge deck must also consider numerous load c' +
-          'ombinations eleven 1994 aashto bridge design specification bridge designer considers two types vehic' +
-          'ular loading self weight bridge considers longitudinal position vehicular loading lateral position d' +
-          'esigning actual bridge engineers must consider limitations deflections amount bending occurs vehicle' +
-          ' crosses bridge bridge designer calculates deflections displays load test use design criterion desig' +
-          'ning actual bridge engineers must consider many additional member failure modes considered bridge de' +
-          'signer bridge designer load test aashto truck loading represents two lanes highway traffic loading m' +
-          'oved across bridge one direction left right aashto loading heavy rear axle lighter front axle loadin' +
-          'g asymmetrical optimally bridge bridge designer might asymmetrical well however design real bridges ' +
-          'must consider movement aashto loading directions left right right left result optimally designed rea' +
-          'l world bridges generally symmetrical though bridge designer attempts accurately demonstrate cost tr' +
-          'adeoffs inherent engineering design actual costs structural materials components used software inten' +
-          'ded accurate designing actual bridge engineers must consider esthetics bridge designer include esthe' +
-          'tics design criterion though certainly set personal goal design good looking bridges important recog' +
-          'nize limitations exist equally important understand realistic bridge designer'
-  },
-  {
-    id: 'hlp_design_iteration',
-    title: 'What is a design iteration?',
-    text: 'anytime make one changes structural model run load test performed one design iteration bridge design' +
-          'er saves iterations created current session allows switching among time session notes tips switch di' +
-          'fferent design iteration click go back button go forward button go iteration button current design i' +
-          'teration number always displayed main toolbar number incremented start new iteration make first chan' +
-          'ge structural model load test design iteration numbers never duplicated associated designs never cha' +
-          'nge even revert previous iteration example suppose working iteration 10 decide go back 6 iteration n' +
-          'umber displayed toolbar change 10 6 soon make change structural model iteration number update 11 ini' +
-          'tiated new iteration iterations 1 10 remain unchanged see design iterations related using tree view ' +
-          'tab reverting previous design iteration particularly useful optimizing design optimization process s' +
-          'eldom linear always dead ends unexpected outcomes attempts successful others unsuccessful attempt si' +
-          'mply revert previous good iteration try final design iteration saved bridge design files load file d' +
-          'esign iteration browser shows iteration forward back buttons disabled'
-  },
-  {
-    id: 'hlp_realistic',
-    title: 'What is realistic about the Bridge Designer?',
-    text: 'one purposes bridge designer provide realistic hands experience help understand civil engineers desi' +
-          'gn real structures many aspects software accurately reflect structural design process however number' +
-          ' significant compromises made keep program simple bridge designer intended introduction engineering ' +
-          'design emphasis design process rather detailed technical aspects structural design result aspects br' +
-          'idge designer realistic others important understand following aspects bridge designer reflect reason' +
-          'able accuracy nature engineering design process practicing civil engineers use design real bridges d' +
-          'esign open ended process real world design problems always many possible solutions bridge designer s' +
-          'hows allowing much freedom choose refine configuration bridge though design open ended process alway' +
-          's constrained real world conditions restrictions bridge designer demonstrates limiting design three ' +
-          'ways span lengths support configurations must conform conditions project site materials member types' +
-          ' must chosen limited set minimizing cost set important goal design inherently iterative process engi' +
-          'neers usually work incomplete information must often make assumptions check revise assumptions desig' +
-          'n progresses developing high quality solution always requires engineer consider many alternatives ul' +
-          'timately select best one bridge designer clearly demonstrates aspect design process impossible achie' +
-          've truly optimal bridge design without considering many different alternative truss configurations m' +
-          'aterials cross sections member sizes design always involves trade offs usually possible find single ' +
-          'solution best satisfies design criteria making improvements one area often causes problems somewhere' +
-          ' else experience many trade offs use bridge designer example attempt optimize design discover reduci' +
-          'ng depth truss causes cost verticals diagonals decrease get shorter also causes cost top bottom chor' +
-          'ds increase member force increases larger member sizes needed preserve structural safety need find o' +
-          'ptimum balance two competing criteria structural engineering design regulated use codes codes ensure' +
-          ' engineering practiced consistent safe manner throughout country region municipality separate indust' +
-          'ry standard codes governing design steel concrete wood structures regional local building codes spec' +
-          'ify design loads fire protection standards many requirements designing buildings design highway brid' +
-          'ges us governed aashto bridge design specification bridge designer load test uses standard slightly ' +
-          'modified aashto truck loading compressive tensile strengths members computed exactly specified aasht' +
-          'o specification structures generally designed safely carry one code specified loadings minimizing co' +
-          'st also often important objective never important structural safety. cost reductions never made redu' +
-          'ctions compromise structural safety formulation bridge designer based relationship safety cost bridg' +
-          'e designer design objective minimize cost design never valid fails load test structural design often' +
-          ' characterized trade offs material cost fabrication cost construction cost structure designed minimi' +
-          'ze material cost design often include many different member types sizes variety member sizes makes h' +
-          'arder therefore expensive cut fit members fabrication assemble job site construction structural desi' +
-          'gners usually attempt achieve degree standardization selection structural elements even means design' +
-          'ing resulting increase material cost usually offset savings fabrication construction costs bridge de' +
-          'signer cost calculation simulates trade reasonably well modern structural engineering practice struc' +
-          'tural analysis generally performed using computer based method called matrix structural analysis spe' +
-          'cifically called direct stiffness method bridge designer uses method compute member forces load test' +
-          ' thats good news also important recognize bad news whats realistic bridge designer'
-  },
-  {
-    id: 'hlp_whats_new',
-    title: `What's new in the cloud edition?`,
-    text: 'welcome welcome cloud edition bridge designer millions users since 2002 bridge designer one successf' +
-          'ul educational software technologies world new edition update designed enable bridge designer learni' +
-          'ng anyone access web browser get started right introductory engineering experience working alone tea' +
-          'm team teacher new features please enjoy checking possibilities.. installation required bridge desig' +
-          'ner works recent versions browsers hit web site versions chrome edge firefox 2024 later recommended ' +
-          'export 3d model design addition beautiful blueprint style printed version bridge long part bridge de' +
-          'signer export obj files suitable favorite 3d printer member analysis report upgrade old member detai' +
-          'ls tab interactive explorer supplements members list dynamically updated engineering information mem' +
-          'ber cross sections materials lengths costs forces strength use dig deep makes bridge work late updat' +
-          'es previous bridge designer versions still 3d walk completed bridges walk fly around animation compl' +
-          'eted bridge observe performance truck load drives deck deep undo old limit 5 1000 undo redo last tho' +
-          'usand edits current design iteration iterations tree view track design iterations view shows history' +
-          ' one chronological list still click drag member list selections click drag select group members memb' +
-          'er list'
+    title: 'AASHTO H25 卡車載重',
+    text: 'aashto h25 載重代表一輛假想的貨運卡車 外型類似圖中所繪 該卡車共有兩組車軸 軸距約為 4 公尺 卡車總重為 225 千牛頓 kn 其中前軸承受 44 kn 後軸承受 181 kn 使用 a' +
+          'ashto 卡車載重設計橋梁時 車軸載重通常會乘上一個稱為 動力載重加成 衝擊係數 的倍數 以考量移動載重所產生的動力效應 結構工程師在設計真實橋梁時 必須確保結構中的 所有 桿件 都能安全承受在橋梁' +
+          ' 橋面 的 每一條車道 上各施加一輛 aashto 卡車載重時所產生的 內力 且該卡車載重可能位於橋梁縱向的任何位置 如 設計規範 所述 橋梁結構設計師 允許您針對以下兩種公路載重條件之一來設計橋梁 ' +
+          '雙線公路車道 每條車道各以一輛 h25 卡車代表 單一 480 kn 的 超重許可載重 橫向居中行駛於車道上 在第一種雙車道載重條件下 兩側主桁架各自必須承擔一條車道的重量 因此 橋梁結構設計師 所採' +
+          '用的載重即為一輛總重 225 kn 的 h25 卡車 在第二種單輛卡車居中行駛的條件下 兩側主桁架各自必須承擔卡車總重的一半 因此 橋梁結構設計師 所採用的許可載重為 240 kn 前後車軸位置各施加' +
+          ' 120 kn 在上述兩種情況中 動力載重加成係數皆為 1.33',
   },
   {
     id: 'hlp_undo_vs_go_back',
-    title: `What's the difference between undo and go back?`,
-    text: 'first glance go back undo buttons might appear thing really use undo correct mistakes working curren' +
-          't design iteration use go back revert previous design iteration go back normally used optimize bridg' +
-          'e undo available 1000 recent changes structural model go back previous design iteration created curr' +
-          'ent session undo applies current design iteration disabled whenever go back previous iteration undo ' +
-          'enabled soon make new changes structural model'
+    title: '「復原」與「返回」有何不同？',
+    text: '乍看之下 返回 與 復原 按鈕的功能似乎相同 其實不然 復原 用於修正在目前 設計版本 中發生的操作錯誤 返回 則用於回復到 先前的 設計版本 在最佳化橋梁設計時 通常會使用 返回 功能 復原 僅適用' +
+          '於對 結構模型 所做的最近 1000 次變更 而 返回 則可讓您回到目前 工作階段 中所建立的 任何 先前設計版本 由於 復原 僅適用於目前的設計版本 因此每當您返回至先前版本時 復原 按鈕會暫時停用' +
+          ' 只要您對結構模型進行任何新修改 復原 功能便會立即重新啟用',
+  },
+  {
+    id: 'hlp_auto_correct_errors',
+    title: '「自動修正錯誤」核取方塊',
+    text: '勾選 工具 選單中的 自動修正錯誤 項目後 橋梁結構設計師 會在每次執行 載重測試 前 自動嘗試修復常見的輕微錯誤 備註與提示 通常建議保持開啟自動修正功能 因為它不會造成任何不良影響 若它做出了您不' +
+          '希望的更動 在分析完成後隨時可以使用 復原 功能取消',
+  },
+  {
+    id: 'hlp_show_animation',
+    title: '「顯示動畫」核取方塊',
+    text: '勾選 工具 選單中的 顯示動畫 項目後 每次載重測試結束時便會立即播放 3d 載重測試動畫 取消勾選此項 則可在每次載重測試後立即繼續進行繪圖 備註與提示 關閉動畫可加快反覆修改設計版本的速度',
+  },
+  {
+    id: 'hlp_deck_truss',
+    title: '上承式桁架',
+    text: '上承式桁架是指 橋面 位於上弦桿高度的桁架橋 通過上承式桁架橋的車輛是由桁架 上方 所支承',
+  },
+  {
+    id: 'glos_deck_truss',
+    title: '上承式桁架（Deck truss）',
+    text: '上承式桁架的 橋面 位於上弦桿處 車輛過橋時是在桁架上方行駛並獲得支撐',
+  },
+  {
+    id: 'hlp_through_truss',
+    title: '下承式桁架',
+    text: '下承式桁架 是指 橋面 位於下弦桿高度的桁架 行經下承式桁架橋的車輛是由兩側主桁架 之間 的橋面所支承',
+  },
+  {
+    id: 'glos_through_truss',
+    title: '下承式桁架（Through truss）',
+    text: '下承式桁架的 橋面 位於下弦桿處 車輛過橋時會從兩側主桁架之間穿越通行',
+  },
+  {
+    id: 'glos_substructure',
+    title: '下部結構（Substructure）',
+    text: '下部結構是橋梁的基礎部分 由支撐橋梁並將其重量傳遞至下方地層的 橋台 與 橋墩 所組成',
+  },
+  {
+    id: 'glos_unsafe',
+    title: '不安全（Unsafe）',
+    text: '當 桿件內力 超過桿件本身的強度時 該桿件即為不安全 若最大拉力超過抗拉強度 桿件在 拉力 方面即為不安全 若最大壓力超過抗壓強度 則桿件在 壓力 方面即為不安全',
+  },
+  {
+    id: 'hlp_design_iteration',
+    title: '什麼是設計版本？',
+    text: '每當您對 結構模型 進行一項或多項修改 並執行 載重測試 後 即完成了一次 設計版本 的迭代 橋梁結構設計師 會保存目前 工作階段 中建立的所有設計版本 讓您隨時在工作階段內自由切換 注意事項與訣竅 ' +
+          '若要切換至其他設計版本 請按一下 返回按鈕 前進按鈕 或 前往版本按鈕 目前的設計版本編號一律會顯示在 主工具列 上 每當您在載重測試後對結構模型進行第一次修改 也就是新設計版本 開始 時 編號便會自' +
+          '動遞增 即使您回復到先前的設計版本 設計版本編號也絕不會重複 且既有版本的設計內容不會遭到更動 舉例來說 假設您正在處理第 10 版 接著決定返回第 6 版 工具列上顯示的版本編號會由 10 變為 6' +
+          ' 但只要您對結構模型做出任何修改 版本編號就會立即更新為 11 代表您已開啟一個全新的設計版本 而第 1 版至第 10 版都會保持原樣不變 您可以透過 樹狀檢視 分頁 清楚查看各設計版本之間的演進關聯' +
+          ' 在最佳化設計時 能夠回復到先前的設計版本非常實用 最佳化的過程很少是直線前進的 途中難免會遇到瓶頸或出乎意料的結果 有些嘗試會成功 有些則會失敗 每當嘗試不理想時 您只需回復到先前表現良好的設計版本' +
+          ' 再重新嘗試即可 橋梁設計檔案僅會儲存最終的設計版本 當您載入檔案時 設計版本瀏覽器 只會顯示該單一版本 且前進與返回按鈕會呈現停用狀態',
+  },
+  {
+    id: 'glos_displacement',
+    title: '位移（Displacement）',
+    text: '位移是指結構承受 載重 時 節點所產生的移動量',
+  },
+  {
+    id: 'hlp_using_undo',
+    title: '使用復原與重做',
+    text: '如果您在建立或編輯 結構模型 時發生錯誤 可以按一下 復原按鈕 取消該項操作 若不小心誤按復原 可使用 重做按鈕 將其還原 按一下各按鈕旁的向下箭頭並選取先前的變更記錄 即可一次復原或重做多項變更 注' +
+          '意事項與訣竅 下列操作皆可復原 新增節點或桿件 移動節點 變更桿件屬性 刪除節點或桿件 移動圖面標籤 任何可復原的操作 也都能使用重做功能加以還原 橋梁結構設計師 提供多達 1000 層復原功能 意即' +
+          '您可以復原對結構模型所做的最近 1000 次變更 復原功能僅適用於目前 設計版本 內所做的變更 若要回復到先前的設計版本 請使用 返回按鈕 如需更詳細的說明 請參閱 返回 與 復原 有何不同',
+  },
+  {
+    id: 'hlp_save_file',
+    title: '儲存檔案按鈕',
+    text: '按一下 儲存按鈕 即可將 目前設計儲存 為 橋梁設計檔 如果您之前尚未儲存過這個模型 系統會提示您輸入檔案名稱 如果您先前已經儲存過 按一下儲存按鈕就會將設計覆寫儲存至同一個檔案中 注意事項與訣竅 儲' +
+          '存按鈕位於 主工具列 上 也可在 檔案選單 中找到 如果您希望以新的檔案名稱儲存您的 結構模型 請使用 另存新檔按鈕',
+  },
+  {
+    id: 'hlp_save_your_design',
+    title: '儲存目前設計',
+    text: '在設計流程的任何時刻 您都可以將 目前設計儲存 為 橋梁設計檔 儲存設計共有三種方式 如果您 之前尚未 儲存過這個設計 按一下 主工具列 上的 儲存檔案按鈕 依照瀏覽器顯示的提示進行操作 如果您之前已' +
+          '儲存過設計 想保存新的修改內容 再次按一下 儲存檔案按鈕 即可 如果您之前已儲存過設計 但想以新的檔案名稱儲存 按一下 檔案選單 中的 另存新檔按鈕 依照瀏覽器顯示的提示進行操作 注意事項與訣竅 按下' +
+          ' ctrl 是選擇 儲存檔案按鈕 的快速鍵 由 橋梁結構設計師 建立的橋梁設計檔副檔名為 .bdc 由 橋梁結構設計師雲端版 建立的橋梁設計檔無法被較舊的版本讀取 您可以在任何時候儲存您的 結構模型 ' +
+          '即使設計尚未完成也沒問題',
+  },
+  {
+    id: 'hlp_select_all',
+    title: '全選按鈕',
+    text: '按一下 全選按鈕 即可選取目前 結構模型 中的所有桿件 選取所有 桿件 後 您便可以同時 變更它們的桿件屬性 注意事項與訣竅 全選按鈕位於 主工具列 上 也可以在 編輯選單 中找到',
+  },
+  {
+    id: 'hlp_go_to',
+    title: '切換設計版本按鈕',
+    text: '按一下 切換設計版本按鈕 以顯示 設計版本瀏覽器 您可以使用此瀏覽器將 任何 一個 設計版本 載入 繪圖區 瀏覽器開啟後 選取一個設計版本並按一下 確定 ok 或者直接對該設計版本連按兩下即可 注意事' +
+          '項與提示 使用 樹狀檢視 tree view 分頁即可查看各個設計版本之間的關聯 切換設計版本按鈕位於 主工具列 上 也可在 編輯選單 中找到 設計版本瀏覽器提供預覽視窗 協助您在實際將設計版本載入繪' +
+          '圖區之前先行挑選 您也可以使用 返回上個版本按鈕 來顯示先前的設計版本 只要編輯選單中的 記住我的進度 處於勾選狀態 橋梁結構設計師 便會記住您所有的設計版本 若未勾選 每次重新整理或重新啟動瀏覽器時' +
+          ' 設計版本記錄將會遺失',
+  },
+  {
+    id: 'hlp_print_load_test',
+    title: '列印或複製載重測試結果',
+    text: '列印最近一次載重測試報告的步驟 確認印表機已連線並處於上線狀態 按一下 狀態工具列 上的 載重測試結果報告按鈕 載重測試結果報告會以表格形式顯示在獨立視窗中 按一下列印按鈕 並依照 瀏覽器的列印說明 ' +
+          '將報告傳送至印表機 注意事項與訣竅 您也可以按一下複製按鈕將報告複製到剪貼簿 由於資料採用定位字元 tab 分隔的純文字格式 因此可以直接貼上到試算表軟體中 例如 google 試算表 microso' +
+          'ft excel 等',
+  },
+  {
+    id: 'hlp_print_drawing',
+    title: '列印設計圖',
+    text: '按一下 主工具列 上的 列印按鈕 即可產生 pdf 格式的黑白設計圖 供您儲存或透過 印表機 列印 注意事項與訣竅 列印出的設計圖會顯示桁架構型 並標註 桿件編號 與尺寸 桿件屬性則會以表格形式顯示在' +
+          '頁面下方',
+  },
+  {
+    id: 'hlp_delete',
+    title: '刪除按鈕',
+    text: '點擊 刪除按鈕 以 刪除目前選取的節點 或 刪除目前選取的桿件 注意事項與提示 刪除按鈕位於 主工具列 上 也可在 編輯選單 中找到 您可以使用鍵盤上的 delete 鍵 執行與刪除按鈕完全相同的功能' +
+          ' 您也可以使用 橡皮擦工具 來刪除 節點 與 桿件',
+  },
+  {
+    id: 'hlp_delete_member',
+    title: '刪除桿件',
+    text: '若要從結構模型中刪除桿件 點擊 繪圖工具箱 上的 選取工具 選取您要刪除的桿件 方式是直接點擊桿件本身 或在 桿件明細表 中點擊對應項目 該桿件會變成 淺藍色 表示已被選取 點擊 刪除按鈕 以刪除所選' +
+          '桿件 注意事項與提示 您必須處於 繪圖區模式 才能刪除桿件 如果您想一次刪除多根桿件 請使用 多重選取 再點擊刪除按鈕 鍵盤上的 delete 鍵具有與工具列上刪除按鈕相同的功能 當您刪除一根桿件時 ' +
+          '所有 桿件編號 大於該桿件的其他 桿件 都會自動重新編號以填補空缺 您也可以透過 擦除 的方式 從 結構模型 中移除桿件 如果不小心刪除了桿件 可以點擊 復原按鈕 將其恢復',
+  },
+  {
+    id: 'hlp_delete_joint',
+    title: '刪除節點',
+    text: '若要從結構模型中刪除節點 點擊 繪圖工具箱 上的 選取工具 點擊您要刪除的節點 該節點會變成 淺藍色 表示已被選取 點擊 刪除按鈕 注意事項與提示 您必須在 繪圖區 中作業 才能刪除節點 鍵盤上的 d' +
+          'elete 鍵具有與工具列上刪除按鈕相同的功能 您一次只能刪除一個節點 不允許對 節點 進行 多重選取 當您刪除一個節點時 所有連接到該節點的 桿件 也會一併被刪除 您無法刪除在開始設計時由 橋梁結構' +
+          '設計師 自動建立的節點 您也可以透過 擦除 的方式 從 結構模型 中刪除節點 如果不小心刪除了節點 可以點擊 復原按鈕 將其恢復',
+  },
+  {
+    id: 'hlp_go_forward',
+    title: '前往下個版本按鈕',
+    text: '按一下 前往下個版本按鈕 即可在 繪圖區 上顯示較新的 設計版本 注意事項與提示 前往下個版本按鈕位於 主工具列 上 也可在 編輯選單 中找到 只有在您至少使用過一次 返回上個版本按鈕 之後 前往下個' +
+          '版本按鈕才會啟用 您也可以使用 切換設計版本按鈕 來顯示 任何 一個設計版本 只要編輯選單中的 記住我的進度 處於勾選狀態 橋梁結構設計師 便會記住您所有的設計版本 若未勾選 每次重新整理或重新啟動瀏' +
+          '覽器時 設計版本記錄將會遺失',
+  },
+  {
+    id: 'glos_forces',
+    title: '力（Forces）',
+    text: '力是一種推力或拉力 重量便是生活中常見的力 力在美制單位中以磅 pounds 衡量 在國際單位制 si 中則以牛頓 newtons 衡量 在 橋梁結構設計師 中 所有的力都以千牛頓 kn 表示',
+  },
+  {
+    id: 'hlp_animation_controls',
+    title: '動畫控制',
+    text: '動畫畫面上方會顯示一排七個半透明圖示 當滑鼠游標靠近時 各圖示便會亮起 漫遊 在圖示上按住滑鼠並拖曳 即可在動畫場景中前後漫遊移動 平移 在圖示上按住滑鼠並拖曳 可在不前進或後退的情況下進行水平與垂直' +
+          '平移 轉頭 在圖示上按住滑鼠並拖曳 可在原地轉動視角方向 回到起點 點擊即可返回俯瞰整座橋梁的初始視角 卡車視角 點擊此圖示即可從卡車駕駛的視角觀看過橋過程 拖曳滑鼠可轉動視線 點擊 漫遊 平移 轉頭' +
+          ' 或 回到起點 即可離開卡車視角 暫停／播放 點擊可暫停或繼續播放動畫 如果測試失敗 點擊此按鈕可重播橋梁破壞的過程 設定 點擊可顯示或隱藏動畫設定對話框 功能等同於在 檢視 選單中選擇 動畫設定 若' +
+          '您在卡車完整來回通過兩次期間 或在橋梁破壞後的幾秒內未操作任何導覽控制項 視角將會自動開始在地形上方數公尺處環繞飛行 只要操作任一導覽控制項 就會取消自動環繞並將控制權交還給您 若想再次啟動環繞模式 ' +
+          '重新測試橋梁即可',
+  },
+  {
+    id: 'hlp_animation_settings',
+    title: '動畫設定',
+    text: '此對話框提供多項選項 供您調整動畫的外觀表現 若要了解如何在動畫場景中移動視角以及播放／暫停動畫 請參閱 動畫控制 陰影 控制模擬場景中太陽是否投射陰影 天空 控制天空是否繪製雲朵 太陽與地平線山丘 ' +
+          '或僅顯示單純的藍色背景 地形 控制是否繪製橋梁周圍的地面與水面 風力發電機 控制是否繪製橋梁附近的風力發電機 橋台 控制是否繪製橋台與道路路面 卡車 控制是否顯示或隱藏代表載重的卡車模型 色彩 控制是' +
+          '否以顏色呈現 桿件內力 勾選此項時 當 載重 行經橋面 壓力 會以 紅色 表示 拉力 會以 藍色 表示 色彩越鮮明代表受力越大 未受力則以 平淡灰色 表示 變形誇大 控制是否放大桿件的變形量以便觀察 ' +
+          '未勾選時動畫呈現真實比例 勾選時桁架在受力下的形狀變化會放大 20 倍 讓變形更易於察覺 移動 速度滑桿 可改變卡車行駛的速度 移動 亮度滑桿 可讓整體畫面變暗或變亮 以配合不同螢幕的顯示差異 備註與' +
+          '提示 動畫的流暢度取決於電腦處理器與顯示卡的效能 如果畫面動作看起來過於 卡頓 請嘗試關閉部分動畫效果 其中 陰影 的影響通常最大 放慢卡車行駛速度 能讓您更清楚地觀察測試進行時各桿件如何承受與釋放載' +
+          '重 關閉 色彩 與 變形誇大 能呈現橋梁實際運作時最逼真的視覺效果',
+  },
+  {
+    id: 'glos_dynamic_load_allowance',
+    title: '動載重係數（Dynamic load allowance）',
+    text: '動載重係數是橋梁設計中用來代表移動 載重 影響的係數 橋梁結構設計師 採用的動載重係數為 33% 代表行駛中的卡車在橋梁 桿件 上造成的受力比靜止的卡車多出 33%',
+  },
+  {
+    id: 'hlp_export_to_3dprint',
+    title: '匯出 3D 列印檔案',
+    text: '使用 3d 列印 按鈕或檔案選單中的對應項目 即可匯出 obj 格式的檔案 這些檔案可匯入 3d 列印機的切片軟體並進行列印 成品將是您所設計橋梁的逼真比例模型零件 適合用於展示 系統會彈出對話方塊 ' +
+          '請您輸入幾項重要參數 最小可列印特徵尺寸 smallest printable feature size 按比例縮小的模型橋梁桿件可能過細而無法列印 在這種情況下 系統將改用此最小特徵尺寸 單位為公釐' +
+          ' 來取代按比例縮放的尺寸 最小值為 1 公釐 較大的數值會略微犧牲比例外觀 但能讓列印與組裝更加容易 組裝間隙 wiggle room 多數 3d 列印機在列印用於對齊模型橋梁零件的孔洞與卡榫等細小特' +
+          '徵時 會多擠出一些材料 此數值用於微調尺寸以獲得良好的密合度 每台列印機的特性不同 因此可能需要反覆測試才能找出合適的數值 0.20mm 是一個不錯的起始值 如果零件組裝過緊 請嘗試增大組裝間隙數值 ' +
+          '反之亦然 縮放比例 scale 此項目決定模型的整體大小 移動滑桿以嘗試不同的數值 對話方塊將會顯示對應的最大物件尺寸 請確認這些最大尺寸沒有超出您列印機的成型範圍 基本檔案名稱 base file ' +
+          'name 此項目決定每個包含橋梁零件之 obj 檔案的檔名開頭 設定完成後 請按一下 確定 ok 系統會將三個檔案傳送至瀏覽器的下載資料夾 base_file_name trusses.obj bas' +
+          'e_file_name abutments.obj base_file_name cross members.obj 其中的 base_file_name 會自動替換為您在對話方塊中輸入的名稱 每個檔' +
+          '案都包含一組已預先排列好的零件 以便盡可能放進列印成型範圍內 但系統無法保證一定能完整容納 您可能需要自行重新安排列印批次 請照常使用您的切片軟體與列印機來匯入 obj 檔案並列印零件 每個檔案中的各' +
+          '個零件在 obj 檔案格式中都是獨立的 物件 object 您的切片軟體應可讓您單獨調整這些物件的位置 並在必要時刪除單次列印放不下的物件 有時您可能需要使用 拆分 splitting 指令才能檢視各' +
+          '個獨立物件 例如 在 prusa slicer 中 您必須先選取匯入的模型 然後按下此按鈕 若想製作多色橋梁 例如桁架用一種顏色 橫向桿件用另一種顏色 橋面再用第三種顏色 您也可以依預定顏色將物件分組' +
+          '排列 部分零件會附帶一層薄薄的額外 裙邊 brims 用以幫助模型附著在列印平台上 組裝使用前必須先將這些裙邊修剪乾淨 錯誤 少數類型的橋梁結構過於複雜而無法匯出 常見原因為包含極短的桿件 發生這種情' +
+          '況時 對話方塊會顯示錯誤訊息 注意事項與提示 如果您的橋梁過於複雜而無法匯出 請嘗試將縮放比例調大至列印機允許的上限 例如採用下述沿平台對角線擺放的方式 在某些情況下 這麼做即可順利完成匯出 模型中體' +
+          '積最大的零件通常是桁架 如果您的目標是製作盡可能大的模型 請嘗試每次只列印一座桁架 並將其沿著列印平台的對角線方向擺放 關於最小特徵尺寸 建議設為列印機噴嘴直徑的整數倍 且至少為 1 公釐 例如 若噴' +
+          '嘴直徑為 0.4mm 可嘗試設為 1.2 或 1.6 列印完所有零件後 請參閱 橋梁模型組裝提示 以了解重要細節',
+  },
+  {
+    id: 'glos_kilonewton',
+    title: '千牛頓（Kilonewton）',
+    text: '千牛頓 kn 是國際單位制 公制 中衡量力的單位 1 千牛頓等於 1000 牛頓 約相當於 225 磅',
+  },
+  {
+    id: 'glos_kn',
+    title: '千牛頓（kN）',
+    text: 'kn 是公制力的單位 千牛頓 的縮寫 約相當於 225 磅',
+  },
+  {
+    id: 'hlp_printer',
+    title: '印表機與列印',
+    text: '當您列印橋梁設計圖或報告時 橋梁結構設計師 會建立一個 pdf 檔案 並請瀏覽器預覽及傳送至印表機 多數情況下會彈出一個視窗顯示將要列印的內容 您還需要再按一次按鈕以送出列印 或者您也可以直接下載該 ' +
+          'pdf 檔案 在 chrome 瀏覽器中 這些按鈕的外觀如下',
+  },
+  {
+    id: 'hlp_save_as',
+    title: '另存新檔按鈕',
+    text: '按一下 另存新檔按鈕 即可使用新的檔案名稱 儲存目前設計 注意事項與訣竅 另存新檔按鈕位於 檔案選單 中 如果您不想更改目前設計所對應的檔案名稱 請改用 儲存檔案按鈕',
+  },
+  {
+    id: 'hlp_context_widgets',
+    title: '右鍵快捷控制項',
+    text: '繪圖區 提供稱為 右鍵快捷控制項 的功能 可加快您的操作效率 只要點擊滑鼠右鍵即可叫出 而右鍵點擊的位置會決定顯示哪一組控制項 在已選取的桿件上點擊右鍵 會顯示此對話框 內含可編輯所有選取桿件的控制項' +
+          ' 桿件屬性下拉選單 放大桿件尺寸按鈕 縮小桿件尺寸按鈕 刪除選取項目按鈕 顯示／隱藏桿件明細表按鈕 在其他任何位置點擊右鍵 則會顯示此選單 提供常用編輯功能的控制項 繪圖工具箱選擇器 全選按鈕 顯示／' +
+          '隱藏桿件明細表按鈕 格線解析度按鈕',
+  },
+  {
+    id: 'hlp_local_contest',
+    title: '地區競賽代碼',
+    text: '橋梁結構設計師 支援地區性的橋梁設計競賽 您可以在 設計專案設定精靈 中輸入一組 6 碼地區競賽代碼 輸入代碼後 系統會自動選取包含載重案例在內的場地條件 而您的任務就是在該條件下設計出最佳的橋梁 橋' +
+          '梁結構設計師 未來的進階功能 需視適當經費而定 將能為所有使用相同代碼的設計自動產生排行榜 在此之前 您必須以人工方式記錄誰居於領先 輸入地區競賽代碼的步驟 點擊 新增設計按鈕 以開啟 專案設定精靈 ' +
+          '在精靈的第 2 步中 勾選 是 在文字方塊中輸入您的代碼 注意事項與提示 地區競賽代碼的前三個字元可用來唯一識別該次競賽 例如以 nhs 代表 northampton high school 接下來的' +
+          '兩個字元為兩位數字 代表場地配置 即 橋面 高程與支承條件 最後一個字元為英文字母 b c 或 d 用來指定載重案例 載重案例是由兩種可選的卡車載重與兩種可選的 混凝土 橋面厚度組合而成 只要在 設計' +
+          '專案設定精靈 中輸入有效的 6 碼地區競賽代碼 預覽視窗便會立即顯示對應的場地配置與載重案例',
+  },
+  {
+    id: 'glos_slope',
+    title: '坡度（Slope）',
+    text: '道路或路堤的坡度用來衡量其陡峭程度 以垂直距離與水平距離的比值表示 例如 坡度為 2 1 的河岸 代表水平距離每前進 1 公尺 高度便上升 2 公尺',
+  },
+  {
+    id: 'glos_verticals',
+    title: '垂直桿（Verticals）',
+    text: '垂直桿是呈垂直配置的桁架 桿件 通常用來連接上 下 弦桿',
+  },
+  {
+    id: 'glos_footing',
+    title: '基腳（Footing）',
+    text: '基腳是 橋台 或 橋墩 的底座 屬於直接座落於土壤上並將結構載重傳遞至土壤的基礎結構',
+  },
+  {
+    id: 'glos_site_cost',
+    title: '場地成本（Site cost）',
+    text: '在橋梁結構設計師中 場地成本包含 下部結構 支撐橋梁的 橋台 與 橋墩 的費用 以及 混凝土 橋面 的費用 場地成本加上桁架成本 即為總工程成本',
+  },
+  {
+    id: 'hlp_increase_member',
+    title: '增大桿件尺寸按鈕',
+    text: '按一下 增大桿件尺寸按鈕 即可將目前所有已選取桿件的 尺寸 調大一個級距 注意事項與提示 增大桿件尺寸按鈕位於 桿件屬性工具列 上 如果同時選取了多根桿件 按一下此按鈕將會把 所有 已選取 桿件 的尺' +
+          '寸都調大一級 即使它們原本的尺寸各不相同 例如 若同時選取了 50mm 90mm 與 120mm 的桿件 按一下此按鈕後 它們會分別變更為 55mm 100mm 與 130mm 使用增大桿件尺寸按鈕時' +
+          ' 桿件尺寸清單 也會隨之更新以反映變更 使用增大桿件尺寸按鈕時 另外兩項 桿件屬性清單 材料與斷面型式 不會發生改變',
+  },
+  {
+    id: 'glos_compression',
+    title: '壓力（Compression）',
+    text: '壓力是一種使桿件產生>>>縮短<<<趨勢的軸向 桿件內力',
+  },
+  {
+    id: 'hlp_multiple_selection',
+    title: '多選桿件',
+    text: '使用 多選 功能可同時 變更數根桿件的屬性 或同時 刪除數根桿件 進行多選共有五種不同方式 拖曳框選 點擊 繪圖工具箱 中的 選取工具 按住滑鼠左鍵不放 在欲選取的 桿件 周圍 拖曳畫出方框 然後放開' +
+          '滑鼠按鍵 所有完全包覆在方框內的桿件都會被選取 若由左向右拖曳 僅會選取完全位於方框內的桿件 若由右向左拖曳 凡是位於方框內或與方框邊界接觸的桿件都會被選取 在繪圖區按住 ctrl 鍵點擊 點擊 繪圖' +
+          '工具箱 中的 選取工具 按住鍵盤上的 ctrl 鍵不放 在 繪圖區 中逐一點擊每根欲選取的桿件 在桿件明細表按住 ctrl 鍵點擊 按住鍵盤上的 ctrl 鍵不放 在 桿件明細表 中逐一點擊每根欲選取' +
+          '的桿件 在桿件明細表按住 shift 鍵點擊 區塊選取 在桿件明細表中點擊一根桿件作為 區塊 的起點 按住鍵盤上的 shift 鍵不放 在桿件明細表中點擊第二根桿件以完成區塊選取 介於第一根與第二根之' +
+          '間 含兩者本身 的所有桿件都會被選取 在桿件明細表點擊並拖曳 區塊選取 在桿件明細表中點擊一根桿件作為 區塊 的起點 向上或向下拖曳後放開 即可選取所需的區塊 全選 點擊 主工具列 上的 全選按鈕 即' +
+          '可選取 結構模型 中的所有桿件 注意事項與提示 所有已選取的桿件在繪圖區與桿件明細表中都會變成 淺藍色 若要取消選取所有桿件 請點擊繪圖區中 非 桿件上的任意空白處 若要在保留其他多選桿件的情況下取消' +
+          '選取單一桿件 請按住 ctrl 鍵並點擊欲取消選取的該根桿件',
+  },
+  {
+    id: 'hlp_how_to',
+    title: '如何設計一座橋梁',
+    text: '當您使用 橋梁結構設計師 時 您將會體驗簡化版的 工程設計流程 您將以非常接近執業土木工程師設計真實公路橋梁的方式 設計一座鋼構 桁架橋 您的目標是打造出一座 最佳化 的橋梁設計 所謂最佳設計是指 符' +
+          '合所有的 設計規範 通過模擬的 載重測試 並且 造價成本盡可能低廉 下方的流程圖展示了一套發展最佳設計的有效方法 若要進一步了解這套方法論 按一下流程圖上的任何方塊 即可閱讀該特定步驟的詳細說明 或者' +
+          ' 按一下這裡 逐步瀏覽整個設計流程',
+  },
+  {
+    id: 'glos_client',
+    title: '委託人（Client）',
+    text: '委託人是指聘請工程師 醫師或律師等專業人士來提供專門服務的個人或組織',
+  },
+  {
+    id: 'glos_safe',
+    title: '安全（Safe）',
+    text: '當桿件的 桿件內力 在 拉力 與 壓力 兩方面都小於桿件本身的強度時 即代表該桿件處於安全狀態',
+  },
+  {
+    id: 'hlp_bars_or_tubes',
+    title: '實心方鋼還是空心方管？',
+    text: '當您在設計中 最佳化桿件屬性 時 最重要的決策之一就是為 結構模型 中的每一支桿件選擇斷面類型 實心方鋼或空心方管 做此決定時 您應考量不同斷面對桿件在承受 拉力 與 壓力 時強度的影響 受壓桿件 在' +
+          '相同材料下 空心方管每公斤的單價略高於實心方鋼 不過 與 相同質量 的實心方鋼相比 空心方管能提供大得多的 斷面慣性矩 因此 空心方管抵抗 挫屈 的效率高於實心方鋼 其 抗壓強度 通常也會大幅提升 對' +
+          '受壓 桿件 而言 空心方管所帶來的抗壓強度優勢 往往遠超過每公斤單價略高的成本 對於主要承受壓力的桿件 選用空心方管通常最具經濟效益 受拉桿件 在相同材料下 實心方鋼每公斤的單價略低於空心方管 然而 ' +
+          '抗拉強度 僅取決於桿件的 截面積 與斷面慣性矩無關 相同質量的實心方鋼與空心方管具有相同的截面積 因此兩者的抗拉強度完全相同 由於實心方鋼價格較低 且空心方管在抗拉方面沒有強度優勢 因此實心方鋼通常是' +
+          '受拉桿件較佳的選擇 對於主要承受拉力的桿件 選用實心方鋼通常最具經濟效益',
+  },
+  {
+    id: 'hlp_setup_wizard',
+    title: '專案設定精靈',
+    text: '每當您啟動 橋梁結構設計師 並選擇建立新設計時 系統都會自動顯示 專案設定精靈 若要在任何時候重新開啟此精靈 請點擊 新增設計按鈕 專案設定精靈會清除 繪圖區 然後為新設計進行初始化設定 它會引導您完' +
+          '成以下步驟 閱讀並了解 設計需求 輸入 地區競賽代碼 此為選填項目 除非您正參加地區橋梁設計競賽 否則可略過 選擇橋梁的橋面高程與支承結構配置 選擇設計要使用的橋面材料與卡車載重 選擇性地挑選一個標準' +
+          '桁架 設計範本 作為設計參考 在 標題欄 中輸入設計師姓名與專案識別名稱或編號 在場址設計的每個步驟中 點擊 下一步 按鈕可前往下一個步驟 點擊 上一步 按鈕可返回先前的頁面以更改選項 點擊 完成 按' +
+          '鈕可接受所有選擇並返回繪圖區 點擊 取消 按鈕則會放棄所有選擇並返回繪圖區 當您點擊 完成 按鈕後 精靈會自動建立支承橋面的 節點 詳情請參閱 設計規範第 3.g 條 同時也會依據您所選的場址配置建立' +
+          '所有額外的支承結構 注意事項與提示 您選擇的橋面高程 支承結構配置與橋面材料將決定專案的 場址成本 成本 會顯示於設定精靈底部 並隨著您每次更改橋面高程或支承結構配置而自動更新 若要查看場址成本的詳細' +
+          '計算方式 請點擊專案設定精靈右下角附近的向下箭頭 只要您選好橋面高程與支承結構配置 隨時都可以點擊 完成 按鈕 其餘設定皆為選填項目',
+  },
+  {
+    id: 'hlp_find_opt_substructure',
+    title: '尋找最佳場址配置與載重工況',
+    text: '如何設計一座橋梁 返回上一個步驟 前往下一個步驟 在設計流程進行到這個階段時 您已經針對某一種特定的場址配置與載重工況最佳化了您的設計 也就是某一組特定的 橋面 高度 跨距 長度 支承配置 橋面材料與' +
+          '卡車載重組合 然而 在您評估其他場址配置與載重工況之前 您還無法確定這是否真的是最佳設計 橋梁結構設計師 提供 98 種可能的場址配置 由不同的橋面高程 支承類型與支承高度組合而成 此外還有 4 種可' +
+          '能的載重工況 由不同的橋面材料與卡車載重組合而成 橋梁的 總成本 等於 場址成本 加上桁架成本 每種場址配置支承橋梁的方式各不相同 因此各自對應不同的場址成本 每種載重工況對鋼桁架產生的影響也不同 因' +
+          '此往往會造成不同的桁架成本 儘管場址成本佔了橋梁總成本的很大一部分 選擇場址成本最低的配置並不一定能得到最低的總成本 場址成本較低的配置 通常會伴隨相對較高的桁架成本 反之亦然 橋面高程較高的場址配置' +
+          ' 由於幾乎不需要開挖土方 場址成本通常相對較低 但橋面高程較高也意味著跨距較長 較長的跨距需要更大型 更厚重的桁架 進而導致較高的桁架成本 拱形 橋台 的造價高於 標準橋台 而較高的 拱形橋台 造價又' +
+          '高於較矮的拱形橋台 因此 採用拱形橋台的場址配置通常場址成本較高 不過 由於河谷呈 v 字形 在相同的橋面高度下 拱形橋台能夠縮短跨距 橋台 越高 跨距就越短 此外 拱形橋台比標準橋台提供更強的側向束' +
+          '制 這兩個因素都有助於降低拱形結構的桁架成本 在河道中央建造一座 橋墩 的費用相當昂貴 因此設有 橋墩 的配置 其場址成本會明顯高於沒有橋墩的配置 但另一方面 橋墩將單一長跨距分割成兩個較短的跨距 而' +
+          '兩座短跨桁架的造價通常遠低於單一座長跨桁架 鋼索錨座 同樣所費不貲 但它們能提供額外的支承力 因而可大幅降低桁架成本 斜張橋的鋼索支承便是典型例子 橋面材料的選擇會同時影響場址成本以及在 載重測試 中' +
+          '施加的 載重 中強度 混凝土 的價格比高強度混凝土便宜 但需要較厚的橋面 因此重量較重 高強度混凝土雖然較貴 但可做出較薄 較輕的橋面 因此 較便宜的橋面材料往往會導致較高的桁架成本 而較昂貴的橋面材' +
+          '料則能降低桁架成本 卡車載重的選擇不會影響場址成本 但會對桁架成本產生顯著影響 綜合以上各點 我們可以學到一個重要的觀念 工程設計永遠涉及 權衡取捨 tradeoffs 上部結構成本與其支承 下部結構' +
+          ' 成本之間的取捨 是大多數實務橋梁設計中極為關鍵的一環 那麼 究竟哪一種場址配置與載重工況能達到最低的總成本 找出這個答案的唯一方法 就是透過反覆試驗並結合嚴謹的邏輯推論 若要尋找最佳下部結構配置 按' +
+          '一下 開新設計按鈕 當 專案設定精靈 顯示時 選擇一種您尚未嘗試過的場址配置或載重工況 每次最好只改變一個變因 這樣才能針對該項改變的影響做出有效的結論 例如 假設您的第一個設計是採用標準橋台 橋面高' +
+          '度 24 公尺的單跨橋梁 在第二個設計中 您可以改試拱形橋台 但維持橋面高度為 24 公尺 如此一來 兩次試驗之間的成本差異就能直接歸因於支承類型的不同 如果您同時改變支承類型 與 橋面高度 就無法判' +
+          '斷這兩個因素各自對成本造成了什麼影響 針對新的場址配置或載重工況 重複先前的八個設計流程步驟 決定桁架型式 繪製 節點 繪製 桿件 接著對設計進行 載重測試 補強所有 不安全 的桿件 最佳化 桿件屬性' +
+          ' 最佳化桁架幾何形狀 以及最佳化桁架型式 接著比較這兩次試驗的結果 針對第二次試驗中改變的單一變因歸納出合乎邏輯的結論 在該特定橋面高度下 究竟是標準橋台還是拱形橋台的成本較低 兩者差距有多大 如果差' +
+          '距非常懸殊 您或許就能對這兩種支承類型做出一般性的結論 如果兩者結果相當接近 您可能需要進行更多次試驗 再嘗試另一種場址配置或載重工況 同樣每次只更改一項特徵 如果您的第二次試驗採用 4 公尺高的拱形' +
+          '橋台 下一次試驗可以改用 12 公尺或 16 公尺的高度 再次重複整個設計流程以針對這個新場址配置最佳化桁架 並將結果與先前的試驗進行比較 將比較結果作為進一步探索的邏輯依據 隨著試驗次數增加 您將能' +
+          '逐步淘汰不具經濟效益的場址配置與載重工況 當您淘汰到只剩下最後一種方案時 您就找到了最佳解',
+  },
+  {
+    id: 'hlp_try_new_configuration',
+    title: '尋找最佳桁架配置',
+    text: '如何設計橋梁 返回上一步 前進下一步 工程設計是一個反覆修正的過程 為了達到最佳化設計 您可能需要嘗試多種不同的桁架配置 如同您所想 可能的配置方式有 數百萬種 之多 您不可能有時間一一嘗試 那麼 如' +
+          '何在不必建立模型並測試所有桁架配置的情況下找出最佳方案呢 一種方法是採取非常有系統的方式來評估替代方案 先選擇一種配置 最佳化其 桿件屬性 並仔細觀察配置變更對設計成本的影響 記錄哪些改動能降低成本 ' +
+          '哪些無法降低成本 再利用這些觀察結果引導下一次配置的選擇 尋找最佳桁架配置的步驟 嘗試不同的 橋面 位置 如果您的第一個設計是 上承式桁架 可以改試對應的 下承式桁架 反之亦然 嘗試不同的 標準桁架配' +
+          '置 例如 如果您的第一個設計是普拉特 pratt 桁架 可以改試豪氏 howe 或華倫 warren 桁架配置 嘗試縮短桁架中 受壓 桿件 的長度 桿件的 抗壓強度 與其長度息息相關 當桿件越長 其抗' +
+          '壓強度會大幅下降 抵抗 挫屈 的能力也明顯減弱 因此 縮短一根或多根受壓桿件的長度 有時能有效降低桁架設計的成本 舉例來說 我們先從標準的華倫下承式桁架開始 由於簡支跨距桁架橋的上 弦桿 始終處於受壓' +
+          '狀態 我們可以將華倫桁架的上弦桿分段細分 以嘗試降低成本 如下所示 現在再來看標準的普拉特下承式桁架 在此配置中 上弦桿 以及 垂直桿 通常皆承受壓力 我們可以 同時 將上弦桿與垂直桿細分 如下所示 ' +
+          '當每根受壓桿件的長度縮短為原本的一半時 設計者通常就能選用小得多的 桿件尺寸 來達到所需的抗壓強度 請同時注意 每當您細分一根桿件時 都必須額外增加 節點 與桿件 以維持 結構穩定性 為了保持穩定 桁' +
+          '架通常必須由一系列彼此相連的三角形組成 要在 橋梁結構設計師 中細分受壓桿件 通常需依序執行以下步驟 刪除欲細分的受壓桿件 在剛刪除桿件的中點或附近位置 新增一個節點 新增兩根新桿件 以取代原本的桿件' +
+          ' 新增輔助桿件以確保 結構穩定性 並 對所有新桿件進行 桿件屬性最佳化 縮短受壓桿件的長度不一定會降低整體設計成本 這取決於縮小桿件尺寸所省下的材料費用 是否足以抵銷新增節點與桿件所增加的成本 嘗試減' +
+          '少節點數量 您的 設計成本 包含每個節點的固定費用 因此減少 結構模型 中的節點數量 可能有助於降低總成本 例如 請看標準的豪氏上承式桁架 只要移除下弦桿中點的節點 就能改良此配置 如下所示 當您 刪' +
+          '除此節點 時 與其相連的三根桿件也會一併被刪除 接著您需要新增一根較長的桿件 以取代原先刪除的兩根下弦桿 這種修改對於 受拉 桿件 如本例中的下弦桿 往往非常有效 因為 抗拉強度 並 不 受桿件長度影' +
+          '響 但若是如下圖所示移除桁架上弦桿的節點 效果通常較不理想 刪除上弦桿節點並以單一桿件取代原本兩根弦桿 會使該受壓桿件的長度加倍 導致其強度 大幅 下降 您將必須使用尺寸大得多的鋼材 才能讓此桿件通過' +
+          ' 載重測試 而減少節點數量所帶來的好處很可能因此完全抵銷 嘗試自創獨特的桁架配置 或參考真實橋梁的配置方式 以下是幾種值得參考的實際橋梁配置範例 雖然上圖呈現的皆為 下承式桁架 但每一種配置也都可以設' +
+          '計成 上承式桁架 注意事項與訣竅 如果您有把握能將新節點 精確 放置於既有桿件上以進行分段 請直接操作即可 橋梁結構設計師 會自動在該新節點處將原本的桿件分割為二 您可以觀察 桿件明細表 來確認分割是' +
+          '否成功 否則請依上述先刪除再新增的步驟操作',
+  },
+  {
+    id: 'glos_symmetrical',
+    title: '對稱（Symmetrical）',
+    text: '對稱 一詞可同時套用於結構本身或其載重 在對稱結構中 結構的左右兩側互為鏡像 在對稱載重中 施加在橋梁中心線兩側的 載重 完全相同',
+  },
+  {
+    id: 'hlp_run_load_test',
+    title: '對設計執行載重測試',
+    text: '如何設計一座橋梁 返回上一步 前往下一步 一旦您建立好完整且穩定的 結構模型 就必須執行模擬 載重測試 以確認設計中的所有 桿件 都具有足夠強度 能承受 設計規範 5 所規定的 載重 對設計執行載重測' +
+          '試的步驟 按一下 載重測試按鈕 輕鬆觀看測試過程 橋梁結構設計師 將自動進行載重測試 播放 測試動畫 並更新 載重測試狀態 顯示 您可以使用 動畫控制項 以步行或乘車視角瀏覽整個測試過程 準備好後 按' +
+          '一下 繪圖區按鈕 返回繪圖區繼續修改設計 注意事項與訣竅 當您按一下載重測試按鈕時 橋梁結構設計師 會自動執行下列作業 在結構模型的適當位置建立 鉸支承 與 滾支承 計算所有桿件的自重 並將這些 力 ' +
+          '作為載重施加於結構上 計算 混凝土 橋面 瀝青 磨耗層 及 橋面橫梁 的重量 詳見 設計規範 5 並將對應的載重施加於結構上 在多個不同位置施加 aashto h25 卡車載重 以模擬卡車行駛過橋的過' +
+          '程 檢查結構模型的 穩定性 如果結構模型不穩定 橋梁結構設計師 會嘗試自動修正問題 若無法修正 則會停止載重測試 告知您問題所在並提供建議 然後將您帶回繪圖區 執行 結構分析 綜合考量橋梁自重與卡車載' +
+          '重的共同作用 針對每個卡車位置 計算結構模型中每個節點的 位移 以及每根桿件的 桿件內力 針對每根桿件 比較所有卡車位置所算出的桿件內力 找出 絕對最大 拉力 與 絕對最大 壓力 這兩個數值即是決定該' +
+          '桿件是否 安全 的關鍵受力 計算每根桿件的 抗拉強度 與 抗壓強度 針對每根桿件 將絕對最大拉力與抗拉強度相比 並將絕對最大壓力與抗壓強度相比 只要其中任一項受力超過強度 該桿件即判定為不安全 反之則' +
+          '為安全 產生並播放 載重測試動畫 更新 載重測試狀態 顯示 為了節省時間 您可以不播放動畫直接執行載重測試 詳情請參閱 載重測試選項 該主題中也說明了如何關閉穩定性問題的自動修正功能',
+  },
+  {
+    id: 'hlp_rulers',
+    title: '尺規',
+    text: '水平與垂直 尺規 顯示在 繪圖區 的左側與底部邊緣 當您在 結構模型 中繪製或移動 節點 時 尺規能協助您精確判讀滑鼠游標的位置 注意事項與訣竅 尺規的刻度單位為公尺 尺規上的刻度標記對應 繪圖格線 ' +
+          '上 鎖點 的位置 鎖點共有三種解析度 低 中與高 您可以使用 格線解析度按鈕 在三者之間切換 尺規上的刻度標記會反映目前的設定 低解析度對新手最友善 也最適合建立初步的設計草稿 中解析度與高解析度需要' +
+          '較精細的滑鼠操作 但能讓您微調設計以達到最低成本 您可以使用 格線解析度按鈕 在三者之間切換 尺規上的刻度也會隨之改變 您可以使用 檢視尺規按鈕 來隱藏或顯示尺規 隱藏尺規後繪圖區會稍微變大 如果您的' +
+          '電腦螢幕解析度較低 這會很有幫助 尺規會顯示由 設計規範 所界定的繪圖格線範圍 水平尺規從零開始 終止於指定的 跨距 長度 垂直尺規則對應規範中所訂定的地面以上最低與最高高程',
+  },
+  {
+    id: 'glos_session',
+    title: '工作階段（Session）',
+    text: '每當你開始新設計 載入範例設計 或開啟既有的 橋梁設計檔 時 就會啟動一個新的工作階段 在同一個工作階段中 你所有的設計版本都會被保留下來 在工作階段期間的任何時候 都可以點擊返回按鈕恢復到先前的設計' +
+          '版本',
+  },
+  {
+    id: 'hlp_toolbars',
+    title: '工具列',
+    text: '橋梁設計視窗 在 選單列 正下方包含兩排按鈕 稱為工具列 繪圖區內還有一個可自由拖曳的浮動工具箱 此外 在繪圖區按滑鼠右鍵也會出現包含常用功能的快顯選單與對話方塊 這些控制項集合涵蓋了建立 測試 最佳' +
+          '化與記錄橋梁設計所需的所有工具 編輯與狀態工具列 此工具列提供建立與記錄橋梁 執行測試 切換設計版本 以及檢視成本 測試結果與桿件材料明細報告的控制項 新增設計按鈕 開啟檔案按鈕 儲存檔案按鈕 列印按' +
+          '鈕 匯出 3d 列印檔案按鈕 繪圖區按鈕 載重測試按鈕 全選按鈕 刪除按鈕 復原控制項 重做控制項 返回上一設計版本按鈕 前往下一設計版本按鈕 跳至指定設計版本按鈕 目前成本 檢視成本計算報告按鈕 目' +
+          '前載重測試狀態 檢視載重測試結果報告按鈕 檢視桿件分析報告按鈕 桿件與顯示屬性工具列 此工具列提供選擇材料 變更桿件尺寸 以及切換目前設計各種顯示與編輯方式的控制項 桿件屬性清單 加大桿件尺寸按鈕 縮' +
+          '小桿件尺寸按鈕 檢視桿件明細表按鈕 檢視尺規按鈕 檢視標題欄按鈕 檢視桿件編號按鈕 檢視對稱輔助線按鈕 檢視設計範本按鈕 格線解析度按鈕 浮動工具箱 繪圖工具箱 動畫設定 注意事項與提示 許多工具列控' +
+          '制項皆可透過 快顯工具元件 更快速地存取',
+  },
+  {
+    id: 'hlp_the_engineering',
+    title: '工程設計流程',
+    text: '工程設計流程 是應用數學 科學與科技 創造出能滿足人類需求的系統 元件或製程的方法 在實務上 工程設計其實就是一種專業化的 問題解決 過程 請參考以下簡明的 7 步驟問題解決流程 確認問題 界定問題 ' +
+          '研擬替代方案 分析並比較替代方案 選擇最佳方案 執行解決方案 評估結果 土木工程師在設計橋梁時 通常也會遵循相同的流程 確認問題 業主 委託一組工程師團隊設計一座跨越河流的公路橋梁 界定問題 工程師勘' +
+          '察預定橋址並與業主討論 以精確確認橋梁的功能需求 橋梁將建於何處 需要幾個車道 這條河流具備哪些特性 寬度 深度 流速 河道是否有船隻通行 若有 船隻需要多寬的航道與多高的淨空高度 河岸兩側的土地歸誰' +
+          '所有 當地的土壤與岩層條件為何 工程師還會確認結構是否有美學上的要求 而或許最重要的是 了解業主願意為這座新橋投入多少資金 也就是專案預算 研擬替代方案 工程師針對新橋構思數種替代的 概念設計 例如桁' +
+          '架橋 拱橋與懸索橋 分析並比較替代方案 工程師針對前述步驟 2 所確認的專案需求與限制條件 分析每個設計替代方案的優缺點 同時也會考量各方案對環境的影響與施工可行性 選擇最佳方案 仔細分析所有替代方案' +
+          '後 工程師挑選出最能滿足專案需求的方案 並將其作為建議方案呈報給業主 由業主做出最終決定 執行解決方案 一旦業主核准概念設計 團隊便會完成細部設計 繪製施工圖說與編製規範 再交由營造廠商施工 評估結果' +
+          ' 專案完工後 工程師會評估已落成的結構 找出專案中執行良好的環節以及尚可改進之處 這些觀察經驗有助於提升未來專案的品質 當您使用 橋梁結構設計師 設計橋梁時 也應該遵循相同的流程 確認問題 您的專案目' +
+          '標是設計一座 桁架橋 承載雙線道公路跨越河谷 界定問題 為了完整界定並理解問題 您應仔細閱讀 設計規範 並熟悉橋址條件 研擬替代方案 為了獲得高品質的設計 您需要研究數種不同的 橋址配置 與 桁架型式' +
+          ' 分析並比較替代方案 針對每種替代配置進行最低成本最佳化 然後比較彼此的結果 選擇最佳方案 在所有能通過 載重測試 的方案中 選出成本最低者 執行解決方案 定案您的設計並予以 記錄 儲存檔案 列印設計' +
+          '圖與載重測試結果 甚至可以進行 3d 列印模型 您也可以為自己的設計製作並測試紙板橋梁模型 歡迎前往以下網址免費查閱我們的學習活動手冊 http //bridgecontest.org/resourc' +
+          'es/file folder bridges 評估結果 回顧您在設計橋梁過程中所學到的設計方法與結構力學行為 並將這些經驗運用在下一次設計中 以提升設計效率與成效 注意事項與提示 關於使用 橋梁結構設' +
+          '計師 設計橋梁的具體操作步驟 請參閱 如何設計一座橋梁',
+  },
+  {
+    id: 'glos_chords',
+    title: '弦桿（Chords）',
+    text: '弦桿是桁架中主要的水平承重 桿件 在桁架橋中 上弦桿通常承受 壓力 而下弦桿通常承受 拉力',
+  },
+  {
+    id: 'glos_modulus_of_elasticity',
+    title: '彈性模數（Modulus of elasticity）',
+    text: '彈性模數用來衡量材料的勁度 stiffness 也就是材料抵抗變形的能力 彈性模數高的材料在受力時變形極小 反之亦然 彈性模數以符號 e 表示 單位為單位面積所受的力',
+  },
+  {
+    id: 'hlp_undo',
+    title: '復原按鈕',
+    text: '按一下 復原按鈕 即可 復原 對 結構模型 所做的最近一次變更 注意事項與訣竅 復原按鈕位於 主工具列 上 也可在 編輯 功能表 中找到 按一下右側的向下箭頭並選取先前的變更項目 即可一次復原多項變更' +
+          ' 復原按鈕會搭配 重做按鈕 一起使用',
+  },
+  {
+    id: 'glos_moment_of_inertia',
+    title: '慣性矩（Moment of inertia）',
+    text: '慣性矩用來衡量桿件抵抗彎曲與 挫屈 的能力 它取決於桿件橫斷面的形狀與尺寸 以符號 表示 單位為長度的四次方',
+  },
+  {
+    id: 'hlp_report_cost',
+    title: '成本計算報告按鈕',
+    text: '按一下 成本計算報告按鈕 即可檢視 目前設計成本 的計算明細 報告會以表格形式顯示 並可列印或複製到剪貼簿 注意事項與訣竅 成本計算報告按鈕位於 狀態工具列 上橋梁成本的旁邊 也可在 報告選單 中找到' +
+          ' 使用列印按鈕可產生 pdf 檔案 方便瀏覽器傳送至 印表機 列印 使用複製按鈕可將報告複製到電腦的剪貼簿中 其格式方便直接貼上到大多數試算表程式 例如 google 試算表',
+  },
+  {
+    id: 'hlp_compressive_strength',
+    title: '抗壓強度',
+    text: '桿件的 抗壓強度 是指會導致桿件在受 壓力 時變得 不安全 的內力值 若實際 桿件內力 超過抗壓強度 該桿件就可能會發生破壞 橋梁結構設計師 所執行的抗壓強度計算 是以 挫屈 破壞模式為依據 抗壓強度' +
+          '以符號 ϕp n 表示 並以力的單位計量 例如 千牛頓 簡寫為 kn 抗壓強度可由下列公式計算 若 λ ≤ 2.25 則 ϕp n = ϕ 0.66 λ f y 若 λ > 2.25 則 ϕp n =' +
+          ' ϕ 0.88 f y ⁄ λ 其中 λ = f y al 2 ⁄ π 2 ei 是一個無因次參數 用來區分非彈性挫屈 λ ≤ 2.25 與彈性挫屈 λ > 2.25 兩種破壞模式 且 ϕ = 0.9' +
+          '0 為受壓桿件的 強度折減係數 f y 為 降伏應力 為桿件的 截面積 π 約為 3.14159 e 為材料的 彈性模數 為桿件的 斷面慣性矩 l 為桿件長度 備註與提示 上述公式取自 1994 年版' +
+          ' aashto lrfd 橋梁設計規範 若要查看抗壓強度隨桿件長度變化的曲線圖 請在測試橋梁後開啟 報告 選單中的 桿件分析 若要取得特定 材料 的 f y 與 e 數值 以及特定 斷面 與 桿件尺寸' +
+          ' 的 與 數值 請先測試您的橋梁 接著從 報告 選單選擇 桿件分析 或點擊工具列按鈕 橋梁結構設計師 會在執行 載重測試 時 計算 結構模型 中每一支桿件的抗壓強度 桿件的抗壓強度永遠小於其 抗拉強度' +
+          ' 若桿件相對細長 兩者之間的差距可能會相當顯著 上述公式中的係數 0.88 是為了考量實際結構 桿件 不可能完美筆直的事實 由於存在些微彎曲 實際結構桿件發生挫屈時的內力平均會比理論預測值低約 12%',
+  },
+  {
+    id: 'hlp_tensile_strength',
+    title: '抗拉強度',
+    text: '桿件的 抗拉強度 是指桿件在承受 拉力 時變得 不安全 的臨界內部 桿件內力 若實際桿件內力超過抗拉強度 該桿件便可能破壞 在 橋梁結構設計師 中 抗拉強度係以 降伏 破壞模式為計算依據 抗拉強度以符' +
+          '號 表示 並以力的單位 如千牛頓 kn 衡量 其計算公式如下 其中 f = 0.95 為受拉桿件的 強度折減係數 f y 為 降伏應力 為桿件的 斷面積 注意事項與提示 此公式出自 1994 年 aa' +
+          'shto lrfd 橋梁設計規範 若要查詢特定材料的 f y 數值 以及特定斷面與 桿件尺寸 的 數值 請按一下 桿件性質報告按鈕 橋梁結構設計師 會在 載重測試 期間 計算您 結構模型 中每根桿件的' +
+          '抗拉強度 一根桿件的抗拉強度永遠大於其 抗壓強度 若桿件相對細長 兩者之間的差距會相當顯著',
+  },
+  {
+    id: 'glos_tension',
+    title: '拉力（Tension）',
+    text: '拉力是一種使桿件產生<<<拉長>>>趨勢的軸向 桿件內力',
+  },
+  {
+    id: 'glos_arch_supports',
+    title: '拱形支承（Arch supports）',
+    text: '拱形支承在 跨距 兩端各設有一個鉸支承 pin 拱形支承不允許橋梁產生橫向移動 因此提供的束制力比 簡支承 更強',
+  },
+  {
+    id: 'glos_arch_abutments',
+    title: '拱形橋台（Arch abutments）',
+    text: '在橋梁結構設計師中 拱形橋台是採用 拱形支承 來支撐橋梁並將其重量傳遞至下方土壤的 下部結構 元件',
+  },
+  {
+    id: 'glos_cut',
+    title: '挖方（Cut）',
+    text: '挖方是指透過開挖土石 使道路高程低於原有地表的工程做法',
+  },
+  {
+    id: 'glos_buckling',
+    title: '挫屈（Buckling）',
+    text: '挫屈是承受 壓力 的桿件最主要的破壞模式 當桿件發生挫屈時 會在承受軸向壓力的同時向側面彎曲 這種破壞通常既突然又具災難性 細長的桿件特別容易發生挫屈',
+  },
+  {
+    id: 'glos_connections',
+    title: '接合處（Connections）',
+    text: '接合處是由鋼板 螺栓及／或焊道組成的構件 用於將兩根或多根 桿件 連接在一起 真實結構中的接合處 在 橋梁結構設計師 的 結構模型 中是以 節點 來表示',
+  },
+  {
+    id: 'hlp_erase',
+    title: '擦除節點或桿件',
+    text: '若要從結構模型中擦除節點或桿件 按一下 繪圖工具箱 上的 橡皮擦工具 按一下您想要擦除的節點或桿件 注意事項與提示 您必須處於 繪圖區模式 才能擦除節點或桿件 您一次只能擦除一個節點或一根桿件 當您擦' +
+          '除一個節點時 連接到該節點的所有 桿件 也會一併被擦除 您無法擦除在開始新設計時由 橋梁結構設計師 自動建立的 節點 當您擦除一根桿件時 所有 桿件編號 較大的桿件都會重新編號以填補空缺 您也可以透過' +
+          ' 刪除節點 或 刪除桿件 的方式 將它們從 結構模型 中移除 如果您不小心誤刪了節點或桿件 請按一下 復原按鈕 將其恢復',
+  },
+  {
+    id: 'glos_bearing',
+    title: '支承（Bearing）',
+    text: '支承 bearing 是支承座 support 的另一種稱呼 支承是結構連接至其基礎的 節點',
+  },
+  {
+    id: 'glos_supports',
+    title: '支承（Supports）',
+    text: '支承是結構與其基礎相連接的節點 桁架橋可包含兩種不同類型的支承 1 鉸支承 pinned supports 同時限制該節點的水平與垂直移動 以及 2 滾支承 roller supports 限制垂直移' +
+          '動但允許結構水平伸縮',
+  },
+  {
+    id: 'glos_diagonals',
+    title: '斜桿（Diagonals）',
+    text: '斜桿是呈斜向配置的桁架 桿件 通常用來連接上 下 弦桿',
+  },
+  {
+    id: 'hlp_new_design',
+    title: '新增設計按鈕',
+    text: '點擊 新增設計按鈕 以 開始新的橋梁設計 點擊該按鈕後 系統會顯示 專案設定精靈 注意事項與提示 新增設計按鈕位於 主工具列 上 也可在 檔案選單 中找到',
+  },
+  {
+    id: 'hlp_crossxsection',
+    title: '斷面',
+    text: '斷面 橫斷面 是沿著垂直於桿件軸線的方向切開桿件所形成的形狀 下方實心方鋼的斷面為每邊長度 w 的正方形 下方空心方管的斷面為每邊外寬 w 管壁厚度為 的空心正方形 桿件的 斷面積 即為該斷面的表面積' +
+          ' 在上方兩張圖中 即為 淺藍色 陰影區域',
+  },
+  {
+    id: 'hlp_optimize_configuration',
+    title: '最佳化桁架形狀',
+    text: '如何設計一座橋梁 回到上一步 前往下一步 進行到設計流程的這個階段時 您已經針對某種特定的桁架配置最佳化了 桿件屬性 但很可能還有其他配置能帶來更經濟的設計 設計本質上是一個反覆迭代的過程 若要達成真' +
+          '正最佳化的設計 您需要實驗多種不同的配置 並仔細觀察桁架幾何外形的改變如何影響設計成本 在嘗試全新的桁架配置之前 您應該先最佳化目前 結構模型 的 形狀 您可以透過 移動一個或多個節點 使用滑鼠拖曳或' +
+          '鍵盤移至新位置 來改變桁架形狀 這項修改操作非常簡便 卻往往能大幅降低設計成本 最佳化目前結構模型形狀的步驟 嘗試改變桁架的高度 桁深 舉例來說 假設您目前的設計是從標準的普拉特下承式桁架開始 您可以' +
+          '試著降低它的高度 也可以試著增加它的高度 乍看之下 降低桁架高度似乎是較好的選擇 降低高度會使 垂直桿 與 斜桿 變短 由於這些 桿件 所需材料減少 其成本也會隨之下降 然而 降低桁架高度同時也會導致' +
+          '上 下 弦桿 中的 桿件內力 增加 因此您可能需要加大上 下弦桿的尺寸 進而提高成本 以確保設計仍能通過 載重測試 如果您增加桁架高度 則會產生相反的效果 垂直桿與斜桿會變長 因而使成本上升 但上 下' +
+          '弦桿中的桿件 內力 會減小 讓您能選用更小 更便宜的弦桿桿件 這兩項相互競爭的因素之間存在權衡取捨 1 上 下弦桿的桿件內力 以及 2 垂直桿與斜桿的長度 每一座桁架都有一個最佳高度 代表這兩項因素之' +
+          '間最理想的平衡點 找出設計最佳高度最有效的方法 就是透過反覆試誤 嘗試改變桁架的整體外形 舉例來說 假設您目前的設計是從標準的普拉特下承式桁架開始 試著移動上弦桿的 節點 營造出較為圓弧的外形 這項細' +
+          '微的調整往往能顯著降低設計成本 當桁架呈現這種圓弧外形時 上弦桿每根桿件所承受的內力會趨於相近 因此 只要將形狀調整得恰到好處 整段上弦桿便能採用單一種最佳的 桿件尺寸 進而大幅降低 產品成本 將外形' +
+          '改為較圓弧的曲線 對 上承式桁架 的下弦桿同樣有效 注意事項與提示 每當您變更桁架形狀時 都需要重複設計流程中的前三個步驟 1 執行載重測試 2 找出並補強所有 不安全 的桿件 以及 3 最佳化桿件屬' +
+          '性 唯有如此 才能判斷這次修改是否確實降低了設計成本 橋梁結構設計師 的 設計版本追蹤功能 可協助您記錄所有最佳化步驟 並在目前嘗試未達預期時還原至先前的版本',
+  },
+  {
+    id: 'hlp_optimize_member_selection',
+    title: '最佳化桿件屬性',
+    text: '如何設計一座橋梁 返回上一步 前往下一步 一旦您的 結構模型 中沒有任何 不安全 的 桿件 您的設計就已經算是 成功 了 然而 在將成本降到最低之前 您的設計還稱不上 最佳化 最佳化設計的第一步 是透' +
+          '過調整 桿件屬性 也就是 材料 斷面形狀 與 桿件尺寸 來使 目前桁架構型 的成本最小化 在設計流程的這個階段 您不應變更目前結構模型的形狀或構型 最佳化桿件屬性的步驟 確認您了解 橋梁結構設計師 如' +
+          '何計算 您的設計成本 特別要理解 材料成本 與 產品項目成本 之間的權衡關係 將 材料成本 降至最低 降低材料成本有幾種不同的做法 對於初學者建議採用以下步驟 先將所有桿件設為價格最低 但強度也最弱 ' +
+          '的可用材料 碳鋼 cs 為每根桿件選擇適當的 斷面形狀 通常 拉力 桿件最適合使用實心方鋼 而 壓力 桿件最適合使用空心方管 詳細資訊請參閱 實心方鋼還是空心方管 接著 使用有系統的試誤法來找出結構模' +
+          '型中每根桿件所能使用的最小尺寸 從一個 成功 的設計開始 將每根桿件的尺寸調降為下一個較小的可用尺寸 詳細操作請參閱 變更桿件屬性 然後再次執行 載重測試 如果有任何桿件破壞 表示其尺寸過小 請將它調' +
+          '回前一個 較大的 尺寸 對於所有仍保持 安全 的桿件 請再次縮小其尺寸並執行載重測試 持續縮小尺寸並測試 直到該桿件破壞為止 再將尺寸調大一級 若您對結構模型中的每根桿件都系統性地執行此流程 就能確保' +
+          '每根桿件都在不致破壞的前提下達到最小 且最便宜 的尺寸 最後 回頭檢查改用另外兩種材料 高強度低合金鋼 hss 或淬火調質鋼 qts 是否能進一步降低整體設計成本 這兩種鋼材的 降伏應力 都明顯高於碳' +
+          '鋼 cs 因此使用它們可以在不降低強度的情況下縮小桿件尺寸 但高強度低合金鋼 hss 與淬火調質鋼 qts 的單價 每公斤價格 都比碳鋼 cs 貴 您需要透過試誤法來判斷強度提升所帶來的效益 是否足以' +
+          '抵銷高強度鋼材較高的單價 同一個設計中允許同時使用兩或三種不同的材料 當您調整完材料 斷面形狀與桿件尺寸以將材料成本降至最低後 請務必再次執行載重測試 確認所有桿件皆為安全 根據 產品項目成本 進行最' +
+          '佳化 在您剛才將 材料成本 降至最低的過程中 您很可能在設計中引入了許多不同規格的產品 因此 即使材料成本很低 您的 產品項目成本 可能相當高 總成本幾乎肯定不是最佳的 請依照下列步驟 在這兩個相互競' +
+          '爭的成本因素之間找出最佳平衡點 查看 成本計算報告 了解目前設計中共使用了多少種產品規格 特別找出結構模型中僅有少數幾根桿件使用的產品規格 將這些少數桿件的屬性變更為目前設計中已有的下一個較大 或強度' +
+          '更高 的產品規格 舉例來說 假設您的設計包含 2 根 40 mm 實心碳鋼方鋼與 4 根 60 mm 實心碳鋼方鋼 將那 2 根 40 mm 方鋼改為 60 mm 方鋼 這項修改會稍微增加材料成本 但' +
+          '會減少一種產品規格 由於您是將原本 40 mm 的桿件變得 更強 這項修改通常 不會 降低結構安全性 如果產品項目成本的節省幅度大於材料成本的增加幅度 這就是一個好的修改 反之 請按一下 復原按鈕 取' +
+          '消變更 持續這種試誤流程 有選擇性地加大桿件尺寸 或改用較強材料 以減少設計中的產品規格總數 一般而言 一開始減少產品種類會帶來相當可觀的成本節省 但隨著標準化程度提高 節省幅度會逐漸縮小 最終 過度' +
+          '標準化反而會導致設計總成本上升 能使總成本最低的設計即為最佳解 在進入設計流程的下一步之前 請務必再執行一次載重測試 即使您所做的修改全都是加大桿件尺寸也一樣 加大桿件尺寸雖然會使該桿件更強 但也會讓' +
+          '它更重 當桿件重量增加時 桁架的總自重也會隨之上升 由於載重增加 桿件 內力 也會變大 某些原本安全的桿件可能會因此變得不安全 注意事項與訣竅 善用 桿件明細表 的排序與多重選取功能 可以大幅提升最佳' +
+          '化桿件屬性的效率',
+  },
+  {
+    id: 'hlp_materials',
+    title: '材料',
+    text: '橋梁結構設計師 允許您在設計中使用三種不同的 材料 碳鋼 cs 這是最常見的結構用鋼等級 主要成分為鐵與約 0.26% 的碳 高強度低合金鋼 hss 這是一種日漸普及的結構用鋼 性質與碳鋼相似 但強度' +
+          '明顯更高 其較高的強度來自於製造過程中添加的少量錳 鈮 釩及其他合金元素 淬火調質鋼 qts 淬火調質低合金鋼 這是一種超高強度鋼材 與高強度低合金鋼類似 但透過特殊的熱處理製程進一步提升了強度 注意' +
+          '事項與提示 針對某項特定的結構設計 哪一種材料才是最佳選擇 答案很大程度取決於設計中成本與強度 降伏應力 的相對重要性 碳鋼 cs 是三者中價格最低的選項 但強度也最低 高強度低合金鋼 hss 價格稍' +
+          '高 但強度約比碳鋼高出 40% 淬火調質鋼 qts 則是三者中強度最高 同時也最昂貴的材料 這三種材料的 密度 與 彈性模數 大致相同 最佳 材料往往因結構而異 單一設計中也可以混用多種材料 您需要透' +
+          '過反覆嘗試來找出最適合自己設計的材料組合 若要查詢特定材料的 降伏應力 質量密度 與彈性模數數值 請在測試橋梁後從 報告 選單中選取 桿件分析 若要查詢材料成本 請查看 成本計算報告',
+  },
+  {
+    id: 'hlp_material_densities',
+    title: '材料密度',
+    text: '材料的 密度 是指其單位體積的質量 橋梁結構設計師 採用 1994 年 aashto 橋梁設計規範所訂定的材料密度如下 鋼筋 混凝土 每立方公尺 2400 公斤 瀝青 每立方公尺 2250 公斤 鋼材' +
+          ' 所有種類 每立方公尺 7850 公斤',
+  },
+  {
+    id: 'hlp_grid_resolution',
+    title: '格線解析度按鈕',
+    text: '使用 格線解析度按鈕 來設定 繪圖格線 的解析度 繪圖區 上覆蓋著一層看不見的格線 當您繪製或移動 節點 時 滑鼠游標會自動 貼齊 格線交點 按下對應按鈕即可選擇低 中或高解析度 低解析度設定的格線間' +
+          '距為 1.0 公尺 中解析度與高解析度則分別為 0.5 公尺與 0.25 公尺 注意事項與訣竅 格線解析度按鈕位於 顯示工具列 上 也可在 檢視 功能表 及 快顯功能表 中使用 當您按一下格線解析度按' +
+          '鈕時 繪圖區 尺規 上的刻度也會同步更新 以反映對應的格線間距 在 建立 結構模型 初期 通常建議使用低解析度格線 因為在此模式下較容易控制節點與桿件的配置 當您開始 最佳化 設計時 則可切換至中解析' +
+          '度或高解析度 以更精確地微調結構模型的幾何形狀 不論目前的格線解析度設定為何 您隨時都可以選取一個節點 然後使用鍵盤方向鍵以每次 0.25 公尺的間距 移動節點 以便進行細微調整',
+  },
+  {
+    id: 'hlp_component_parts',
+    title: '桁架橋的組成構件',
+    text: '典型 桁架橋 的主要組成構件包括 弦桿 上弦桿與下弦桿 垂直腹桿 亦稱垂直 桿件 斜腹桿 亦稱斜向桿件 橋面橫梁 橋面 鉸支承 亦稱固定 支承 滾動支承 亦稱伸縮支承 橋台 或 橋墩 這些組成構件的示' +
+          '意圖如下 3d 立體圖 立面圖 側視圖 備註與提示 橋梁結構中經常採用多種 標準桁架形式 這些形式主要是依據垂直腹桿與斜腹桿的幾何排列來定義的',
+  },
+  {
+    id: 'hlp_truss_bridges',
+    title: '桁架與桁架橋',
+    text: '什麼是桁架 桁架是由多根結構 桿件 相互連接而成的剛性骨架 在大多數桁架中 桿件會排列成彼此相連的三角形 如下圖範例所示 由於這種結構配置 桁架桿件主要以軸向 拉力 與 壓力 來承擔載重 因為桁架剛性' +
+          '極高且受力效率優異 因此能夠以最少的材料 跨越 較長的距離 桁架橋 自 19 世紀初以來 桁架便廣泛應用於橋梁工程 早期的桁架橋以木材建造 經典的美式廊橋 有頂蓋木橋 皆屬於桁架橋 只是木製桁架桿件外' +
+          '部包覆了牆板與屋頂 以抵禦風雨侵蝕 後期的桁架橋改以鑄鐵與熟鐵建造 而現代桁架橋則大多採用結構鋼 桁架橋有許多不同的 結構配置 但幾乎都具備相同的基本 組成構件 此外 橋梁還有許多其他型式 例如 梁橋' +
+          ' 拱橋 懸索橋 吊橋 以及斜張橋',
+  },
+  {
+    id: 'glos_member_force',
+    title: '桿件內力（Member force）',
+    text: '桿件內力是結構承受 載重 後 在桿件內部產生的力量 桿件內力可能是 拉力 或 壓力',
+  },
+  {
+    id: 'hlp_member_details',
+    title: '桿件分析報告按鈕',
+    text: '按一下 桿件分析報告按鈕 即可顯示桿件分析報告 這是一個互動式檢視器 會顯示目前設計中各 桿件 的 材料 斷面形狀 與 尺寸 等詳細工程資訊 同時也會呈現每根桿件的強度與上次載重測試中作用於該桿件之 ' +
+          '內力 的對照關係 桿件分析包含以下內容 材料性質 降伏應力 彈性模數 質量密度 斷面性質 斷面積 慣性矩 桿件強度與長度的關係圖 同時包含 拉力 降伏 與 壓力 挫屈 曲線 圖中也會標示可通過 細長比' +
+          '檢核 的最大桿件長度 採用所選材料 斷面形狀與尺寸的桿件每公尺成本 桿件會依材料與斷面形狀分組 使用上方的 材料規格 選單可選擇其中一組 圖表隨即顯示對應的強度 長度曲線 該材料群組中的每根桿件都會如' +
+          '圖所示繪製一條標有桿件編號的 資料尖峰線 data spike 除了目前選取的一根桿件外 其餘尖峰線會以淡色顯示為 幽靈線 ghosts 請使用標示為 選取桿件 的滑桿來挑選要突顯的桿件 若想查看整座' +
+          '橋梁 而不只是單一材料群組 的幽靈線 請取消勾選 聚焦 核取方塊 未通過 細長比檢核 或接近上限的桿件 會在該材料規格所允許的最大長度處顯示一條垂直的 洋紅色 虛線 注意事項與訣竅 目前選取的桿件也會' +
+          '同步在桿件明細表與繪圖區中反白顯示 不妨留意看看 當資料尖峰線中任一內力範圍的頂端高於對應的強度曲線時 代表該桿件會破壞 否則即表示能安全承受載重 內力之所以呈現為一段範圍 是因為卡車載重通過橋梁的過' +
+          '程中 桿件內力會隨位置而變化 如果桿件內力接近於零 內力範圍可能會不太容易看清',
+  },
+  {
+    id: 'glos_member_size',
+    title: '桿件尺寸（Member size）',
+    text: '桿件的尺寸是指其橫斷面的規格大小 單位為公釐 mm',
+  },
+  {
+    id: 'hlp_member_properties',
+    title: '桿件屬性清單',
+    text: '使用這三個 桿件屬性清單 來設定 結構模型 中每根桿件的材料 斷面形狀與 桿件尺寸 若要選擇桿件屬性 請點擊下拉按鈕 展開所有清單項目 再點擊所需的選項 桿件尺寸清單也可以透過 增大桿件尺寸 與 縮小' +
+          '桿件尺寸 按鈕來更新 注意事項與提示 桿件屬性清單位於 桿件屬性工具列 上 在 新增桿件 時 系統會自動將桿件屬性清單中目前顯示的材料 斷面形狀與尺寸套用到每一根新建的桿件上 在編輯結構模型時 桿件屬' +
+          '性清單可用來 變更目前所選桿件的屬性 當沒有選取任何桿件時 桿件屬性清單會顯示目前設計中被最多桿件採用的屬性',
+  },
+  {
+    id: 'glos_member_properties',
+    title: '桿件屬性（Member properties）',
+    text: '桿件的屬性包含 1 製成材料 2 橫斷面形狀類型 例如實心方鋼或空心方管 以及 3 橫斷面 尺寸',
+  },
+  {
+    id: 'hlp_member_tool',
+    title: '桿件工具',
+    text: '在建立 結構模型 時 使用 桿件工具 來 繪製桿件 注意事項與提示 桿件工具位於 繪圖工具箱 中 也可從 工具選單 中使用 選取桿件工具時 滑鼠游標會顯示為一支鉛筆',
+  },
+  {
+    id: 'hlp_member_list',
+    title: '桿件明細表',
+    text: '桿件明細表 是一個表格 可依需求顯示於 橋梁設計視窗 的右側 桿件明細表會佔用部分 繪圖區 的可用空間 您可以點擊右上角的小關閉按鈕 將其隱藏 以騰出更多空間來編輯 結構模型 桿件明細表具有以下功能 ' +
+          '列出目前結構模型中的所有 桿件 列出每根桿件的工程屬性 包括長度 材料 斷面形狀 桿件尺寸 及 細長比 提供每根桿件最近一次 載重測試 的結果 允許選取一根或多根桿件以進行編輯 允許依據表格中的任一欄' +
+          '位對桿件進行排序 注意事項與提示 在桿件明細表中 載重測試結果會以 壓力 與 拉力 各自的 桿件內力 對強度之比值來顯示 若比值大於 1 表示該桿件 不安全 受拉不安全的桿件會以 藍色 標示 受壓不安' +
+          '全的桿件則以 紅色 標示 若比值小於 1 表示該桿件 安全 若比值 遠 小於 1 代表該桿件的強度遠超實際需求 可能不符合經濟效益 除了關閉按鈕之外 也可以透過 檢視 選單中的桿件明細表項目 來隱藏或' +
+          '重新顯示桿件明細表 若要選取某根桿件 請點擊桿件明細表中對應的列 已選取的桿件在桿件明細表與繪圖區中皆會以 淺藍色 高亮顯示 您可以按住滑鼠左鍵拖曳來選取連續範圍的桿件 或者也可以先點擊一根桿件 按住' +
+          ' shift 鍵不放 再點擊第二根桿件 即可選取這兩根桿件以及介於其間的所有桿件 若要選取多根非連續範圍的桿件 請按住 ctrl 鍵不放 並逐一點擊桿件明細表中的各列 若要排序桿件明細表 請點擊欲依其' +
+          '排序的欄位標題 例如 若要依 長度 排序桿件 請點擊長度欄位標題 第一次點擊欄位標題時 清單會以 遞增 順序排列 再次點擊則會改為 遞減 順序 第三次點擊則會恢復為預設的編號排序 桿件明細表可用於有效' +
+          '率地 最佳化結構模型中的桿件屬性 在完成 載重測試 後 立即點擊 壓力內力／強度 欄位標題 依 壓力 載重測試結果排序 清單會從 最安全 排到 最不安全 所有不安全的桿件都會出現在清單底部 以 紅色 ' +
+          '標示 而過度強壯 即不具經濟效益 的桿件則會出現在頂部 此時您可以選取一整區需要加大或縮小的桿件 使用上述拖曳或 shift 鍵選取方式 再點擊 增大桿件尺寸按鈕 或 縮小桿件尺寸按鈕 一次調整所有已' +
+          '選取的列 接著再針對 拉力 載重測試結果重複相同步驟',
+  },
+  {
+    id: 'glos_member_numbers',
+    title: '桿件編號（Member numbers）',
+    text: '結構模型 中的每一根桿件都有一個桿件編號 這些編號是依照你建立 桿件 的順序指派的 本身不具物理意義 僅作為參考識別之用 桿件屬性與 載重測試 結果都會依照桿件編號列示',
+  },
+  {
+    id: 'glos_members',
+    title: '桿件（Members）',
+    text: '桿件是組成桁架的個別結構元件 彼此在 節點 處相連',
+  },
+  {
+    id: 'hlp_standard_truss',
+    title: '標準桁架型式',
+    text: '當桁架橋的 橋面 位於上弦桿時 稱為 上承式桁架 當桁架橋的橋面位於下弦桿時 稱為 下承式桁架 橋梁結構中常用數種 標準桁架型式 主要依據其垂直與斜向 桿件 的幾何排列來定義 以下列出三種最常見的型式' +
+          ' 它們皆以 19 世紀開發出這些型式的工程師命名 豪氏桁架 howe 下承式豪氏桁架 上承式豪氏桁架 普拉特桁架 pratt 下承式普拉特桁架 上承式普拉特桁架 華倫桁架 warren 下承式華倫桁架' +
+          ' 上承式華倫桁架 無論採用何種型式 所有桁架都具有相同的基本 構造組件',
+  },
+  {
+    id: 'glos_standard_abutments',
+    title: '標準橋台（Standard abutments）',
+    text: '在 橋梁結構設計師 中 標準橋台是採用 簡支承 來支撐橋梁並將其重量傳遞至下方土壤的 下部結構 元件',
+  },
+  {
+    id: 'hlp_title_bar',
+    title: '標題列',
+    text: '在多數瀏覽器中 標題列 即是瀏覽器分頁標籤 它會顯示 橋梁結構設計師 字樣 並在後方附上您目前開啟的 橋梁設計檔案 名稱 若有的話 注意事項與提示 雖然您可以在同一個瀏覽器的多個分頁中同時執行 橋梁結' +
+          '構設計師 但並不建議這樣做 因為每個分頁都會將您的工作自動儲存至相同的瀏覽器本機儲存空間 系統只會保留最後關閉的分頁內容 這可能會導致您日後繼續編輯時產生混淆',
+  },
+  {
+    id: 'hlp_titleblock',
+    title: '標題欄',
+    text: '標題欄 位於 繪圖區 的右下角 用來顯示專案名稱 設計者姓名與專案編號 設計者姓名為選填項目 若您有填寫 列印輸出時將會一併顯示 注意事項與提示 專案編號由兩部分組成 中間以連字號分隔 第一部分是您在' +
+          '開始設計時輸入的區域競賽代碼 若未輸入 則為對應您所選橋址條件的代碼 此部分無法更改 第二部分為選填 可輸入任何有助於您辨識設計的名稱或編號 當您開始新設計時 設定精靈 會提示您輸入設計者姓名與專案編' +
+          '號 如果您在開始設計後想要輸入或修改設計者姓名或專案編號 只需按一下繪圖區標題欄中的對應欄位 待游標出現後即可輸入文字 您可以使用 檢視標題欄 選單項目來隱藏或顯示標題欄',
+  },
+  {
+    id: 'glos_abutment',
+    title: '橋台（Abutment）',
+    text: '橋台是用於支撐橋梁 跨距 一端的石造或 混凝土 牆體 橋台同時也扮演擋土牆的角色 擋住橋梁引道兩端的土堤 橋台屬於橋梁 下部結構 的一部分',
+  },
+  {
+    id: 'glos_pier',
+    title: '橋墩（Pier）',
+    text: '橋墩是橋梁 下部結構 的一部分 負責為多跨距橋梁提供中間支撐',
+  },
+  {
+    id: 'hlp_not_realistic',
+    title: '橋梁結構設計師中有哪些部分不夠寫實？',
+    text: '橋梁結構設計師 的 目的 之一 是提供一種 寫實 且可親手操作的體驗 幫助您了解土木工程師如何設計真實的結構物 本軟體的許多面向都準確反映了結構設計流程 不過為了避免程式過於複雜 仍做出了一些重大的簡' +
+          '化取捨 橋梁結構設計師 定位為工程設計的 入門導引 著重於 設計流程 本身 而非結構設計中繁瑣的專業技術細節 簡而言之 橋梁結構設計師 中有部分內容貼近現實 也有部分並非如此 了解兩者之間的差異非常重' +
+          '要 以下列出 橋梁結構設計師 中 未能 準確反映執業土木工程師設計真實橋梁流程的項目 在設計真實橋梁時 工程師必須針對 橋台 橋墩 車道 橋面 以及完整的三維結構系統擬定詳細設計與成本估算 內容涵蓋主' +
+          '桁架 所有 接頭 混凝土 橋面 支承鋼構架以及眾多輔助 桿件 工程師也必須將橋梁對環境的衝擊 以及河道中水流與浮冰的作用納入整體設計考量 而在 橋梁結構設計師 中 您只需設計主桁架 並對車道與支承配置' +
+          '做出初步決定 整個設計嚴格限定於二維平面 因此並未考慮三維空間的結構穩定性 在設計真實橋梁時 工程師必須考量 疲勞 效應 即結構材料因車輛通行所造成的反覆載重而提早破壞的傾向 橋梁結構設計師 並未考量' +
+          '疲勞效應 在設計真實橋梁時 工程師必須考量多種不同型式的載重 包括各類車輛 載重 結構自重 風力 雪載重 車輛與船隻撞擊以及地震力 他們同時必須考量車輛載重在橋面上的縱向與橫向位置 並檢核多項 載重組' +
+          '合 在 1994 年 aashto 橋梁設計規範中共有十一種組合 橋梁結構設計師 僅考量兩種車輛載重以及橋梁自重 且僅考慮車輛載重的縱向位置 而不考慮橫向位置 在設計真實橋梁時 工程師必須考量 撓度 ' +
+          '限制 即車輛行經橋梁時所產生的彎曲變形量 橋梁結構設計師 雖會在 載重測試 期間計算並顯示撓度 但並未將其作為設計檢核標準 在設計真實橋梁時 工程師還必須考量許多 橋梁結構設計師 未納入計算的其他桿件' +
+          '破壞模式 在 橋梁結構設計師 的載重測試中 aashto 卡車載重 代表雙線公路車流 且該載重僅沿單一方向 由左向右 駛過橋梁 aashto 載重具有較重的後軸與較輕的前軸 由於此載重本身並不對稱 在' +
+          ' 橋梁結構設計師 中最佳化後的橋梁也可能是非對稱的 然而 真實橋梁的設計必須同時考量 aashto 載重在 兩個 方向上的行進 由左向右 以及 由右向左 因此 真實世界中經過最佳化設計的橋梁通常會呈現' +
+          '對稱外形 雖然 橋梁結構設計師 試圖準確呈現工程設計中固有的成本權衡取捨 但軟體中各項結構材料與構件的實際單價並非旨在反映真實市場價格 在設計真實橋梁時 工程師必須兼顧 美學 橋梁結構設計師 並未將美' +
+          '學列為設計評定標準 不過您當然可以為自己設定目標 只設計外型美觀的橋梁 認知這些限制的存在相當重要 但同樣重要的是 也要了解 橋梁結構設計師中哪些部分是寫實的',
+  },
+  {
+    id: 'hlp_restrictions',
+    title: '橋梁結構設計師使用限制',
+    text: '橋梁結構設計師 僅供教育用途使用 作者不提供任何明示或默示之保證 嚴禁將本軟體用於商業或實際施工用途 注意事項與提示 若要了解為何 橋梁結構設計師 不適用於設計真實橋梁 請參閱 橋梁結構設計師有哪些不' +
+          '切實際之處 若嘗試將其用於實際工程 將招致災難性的後果 結構毀損 人員受傷甚至死亡 如果您需要設計一座真實的橋梁 您必須 委請具備執照的專業土木工程師提供服務',
+  },
+  {
+    id: 'hlp_realistic',
+    title: '橋梁結構設計師有哪些貼近真實之處？',
+    text: '橋梁結構設計師 的 開發目的 之一 是提供 貼近真實 的實作體驗 幫助您了解土木工程師如何設計真正的結構物 本軟體有許多面向都準確反映了結構設計流程 不過 為了保持程式簡單易用 也做了不少重要的簡化 ' +
+          '橋梁結構設計師 定位為工程設計的 入門工具 著重於 設計流程 本身 而非結構設計的繁複技術細節 因此 橋梁結構設計師 的某些面向相當寫實 而另一些面向則不然 了解這一點非常重要 以下列出 橋梁結構設計' +
+          '師 中相當準確反映工程設計本質 以及執業土木工程師設計真實橋梁流程的幾個面向 設計是一個開放式的過程 真實世界的設計問題永遠有許多可能的解決方案 橋梁結構設計師 透過給予您充分的自由來選擇並微調橋梁構' +
+          '型 展現了這項特點 儘管設計是開放式的 但過程永遠受到現實條件與限制的約束 橋梁結構設計師 透過三種方式限制設計來體現這一點 跨距 長度與支承配置必須符合工程基地的現場條件 材料與桿件型式必須從有限的' +
+          '選項中挑選 將成本最小化設定為重要的設計目標 設計本質上是一個反覆迭代 iterative 的過程 由於工程師通常是在資訊不完整的情況下展開工作 因此常須先做出假設 再隨著設計進展檢查並修正這些假設 ' +
+          '要發展出高品質的方案 工程師必然需要考量許多替代方案 最終選出最佳解 橋梁結構設計師 清楚呈現了設計流程的這個面向 如果不嘗試多種不同的桁架構型 材料 斷面形狀與桿件尺寸 根本不可能達成真正最佳化的橋' +
+          '梁設計 設計總是伴隨著權衡取捨 trade offs 通常不可能找到單一方案能同時在所有設計準則上都達到最優 改善某個面向 往往會在另一個面向引發問題 在使用 橋梁結構設計師 時 您也會不斷體驗到這些' +
+          '權衡 例如 當您試圖最佳化設計時 您會發現減小桁架的 深度 高度 會使 垂直桿 和 斜桿 的成本 降低 因為長度變短了 但同時也會使上下 弦桿 的成本 上升 因為弦桿承受的 桿件內力 增大 需要更大尺' +
+          '寸的桿件才能維持結構 安全 您必須在這兩個相互衝突的準則之間找到最佳平衡 結構工程設計受到 規範 codes 的管制 規範確保全國 各區域或地方的工程實務都以一致且 安全 的方式執行 鋼結構 混凝土 ' +
+          '結構與木結構各自有業界標準的設計規範 各區域與地方建築法規也明訂了設計 載重 防火標準及許多其他建築設計要求 美國公路橋梁的設計受 aashto 橋梁設計規範 bridge design specif' +
+          'ication 管轄 在 橋梁結構設計師 中 載重測試 採用標準 略作修改 的 aashto 卡車載重 而 桿件 的抗壓強度與抗拉強度也完全依照 aashto 規範的公式計算 結構物在設計上一般必須能' +
+          '安全承受一項或多項規範指定的載重 降低成本通常也是重要目標 但 絕不 會比結構安全更重要 任何會危害結構安全的成本削減都是絕不允許的 橋梁結構設計師 的規則正是建立在這種安全與成本的關係之上 在 橋梁' +
+          '結構設計師 中 您的設計目標是將成本降至最低 但只要設計未通過載重測試 就 絕對 不算有效設計 結構設計常涉及材料成本 製造加工成本與施工安裝成本之間的權衡 若只以最低材料成本為目標來設計結構 設計中' +
+          '往往會包含許多不同種類與尺寸的桿件 然而 桿件尺寸種類繁多會使 切割 與配料 工廠製造 及工地現場組裝 施工 變得更困難 進而推高費用 因此 結構設計師通常會在選用結構構件時追求一定程度的 標準化 即' +
+          '使這意味著部分構件的強度會略高於實際需求 由此增加的材料成本 通常可由節省下來的製造與施工成本所抵銷 橋梁結構設計師 的成本計算相當合理地模擬了這種權衡 在現代結構工程實務中 結構分析 通常是利用名為' +
+          ' 矩陣結構分析 的電腦分析方法來執行 更具體地說就是 直接勁度法 direct stiffness method 橋梁結構設計師 正是使用這個方法在載重測試期間計算各桿件的 內力 以上就是好消息 但同' +
+          '樣重要的是要認識其中的限制 橋梁結構設計師有哪些不夠真實之處',
+  },
+  {
+    id: 'hlp_how_wpbd_works',
+    title: '橋梁結構設計師的運作方式',
+    text: '橋梁結構設計師 僅供 教育用途 使用 當您使用 橋梁結構設計師 時 您將會體驗簡化版的工程設計流程 您將以非常接近執業土木工程師設計真實公路橋梁的方式 來 設計一座公路橋梁 系統會向您提出一項設計任務' +
+          ' 設計一座鋼構 桁架橋 讓雙向車道公路橫跨一條河流 您可以為橋梁挑選多種不同的場址配置 每種配置都會讓橋梁以不同方式承受 載重 且各自具有不同的 場址成本 您將直接在電腦螢幕上繪製橋梁圖面來發展設計方' +
+          '案 完成初次設計嘗試後 橋梁結構設計師 會對您的橋梁進行測試 檢查其強度是否足以承受指定的公路載重 這項測試包含一段全彩動畫 呈現卡車駛過橋梁的過程 如果您的設計強度足夠 卡車便能順利通行 反之 結構' +
+          '將會倒塌 如果橋梁發生倒塌 您可以透過調整組成橋梁之結構構件的屬性 或是更改橋梁本身的幾何配置來進行補強 一旦您的橋梁能夠成功承受公路載重而不倒塌 您便可以持續精進設計 目標是在確保結構足以承受指定載' +
+          '重的前提下 將造價成本降到最低 橋梁結構設計師 賦予您極高的自由度 能以任何想要的形狀或結構型式進行創作 建立設計的速度很快 讓您在邁向最佳方案的過程中 能夠盡情試驗許多不同的替代配置 您所採用的流程' +
+          '與執業土木工程師設計真實結構的流程非常相似 事實上 橋梁結構設計師 本身也與工程師所使用的電腦輔助設計 cad 軟體相當類似 它以同樣的方式協助您 替您處理繁重的數學運算 讓您得以專注於設計流程中充滿' +
+          '創意的部分 祝您設計順利 注意事項與提示 若要了解 橋梁結構設計師雲端版 與早期版本有何不同 請參閱 橋梁結構設計師有哪些新功能 橋梁結構設計師 由退役准將 stephen ressler 開發 並由' +
+          '退役准將 eugene ressler 以開放原始碼方式重新設計 共兩次 本軟體依據 gnu 通用公共授權條款第 3 版 gnu public license version 3 的規定免費散佈 僅供' +
+          '教育用途使用',
+  },
+  {
+    id: 'glos_bridge_design_file',
+    title: '橋梁設計檔（Bridge design file）',
+    text: '橋梁設計檔是由橋梁結構設計師所建立的特殊格式文字檔案 用來儲存橋梁設計以便日後開啟使用',
+  },
+  {
+    id: 'hlp_bridge_design_window',
+    title: '橋梁設計視窗',
+    text: '橋梁設計視窗 是供您建立 測試 最佳化並記錄橋梁設計的圖形化操作環境 下圖展示了構成橋梁設計視窗的主要功能區域 若要進一步了解各區域的功能 請直接點擊圖中對應的位置 備註與提示 進行設計時 最好將橋梁' +
+          '設計視窗保持最大化 縮小視窗會讓繪製與編輯 結構模型 變得較為困難',
+  },
+  {
+    id: 'glos_floor_beams',
+    title: '橋面橫梁（Floor beams）',
+    text: '橋面橫梁是橫向配置的 桿件 用來支撐 橋面 並將 載重 從橋面傳遞至主桁架的 節點',
+  },
+  {
+    id: 'glos_deck',
+    title: '橋面（Deck）',
+    text: '橋面是橋梁的地板層 直接支撐通行於橋上的車輛與行人 橋面通常由鋼筋 混凝土 製成',
+  },
+  {
+    id: 'hlp_erase_tool',
+    title: '橡皮擦工具',
+    text: '使用 橡皮擦工具 即可直接 擦除節點或桿件 無需先選取它們 注意事項與提示 橡皮擦工具位於 繪圖工具箱 上 也可在 工具選單 中找到 使用橡皮擦工具時 滑鼠指標會顯示為一支帶有十字標記以指示游標位置的' +
+          '鉛筆 當您將橡皮擦工具移至 繪圖區 上方時 節點 與 桿件 會以高亮度顯示 以提示按下滑鼠左鍵後將會擦除哪個項目',
+  },
+  {
+    id: 'hlp_view_animation_settings',
+    title: '檢視動畫設定按鈕',
+    text: '在 載重測試動畫 播放期間 按一下 動畫控制列 中的淺色齒輪圖示 即可顯示或隱藏動畫設定 或者也可按一下 檢視 功能表 中的 動畫設定按鈕 注意事項與訣竅 當 繪圖區 處於使用狀態時 無法顯示或隱藏動' +
+          '畫設定',
+  },
+  {
+    id: 'hlp_view_symmetry',
+    title: '檢視對稱輔助線按鈕',
+    text: '按一下 檢視對稱輔助線按鈕 即可在 繪圖區 顯示或隱藏一組包含兩條垂直線與一條水平線的輔助線 繪製或移動 節點 時 可利用這組輔助線確保您的 結構模型 左右 對稱 拖曳位於圖面左側與底部的控點即可移動' +
+          '輔助線 當輔助線對準任一節點時 另一側的輔助線交點即標示出桁架對稱側的相對節點位置 注意事項與訣竅 檢視對稱輔助線按鈕位於 顯示工具列 上 也可在 檢視 功能表 中找到 部分橋址配置中的 橋墩 並 未' +
+          ' 位於橋梁的中心線上 在這些情況下 最佳設計通常不會是對稱結構',
+  },
+  {
+    id: 'hlp_view_rulers',
+    title: '檢視尺規按鈕',
+    text: '按一下 檢視尺規按鈕 即可顯示或隱藏 尺規 隱藏尺規可增加繪製橋梁時的可用空間 注意事項與訣竅 檢視尺規按鈕位於 檢視 功能表 中',
+  },
+  {
+    id: 'hlp_view_member_numbers',
+    title: '檢視桿件編號按鈕',
+    text: '按一下 檢視桿件編號按鈕 即可在 繪圖區 顯示或隱藏 桿件編號 注意事項與訣竅 檢視桿件編號按鈕位於 顯示工具列 上 也可在 檢視 功能表 中找到',
+  },
+  {
+    id: 'hlp_view_title',
+    title: '檢視標題欄',
+    text: '按一下 檢視標題欄 功能表項目 即可隱藏或顯示 標題欄 注意事項與訣竅 如果您的電腦螢幕較小 標題欄可能會妨礙橋梁的繪製作業 將其隱藏即可解決此問題',
+  },
+  {
+    id: 'hlp_view_tools',
+    title: '檢視繪圖工具按鈕',
+    text: '按一下 檢視 功能表 中的 檢視繪圖工具按鈕 即可顯示或隱藏 繪圖工具箱 注意事項與訣竅 在 載重測試動畫 播放期間 無法顯示或隱藏繪圖工具箱',
+  },
+  {
+    id: 'hlp_view_template',
+    title: '檢視設計範本按鈕',
+    text: '按一下 檢視設計範本按鈕 即可在 繪圖區 隱藏或顯示目前的 設計範本 注意事項與訣竅 檢視設計範本按鈕位於 顯示工具列 上 也可在 檢視 功能表 中找到 每當載入新的設計範本時 檢視設計範本按鈕都會自' +
+          '動切換為顯示狀態 設計範本一律會顯示在繪圖區上 結構模型 的 後方',
+  },
+  {
+    id: 'hlp_tip_of',
+    title: '每日小技巧',
+    text: '每日小技巧 提供有助於您使用 橋梁結構設計師 的一般資訊與操作秘訣 內容涵蓋部分能協助您快速且有效最佳化設計的進階功能 每次開啟新的設計工作階段時 系統都會自動顯示一則新技巧 您也可以按一下 說明 選' +
+          '單 並選擇 每日小技巧 來檢視 注意事項與提示 如果您不想在每次開啟新工作階段時都看到此對話方塊 請取消勾選 啟動時顯示小技巧 核取方塊 若要重新在每次新工作階段啟動時顯示每日小技巧 請按一下 說明 ' +
+          '選單 再點選 每日小技巧 並勾選 啟動時顯示小技巧 核取方塊',
+  },
+  {
+    id: 'hlp_truss_configuration',
+    title: '決定桁架配置',
+    text: '如何設計橋梁 返回上一步 前進下一步 選定橋址配置後 您必須決定橋梁的整體結構配置 橋梁結構設計師 允許設計 任何 桁架配置 只要它具備 結構穩定性 即可 注意事項與訣竅 建立穩定的 結構模型 並不容' +
+          '易 我們建議初學者或缺乏經驗的使用者先從 標準桁架配置 開始 如果您決定使用標準桁架配置 可以 載入並顯示設計範本 協助您準確繪製 節點 與 桿件',
+  },
+  {
+    id: 'glos_concrete',
+    title: '混凝土（Concrete）',
+    text: '混凝土是由波特蘭水泥 砂 碎石 水以及可能加入的特殊添加劑所組成的混合物 當混凝土硬化後 會形成堅固 如岩石般的物質 廣泛用於建造各類結構',
+  },
+  {
+    id: 'hlp_roller_support',
+    title: '滾支承',
+    text: '以此符號表示的滾支承 會限制 結構模型 中的節點在垂直方向移動 但仍允許節點在水平方向自由移動',
+  },
+  {
+    id: 'glos_asphalt',
+    title: '瀝青（Asphalt）',
+    text: '瀝青是由碎石與瀝青膠泥 石油煉製過程的副產品 混合而成的材料 瀝青常用於鋪設道路路面 並作為橋面的 磨耗層',
+  },
+  {
+    id: 'glos_wearing_surface',
+    title: '磨耗層（Wearing surface）',
+    text: '磨耗層是鋪設在 橋面 上方的一層鋪面材料 通常為 瀝青 或 混凝土 用來保護橋面免受車輛通行的磨損破壞',
+  },
+  {
+    id: 'hlp_move_joint',
+    title: '移動節點',
+    text: '使用滑鼠移動節點 點擊 繪圖工具箱 中的 選取工具 將滑鼠游標移到欲移動的節點上方 按下滑鼠左鍵並按住不放 將滑鼠游標拖曳至新的節點位置 再放開按鍵 該節點就會在新位置重新繪製 使用鍵盤移動節點 點擊' +
+          ' 繪圖工具箱 中的 選取工具 點擊欲移動的節點 所選取的節點會變為 淺藍色 使用鍵盤上的方向鍵 以每次 0.25 公尺的間距朝所需方向移動節點 注意事項與提示 您必須處於 繪圖區模式 下才能移動節點 ' +
+          '如果該節點上已連接有 桿件 這些桿件會隨著節點一起自動重新定位 當您 開始新設計 時 由 橋梁結構設計師 自動產生的 節點 無法移動 您無法將一個節點移動到另一個節點的重疊位置上 對於具有高 橋墩 的' +
+          '場地配置 節點無法移入橋墩範圍內 以滑鼠拖曳節點時 節點會依照目前 繪圖格線 的解析度間距移動 以鍵盤移動節點時 無論目前的格線解析度為何 每次皆固定移動 0.25 公尺 因此 使用鍵盤非常適合用來微' +
+          '調節點位置',
+  },
+  {
+    id: 'hlp_joint_tool',
+    title: '節點工具',
+    text: '建立 結構模型 時 使用 節點工具 來 繪製節點 注意事項與提示 節點工具位於 繪圖工具箱 上 也可在 工具選單 中找到 選取節點工具時 滑鼠指標會顯示為十字準星',
+  },
+  {
+    id: 'glos_joints',
+    title: '節點（Joints）',
+    text: '節點是兩根或多根 桿件 端點相連的位置 在桁架中 節點假設如同無摩擦力的插銷或鉸鏈 允許相連的桿件自由轉動',
+  },
+  {
+    id: 'glos_simple_supports',
+    title: '簡支承（Simple supports）',
+    text: '簡支承由位於 跨距 一端的鉸支承 pin 與另一端的滾支承 roller 所組成 滾支承允許橋梁在承受 載重 或溫度變化時產生橫向伸縮 在 橋梁結構設計師 中 標準 橋台 即採用簡支承',
+  },
+  {
+    id: 'hlp_slenderness',
+    title: '細長比檢核',
+    text: '過於細長的 桿件 在工地現場難以搬運 且在製造過程中容易彎曲或挫屈 細長比檢核 可降低這類意外損壞發生的機率 橋梁結構設計師 執行的細長比檢核係依據美國鋼結構學會 aisc 設計規範 當桿件的 細長比' +
+          ' l / r 符合下列條件時 即通過細長比檢核 l / r < 300 其中 l 為桿件長度 r 為桿件斷面的迴轉半徑 迴轉半徑 r 可由以下公式計算 其中 為桿件的 慣性矩 為桿件的 斷面積 若桿件' +
+          '未通過細長比檢核 即被視為 不具使用性 注意事項與提示 在 橋梁結構設計師 中 當您繪製新桿件或變更現有桿件的斷面屬性時 系統會自動執行細長比檢核 若桿件未通過細長比檢核 即 l / r 大於 300' +
+          ' 該桿件會以 洋紅色 標示 只要有一根以上的桿件未通過細長比檢核 橋梁結構設計師 便無法執行載重測試 若要修正未通過細長比檢核的桿件 請縮短其長度或加大其 桿件尺寸 在相同的桿件尺寸下 空心方管的 l' +
+          ' / r 值低於實心方鋼 因此 若實心方鋼未通過細長比檢核 也可以嘗試改用空心方管來修正 若要查看特定 斷面 與桿件尺寸在不違反細長比檢核下所允許的最大長度 請按一下 桿件性質報告 按鈕 最大長度會以' +
+          '一條 洋紅色 的垂直線表示 若要查詢特定斷面與桿件尺寸的 與 數值 請按一下 桿件性質報告按鈕',
+  },
+  {
+    id: 'glos_slenderness',
+    title: '細長比（Slenderness ratio）',
+    text: '細長比是用來描述桿件 粗細程度 的數值 相較於自身 橫斷面 而言較長的桿件 其細長比較高 反之亦然 過於細長的桿件很容易發生挫屈 或在搬運過程中受損 細長比檢核 可確保所有桿件的細長比皆不超過 300' +
+          ' 只要有任何一根桿件過於細長 橋梁就會無法通過測試',
+  },
+  {
+    id: 'hlp_3dprint_assembly',
+    title: '組裝您的橋梁模型',
+    text: '本說明假設您已依照 匯出 obj 檔案 的步驟 將模型的各個零件列印完成 組裝前的準備 組裝列印完成的零件時 您需要準備以下物品 平坦 乾淨的工作桌面 並鋪上紙張以防止膠水沾染 使用櫥櫃襯紙或攤平的大' +
+          '紙袋即可 氰基丙烯酸酯膠水 快乾膠／瞬間膠 或其他可用於黏合塑膠零件的膠水 筆刀 xacto 刀 美工刀或單面刀片 用於視需要修整零件 細砂紙 150 至 220 番 或指甲銼刀 或兩者皆備 若孔洞太' +
+          '小而無法套入對應的插銷 需準備可將孔徑擴大至最小特徵尺寸 或略大一些 的工具 錐形筆刀刀片可以勝任 最理想的是使用微型鑽頭搭配手搖鑽 pin vice 或其他能旋轉鑽頭的工具 操作時請務必小心 首先將' +
+          '零件依類型分類擺放 避免混淆的好方法 是在鋪於工作桌面的紙上畫出一個由九個邊長約 3 英吋 約 7.5 公分 方格組成的九宮格 依序標記編號 1 到 9 再按下表將零件分類放置 編號 名稱 數量 1 ' +
+          '支撐橫桿 2 至 5 2 橋面端板 2 3 橋面中板 視設計而定 4 插銷橫桿 視設計而定 5 橋面銜接梁 1 7 桁架 2 8 橋台 2 9 橋墩 0 或 1 重要注意事項 您可以觀察橋面板彼此卡合' +
+          '處的凸榫與凹槽 來分辨橋面端板與橋面中板 橋面中板同時具有凸榫與凹槽 橋面端板則只有凸榫 如果其中一側或兩側橋台附有錨座 您的橋台外觀會與上圖略有不同 在這種情況下 橋台上會多出一個台階與凸榫 用來安' +
+          '裝支撐橫桿墊座 以連接受錨定的桿件 開始組裝 以下是完成模型的詳細步驟 在每一個步驟上膠之前 請先使用修整工具及／或鑽孔工具調整接合處 確保密合無縫隙且不會過緊 這可能需要花點時間 請保持耐心 將兩支' +
+          '支撐橫桿 1 黏入兩片橋面端板 2 的凹槽中 放置於編號 2 的方格靜置晾乾 如果您的橋梁在橋面高度設有橋墩 請將另一支支撐橫桿 1 黏入任一片橋面中板 3 中 若無 則直接進入下一步 將此組件置於編' +
+          '號 3 的方格晾乾 將一支插銷橫桿 4 黏入橋面銜接梁 5 中 將其餘所有插銷橫桿 4 分別黏入其餘的橋面中板 3 中 兩者的數量應該剛好相符 將橋面銜接梁 5 黏合至其中一片橋面端板 2 上 放回編' +
+          '號 5 的方格晾乾 稍作休息 等待目前所有已塗上的膠水完全固化 先 不上膠 將所有橋面板 2 3 4 5 正面朝上排列 對整座橋面進行 假組裝 試拼 橋面端板放在兩端 若有與橋面同高的橋墩用橋面板 也' +
+          '必須放在正確位置 使用工具修整 確保各橋面板能完全密合 逐一測試相鄰橋面板 確認節點插銷之間的距離不會大於桁架上橋面節點的間距 如果間距過大 之後將無法套入桁架 必要時以砂紙或銼刀磨除橋面板凸榫上的多' +
+          '餘材料 試拼完成後 請維持橋面板由左到右的順序 以免正式組裝橋面時弄亂 視需要修整所有橫桿插銷與桁架孔洞 使每支插銷都能順利插入對應孔洞直到肩部位置 修整意指運用美工刀 砂紙或指甲銼刀 以及鑽孔工具或' +
+          '細針 將插銷與孔洞調整至相匹配的尺寸 辨識桁架的 內側 內側表面是 平滑且平整的 組裝時內側應朝向橋面 另一側在每個節點處皆有加厚的節點板 這一面是桁架的 外側 應背對橋面 將兩片桁架 7 最左側的兩' +
+          '個橋面節點 套入橋面銜接梁組件 5 的四支插銷中 請務必確認兩片桁架的內側皆朝向橋面 稍作休息 等待橋面銜接梁與兩片桁架之間的黏合完全固化 從橋面銜接梁組件右側開始 依序一片一片加上橋面板並逐一上膠固' +
+          '定 請務必依照先前假組裝時排好的正確順序進行 稍作休息 讓所有橋面板的膠水完全乾燥 將其餘的插銷橫桿 4 安裝至桁架上的其餘節點 請務必跳過橋台 橋墩與錨座處的支承節點 這些部分我們稍後再處理 將支撐' +
+          '橫桿 1 的墊座 三角形區段 黏到兩座橋台 8 上 使凸榫卡入凹槽中 如果您的橋梁有錨座 橋台上會有第二個凸榫供另一支支撐橫桿使用 請同樣將墊座黏上 最後 如果您的橋梁有橋墩 請將最後一個墊座黏到橋墩' +
+          '的凸榫上 將桁架安裝到橋台上 把橋台插銷穿過對應的桁架插銷孔 若您的橋梁設有錨座 也包含錨座插銷 此時先不要上膠 確認兩座橋台都平穩放置於平坦表面上 再於每個節點處各滴一滴膠水固定 稍作休息 確認橋梁' +
+          '與橋台的黏合處已完全牢固 如果您的橋梁設有橋墩 請將橋墩的插銷套入桁架並上膠固定 在膠水凝固期間 請確保橋台與橋墩都平放於平坦桌面上 大功告成 備註與提示 建議將橋梁設計藍圖與這份組裝說明一並列印成紙' +
+          '本 組裝時隨時可以對照桁架構造 並逐項勾選已完成的步驟 會非常有成就感 對於大跨距且附有錨座的橋梁 零件可能會非常細小 若您想動手挑戰更精細的製作 可以嘗試將桁架分成兩半列印 如此便能製作出比單次列印' +
+          '大上一倍比例的橋梁模型 您需要使用切片軟體或其他軟體將桁架對半切開 分別列印 並在組裝的第一步先將兩半黏合在一起 組裝橋梁模型相當具有挑戰性 請按部就班 穩紮穩打地進行 萬一過程中出錯 只需重新列印需' +
+          '要的零件再試一次即可 祝您製作順利',
+  },
+  {
+    id: 'glos_structural_analysis',
+    title: '結構分析（Structural analysis）',
+    text: '結構分析是針對 結構模型 進行數學分析 以求得在一組給定 載重 下 所有 桿件 的 受力 情形 橋梁結構設計師 採用的結構分析方法稱為直接勁度法 direct stiffness method',
+  },
+  {
+    id: 'glos_structural_model',
+    title: '結構模型（Structural model）',
+    text: '結構模型是實際結構的數學理想化呈現 能讓我們預測真實結構在承受載重時的行為 桁架的結構模型具有以下理想化特徵 由在 節點 處相互連接的 桿件 所組成 每根桿件恰連接兩個節點 兩端各一個 節點假設如同鉸' +
+          '鏈 能將桿件固定在一起 但不會阻止桿件彼此相對轉動 桿件只承受軸向力 也就是 壓力 或 拉力 不會發生彎曲 載重只能施加在結構的節點上 支承只能設置在節點上',
+  },
+  {
+    id: 'hlp_structural_stability',
+    title: '結構穩定性',
+    text: '如果桁架的 桿件 構成一個剛性構架 則該桁架即為 穩定 穩定性通常是透過由彼此相連的三角形組成桁架來達成 例如 下方的簡單桁架由六個 節點 與九根桿件組成 形成四個相連的三角形 abf bcf cef' +
+          ' 與 cde 然而 如果移除桿件 cf 這座桁架就會變得不穩定 少了這根斜桿後 桁架中央的節間會形成矩形 bcef 而非三角形 這種配置並不穩定 因為沒有任何構件能阻止這個矩形變形為平行四邊形 桿件的' +
+          '三角形排列可確保桁架結構形成剛性構架 若要修正不穩定的桁架 請找出 結構模型 中任何不是三角形的 節間 並加入一根或多根桿件將其分割成三角形 注意事項與提示 如果您在建立穩定的結構模型時遇到困難 請嘗' +
+          '試 載入設計範本 並將其作為繪製節點與桿件的參考指引 真實的橋梁結構若不穩定將會倒塌 此外 對不穩定結構進行 結構分析 在數學上也是不可能的 因為會導致除以零的錯誤 如果您的結構模型不穩定 橋梁結構設' +
+          '計師 會在 載重測試 時偵測並嘗試自動修復不穩定的部分 若自動修復失敗 橋梁結構設計師 會顯示警告訊息 您必須返回 繪圖區 消除不穩定的問題 雖然大多數桁架都由相連的三角形組成 但穩定的桁架中仍有可能' +
+          '包含一個或多個非三角形節間 這在複雜桁架或具有 拱形支承 的桁架中尤為常見 在這些情況下 您可能無法單憑肉眼判斷桁架是否穩定 必須執行載重測試來確認',
+  },
+  {
+    id: 'hlp_decrease_member',
+    title: '縮小桿件尺寸按鈕',
+    text: '點擊 縮小桿件尺寸按鈕 可將目前選取之桿件的 尺寸 縮小一級 注意事項與提示 縮小桿件尺寸按鈕位於 桿件屬性工具列 上 如果選取了多根桿件 點擊此按鈕將會縮小 所有 已選取 桿件 的尺寸 即使它們原本' +
+          '的尺寸各不相同 例如 若同時選取了 50mm 90mm 與 120mm 的桿件 點擊此按鈕後會分別變為 45mm 80mm 與 110mm 當您使用縮小桿件尺寸按鈕時 桿件尺寸清單 會同步更新以反映變' +
+          '更 當您使用縮小桿件尺寸按鈕時 另外兩個 桿件屬性清單 材料與斷面類型 不會改變',
+  },
+  {
+    id: 'hlp_drawing_board',
+    title: '繪圖區',
+    text: '繪圖區 是 橋梁設計視窗 中 讓您用滑鼠繪製 節點 與 桿件 以建立 結構模型 的區域 您也可以在繪圖區中透過以下方式編輯結構模型 移動 新增或刪除節點 變更桿件屬性 新增與刪除桿件 備註與提示 在執' +
+          '行 載重測試 之後 可使用 繪圖區按鈕 返回繪圖區 橋梁的 橋台 橋面橫梁 混凝土 橋面 瀝青 路面及高水位線會隨時顯示於繪圖區中 關於這些名詞的詳細說明 請參閱 桁架橋的組成構件 它們的尺寸與位置會' +
+          '依據您所選定的場地配置而定 繪圖區佈滿了 繪圖格線 雖然肉眼看不見 但它確實存在 當您繪製節點以建立結構模型時 滑鼠游標會自動 鎖定 至格線交點 這些交點稱為 鎖點 節點只能繪製於鎖點上 繪圖格線可設' +
+          '定為低 中或高解析度 請使用 格線解析度按鈕 在這三種模式間切換 通常先用低解析度格線建立結構模型 再切換至中 高解析度進行細部編輯會最為順手 繪圖區的左側與底部邊緣顯示有水平與垂直 尺規 協助您精準' +
+          '定位結構模型中的節點位置 您可以在繪圖區顯示 對稱輔助線 幫助您定位節點 使結構模型保持 對稱 繪圖區右下角顯示有 標題欄 其中列出橋梁設計專案名稱 設計者姓名 以及專案識別名稱或編號 設計者與專案名' +
+          '稱隨時都可以修改 當您 開始新設計 時 可以選擇在繪圖區上 顯示桁架設計範本 協助您輕鬆設計出穩定的結構模型',
+  },
+  {
+    id: 'hlp_drawing_board_button',
+    title: '繪圖區按鈕',
+    text: '按一下 繪圖區按鈕 即可在進行 載重測試 後返回 繪圖區模式 注意事項與提示 繪圖區按鈕位於 主工具列 上 也可在 測試選單 中找到 繪圖區按鈕與 載重測試按鈕 成對運作 同一時間只能按下其中一個',
+  },
+  {
+    id: 'hlp_design_tools',
+    title: '繪圖工具箱',
+    text: '繪圖工具箱 是一個浮動工具列 可放置在 橋梁設計視窗 中的任何位置 它包含以下用於建立與修改結構模型的工具 節點工具 桿件工具 選取工具 橡皮擦工具 注意事項與提示 若要將繪圖工具箱移至新位置 請按住' +
+          '並拖曳工具箱的標題列',
+  },
+  {
+    id: 'glos_drawing_grid',
+    title: '繪圖格線（Drawing grid）',
+    text: '繪圖格線是繪圖區上一組看不見的 鎖點 位於水平與垂直兩組平行線的交會處 根據目前的 格線解析度 格線間距可為 0.25 0.5 或 1.0 公尺 節點 只能放置在鎖點上 格線位置會由繪圖區左側與底部邊' +
+          '緣的垂直和水平尺規上的刻度標示出來',
+  },
+  {
+    id: 'hlp_draw_member',
+    title: '繪製桿件',
+    text: '如何設計一座橋梁 返回上一步 前往下一步 當您繪製好連接桁架的 節點 後 就可以繪製構成結構主體的 桿件 桿件必須從一個節點繪製到另一個節點 繪製桿件的步驟 從 繪圖工具箱 中選取 桿件工具 將滑鼠游' +
+          '標移到某個節點上方 該節點會亮起提示已準備好進行連接 按下滑鼠左鍵並按住不放 將滑鼠游標拖曳到另一個節點後放開按鍵 系統便會在第一個節點與第二個節點之間建立一根新桿件 注意事項與提示 您必須處於 繪圖' +
+          '區模式 才能繪製桿件 當您建立新桿件時 桿件屬性清單 中目前顯示的 桿件屬性 會自動套用至該新桿件 這些屬性日後仍可更改 詳情請參閱 變更桿件屬性 建立新桿件時 系統會自動指派其 桿件編號 若要顯示桿' +
+          '件編號 請點擊 顯示桿件編號按鈕 相同的兩個節點之間不能繪製兩根桿件 如果您嘗試繪製一根跨越中間一或多個節點的桿件 系統會自動將其分割建立為兩根或多根桿件 且這些桿件都具有相同的屬性 如果您不小心將桿' +
+          '件畫在錯誤的位置 可以點擊 復原按鈕 將其移除 或是 刪除該桿件 在包含高 橋墩 的場址配置中 桿件無法穿過中間橋墩繪製 您的 結構模型 最多不得超過 120 根桿件',
+  },
+  {
+    id: 'hlp_draw_joint',
+    title: '繪製節點',
+    text: '如何設計一座橋梁 返回上一步 前往下一步 若要建立 結構模型 您必須先繪製 節點 這些節點就是各結構 桿件 彼此相連的 接頭 位置 繪製節點的步驟 從 繪圖工具箱 中選取 節點工具 將滑鼠游標移至 繪' +
+          '圖區 上您想新增節點的位置 點擊滑鼠左鍵即可建立新節點 注意事項與提示 您必須處於 繪圖區模式 才能繪製節點 節點只能放置在繪圖區的 格線鎖點 上 且無法放置於 設計規範 所規定的最高與最低高程限制之' +
+          '外 兩個節點不能放置在同一個位置上 如果您不小心將節點放錯位置 可以點擊 復原按鈕 將其移除 也可以 刪除節點 或是將 節點移動 至新位置 當您開始新設計時 專案設定精靈 會自動建立一系列節點 這些節' +
+          '點用於支承橋面 無法移動或刪除 可移動節點具有黑色外框與 淺灰色 中心 不可移動節點則具有灰色外框與 白色 中心 您所建立的節點無法附著在 橋台 或 橋墩 上 換句話說 您不能自行建立任何額外的支承 ' +
+          '唯一允許的支承是 專案設定精靈 自動建立的支承 在包含高 橋墩 的場址配置中 無法在橋墩上繪製節點 您的結構模型最多限制為 50 個節點',
+  },
+  {
+    id: 'glos_aashto',
+    title: '美國州公路與運輸官員協會（AASHTO）',
+    text: 'aashto 是 美國州公路與運輸官員協會 american association state highway transportation officials 的簡稱 負責制定並發布美國所有公路橋' +
+          '梁的設計規範',
+  },
+  {
+    id: 'glos_astm',
+    title: '美國材料與試驗協會（ASTM）',
+    text: '美國材料與試驗協會 astm 是一個由製造商 消費者 研究人員及政府官員組成的非營利組織 其宗旨是制定建築材料的生產 測試與使用標準 astm 標準可確保所有材料都具備一致且明確的工程性質與適當的品質' +
+          '水準',
+  },
+  {
+    id: 'hlp_strengthen_failed',
+    title: '補強所有不安全的桿件',
+    text: '如何設計一座橋梁 返回上一步驟 前進一個步驟 只有在最近一次 載重測試 中 結構模型 的所有 桿件 皆判定為 安全 時 您的設計才算 成功 每次載重測試後 您都必須補強所有判定為 不安全 的桿件 若要' +
+          '判斷結構模型中是否存在不安全的桿件 請使用下列任一方法 載重測試完成後 返回 繪圖區 檢視結構模型 以 紅色 標示的桿件代表在 壓力 下不安全 以 藍色 標示的桿件代表在 拉力 下不安全 若沒有任何桿' +
+          '件被標示 表示您的結構模型是安全的 檢查 桿件明細表 右側的兩個載重測試結果欄位 以 紅色 標示的列代表在壓力下不安全 以 藍色 標示的列代表在拉力下不安全 若要補強不安全的桿件 請使用下列任一方法 ' +
+          '加大 桿件尺寸 然後重新執行載重測試 觀察較粗的桿件是否具備足夠強度 重複此步驟直到桿件通過載重測試為止 改用強度更高的 材料 若不安全的桿件原為碳鋼 cs 請嘗試改用高強度低合金鋼 hss 或強度更' +
+          '高的淬火調質鋼 qts 然後重新執行載重測試 觀察新材料是否具備足夠強度 上述兩種方法皆屬於 變更桿件屬性 注意事項與提示 最佳方案是以最低成本使結構具備足夠強度來承受載重 在許多情況下 加大桿件尺寸' +
+          '是最理想的方法 因為可供選擇的桿件尺寸遠比材料種類多 如果桿件是在壓力下不安全 改用強度更高的材料可能只會帶來微幅提升 甚至毫無效果 這是因為相對細長的桿件其 抗壓強度 並不取決於材料的 降伏應力 當' +
+          '您變更不安全桿件的屬性時 紅色 或 藍色 的高亮標示會消失 這並不一定代表該桿件已經安全 桿件的真實狀態唯有重新執行載重測試才能確認',
+  },
+  {
+    id: 'hlp_remember_my_work',
+    title: '記住我的工作進度',
+    text: '橋梁結構設計師 可以持續記錄您的所有工作進度 即使您重新整理頁面 關閉並重新開啟瀏覽器 或是電腦發生故障 資料仍會保留 若要啟用此功能 請勾選編輯選單底部的 記住我的工作進度 項目 大多數時候都建議保' +
+          '持勾選 唯一的例外是您與他人在同一台電腦上共用同一個登入帳號 離開前取消勾選此項 即可避免其他人看到您的設計',
+  },
+  {
+    id: 'hlp_record_design',
+    title: '記錄您的設計',
+    text: '如何設計一座橋梁 返回上一步 完成設計後 您應該將它記錄下來 既可作為設計成果的佐證文件 也可作為日後其他設計的參考 若要記錄您的最終設計 您可以 將您的設計 儲存 為 橋梁設計檔 列印您的設計圖 列' +
+          '印載重測試結果 匯出檔案以 3d 列印您的設計 注意事項與訣竅 不要等到整個設計都完成了才存成橋梁設計檔 請盡早存檔並經常存檔 以防萬一 除非有充分的理由 否則請保持勾選 記住我的工作進度 這樣即使您' +
+          '的電腦當機 橋梁結構設計師 仍會保留您的設計',
+  },
+  {
+    id: 'hlp_cost',
+    title: '設計成本',
+    text: '在您建立橋梁設計的過程中 橋梁結構設計師 會自動計算設計成本 此成本會持續更新並顯示在 狀態工具列 上 橋梁結構設計師 所計算的成本 並非 實際橋梁工程總造價的精確數值 而是作為學習工具 讓您大略了解' +
+          '影響一般工程專案成本的各種相互競爭因素 橋梁設計的總成本由兩大主要部分組成 場址成本 與桁架成本 其中場址成本包含以下三項 開挖成本 橋面 成本 支承結構成本 桁架成本同樣包含以下三項 材料成本 接頭' +
+          '成本 規格品項成本 以下將說明上述各項成本組成 各項目的具體數值成本係數列於 設計規範 中 場址成本 場址成本 包含所有與您所選 場址配置 相關的費用 也就是橋面高度 跨距 長度 以及橋梁的支承結構配' +
+          '置 開挖成本 當您選擇橋面高度時 便決定了為了達到正確公路高程而必須開挖的土方量 橋面越低 所需的開挖量就越大 如同真實世界的施工 開挖費用是以立方碼或立方公尺計價 橋梁結構設計師 會根據所選的橋面高' +
+          '程 決定所需的土方開挖體積 橋面成本 您所選的橋面高度也會決定橋梁的整體跨距長度 較高的橋面會產生較長的跨距 進而同時增加桁架成本與鋼筋 混凝土 橋面的成本 在 橋梁結構設計師 中 您也可以選擇橋面所' +
+          '使用的材料 中強度混凝土或高強度混凝土 中強度混凝土的價格低於高強度混凝土 但因其強度較低 橋面必須做得更厚 較厚的橋面比薄的高強度混凝土橋面更重 因此會增加桁架承受的載重 載重增加會導致桁架成本上升' +
+          ' 結果就是 較便宜的橋面往往需要更昂貴的桁架 反之亦然 無論採用哪一種材料 橋面成本都是以每個 4 公尺橋面區段的總包單價計算 支承結構成本 當您選擇橋梁所使用的 橋台 橋墩 與 鋼索錨座 類型時 橋' +
+          '梁結構設計師 會決定建造這些支承結構所需的成本 每種支承結構配置都有其專屬費用 就特定類型的 橋台 標準橋台或拱形橋台 而言 成本通常會隨著跨距長度增加而上升 因為較長的跨距重量較重 傳遞至支承結構的' +
+          ' 載重 也較大 一般來說 在相同跨距長度下 標準橋台 的成本低於 拱形橋台 拱形橋台與橋墩的成本也會隨高度產生顯著變化 較高的橋台與橋墩比矮的耗費更多材料 因此成本更高 鋼索錨座則採用單一固定總包價 ' +
+          '桁架成本 桁架成本 包含組成兩片主桁架 橋梁的主要承重構件 之所有結構鋼 桿件 與 接頭 的相關費用 材料成本 結構鋼通常按重量 或質量 計價 例如每磅多少美元或每公斤多少美元 因此 結構成本在某種程' +
+          '度上取決於建造時所用的材料總重 橋梁結構設計師 計算材料成本的步驟如下 計算您的 結構模型 中三種可用 材料 碳鋼 cs 高強度低合金鋼 hss 與淬火調質鋼 qts 各自的總質量 將每種材料的質量乘' +
+          '以對應的單位成本 每公斤美元 將各項加總 得出總材料成本 如 設計規範 所述 三種不同鋼材各有不同的單位成本 碳鋼最便宜 淬火調質鋼最昂貴 在相同材料下 空心方管 每公斤 的單價高於實心方鋼 接頭成本' +
+          ' 在真實結構中 製造並組裝連接各桿件的接頭往往需要相當可觀的費用 因此 橋梁結構設計師 將每個節點的成本納入結構總成本中 由於實際的三維橋梁有兩片主桁架 此項計算所依據的接頭數量是您二維結構模型中 節' +
+          '點 數量的兩倍 規格品項成本 在結構設計與施工中 最經濟的設計往往 不是 單純將材料成本降到最低的設計 透過標準化材料與桿件尺寸 通常可以降低整體結構成本 如果結構中的所有桿件都採用不同的材料和尺寸 ' +
+          '那麼訂購 加工製造與施工安裝這些桿件的成本就會相對偏高 反之 若許多桿件規格相同 製造與施工成本就會相對較低 基於此原因 橋梁結構設計師 將每種規格品項的費用計入桁架總成本中 所謂 規格品項 是指您結' +
+          '構模型中材料 斷面形狀與 桿件尺寸 的每一種獨特組合 成本計算 若要檢視 成本係數 每公斤成本 每節點成本 每種規格品項成本以及場址成本 以及目前設計的實際成本計算結果 請點擊 成本計算報告按鈕 場址' +
+          '設計精靈 也會顯示場址成本各組成項目的詳細計算 最小化總成本 當您嘗試將橋梁設計的總成本降到最低時 您會發現 不可能 同時讓場址成本 材料成本 接頭成本與規格品項成本都達到最低 最小化總成本始終是在這' +
+          '四個相互競爭的因素之間尋求平衡折衷 為了最小化 場址成本 您只需選擇費用最低的場址配置即可 但最便宜的場址配置需要一座跨距長達 44 公尺的簡支桁架 這種配置需要相當厚重的桁架 其 材料成本 會非常高' +
+          ' 為了最小化 材料成本 您必須在不破壞的前提下 讓每一根桿件盡可能輕量化 對大多數桁架配置而言 要達成這個條件需要 同時 使用各種不同尺寸的實心方鋼與空心方管 將材料成本降至最低會迫使您使用大量不同規' +
+          '格的品項 結果導致您的 規格品項成本 相當高 為了最小化 接頭成本 您必須使用盡可能少的節點數量 然而 若減少節點數 您的結構模型中勢必會出現幾根 非常長 的桿件 如果細長的桿件承受壓力載重 就必須使' +
+          '用非常大尺寸的桿件才能防止其破壞 隨著桿件變長 其 抗壓強度 會顯著下降 因此 降低接頭成本通常會導致高昂的 材料成本 為了最小化 規格品項成本 您需要為結構模型中的每一根桿件選用 單一 的材料 斷面' +
+          '與尺寸 但是 這個單一桿件尺寸必須足夠大 以確保結構中受力最重的桿件不會破壞 結果將使許多其他桿件的強度 以及重量 遠超過實際需求 讓您的 材料成本 極為高昂 顯然 場址成本 材料成本 接頭成本與規格' +
+          '品項成本之間存在著取捨關係 壓低其中一項 總是 會使其他一項或多項上升 您身為設計師的任務 就是找出最佳的折衷方案',
+  },
+  {
+    id: 'glos_template',
+    title: '設計範本（Template）',
+    text: '在 橋梁結構設計師 中 設計範本是描繪標準桁架配置的參考圖 載入設計範本後 它會以灰色顯示在繪圖區上 指示你應在何處配置 節點 與 桿件 以建立穩定的桁架',
+  },
+  {
+    id: 'hlp_design_specifications',
+    title: '設計規範',
+    text: '下列所有規範都已內建於 橋梁結構設計師 中 只要您遵循 設計流程 橋梁結構設計師 便會確保您的設計符合規範 在此列出這些規範 僅是為了幫助您更深入了解工程師在設計真實橋梁時所考量的各種需求與限制條件 ' +
+          '工程問題 您是一位任職於州交通廳的土木工程師 受指派負責設計一座 桁架橋 讓雙向雙車道公路橫跨下圖所示的河谷 設計目標 在滿足下列所有規範的前提下 使工程總成本盡可能降到最低 橋梁配置 橋梁可在從高水' +
+          '位面起算 最高至高水位面以上 24 公尺之間的任意高程橫跨河谷 如果橋梁 橋面 高程低於 24 公尺 則必須開挖河岸土方以達到正確的公路高程 各橋面高程所需的開挖量會由 橋梁結構設計師 自動決定 為確' +
+          '保上方架空電纜具有足夠淨空 如上圖所示 橋梁最高點不得超過高水位面以上 32.5 公尺 河岸頂部以上 8.5 公尺 橋梁 下部結構 可採用標準 橋台 簡支支承 或 拱形橋台 拱形支承 如有需要 橋梁亦' +
+          '可於河谷中央附近增設一座中間 橋墩 如有需要 亦可在一側或兩側橋台後方 8 公尺處設置 鋼索錨座 每片主桁架最多不得超過 100 個 節點 及 200 根 桿件 橋梁採用平坦的鋼筋 混凝土 橋面 共有' +
+          '兩種混凝土可供選擇 中強度混凝土所需的橋面厚度為 23 公分 0.23 公尺 高強度混凝土所需的橋面厚度為 15 公分 0.15 公尺 無論採用何種混凝土 橋面皆由間距 4 公尺的橫向 橋面橫梁 支承' +
+          ' 關於這些術語的詳細資訊 請參閱 桁架橋的組成構件 為了配合橋面橫梁的配置 您的 結構模型 在橋面高度處必須有一排間距 4 公尺的橋面支承節點 這些節點會在您建立新設計時自動生成 橋面寬度為 10 公' +
+          '尺 足以容納雙車道交通 桿件屬性 材料 桁架的每一根桿件皆由碳鋼 cs 高強度低合金鋼 hss 或淬火調質鋼 qts 製成 斷面 桁架桿件可為實心方鋼或空心方管 兩種斷面皆為正方形 桿件尺寸 兩種斷面' +
+          '皆提供多種標準尺寸可供選擇 載重 橋梁必須能夠安全承受下列各項載重 鋼筋混凝土 橋面的自重 未來可能加鋪之 5 公分厚 瀝青 磨耗層 的重量 鋼製橋面橫梁與輔助支撐桿件的重量 這些構件會在每個橋面支承' +
+          '節點施加 12.0 kn 的載重 主桁架的自重 下列兩種可能卡車載重之一 每車道一輛標準 h25 卡車載重 包含移動載重所產生的適當動力衝擊效應餘裕 由於橋梁為雙車道 每片主桁架都必須能安全承受一輛位' +
+          '於橋面任意位置的 h25 車輛 單一 480 kn 許可重車載重 包含移動載重之動力衝擊效應餘裕 由於假設此許可重車位於橋面橫向中央行駛 每片主桁架都必須能安全承受車輛總重的一半 且車輛可位於橋面任意' +
+          '位置 結構安全 橋梁必須符合 1994 年 lrfd aashto 橋梁設計規範的結構 安全 規定 lrfd 是指 載重與 阻抗係數 設計法 load resistance factor design' +
+          ' 內容包含 材料密度 載重組合 桿件的 抗拉強度 桿件的 抗壓強度 成本 設計成本 將依據下列係數進行計算 材料成本 碳鋼實心方鋼 每公斤 $4.50 碳鋼空心方管 每公斤 $6.30 高強度低合金鋼' +
+          '實心方鋼 每公斤 $5.00 高強度低合金鋼空心方管 每公斤 $7.00 淬火調質鋼實心方鋼 每公斤 $5.55 淬火調質鋼空心方管 每公斤 $7.75 接頭成本 每個節點 $500.00 規格品項成' +
+          '本 每種規格品項 $1000.00 場址成本 鋼筋混凝土橋面 中強度 每 4 公尺區段 $5 150 鋼筋混凝土橋面 高強度 每 4 公尺區段 $5 300 開挖 每立方公尺 $1.00 開挖體積請參' +
+          '閱 場址設計精靈 支承結構 橋台與橋墩 成本依配置而異 具體數值請參閱 場址設計精靈 鋼索錨座 每座錨座 $6 000 注意事項與提示 橋梁結構設計師 會確保您的設計符合上述所有設計規範 繪圖區 會自' +
+          '動設定完成 使您的橋梁擁有正確的 跨距 長度 高度與支承結構 橋梁結構設計師 會自動計算 載重 以及產生的桿件 內力 當您執行 載重測試 時 軟體會執行 aashto 結構安全檢核 如果結構模型中有任' +
+          '何桿件強度不足 軟體會指出哪些桿件需要補強 同時也會計算您的設計成本 在 橋梁結構設計師 中 aashto 安全標準已經過相當程度的簡化 這也是本軟體 僅供教育用途使用 的重要原因之一 更多資訊請參閱' +
+          ' 橋梁結構設計師有哪些不切實際之處',
+  },
+  {
+    id: 'glossary',
+    title: '詞彙表（Glossary）',
+    text: '美國州公路與運輸官員協會 aashto 橋台 abutment 拱形橋台 arch abutments 拱形支承 arch supports 瀝青 asphalt 美國材料與試驗協會 astm b 支' +
+          '承 bearing 橋梁設計檔 bridge design file 挫屈 buckling c 鋼索錨座 cable anchorages 弦桿 chords 委託人 client 壓力 compr' +
+          'ession 混凝土 concrete 接合處 connections 挖方 cut d 橋面 deck 上承式桁架 deck truss 斜桿 diagonals 位移 displacement 繪' +
+          '圖格線 drawing grid 動載重係數 dynamic load allowance f 橋面橫梁 floor beams 基腳 footing 力 forces j 節點 joints k 千' +
+          '牛頓 kilonewton 千牛頓 kn l 載重因數 load factors 載重測試 load test 載重 loads m 質量密度 mass density 桿件內力 member for' +
+          'ce 桿件編號 member numbers 桿件屬性 member properties 桿件尺寸 member size 桿件 members 彈性模數 modulus elasticity 慣性' +
+          '矩 moment inertia p 橋墩 pier r 鋼筋混凝土 reinforced concrete 阻抗因數 resistance factor 安全 safe 工作階段 session 簡' +
+          '支承 simple supports 場地成本 site cost 坡度 slope 鎖點 snap points 跨距 span 標準橋台 standard abutments 結構分析 struc' +
+          'tural analysis 結構模型 structural model 下部結構 substructure 支承 supports 對稱 symmetrical 設計範本 template 拉力 t' +
+          'ension 下承式桁架 truss u 不安全 unsafe v 垂直桿 verticals w 磨耗層 wearing surface y 降伏應力 yield stress 降伏 yieldin' +
+          'g',
+  },
+  {
+    id: 'hlp_change_member_properties',
+    title: '變更桿件屬性',
+    text: '若要變更結構模型中某一支桿件的屬性 點擊 繪圖工具箱 上的 選取工具 直接點擊該桿件 或在 桿件明細表 中點擊其對應項目 以選取欲修改的桿件 被選取的桿件會變成 淺藍色 在 桿件屬性下拉選單 中 點擊' +
+          '欲變更屬性 材料 斷面 或 桿件尺寸 旁邊的下拉按鈕 從對應清單中選擇新的材料 斷面或桿件尺寸 新屬性便會套用至所選取的桿件 備註與提示 若要同時變更數支 桿件 的屬性 請先使用 多重選取 再從對應的' +
+          '桿件屬性清單中選擇新的材料 斷面或桿件尺寸 若要將所有選取桿件的尺寸放大或縮小一級 請先選取欲修改的桿件 再點擊 放大桿件尺寸按鈕 或 縮小桿件尺寸按鈕 當您搭配多重選取使用這兩個按鈕時 所選取的桿件' +
+          ' 不會 全部變成相同尺寸 而是各自獨立放大或縮小一級 若您想變更 結構模型 中 所有 桿件的屬性 請先點擊 全選按鈕 再選擇新的材料 斷面或桿件尺寸 當您變更桿件屬性時 該桿件在 繪圖區 上的外觀也會' +
+          '隨之改變 變更材料會改變桿件的顯示 顏色 變更尺寸會相應改變桿件的顯示 寬度 將斷面從實心方鋼改為空心方管會使顯示線條從單線變成雙線 反之亦然',
+  },
+  {
+    id: 'glos_mass_density',
+    title: '質量密度（Mass density）',
+    text: '材料的質量密度是指其單位體積的質量 鋼材的質量密度明顯高於 混凝土 或 瀝青',
+  },
+  {
+    id: 'glos_span',
+    title: '跨距（Span）',
+    text: '橋梁的跨距是指兩個支承之間的長度',
+  },
+  {
+    id: 'hlp_load_a_template',
+    title: '載入並顯示設計範本',
+    text: '橋梁結構設計師 內建多種桁架設計範本 您可將其載入並以淺灰色輪廓線顯示在 繪圖區 上 沿著 設計範本 描繪 節點 與 桿件 即可建立出 穩定的 結構模型 若要載入並顯示設計範本 在 檔案選單 中按一下' +
+          ' 載入設計範本 選取一個設計範本並按一下 確定 ok 或者直接連按兩下該項目 設計範本就會顯示在 繪圖區 上 注意事項與提示 您必須處於 繪圖區模式 才能載入設計範本 載入設計範本後 您可以按一下工具' +
+          '列上或 檢視選單 中的 設計範本按鈕 來將其隱藏',
+  },
+  {
+    id: 'hlp_load_template',
+    title: '載入設計範本',
+    text: '按一下 載入設計範本按鈕 即可 載入標準桁架設計範本 並顯示在 繪圖區 上 注意事項與提示 載入設計範本按鈕位於 檔案選單 中',
+  },
+  {
+    id: 'glos_load_factors',
+    title: '載重因數（Load factors）',
+    text: '載重因數是一個大於 1 的數值 乘以設計載重後用來模擬結構承受極端載重的情況 例如 將標準的 aashto h25 卡車載重乘以載重因數 1.75 代表極為沉重的卡車 亦即橋梁在其使用壽命期間可合理預' +
+          '期通過的最重卡車 不同類型的 載重 有不同的載重因數 因為有些載重比其他載重更難以預測 例如 橋梁本身的自重比重型卡車的重量更容易準確估算 因此橋梁自重的載重因數低得多',
+  },
+  {
+    id: 'hlp_load_test3',
+    title: '載重測試動畫',
+    text: '載重測試 動畫 是您的橋梁進行 載重測試 時的圖形模擬 若要啟動動畫 請點擊 載重測試按鈕 動畫開始時 橋梁僅承受自身的重量 包括鋼結構構件 混凝土 橋面 以及 瀝青 磨耗層 施加自重後 一輛 aas' +
+          'hto h25 卡車 會從左向右駛過橋梁 隨著 載重 施加 橋梁會產生彎曲變形 橋梁的 位移 量可能會放大 10 倍 以清楚呈現桁架 桿件 在受力時如何縮短與伸長 隨著桿件 內力 增加 桿件會改變顏色' +
+          ' 紅色 代表受 壓力 藍色 代表受 拉力 顏色越深 代表該桿件越接近破壞極限 若有一根或多根桿件被判定為 不安全 動畫便會顯示這些桿件發生破壞 以及橋梁開始倒塌時的模擬情形 注意事項與提示 您可以隨時' +
+          '使用 動畫控制項 來暫停 倒轉及重新播放動畫 您可以透過調整 載重測試選項 改變載重測試動畫的外觀 或選擇完全不顯示動畫 每當某根桿件被判定為不安全時 載重測試動畫會以 降伏 或 挫屈 破壞模式來描繪' +
+          '該桿件的失效 這並非完全寫實 工程師在設計結構桿件時 總是會保留一定的 安全 餘裕 此安全餘裕體現在規範所訂定之 載重組合 中的 載重因數 以及 抗拉強度 與 抗壓強度 公式中的強度折減因數 一根不安' +
+          '全的桿件 可能 會發生破壞 也可能在安全餘裕降低的情況下繼續承載 在真實的橋梁中 一根或多根桿件破壞時 未必會造成整體結構完全倒塌 然而 只要有 任何 一根桿件被判定為不安全 橋梁結構設計師 便會將該' +
+          '設計視為未通過',
+  },
+  {
+    id: 'hlp_load_test_button',
+    title: '載重測試按鈕',
+    text: '點擊 載重測試按鈕 以對目前的設計執行 載重測試 注意事項與提示 載重測試按鈕位於 主工具列 上 也可在 測試選單 中找到 載重測試按鈕與 繪圖區按鈕 會互相連動 同一時間只能按下其中一個 點擊其中一' +
+          '個按鈕後 它會保持按下狀態 直到您點擊另一個按鈕為止 唯一的例外是您在 測試 選單中關閉了 顯示動畫 選項 此時系統會在測試完成後立即切回繪圖區模式',
+  },
+  {
+    id: 'hlp_load_test_status',
+    title: '載重測試狀態',
+    text: '目前設計的狀態會以圖示顯示於 狀態工具列 上 您的設計隨時都會處於以下三種可能狀態之一 建置中 結構模型 尚未完成 或自上次執行 載重測試 以來已經經過修改 不安全 結構模型已完成載重測試 且有一根或' +
+          '多根 桿件 的強度不足以安全承受指定的 載重 安全 結構模型已完成載重測試 且所有桿件皆具備足夠強度 能安全承受指定的載重 注意事項與提示 每當您對結構模型進行任何修改時 狀態就會切換回 建置中 直到' +
+          '重新執行載重測試為止 若要查看最近一次 載重測試 的詳細數值結果 請點擊 載重測試結果報告按鈕 桿件明細表 中也提供摘要資訊',
+  },
+  {
+    id: 'hlp_report_load_test',
+    title: '載重測試結果報告按鈕',
+    text: '按一下 載重測試結果報告按鈕 即可顯示最近一次 載重測試 的詳細數值結果 報告會以表格形式顯示 並可列印或複製到電腦剪貼簿 請將此報告作為 補強破壞桿件 與 最佳化桿件 的依據 以改良您的 結構模型 ' +
+          '注意事項與訣竅 載重測試結果報告按鈕位於 狀態工具列 上 也可在 報告選單 中找到 報告包含結構模型中每根桿件的以下資料 桿件所受的絕對最大 壓力 單位為千牛頓 kn 桿件的 抗壓強度 單位為 kn ' +
+          '受壓狀態 ok 正常或 buckles 挫屈 桿件所受的絕對最大 拉力 單位為 kn 桿件的 抗拉強度 單位為 kn 受拉狀態 ok 正常或 yields 降伏 使用列印按鈕可產生 pdf 檔案 方便' +
+          '瀏覽器傳送至 印表機 列印 使用複製按鈕可將報告複製到電腦的剪貼簿中 其格式方便直接貼上到大多數試算表程式 例如 google 試算表',
+  },
+  {
+    id: 'hlp_load_test_options',
+    title: '載重測試選項',
+    text: '測試選單 中的 自動修正錯誤 核取方塊開啟時 橋梁結構設計師 會嘗試找出 不穩定結構模型 中導致不穩定的原因並加以修改 使其能進行載重測試 修改方式可能包含刪除未連接的節點或桿件 或新增必要的桿件 依' +
+          '不穩定的類型與程度而定 自動修改未必每次都能成功 但除非有充分理由要關閉它 否則最好保持開啟此選項 顯示動畫 核取方塊位於 測試 選單中 若開啟 每次進行載重測試時都會播放 載重測試 動畫 若關閉 則' +
+          '不顯示動畫 且在每次載重測試完成後立即返回 繪圖區模式 誇大變形 核取方塊位於 動畫設定 中 若開啟 橋梁的彎曲變形會放大 20 倍顯示 讓您更清楚觀察桁架 桿件 在承受載重時如何縮短與伸長 若關閉此' +
+          '選項 則不會誇大顯示 位移 桿件顏色 核取方塊位於 動畫設定 中 若開啟 桿件在動畫播放期間會改變顏色 以顯示 桿件內力 的大小 紅色 代表 壓力 藍色 代表 拉力 顏色越深 代表該桿件越接近破壞極限' +
+          ' 若關閉此選項 桿件在動畫期間將不會變色 注意事項與提示 動畫開始播放後 您可以關閉誇大變形與桿件顏色選項 讓橋梁外觀呈現得盡可能逼真 動畫中的陰影效果可能會加重電腦顯示硬體的負擔 如果動畫播放緩慢或' +
+          '卡頓 關閉陰影選項或許能改善流暢度',
+  },
+  {
+    id: 'glos_load_test',
+    title: '載重測試（Load test）',
+    text: '在 橋梁結構設計師 中 載重測試是一項模擬功能 可顯示你的設計若實際建造並投入使用後的表現 在載重測試中 你的橋梁會承受自身重量以及標準 aashto h25 卡車載重 結構模型 中的每一根桿件都會進' +
+          '行結構 安全 性檢核',
+  },
+  {
+    id: 'hlp_load_combinations',
+    title: '載重組合',
+    text: '結構工程師會使用 載重組合 以考量結構物經常同時承受數種不同類型 載重 的事實 例如 一座橋梁必須同時承擔自身重量以及行經橋面的車流與行人重量 但橋梁 也可能 需要承受強風 積雪 結冰 甚至是地震所造' +
+          '成的載重 所有這些極端載重在同一時刻全部發生的機率微乎其微 因此多數結構設計規範都會訂定數種不同的載重組合 每一種對應某個特定的極端事件 例如極重型卡車載重或強烈地震 在每種載重組合中 該項極端載重會' +
+          '與其他可能同時存在之載重的平均值合併計算 1994 年版的 aashto 橋梁設計規範要求橋梁工程師為每座設計的橋梁檢核十一種不同的載重組合 橋梁結構設計師 僅採用其中一種 公式如下 總載重 = 1.' +
+          '25 w + 1.5 w w + 1.75 1 + dla 其中 w = 結構自重 包含 橋面 與所有結構構件 w w = 瀝青 磨耗層 重量 = aashto 卡車載重 重量 dla = 動態載重加' +
+          '成 數值 1.25 1.5 與 1.75 為 載重係數 注意事項與提示 橋梁結構設計師 在規範指定的十一種載重組合中僅納入其中一種 這正是本軟體 僅供教育用途 的重要原因之一 關於其他原因 請參閱 橋' +
+          '梁結構設計師與現實不符之處',
+  },
+  {
+    id: 'glos_loads',
+    title: '載重（Loads）',
+    text: '載重是施加於結構上的 力 在公路橋梁上 載重包括通行車輛的重量 橋梁本身的自重 在部分地區還包括結構上積雪與結冰的重量 以及強風和地震所產生的力量',
+  },
+  {
+    id: 'hlp_go_back',
+    title: '返回上個版本按鈕',
+    text: '按一下 返回上個版本按鈕 即可在 繪圖區 上顯示前一個 設計版本 注意事項與提示 返回上個版本按鈕位於 主工具列 上 也可在 編輯選單 中找到 一旦您使用返回上個版本按鈕檢視先前的設計版本 即可使用 ' +
+          '前往下個版本按鈕 來顯示較新的設計版本 您也可以使用 切換設計版本按鈕 來顯示 任何 一個設計版本 只要編輯選單中的 記住我的進度 處於勾選狀態 橋梁結構設計師 便會記住您所有的設計版本 若未勾選 每' +
+          '次重新整理或重新啟動瀏覽器時 設計版本記錄將會遺失',
+  },
+  {
+    id: 'hlp_select_tool',
+    title: '選取工具',
+    text: '使用 選取工具 來編輯您的 結構模型 當您需要 移動節點 刪除節點 變更桿件屬性 或 刪除桿件 時 都必須先使用選取工具點選該節點或桿件 注意事項與提示 選取工具位於 繪圖工具箱 中 也可以從 工具 ' +
+          '選單 中選取 使用選取工具時 滑鼠指標會顯示為箭頭 當您在 繪圖區 上方移動選取工具時 節點 與 桿件 會以高亮顯示 表示指標已足夠靠近並可進行選取',
+  },
+  {
+    id: 'hlp_menu_bar',
+    title: '選單列',
+    text: '選單列 位於 橋梁設計視窗 的頂部 緊鄰 標題列 下方 選單列提供以下指令 檔案 新增設計 開啟檔案 儲存檔案 另存新檔 開啟範例設計 載入設計範本 列印設計圖 匯出 3d 列印檔案 最近開啟的檔案 ' +
+          '結束 編輯 全選 刪除 復原 重做 回到上一版 前往下一版 切換至指定設計版本 增大桿件尺寸 縮小桿件尺寸 記住我的工作進度 檢視 繪圖工具箱 動畫設定 桿件明細表 尺規 標題欄 桿件編號 對稱輔助線' +
+          ' 設計範本 格線解析度 繪圖工具 節點工具 桿件工具 選取工具 橡皮擦工具 測試 繪圖區 載重測試 顯示動畫 自動修正錯誤 報告 成本計算 載重測試結果 桿件分析 說明 每日提示',
+  },
+  {
+    id: 'hlp_choose_optimum',
+    title: '選擇最佳設計',
+    text: '如何設計一座橋梁 返回上一步 前往下一步 在 橋梁結構設計師 中 最佳設計指的是總成本最低的設計 在您盡可能比較過各種不同的場地配置與桁架造型方案後 請挑選總成本最低的那一座作為最終設計 備註與提示 ' +
+          '在真實世界的橋梁設計中 挑選最理想方案時還會納入許多其他考量準則 包括美觀性 施工難易度 維護便利性 當地材料取得容易度以及環境衝擊等',
+  },
+  {
+    id: 'hlp_select_project',
+    title: '選擇橋址配置與載重條件',
+    text: '如何設計一座橋梁 前進一個步驟 當您首次啟動 橋梁結構設計師 時 歡迎對話方塊會提供以下三個選項 選擇 建立新的橋梁設計 選項 並按一下 確定 此時會顯示 專案設定精靈 請檢閱設計需求 並透過預覽視窗' +
+          '熟悉橋址環境 按一下 下一步 按鈕 如果您正在參加區域競賽 請按一下 是 並輸入您的區域競賽代碼 否則請按一下 下一步 若您輸入了有效的區域競賽代碼 系統會自動為您選取對應的橋址配置與載重條件 若您未' +
+          '輸入代碼 則可從 98 種橋址配置與 4 種載重條件中自由選擇 按一下 下一步 以進行這些選擇 橋址配置 橋址配置包含以下項目 橋面 高於高水位的高程 選擇標準 橋台 簡支支承 或 拱形橋台 拱形支承' +
+          ' 拱形橋台的高度 若有使用 選擇是否設置 橋墩 橋墩的高度 若有使用 選擇設置零座 一座或兩座 鋼索錨座 上述每一項選擇都會影響 橋址成本 該成本會顯示於設定精靈的底部附近 若要檢視成本計算明細 請按' +
+          '一下右下角的向下箭頭 完成選擇後 請按一下 下一步 以選擇載重條件 載重條件 載重條件包含以下項目 選擇橋面使用的中強度或高強度 混凝土 選擇兩輛 aashto h25 卡車 載重 每個車道各一輛 或' +
+          '單輛 660 kn 特種許可載重 橫向置中於橋面上 完成選擇後 您可以按一下 完成 結束設定並前往 繪圖區 注意事項與提示 設定精靈結束後 若要更改橋址配置或載重條件 唯一的方法是開始一個新設計 按一' +
+          '下 新增設計按鈕 即可重新開啟設定精靈 如上所述 共有 98 種可能的橋址配置 以及由兩種橋面材料與兩種卡車載重組成的 4 種載重條件 總計有 392 種可能的組合 每一種組合都代表不同的支承或載重形' +
+          '式 且各有不同的成本 並皆符合 設計規範 橋梁的 總成本 等於橋址成本加上桁架成本 然而 選擇橋址成本最低的配置 通常不太可能得到最低的總成本 一般而言 橋址成本較低的配置往往需要成本相對較高的桁架 ' +
+          '反之亦然 在兩者之間找出最佳平衡點 正是工程師的工作 舉例來說 橋面高程較高的配置由於只需少量甚至不需開挖 因此橋址成本相對較低 但較高的橋面高程也伴隨著較長的 跨距 這需要更龐大且更重的桁架 導致桁' +
+          '架成本提高 拱形橋台的造價高於 標準橋台 且較高的拱形橋台比矮的更昂貴 因此採用拱形結構的橋址配置往往橋址成本較高 不過由於河谷呈 v 字形 拱形橋台也能在相同的橋面高度下縮短跨距 橋台 越高 跨距越' +
+          '短 此外 拱形橋台提供的側向束制也比標準橋台更強 這兩點都有助於降低桁架成本 在河道中央興建橋墩可能所費不貲 這代表設有 橋墩 的配置其橋址成本高於無橋墩的配置 但橋墩同時也將單一長跨距分割為兩段短跨' +
+          '距 而兩座短桁架的總成本通常遠低於單一座長桁架 鋼索錨座的造價同樣昂貴 但它們能提供額外的支承 例如斜張橋的鋼索支承 進而大幅降低桁架成本 橋面材料的選擇會同時影響橋址成本與 載重測試 時施加的載重 ' +
+          '中強度混凝土比高強度混凝土便宜 但需要較厚的橋面 因此重量較重 高強度混凝土價格較高 但橋面較薄且較輕 因此 較便宜的橋面材料往往會導致較高的桁架成本 而較昂貴的橋面材料則有助於降低桁架成本 卡車載重' +
+          '的選擇不會影響橋址成本 但對桁架成本有顯著影響 工程設計總是涉及 權衡取捨 在結構本體成本與其支承 下部結構 成本之間取得平衡 是大多數實際橋梁設計中至關重要的一環 那麼 哪一種橋址配置與載重條件能帶' +
+          '來最低的總成本呢 現在先不必擔心 只需憑直覺做出初步選擇 並繼續設計流程的 下一個步驟 我們會在後續流程中 找出最佳橋址配置',
+  },
+  {
+    id: 'hlp_redo',
+    title: '重做按鈕',
+    text: '按一下 重做按鈕 可 還原先前的復原操作 恢復對結構模型所做的變更 按一下右側的向下箭頭並選擇先前的變更項目 即可一次重做多項變更 注意事項與訣竅 重做按鈕位於 主工具列 上 也可以在 編輯選單 中找' +
+          '到 重做按鈕會與 復原按鈕 搭配使用',
+  },
+  {
+    id: 'hlp_pinned_support',
+    title: '鉸支承',
+    text: '以此符號表示的鉸支承 會限制 結構模型 中的節點同時在水平方向與垂直方向產生移動',
+  },
+  {
+    id: 'glos_reinforced_concrete',
+    title: '鋼筋混凝土（Reinforced concrete）',
+    text: '鋼筋混凝土是在混凝土內部埋入鋼筋以增強強度的材料 混凝土承受 壓力 的能力很強 但承受 拉力 的能力相對較弱 加入鋼筋後 能大幅提升混凝土承受拉力的能力',
+  },
+  {
+    id: 'glos_cable_anchorages',
+    title: '鋼索錨座（Cable anchorages）',
+    text: '鋼索錨座是吊橋鋼索所連接的基礎結構 由於鋼索承擔了吊橋大部分的重量 鋼索錨座通常體積龐大 且往往深埋至地表下方深處 在橋梁結構設計師中 鋼索錨座是以鉸支承來表示',
+  },
+  {
+    id: 'glos_snap_points',
+    title: '鎖點（Snap points）',
+    text: '鎖點是 繪圖格線 中兩條格線的交點 節點只能繪製在鎖點上 因此 當你在 結構模型 中繪製或移動 節點 時 滑鼠游標會自動 吸附 到最近的鎖點 格線本身是不可見的 但其位置會由繪圖區左側與底部邊緣的垂直' +
+          '和水平尺規上的刻度顯示出來',
+  },
+  {
+    id: 'hlp_open_file',
+    title: '開啟檔案按鈕',
+    text: '點擊 開啟檔案按鈕 以 開啟現有的橋梁設計檔案 注意事項與提示 開啟檔案按鈕位於 主工具列 上 也可在 檔案選單 中找到',
+  },
+  {
+    id: 'hlp_open_existing',
+    title: '開啟現有的橋梁設計檔案',
+    text: '開啟現有橋梁設計檔案的步驟 點擊 主工具列 上的 開啟檔案按鈕 選擇欲開啟的磁碟機 資料夾與檔案名稱 然後點擊 確定 注意事項與提示 在 橋梁結構設計師 中所建立的橋梁設計檔案副檔名為 .bdc 很抱' +
+          '歉 雲端版的檔案與早期版本的 橋梁結構設計師 檔案不相容 如果您目前的設計尚未儲存 系統會在開啟新檔案前提示您先行儲存 基於瀏覽器的安全性限制 檔案儲存與還原的操作方式會與安裝在電腦本機的應用程式略有' +
+          '不同 這在 firefox 上尤其明顯 使用 chrome edge 及其他 chromium 核心瀏覽器可獲得較佳的使用體驗',
+  },
+  {
+    id: 'hlp_open_sample_design',
+    title: '開啟範例設計',
+    text: '橋梁結構設計師 內建多種範例設計 可供您開啟 修改並進行 載重測試 這些範例皆為 穩定 的桁架配置 但皆尚未針對最低成本進行最佳化 若要載入範例設計 按一下 檔案選單 中的開啟範例設計項目 選取一個範' +
+          '例設計並按一下 確定 ok 或直接連按兩下該項目 範例設計就會顯示在 繪圖區 上 注意事項與提示 您必須處於 繪圖區模式 才能載入範例設計 如果您目前的 結構模型 尚未儲存 系統會在載入範例設計前提示' +
+          '您先進行儲存',
+  },
+  {
+    id: 'hlp_start_new_design',
+    title: '開始新的橋梁設計',
+    text: '開始新橋梁設計的步驟 按一下 主工具列 上的 新增設計按鈕 系統將顯示 專案設定精靈 檢閱 設計需求 然後按一下 下一步 若您參加了區域橋梁設計競賽 請輸入 區域競賽代碼 然後按一下 下一步 若您在上' +
+          '一步驟輸入了區域競賽代碼 系統會自動為您選取橋址配置 若未輸入 請選擇您想使用的 橋址配置 然後按一下 下一步 選擇 橋面 材料 這會決定橋面厚度並進而決定橋面重量 同時也請選擇您設計所採用的載重配置' +
+          ' 如果您想使用 設計範本 請選擇一個範本 然後按一下 下一步 如有需要 請在 標題欄 中輸入您的姓名與專案編號 按一下 完成 注意事項與提示 一旦選好橋址配置 橋面材料與載重配置 您就可以立即按一下 ' +
+          '完成 返回 繪圖區 選擇設計範本與填寫標題欄皆為選填項目 當您選擇橋梁的橋面高度 支承配置與橋面材料時 對應的 橋址成本 會自動計算並顯示於設定精靈的底部附近 若要查看詳細成本計算 請按一下 橋址成本' +
+          ' 顯示區右側的向下箭頭 當您按一下 完成 時 精靈會自動在橋面高程處建立一系列 節點 這些節點符合 設計規範 3.g 的要求 繪圖區中會顯示 橋台 橋面 橋面鋪裝層 與水位 若您所選的 下部結構 包含' +
+          '拱形支承或 橋墩 系統也會自動建立 如果您目前的設計尚未儲存 系統會在開始新設計前提示您儲存',
+  },
+  {
+    id: 'hlp_purposes',
+    title: '開發目的',
+    text: '橋梁結構設計師 的開發目的如下 提供您學習工程設計流程的機會 提供貼近實務的動手操作體驗 協助您了解土木工程師如何設計結構物 示範工程師如何運用電腦作為工具 以提升設計流程的效能與效率 提供結構行為視' +
+          '覺化的工具 協助您理解結構的運作原理 注意事項與訣竅 如需本軟體及其功能的整體介紹 請參閱 橋梁結構設計師的運作方式 橋梁結構設計師 最初由退役准將 stephen ressler 開發 所有後續版本' +
+          '則由退役准將 gene ressler 開發 所有版本皆依據 gnu 通用公眾授權條款 gnu general public license 免費發布 僅供教育用途使用',
+  },
+  {
+    id: 'hlp_browser',
+    title: '關於您的瀏覽器…',
+    text: '我們盡力讓 橋梁結構設計師 能在大多數配備滑鼠或類似指向裝置的運算設備 以及各種最新版本的瀏覽器上正常運作 支援的設備與瀏覽器 不支援手機 很抱歉 本軟體不支援沒有滑鼠的純觸控裝置 例如大多數智慧型手' +
+          '機與平板電腦 瀏覽器 以下瀏覽器的最新版本皆可順利運作 採用新版 chromium 核心的瀏覽器 google chrome microsoft edge 開源 chromium opera fire' +
+          'fox 其他以 chromium 與 firefox 為核心的瀏覽器通常也能正常運作 很遺憾 目前無法支援 apple safari 螢幕解析度 至少 1200 × 768 像素 越高越好 滑鼠 需要' +
+          '精準的類滑鼠指向裝置 例如觸控板或軌跡球皆可 如何排解問題 更換或升級瀏覽器 若啟動時的警告訊息指出瀏覽器不受支援 或缺少所需的 html／css 功能 請嘗試安裝上述任一款支援瀏覽器的最新版本 若您' +
+          '的裝置無法安裝新版 請嘗試安裝該裝置可支援的最新版本 google chrome 這是最有機會成功執行的選擇 視需要調整設定或硬體 若啟動警告涉及螢幕解析度或滑鼠 您可能需要調整設定或更換硬體 實用建' +
+          '議 螢幕解析度通常可以手動調整 請檢查作業系統的顯示器設定 若螢幕解析度剛好接近最低需求 請將瀏覽器切換為全螢幕模式 以充分利用每一個像素 許多裝置都能外接滑鼠 而且通常只要花費少許費用 不妨上網查詢' +
+          ' 直接嘗試執行 儘管出現警告 橋梁結構設計師在您目前的瀏覽器上仍可能勉強運作 只是部分功能可能會被停用或表現不佳 若有功能遭停用 系統會向您發出通知 您可以點擊警告對話框中的 取消 來試試看',
+  },
+  {
+    id: 'glos_resistance_factor',
+    title: '阻抗因數（Resistance factor）',
+    text: '阻抗因數是一個無因次常數 用於計算結構 桿件 的抗拉強度與抗壓強度 阻抗因數能為設計提供 安全 餘裕 將材料強度 桿件尺寸及施工品質上的不確定性納入考量 阻抗因數恆小於或等於 1',
   },
   {
     id: 'glos_yield_stress',
-    title: 'Yield stress',
-    text: 'yield stress strength metal force per unit area metal fails yielding'
+    title: '降伏應力（Yield stress）',
+    text: '降伏應力代表金屬的強度 也就是金屬發生 降伏 破壞時 單位面積所承受的力',
   },
   {
     id: 'glos_yielding',
-    title: 'Yielding',
-    text: 'yielding one possible failure mode member made metal metallic material fails yielding undergoes larg' +
-          'e deformations i.e. stretches without able carry additional load'
+    title: '降伏（Yielding）',
+    text: '降伏是金屬桿件可能發生的一種破壞模式 當金屬材料因降伏而破壞時 會產生非常大的變形 亦即被大幅拉長 且無法再承受任何額外載重',
+  },
+  {
+    id: 'hlp_view_member_list',
+    title: '隱藏與還原桿件明細表',
+    text: '您可以隱藏 桿件明細表 為橋梁設計騰出更大的繪圖空間 按一下右上角的關閉按鈕 即可隱藏 按一下原位置出現的展開按鈕 即可重新開啟 注意事項與訣竅 檢視 功能表中的桿件明細表選項 同樣可以隱藏及還原桿件' +
+          '明細表',
+  },
+  {
+    id: 'hlp_whats_new',
+    title: '雲端版的新增功能',
+    text: '歡迎使用 歡迎使用 橋梁結構設計師 雲端版 自 2002 年推出以來 橋梁結構設計師 已累積數百萬名使用者 是全球最成功的工程教育軟體之一 全新版本讓任何擁有網頁瀏覽器的人都能輕鬆展開工程探索 立即透' +
+          '過 內建說明 開始體驗吧 無論是個人獨立設計 團隊合作 或是與老師共同學習 皆十分適合 全新特色 歡迎盡情探索各項新功能 免安裝即可使用 橋梁結構設計師 現已支援大多數主流瀏覽器的近期版本 只需開啟網' +
+          '頁即可使用 建議使用 2024 年或更新版本的 chrome edge 或 firefox chromebook 也能流暢運作 螢幕解析度最低可支援至 1200x768 匯出設計的 3d 模型 除了 ' +
+          '橋梁結構設計師 長久以來廣受好評的精美工程藍圖外 現在您還可以匯出 obj 格式檔案 直接搭配您慣用的 3d 列印機列印實體模型 環繞檢視橋梁場址 在載重測試中等待卡車完整來回通過橋梁兩趟後 系統將自' +
+          '動啟動專案環繞導覽 讓您彷彿親臨現場般欣賞橋梁實景 按一下任一導覽按鈕即可停止自動巡覽並接手控制 桿件分析報告 由舊版桿件詳細資訊分頁全面升級而來 這項互動式探索工具能與桿件明細表相輔相成 即時更新桿' +
+          '件斷面 材料 長度 成本 受力與強度等工程數據 協助您深入剖析橋梁的結構奧秘 先前 橋梁結構設計師 版本後期推出的實用功能也完整保留 完工橋梁 3d 漫遊檢視 在完工橋梁的動畫中自由穿梭 從橋下 四周' +
+          '與橋內各個角度檢視 並觀察卡車載重駛過橋面時的結構表現 深度復原功能 過去僅限 5 層的限制現已擴增至 1000 層 可針對目前設計版本復原與重做 最近一千次的編輯操作 設計版本樹狀檢視 透過視覺化的' +
+          '樹狀檢視追蹤每一個設計版本的演變歷程 同時也保留了原本依時間排序的清單檢視 拖曳框選桿件明細表項目 按住滑鼠並拖曳 即可在桿件明細表中一次選取多筆桿件',
   },
 ];

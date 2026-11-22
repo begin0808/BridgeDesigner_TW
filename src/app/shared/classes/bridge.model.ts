@@ -6,7 +6,7 @@ import { Joint } from './joint.model';
 import { Member } from './member.model';
 
 export class BridgeModel {
-  public projectName: string = 'Dennis H. Mahan Memorial Bridge';
+  public projectName: string = '桁架橋設計專案';
   public projectId: string = '';
   public designedBy: string = '';
   public iterationNumber: number = 1;

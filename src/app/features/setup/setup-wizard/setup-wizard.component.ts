@@ -76,13 +76,13 @@ import { ContestBridgeService } from '../../../shared/services/contest-bridge.se
 })
 export class SetupWizardComponent implements AfterViewInit, SetupWizardCardView {
   private static readonly ALL_DECK_ELEVATIONS = [
-    '24 meters',
-    '20 meters',
-    '16 meters',
-    '12 meters',
-    '8 meters',
-    '4 meters',
-    '0 meters',
+    '24 公尺',
+    '20 公尺',
+    '16 公尺',
+    '12 公尺',
+    '8 公尺',
+    '4 公尺',
+    '0 公尺',
   ];
   /** Pixel height of site cost dropdown. Can't reasonably be computed. */
   private static readonly SITE_COST_DROPDOWN_HEIGHT = 115;
@@ -93,10 +93,10 @@ export class SetupWizardComponent implements AfterViewInit, SetupWizardCardView 
   private readonly legendItemsByName = new Map<LegendItemName, HTMLDivElement>();
 
   readonly archHeights: string[] = SetupWizardComponent.ALL_DECK_ELEVATIONS.slice(0, -1);
-  readonly buttonWidth = 80;
+  readonly buttonWidth = 86;
   deckCartoonSrc: DeckCartoonSrc = DeckCartoonSrc.NONE;
   readonly deckElevations = SetupWizardComponent.ALL_DECK_ELEVATIONS;
-  readonly edition = 'Cloud edition';
+  readonly edition = '雲端繁體中文教學版';
   readonly pierHeights: string[] = SetupWizardComponent.ALL_DECK_ELEVATIONS;
 
   /** Current dialog height. Varies with site cost expander state. */

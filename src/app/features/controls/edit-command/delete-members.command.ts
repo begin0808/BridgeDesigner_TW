@@ -19,7 +19,7 @@ export class DeleteMembersCommand extends EditCommand {
     private readonly bridge: BridgeModel,
     private readonly selectedElements: SelectedElements,
   ) {
-    super(EditCommandDescription.formatMemberMessage(members, 'Delete member'));
+    super(EditCommandDescription.formatMemberMessage(members, '刪除桿件'));
   }
 
   public static forMember(

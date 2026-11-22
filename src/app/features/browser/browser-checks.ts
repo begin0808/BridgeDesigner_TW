@@ -81,17 +81,17 @@ export function areBrowserFeaturesMissing(): boolean {
     return false;
   }
   const mandatory: MandatoryDescriptions<Mandatory> = {
-    addEventListener: 'HTML addEventListener',
-    async: 'HTML async',
-    canvas: 'HTML canvas',
-    classList: 'HTML classList',
-    localStorage: 'local storage',
-    mouse: 'detectable mouse',
-    querySelectorAll: 'HTML querySelectorAll',
-    supportedScreenSize: `screen size ${MIN_HORIZONTAL_PIXELS}x${MIN_VERTICAL_PIXELS} or higher (found ${BROWSER_FEATURES.screenSize})`,
-    supportedBrowser: `a supported browser (found ${BROWSER_FEATURES.browser}, which is not)`,
-    viewportUnits: 'CSS viewport units',
-    webgl2: 'WebGL2 for fly-thru test animation',
+    addEventListener: 'HTML addEventListener 支援',
+    async: 'HTML async 支援',
+    canvas: 'HTML Canvas 繪圖支援',
+    classList: 'HTML classList 支援',
+    localStorage: '本機儲存空間（localStorage）',
+    mouse: '可偵測之滑鼠或精確指標裝置',
+    querySelectorAll: 'HTML querySelectorAll 支援',
+    supportedScreenSize: `螢幕解析度需達 ${MIN_HORIZONTAL_PIXELS}x${MIN_VERTICAL_PIXELS} 以上（目前偵測為 ${BROWSER_FEATURES.screenSize}）`,
+    supportedBrowser: `支援的瀏覽器（目前偵測為 ${BROWSER_FEATURES.browser}，尚未正式支援）`,
+    viewportUnits: 'CSS 視窗單位支援',
+    webgl2: '載重測試 3D 動畫所需的 WebGL2 支援',
   };
   const missing = Object.entries(mandatory)
     .filter(([feature, _]) => !BROWSER_FEATURES[feature as keyof BrowserFeatures])
@@ -100,16 +100,14 @@ export function areBrowserFeaturesMissing(): boolean {
   if (missing.length === 0) {
     return false;
   }
-  const wantsHelp = confirm(`Oops. Looks like your browser is missing some bits 
-needed by the ASCE Bridge Designer:
+  const wantsHelp = confirm(`哎呀，您的瀏覽器似乎缺少「橋梁結構設計師」所需的下列條件：
 ${missing.map(item => ` - ${item}`).join('\n')}
-This means likely problems or failure if you continue.
+若繼續執行，可能會遇到畫面異常或功能無法使用的情況。
 
-Click OK for information about ASCE Bridge Designer's 
-browser requirements or Cancel to continue 
-running ASCE Bridge Designer anyway.
- 
-NOTE: If you Cancel, this warning won't reappear unless something changes.`);
+點擊「確定」可查看瀏覽器需求說明；
+點擊「取消」則略過警告並繼續開啟橋梁結構設計師。
+
+提醒：若您選擇「取消」，除非環境有所變更，否則下次不會再跳出此警告。`);
   if (!wantsHelp) {
     // User cancelled. Don't show dialog again until something changes.
     window.localStorage.setItem(LOCAL_STORAGE_KEY, currentFeaturesJson);

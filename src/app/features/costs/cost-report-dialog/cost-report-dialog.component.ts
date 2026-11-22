@@ -21,6 +21,7 @@ import { SiteCostsModel } from '../../../shared/services/design-conditions.servi
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { WidgetHelper } from '../../../shared/classes/widget-helper';
+import { PDF_ZH_FONT, PdfFontService } from '../../../shared/services/pdf-font.service';
 
 /** A dialog containing a detailed report of bridge costs. */
 @Component({
@@ -44,6 +45,7 @@ export class CostReportDialogComponent implements AfterViewInit {
     private readonly bridgeService: BridgeService,
     private readonly eventBrokerService: EventBrokerService,
     private readonly changeDetector: ChangeDetectorRef,
+    private readonly pdfFontService: PdfFontService,
   ) {
     this.bridgeCosts = this.bridgeCostService.bridgeCostModel;
   }
@@ -89,16 +91,18 @@ export class CostReportDialogComponent implements AfterViewInit {
     this.changeDetector.detectChanges();
   }
 
-  handlePrint(): void {
+  async handlePrint(): Promise<void> {
+    const previewWindow = this.pdfFontService.openPreviewPlaceholder();
     const doc = new jsPDF({ format: 'letter', orientation: 'landscape' });
+    await this.pdfFontService.applyFont(doc);
+    doc.setProperties({ title: '成本計算明細' });
     autoTable(doc, {
       html: '.report-table',
-      styles: { fontSize: 8 },
+      styles: { font: PDF_ZH_FONT, fontSize: 8 },
+      headStyles: { font: PDF_ZH_FONT },
       useCss: true,
     });
-    const blob = doc.output('blob');
-    const url = URL.createObjectURL(blob);
-    window.open(url, '_blank');
+    this.pdfFontService.displayPdf(doc, previewWindow);
   }
 
   ngAfterViewInit(): void {

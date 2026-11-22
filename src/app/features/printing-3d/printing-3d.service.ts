@@ -10,11 +10,11 @@ import { Mat2x3, Print3dModelService } from './print-3d-model.service';
 export class Print3dModelInfo {
   constructor(
     public printWidth: number = 0,
-    public maxWidthPart: string = '<none>',
+    public maxWidthPart: string = '（無）',
     public printDepth: number = 0,
-    public maxDepthPart: string = '<none>',
+    public maxDepthPart: string = '（無）',
     public printHeight: number = 0,
-    public maxHeightPart: string = '<none>',
+    public maxHeightPart: string = '（無）',
   ) {}
 
   mergeManifold(manifold: Manifold, part: string): void {
@@ -83,14 +83,14 @@ export class Printing3dService {
     const gmy = this.print3dModelService.getGeometry(modelMmPerWorldM, 0.1, 0);
     // Compute only objects that could possibly establish the max sizes.
     const xform: Mat2x3 = [modelMmPerWorldM, 0, 0, modelMmPerWorldM, 0, 0];
-    const truss = throwIfEmpty(this.print3dModelService.buildTruss(gmy, xform), 'unit truss');
+    const truss = throwIfEmpty(this.print3dModelService.buildTruss(gmy, xform), '桁架單元');
     const info = new Print3dModelInfo();
-    info.mergeManifold(truss, 'truss');
-    const leftAbutment = throwIfEmpty(this.print3dModelService.buildAbutment(gmy, 0), 'unit abutment');
-    info.mergeManifold(leftAbutment, 'abutment');
+    info.mergeManifold(truss, '桁架');
+    const leftAbutment = throwIfEmpty(this.print3dModelService.buildAbutment(gmy, 0), '橋台單元');
+    info.mergeManifold(leftAbutment, '橋台');
     if (this.print3dModelService.isPier) {
-      const pier = throwIfEmpty(this.print3dModelService.buildPier(gmy, 0), 'unit pier');
-      info.mergeManifold(pier, 'pier');
+      const pier = throwIfEmpty(this.print3dModelService.buildPier(gmy, 0), '橋墩單元');
+      info.mergeManifold(pier, '橋墩');
     }
     cleanup(); // Free manifold memory.
     return Promise.resolve(info);
@@ -215,29 +215,29 @@ export class Printing3dService {
   }
 
   public get abutmentsFileContents(): string {
-    const rtn = ['abutments'];
+    const rtn = ['橋台'];
     if (this.print3dModelService.isPier) {
-      rtn.push('pier');
+      rtn.push('橋墩');
     }
     switch (+this.print3dModelService.isLeftAnchorage + +this.print3dModelService.isRightAnchorage) {
       case 0:
         break;
       case 1:
-        rtn.push('anchorage');
+        rtn.push('單側鋼索錨座');
         break;
       case 2:
-        rtn.push('anchorages');
+        rtn.push('雙側鋼索錨座');
         break;
     }
-    return rtn.join(', ');
+    return rtn.join('、');
   }
 
   public get crossMembersFileContents(): string {
-    return 'cross-members, deck panels';
+    return '橫向連桿、橋面板';
   }
 
   public get trussesFileContents(): string {
-    return 'trusses';
+    return '兩側桁架';
   }
 
   /** Saves OBJ file text for given manifold mesh to given text, then frees all manifolds. */

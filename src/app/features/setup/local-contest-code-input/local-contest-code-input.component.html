@@ -18,13 +18,13 @@
   @if (localContestCodeInput.invalid && (localContestCodeInput.dirty || localContestCodeInput.touched)) {
     <div class="feedback">
       @if (localContestCodeInput.hasError('error')) {
-        <div class="error">Oops... That wasn't right.</div>
+        <div class="error">哎呀…這個代碼格式不正確。</div>
       } @else if (localContestCodeInput.hasError('prefix')) {
-        <div class="okay-so-far">Looking good so far...</div>
+        <div class="okay-so-far">目前格式正確，請繼續輸入…</div>
       }
     </div>
   }
   @if (localContestCodeInput.value?.length !== 0 && localContestCodeInput.valid) {
-    <div class="feedback done">Looks fine, but double check!</div>
+    <div class="feedback done">格式正確，請再確認一次代碼！</div>
   }
 </div>

@@ -68,21 +68,21 @@ export class HelpDialogComponent implements AfterViewInit {
   initTools = ((_type?: string, index?: number, tool?: any, _menuToolInitialization?: boolean): any => {
     switch (index) {
       case Tools.BACK_TOPIC:
-        WidgetHelper.initToolbarImgButton('Back one topic', 'img/back.png', tool);
+        WidgetHelper.initToolbarImgButton('上一頁主題', 'img/back.png', tool);
         tool.on('click', () => this.currentTopicService.goBack());
         break;
       case Tools.FORWARD_TOPIC:
-        WidgetHelper.initToolbarImgButton('Forward one topic', 'img/play.png', tool);
+        WidgetHelper.initToolbarImgButton('下一頁主題', 'img/play.png', tool);
         tool.on('click', () => this.currentTopicService.goForward());
         break;
       case Tools.SHARE:
         // Absolute positioning seems to be the only way here.
-        WidgetHelper.initToolbarImgButton('Copy topic URL to clipboard', 'img/share.png', tool);
+        WidgetHelper.initToolbarImgButton('複製主題連結至剪貼簿', 'img/share.png', tool);
         tool.css({ position: 'absolute', right: '30px' });
         tool.on('click', () => this.copyUrlToClipboard());
         break;
       case Tools.PRINT:
-        WidgetHelper.initToolbarImgButton('Forward one topic', 'img/print.png', tool);
+        WidgetHelper.initToolbarImgButton('列印目前說明主題', 'img/print.png', tool);
         tool.css({ position: 'absolute', right: '0' });
         tool.on('click', () => this.currentTopicService.printCurrentTopicRequest.next());
         break;

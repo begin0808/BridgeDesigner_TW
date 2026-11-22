@@ -24,12 +24,12 @@ import { SessionStateService } from '../../../features/session-state/session-sta
 
 /** Possible buttons in recommended order. */
 const BUTTON_INFO = {
-  help: 'Help...',
-  ok: 'OK',
-  yes: 'Yes',
-  no: 'No',
-  cancel: 'Cancel',
-  close: 'Close',
+  help: '說明…',
+  ok: '確定',
+  yes: '是',
+  no: '否',
+  cancel: '取消',
+  close: '關閉',
 } as const;
 export type ButtonTag = keyof typeof BUTTON_INFO;
 

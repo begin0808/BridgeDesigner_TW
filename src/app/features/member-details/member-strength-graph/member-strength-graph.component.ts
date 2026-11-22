@@ -52,8 +52,8 @@ const PADDING_WIDTH = 8;
 const PALE_BLUE = 'rgb(180,180,255)';
 const PALE_RED = 'rgb(255,180,180)';
 const TICK_SIZE = 3;
-const TITLE_TEXT_X = 'Member length (meters)';
-const TITLE_TEXT_Y = 'Strength (kilonewtons)';
+const TITLE_TEXT_X = '桿件長度（公尺）';
+const TITLE_TEXT_Y = '強度（千牛頓 kN）';
 
 @Component({
   selector: 'member-strength-graph',

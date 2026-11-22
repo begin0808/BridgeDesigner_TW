@@ -35,6 +35,8 @@ import { AllowFreshStartDialogComponent } from './features/session-state/allow-f
 import { BridgeService } from './shared/services/bridge.service';
 import { DesignConditionsService } from './shared/services/design-conditions.service';
 import { ContestWelcomeDialogComponent } from './features/contest/contest-welcome-dialog/contest-welcome-dialog.component';
+import { ClassroomGuideComponent } from './features/tutorial/classroom-guide/classroom-guide.component';
+import { QuickStartDialogComponent } from './features/tutorial/quick-start-dialog/quick-start-dialog.component';
 
 // ¯\_(ツ)_/¯
 
@@ -67,6 +69,8 @@ import { ContestWelcomeDialogComponent } from './features/contest/contest-welcom
     UnstableBridgeDialogComponent,
     WelcomeDialogComponent,
     AllowFreshStartDialogComponent,
+    ClassroomGuideComponent,
+    QuickStartDialogComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

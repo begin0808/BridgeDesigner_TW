@@ -21,10 +21,10 @@ export const enum LocalContestCodeInputState {
 })
 export class LocalContestCodeInputComponent {
   private static readonly LOCAL_CONTEST_MATCHER = /^[0-9A-Z]{3}\d\d[A-D]$/;
-  private static readonly ERROR = { error: 'Oops. Not a local contest code' };
-  private static readonly PREFIX = { prefix: 'Looks good so far!' };
+  private static readonly ERROR = { error: '這不是有效的地區競賽代碼' };
+  private static readonly PREFIX = { prefix: '目前格式正確！' };
 
-  @Input() label: string = 'Enter contest code:';
+  @Input() label: string = '輸入競賽代碼：';
   @Output() readonly onChange = new EventEmitter<LocalContestCodeInputState>();
   @ViewChild('localContestCodeInputRef') localContestCodeInputRef!: ElementRef<HTMLInputElement>;
 

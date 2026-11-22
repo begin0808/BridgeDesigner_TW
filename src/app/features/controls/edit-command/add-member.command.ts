@@ -33,11 +33,11 @@ export class AddMemberCommand extends EditCommand {
       .sort((x, y) => Geometry.distanceSquared2DPoints(x, member.a) - Geometry.distanceSquared2DPoints(y, member.a));
     // Handle the most common case without copying.
     if (transecting.length === 0) {
-      command.description = `Add member, joint ${member.a.number} to ${member.b.number}`;
+      command.description = `新增桿件（節點 ${member.a.number} 至 ${member.b.number}）`;
       command.members.push(member);
       return command;
     }
-    command.description = `Add ${transecting.length + 1} members, joint ${member.a.number} to ${member.b.number}`;
+    command.description = `新增 ${transecting.length + 1} 支桿件（節點 ${member.a.number} 至 ${member.b.number}）`;
     let a: Joint = member.a;
     transecting.forEach(b => {
       addMember(a, b);

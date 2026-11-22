@@ -28,7 +28,7 @@ export class ChangeMembersCommand extends EditCommand {
 
   /** Returns a command that updates selected items of the bridge members list to a new material. */
   public static forMemberMaterialsUpdate(members: Member[], updatedMembers: Member[]): ChangeMembersCommand {
-    const description = EditCommandDescription.formatMemberMessage(updatedMembers, 'Update material for member');
+    const description = EditCommandDescription.formatMemberMessage(updatedMembers, '變更桿件材料');
     return new ChangeMembersCommand(description, members, updatedMembers);
   }
 
@@ -46,8 +46,8 @@ export class ChangeMembersCommand extends EditCommand {
         updatedMembers.push(new Member(member.index, member.a, member.b, member.material, newShape));
       }
     }
-    const action = increment > 0 ? 'Up' : 'Down';
-    const description = EditCommandDescription.formatMemberMessage(updatedMembers, `${action}-size member`);
+    const action = increment > 0 ? '加大' : '縮小';
+    const description = EditCommandDescription.formatMemberMessage(updatedMembers, `${action}桿件尺寸`);
     return new ChangeMembersCommand(description, members, updatedMembers);
   }
 

@@ -1,11 +1,11 @@
 <!doctype html>
-<html>
+<html lang="zh-Hant">
   <head>
-    <title>About your browser...</title>
+    <title>關於您的瀏覽器環境…</title>
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Bridge Designer browser requirements"
+      content="橋梁結構設計師（繁體中文教學版）瀏覽器需求說明"
     />
     <meta
       name="viewport"
@@ -14,15 +14,21 @@
     <style>
       body {
         font:
-          16px Arial,
+          16px 'Noto Sans TC',
+          'Microsoft JhengHei',
+          'PingFang TC',
+          Arial,
           sans-serif;
         padding: 16px;
+        line-height: 1.6;
       }
       h1 {
-        font: bold 20px;
+        font-weight: bold;
+        font-size: 20px;
       }
       h2 {
-        font: bold 18px;
+        font-weight: bold;
+        font-size: 18px;
       }
       .p {
         margin-top: 8px;
@@ -33,90 +39,71 @@
     </style>
   </head>
   <body>
-    <h1>About your browser...</h1>
+    <h1>關於您的瀏覽器環境…</h1>
     <div class="p">
-      If you ended up here, your browser is missing features needed by ASCE Bridge Designer. Sorry about that. We do our
-      best to be compatible with most devices having a mouse or similar gadget and a broad range of browser software.
+      您會看到此頁面，代表您目前的瀏覽器或裝置缺少「橋梁結構設計師」所需的關鍵功能。我們已盡力相容多數配備滑鼠（或觸控板）的裝置與主流桌面瀏覽器。
     </div>
-    <h2>What's okay...</h2>
+    <h2>建議環境需求</h2>
     <div class="p">
-      <span class="b">Not touch-only devices.</span> Sorry. We don't support pure touch screens with no mouse-like
-      pointer.
+      <span class="b">非純觸控裝置：</span>很抱歉，目前尚未支援完全沒有滑鼠指標的純觸控螢幕操作。
     </div>
     <div class="p">
-      <span class="b">Many browsers.</span> Up-to-date versions of these should be fine:
+      <span class="b">支援的主流瀏覽器：</span>以下瀏覽器的最新版本皆可順暢使用：
       <ul>
         <li>
-          Based on recent Chromium:
+          Chromium 核心瀏覽器（最推薦）：
           <ul>
             <li>Google Chrome</li>
             <li>Microsoft Edge</li>
-            <li>Chromium, open source</li>
+            <li>Chromium（開源版）</li>
             <li>Opera</li>
           </ul>
         </li>
         <li>Firefox</li>
       </ul>
-      Other Chromium- and Firefox-based browsers may work fine. Unfortunately, we can't currently support Apple Safari.
+      其他基於 Chromium 或 Firefox 的瀏覽器大多也能正常執行；目前較不建議使用 Apple Safari。
     </div>
-    <div class="p"><span class="b">Screen resolution.</span> At least 1280 by 720 pixels.</div>
+    <div class="p"><span class="b">螢幕解析度：</span>至少 1280 × 720 像素以上。</div>
     <div class="p">
-      <span class="b">Mouse-like device.</span> An accurate pointer such as a mouse, track pad, or track ball is
-      necessary.
+      <span class="b">精確指標裝置：</span>需要滑鼠、觸控板或軌跡球以精準繪製節點與桿件。
     </div>
-    <h2>How to fix problems...</h2>
+    <h2>如何排除問題？</h2>
     <div class="p">
-      <span class="b">Take your chances.</span> ASCE Bridge Designer might be okay with your current setup despite
-      warnings. Some features may be disabled or work poorly. Give it a try by clicking <span class="b">Cancel</span> in
-      the warning dialog.
+      <span class="b">嘗試繼續使用：</span>即使出現警告，橋梁結構設計師仍可能在您目前的裝置上運作（部分功能會自動停用或體驗較差）。您可以在警告視窗中點擊<span class="b">取消</span>直接進入試用。
     </div>
     <div class="p">
-      <span class="b">Adjust settings or hardware.</span> If you were warned about screen resolution or mouse, you'll
-      want to adjust or replace hardware. Pro tips:
+      <span class="b">調整螢幕設定或周邊裝置：</span>若警告指向解析度不足或偵測不到滑鼠，可嘗試以下做法：
       <ul>
-        <li>
-          Screen resolution is often a choice. Check your operating system's display settings. Pick a resolution of
-          1280x720 or more. Bigger is better.
-        </li>
-        <li>
-          For lower resolutions, set the browser to &quot;full screen mode&quot; to use all possible pixels.
-        </li>
-        <li>Many touch devices support adding a mouse at no or low cost. Check the web for options.</li>
+        <li>檢查作業系統的顯示器設定，將解析度調整為 1280×720 以上（越高越清晰好操作）。</li>
+        <li>若螢幕較小，可按 F11 將瀏覽器切換為「全螢幕模式」以充分利用畫面空間。</li>
+        <li>多數平板或觸控裝置皆可外接藍牙或 USB 滑鼠。</li>
       </ul>
     </div>
-    <div>
-      <span class="b">Switch or upgrade your browser.</span> If a startup warning complained about an unsupported
-      browser or missing HTML or CSS features, try installing a current, supported version. If your device is unable,
-      try the latest possible version of Google Chrome. That's the best chance of success.
-    </div>
-    <h2>Help us out</h2>
     <div class="p">
-      <span class="b">Report problems.</span> If, after reading through all above, things still don't make sense, report
-      a bug via email to
-      <a
-        href="mailto:bridgedesignerteam@gmail.com"
-        target="_blank"
-        >the project team</a
-      >.
+      <span class="b">更換或更新瀏覽器：</span>若啟動警告指出瀏覽器不支援或缺少 HTML／CSS／WebGL2 功能，建議安裝或更新至最新版 Google Chrome 或 Microsoft Edge。
     </div>
+    <h2>回報問題</h2>
     <div class="p">
-      <span class="b">Software fixes.</span> If you're a developer, we'll happily consider your pull requests to address
-      browser-related bugs and limitations. File a bug or feature request first to discuss what you'd like to do. See
-      the
+      若閱讀以上說明後仍有疑問，可參考原專案首頁
       <a
         href="https://gene-ressler.github.io/bridge-designer/"
         target="_blank"
-        >project home page</a
-      >.
+        >Bridge Designer Project Home Page</a
+      >，或聯繫原開發團隊
+      <a
+        href="mailto:bridgedesignerteam@gmail.com"
+        target="_blank"
+        >bridgedesignerteam@gmail.com</a
+      >。
     </div>
-    <h2>Links</h2>
+    <h2>相關連結</h2>
     <ul>
-      <li><a href="https://gene-ressler.github.io/bridge-designer/app/">Back to Bridge Designer</a></li>
+      <li><a href="../">返回橋梁結構設計師</a></li>
       <li>
         <a
           href="https://gene-ressler.github.io/bridge-designer/"
           target="_blank"
-          >Project home page</a
+          >原專案首頁（英文）</a
         >
       </li>
     </ul>

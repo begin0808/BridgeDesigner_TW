@@ -22,7 +22,7 @@ export class AddJointCommand extends EditCommand {
     private readonly selectedElements: SelectedElements,
     private readonly memberSplitter: MemberSplitter,
   ) {
-    super(`Add joint at (${joint.x}, ${joint.y})`);
+    super(`新增節點於 (${joint.x}, ${joint.y})`);
   }
 
   public static create(joint: Joint, bridge: BridgeModel, selectedElements: SelectedElements): AddJointCommand {

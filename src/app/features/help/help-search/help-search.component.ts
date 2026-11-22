@@ -21,7 +21,7 @@ import { CurrentTopicService } from '../current-topic.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HelpSearchComponent {
-  private static readonly NOTHING_YET = [{ topic: '', title: 'Nothing so far...' }];
+  private static readonly NOTHING_YET = [{ topic: '', title: '尚無符合的結果…' }];
   @ViewChild('searchTermInput') searchTermInput!: ElementRef<HTMLInputElement>;
 
   source: any = HelpSearchComponent.NOTHING_YET;
@@ -38,8 +38,8 @@ export class HelpSearchComponent {
   
   /** Handles the input event of the search term input control. */
   handleSearchTermInputInput(): void {
-    const searchTerm = this.searchTermInput.nativeElement.value;
-    if (searchTerm.length <= 1) {
+    const searchTerm = this.searchTermInput.nativeElement.value.trim();
+    if (searchTerm.length === 0) {
       this.source = HelpSearchComponent.NOTHING_YET;
     } else {
       const result: Results<HelpTopic> = this.helpIndexService.search(searchTerm);

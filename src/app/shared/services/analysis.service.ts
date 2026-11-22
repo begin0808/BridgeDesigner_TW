@@ -409,15 +409,15 @@ export class AnalysisService {
     const small = useSmall ? 'small' : '';
     switch (status) {
       case AnalysisStatus.PASSES:
-        return { src: `img/good${small}.png`, title: 'The design passed its last test.' };
+        return { src: `img/good${small}.png`, title: '本設計已通過載重測試。' };
       case AnalysisStatus.FAILS_LOAD_TEST:
-        return { src: `img/bad${small}.png`, title: 'The design failed its last test.' };
+        return { src: `img/bad${small}.png`, title: '本設計未通過載重測試。' };
       case AnalysisStatus.FAILS_SLENDERNESS:
-        return { src: `img/bad${small}.png`, title: 'Some members that are too slender.' };
+        return { src: `img/bad${small}.png`, title: '部分桿件細長比超過上限（過於細長）。' };
       case AnalysisStatus.UNSTABLE:
-        return { src: `img/bad${small}.png`, title: 'The design is unstable.' };
+        return { src: `img/bad${small}.png`, title: '結構不穩定，無法承受載重。' };
       default:
-        return { src: `img/working${small}.png`, title: "The design hasn't been analyzed." };
+        return { src: `img/working${small}.png`, title: '本設計尚未執行分析測試。' };
     }
   }
 

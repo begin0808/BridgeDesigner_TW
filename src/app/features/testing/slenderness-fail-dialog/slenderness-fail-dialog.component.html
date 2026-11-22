@@ -8,11 +8,11 @@
   [width]="640"
   [height]="432"
 >
-  <div class="header">Bridge design analysis</div>
+  <div class="header">橋梁結構分析</div>
   <div class="content">
-    <div class="heading">🙁 A member fails the slenderness test. Let's fix it! 🙂</div>
+    <div class="heading">🙁 有桿件未通過細長比檢核，一起來修正它吧！ 🙂</div>
     <div class="text">
-      <p>Click the close button when ready to return to the drawing board.</p>
+      <p>準備好返回繪圖區修改時，請點擊「關閉」按鈕。</p>
     </div>
     <div class="frame">
       <div class="part">
@@ -25,14 +25,11 @@
           class="textbox"
         >
           <div>
-            (1) A member with <span class="too-slender">magenta</span> marks has failed the slenderness test. Its
-            slenderness ratio is over 300, therefore the member is too slender. Press
-            <span class="g">Next&gt;&gt;</span> to see a fix for this problem.
+            （1）帶有<span class="too-slender">洋紅色</span>標記的桿件表示未通過細長比檢核：它的細長比超過 300，代表桿件過於細長。請點擊<span class="g">下一步&gt;&gt;</span>查看修正方法。
           </div>
-          <div>(2) To fix the problem, select the member either on the drafting board or in the member list...</div>
+          <div>（2）要修正此問題，請在繪圖區或桿件明細表中選取該支桿件…</div>
           <div>
-            (3) Then increase its size. This decreases the slenderness ratio. When the ratio becomes 300 or less, it
-            passes the test, and the <span class="too-slender">magenta</span> marks disappear.
+            （3）接著加大該桿件的尺寸，這樣就能降低細長比。當細長比降至 300 以下時即通過檢核，<span class="too-slender">洋紅色</span>標記便會消失。
           </div>
         </div>
       </div>
@@ -41,18 +38,18 @@
           [width]="'110px'"
           [disabled]="partIndex === 0"
           (onClick)="bumpPart(-1)"
-          >&lt;&lt; Back</jqxButton
+          >&lt;&lt; 上一步</jqxButton
         >
         <jqxButton
           [width]="'110px'"
           style="margin-left: 4px"
           (onClick)="bumpPart(1)"
-          >Next &gt;&gt;</jqxButton
+          >下一步 &gt;&gt;</jqxButton
         >
       </div>
     </div>
     <fieldset class="design-tip">
-      <legend>Design tip:</legend>
+      <legend>設計提示：</legend>
       <div>
         <img
           class="tip-icon"
@@ -61,22 +58,22 @@
         <img
           class="referenced-button"
           src="img/sizeupbutton.png"
-          alt="Size up button icon"
+          alt="加大桿件尺寸按鈕圖示"
         />
-        You can use the increase member size button to decrease the slenderness ratio of selected members.
+        您可以使用工具列上的「加大桿件尺寸」按鈕，快速降低所選桿件的細長比。
       </div>
     </fieldset>
     <div class="buttons">
       <jqxButton
         (onClick)="showSlendernessHelp()"
         [width]="'110px'"
-        >Help...</jqxButton
+        >說明…</jqxButton
       >
       <jqxButton
         style="margin-left: 4px"
         (onClick)="dialog.close()"
         [width]="'110px'"
-        >Close</jqxButton
+        >關閉</jqxButton
       >
     </div>
   </div>

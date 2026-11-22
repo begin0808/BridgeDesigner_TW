@@ -8,6 +8,7 @@ import { jqxRadioButtonModule, jqxRadioButtonComponent } from 'jqwidgets-ng/jqxr
 import { EventBrokerService, EventOrigin } from '../../../shared/services/event-broker.service';
 import { BridgeService } from '../../../shared/services/bridge.service';
 import { ContestBridgeService } from '../../../shared/services/contest-bridge.service';
+import { TutorialService } from '../../tutorial/tutorial.service';
 
 /**
  * Dialog that allows the user to get started with a new, existing, or example design. Alternately, if
@@ -30,6 +31,7 @@ export class WelcomeDialogComponent implements AfterViewInit {
     private readonly bridgeService: BridgeService,
     private readonly contestBridgeService: ContestBridgeService,
     private readonly eventBrokerService: EventBrokerService,
+    private readonly tutorialService: TutorialService,
   ) {}
 
   handleOkButton(): void {
@@ -45,6 +47,10 @@ export class WelcomeDialogComponent implements AfterViewInit {
 
   handleAboutButton(): void {
     this.eventBrokerService.aboutRequest.next({ origin: EventOrigin.WELCOME_DIALOG, data: undefined });
+  }
+
+  handleQuickStartButton(): void {
+    this.tutorialService.openQuickStart();
   }
 
   private loadContestBridgeOrOpen(): void {

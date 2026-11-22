@@ -14,7 +14,7 @@
     #header
     class="header"
   >
-    Export model to 3D print
+    匯出 3D 列印模型
   </div>
   <div
     #content
@@ -24,17 +24,16 @@
       <img
         class="warning-icon"
         src="img/warning.png"
-        alt="Warning icon"
-      />EXPERIMENTAL: A work in progress. Click <b>Help</b> to learn about it.
+        alt="警告圖示"
+      />實驗性功能：持續開發中，點擊<b>說明…</b>以了解更多細節，也歡迎回報
       <a
         href="https://gene-ressler.github.io/bridge-designer/"
         target="_blank"
-        >Bug reports</a
-      >
-      welcome.
+        >問題與建議</a
+      >。
     </div>
     <div class="labeled-input-container">
-      <div class="input-label">Smallest printable feature (millimeters):</div>
+      <div class="input-label">最小可列印特徵尺寸（公釐 mm）：</div>
       <div class="input-widget">
         <jqxNumberInput
           [width]="50"
@@ -46,7 +45,7 @@
           [(ngModel)]="minFeatureSizeMm"
         ></jqxNumberInput>
       </div>
-      <div class="input-label">Wiggle room (millimeters):</div>
+      <div class="input-label">組裝間隙公差（公釐 mm）：</div>
       <div class="input-widget">
         <jqxNumberInput
           [width]="50"
@@ -62,34 +61,34 @@
     </div>
     <div class="two-column-container">
       <div class="para">
-        <div>Scale: {{ modelMmPerWorldM.toFixed(2) }} model millimeters per world meter</div>
+        <div>縮放比例：實際 1 公尺對應模型 {{ modelMmPerWorldM.toFixed(2) }} 公釐</div>
         <ng-container #scaleSliderContainer></ng-container>
       </div>
       <div class="para">
         <table class="dimensions">
           <caption>
-            Maximum part dimensions
+            最大零件尺寸
           </caption>
           <thead>
             <tr>
-              <th>Dimension</th>
-              <th>Size (mm)</th>
-              <th>Part</th>
+              <th>方向</th>
+              <th>尺寸 (mm)</th>
+              <th>對應零件</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Width (x)</td>
+              <td>寬度 (x)</td>
               <td>{{ modelInfo.printWidth.toFixed(1) }}</td>
               <td>{{ modelInfo.maxWidthPart }}</td>
             </tr>
             <tr>
-              <td>Depth (y)</td>
+              <td>深度 (y)</td>
               <td>{{ modelInfo.printDepth.toFixed(1) }}</td>
               <td>{{ modelInfo.maxDepthPart }}</td>
             </tr>
             <tr>
-              <td>Height (z)</td>
+              <td>高度 (z)</td>
               <td>{{ modelInfo.printHeight.toFixed(1) }}</td>
               <td>{{ modelInfo.maxHeightPart }}</td>
             </tr>
@@ -99,7 +98,7 @@
     </div>
     <div class="two-column-container">
       <div class="para">
-        File base name
+        匯出檔案主名稱
         <div>
           <input
             #projectNameInput
@@ -114,17 +113,17 @@
       <div class="para">
         <table class="exports">
           <caption>
-            Exports
+            將匯出的檔案
           </caption>
           <thead>
             <tr>
-              <th>File name</th>
-              <th>Contents</th>
+              <th>檔案名稱</th>
+              <th>包含零件</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{ baseFileName }}-abutments</td>
+              <td>{{ baseFileName }}-abutments.obj</td>
               <td>{{ abutmentsFileContents }}</td>
             </tr>
             <tr>
@@ -141,7 +140,7 @@
     </div>
     <div class="error-block">
       @if (error) {
-        Sorry. The bridge is too complex to export. See Help. ({{ error }})
+        抱歉，此橋梁幾何結構過於複雜無法匯出，請參閱說明。（{{ error }}）
       } @else {
         &nbsp;
       }
@@ -151,20 +150,20 @@
         style="margin-bottom: 4px; margin-top: 8px; margin-right: 4px"
         (onClick)="handleHelpButtonClick()"
         [width]="'120px'"
-        >Help...</jqxButton
+        >說明…</jqxButton
       >
       <jqxButton
         style="margin-bottom: 4px; margin-top: 8px; margin-right: 4px"
         (onClick)="dialog.close()"
         [width]="'120px'"
-        >Cancel</jqxButton
+        >取消</jqxButton
       >
       <jqxButton
         style="margin-bottom: 4px; margin-top: 8px"
         (onClick)="handleOkButtonClick()"
         [disabled]="error !== ''"
         [width]="'120px'"
-        >Ok</jqxButton
+        >匯出</jqxButton
       >
     </div>
   </div>

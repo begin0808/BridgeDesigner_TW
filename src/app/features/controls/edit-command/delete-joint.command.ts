@@ -23,7 +23,7 @@ export class DeleteJointCommand extends EditCommand {
     private readonly bridge: BridgeModel,
     private readonly selectedElements: SelectedElements,
   ) {
-    super(`Delete joint at (${joint.x}, ${joint.y})`);
+    super(`刪除節點 (${joint.x}, ${joint.y})`);
     this.joint = [joint];
     this.members = bridge.members.filter(member => member.hasJoint(joint));
   }

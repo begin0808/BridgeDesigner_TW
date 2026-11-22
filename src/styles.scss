@@ -1,9 +1,24 @@
 /* Copyright (c) 2025-2026 Gene Ressler
    SPDX-License-Identifier: GPL-3.0-or-later */
 
+@use './app/features/tutorial/classroom-guide/classroom-guide.component.scss';
+@use './app/features/tutorial/quick-start-dialog/quick-start-dialog.component.scss';
+
 body {
   // Don't let jqxToolbars melt down trying to minimize.
   min-width: 1100px;
+  font-family: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', 'Roboto', sans-serif;
+}
+
+.jqx-widget,
+.jqx-widget-content,
+.jqx-widget-header,
+.jqx-menu,
+.jqx-window,
+.jqx-button,
+.jqx-grid-cell,
+.jqx-grid-column-header {
+  font-family: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', 'Roboto', sans-serif;
 }
 
 .jqx-window-content {

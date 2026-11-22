@@ -6,6 +6,7 @@ import jsPDF from 'jspdf';
 import { BridgeService } from '../../shared/services/bridge.service';
 import { autoTable } from 'jspdf-autotable';
 import { DRAWING_LINE_WIDTH_MM, DRAWING_MARGIN_MM } from './drawings.service';
+import { PDF_ZH_FONT } from '../../shared/services/pdf-font.service';
 
 const FONT_SIZE = 8;
 const TABLE_WIDTH = 62;
@@ -79,6 +80,7 @@ export class MemberTablePdfRenderingService {
       tableLineColor: 'black',
       tableLineWidth: DRAWING_LINE_WIDTH_MM,
       styles: {
+        font: PDF_ZH_FONT,
         textColor: 'black',
         lineColor: 'black',
         lineWidth: DRAWING_LINE_WIDTH_MM,
@@ -86,6 +88,7 @@ export class MemberTablePdfRenderingService {
         fontSize: FONT_SIZE,
       },
       headStyles: {
+        font: PDF_ZH_FONT,
         fillColor: 'white',
         textColor: 'black',
         fontStyle: 'normal',
@@ -100,7 +103,7 @@ export class MemberTablePdfRenderingService {
         3: { halign: 'center', cellWidth: 17.5 },
         4: { halign: 'right' },
       },
-      head: [['#', 'Material', 'Cross- section', 'Size (mm)', 'Length']],
+      head: [['#', '材料', '斷面', '尺寸 (mm)', '長度 (m)']],
       body: chunk,
     });
   }

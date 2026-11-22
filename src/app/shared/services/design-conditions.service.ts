@@ -308,7 +308,7 @@ export class DesignConditions {
       excavationVolume: this.excavationVolume,
       excavationCostRate: contestParameters.excavationCostRate,
       excavationCost: this.excavationVolume * contestParameters.excavationCostRate,
-      abutmentType: this.isArch ? 'arch' : 'standard',
+      abutmentType: this.isArch ? '拱形' : '標準',
       abutmentCount: 2,
       abutmentCostRate: 0.5 * this.abutmentCost,
       abutmentCost: this.abutmentCost,

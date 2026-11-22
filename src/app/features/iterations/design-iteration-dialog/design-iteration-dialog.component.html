@@ -14,14 +14,14 @@
     #header
     class="header"
   >
-    Load a design iteration
+    切換設計版本（歷史迭代）
   </div>
   <div
     #content
     class="content"
   >
     <div class="top-row">
-      <div class="select-label">Select an iteration:</div>
+      <div class="select-label">選擇一個設計版本：</div>
     </div>
     <div class="left-column">
       <jqxTabs
@@ -35,8 +35,8 @@
         (onSelected)="handleTabSelected($event)"
       >
         <ul>
-          <li>Tree view</li>
-          <li>List view</li>
+          <li>樹狀檢視</li>
+          <li>清單檢視</li>
         </ul>
         <div>
           <jqxTreeGrid
@@ -71,7 +71,7 @@
           </jqxGrid>
         </div>
       </jqxTabs>
-      <div class="dialog-topic">Preview:</div>
+      <div class="dialog-topic">預覽：</div>
       <canvas
         #preview
         class="preview"
@@ -82,21 +82,19 @@
     </div>
     <div class="right-column">
       <fieldset class="design-tip">
-        <legend class="dialog-topic">Design tip:</legend>
+        <legend class="dialog-topic">設計提示：</legend>
         <div>
           <p>
             <img
               class="tip-icon"
               src="img/tipicon.png"
             />
-            The <b>tree view</b> tab shows how each iteration is based on a previous one. The <b>list view</b> shows
-            them in order of creation. Both are handy.
+            <b>樹狀檢視</b>會顯示每個設計版本是從哪一個舊版本演變而來；<b>清單檢視</b>則依建立時間順序排列，兩者都很實用。
           </p>
           <p>
-            For each iteration in the tree view, an arrow points toward the one it's based on: ⇖ for the one to the left
-            and above or ⇑ for directly above. Click dropdown buttons to collapse sections of the tree.
+            在樹狀檢視中，箭頭會指向其衍生來源：⇖ 代表左上方版本，⇑ 代表正上方版本。點擊展開／收合按鈕可折疊分支。
           </p>
-          <p>Use up and down arrow keys to scroll through iterations. The <b>Preview</b> window shows each one.</p>
+          <p>可使用鍵盤上下方向鍵切換不同版本，並於下方<b>預覽</b>視窗即時查看設計變化。</p>
         </div>
       </fieldset>
       <div>
@@ -106,7 +104,7 @@
           (onClick)="dialog.close()"
           style="float: right; margin-top: 40px; margin-right: 8px"
           [width]="'110px'"
-          >Cancel</jqxButton
+          >取消</jqxButton
         >
       </div>
       <div>
@@ -115,7 +113,7 @@
           (onClick)="handleOkClick()"
           style="float: right; margin-top: 16px; margin-right: 8px"
           [width]="'110px'"
-          >OK</jqxButton
+          >確定</jqxButton
         >
       </div>
     </div>

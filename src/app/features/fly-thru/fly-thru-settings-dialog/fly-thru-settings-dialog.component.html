@@ -11,12 +11,12 @@
   [resizable]="false"
   (onClose)="handleDialogClose()"
 >
-  <div class="header">Animation settings</div>
+  <div class="header">動畫設定</div>
   <div class="content">
     <!-- documented, unfixed bug in jqWidgets: sliders must be programmatically built in initContent -->
     <div class="top-controls">
       <div class="speed">
-        <div>Speed {{ speed }} km/hr</div>
+        <div>車速 {{ speed }} 公里／小時</div>
         <div class="speed-slider">
           <ng-container #speedSliderContainer></ng-container>
         </div>
@@ -30,7 +30,7 @@
         [checked]="!settings.noShadows"
         (onChange)="handleShadowsCheckboxChange()"
       >
-        Shadows</jqxCheckBox
+        陰影</jqxCheckBox
       >
       <jqxCheckBox
         #skyCheckbox
@@ -39,7 +39,7 @@
         [checked]="!settings.noSky"
         (onChange)="handleSkyCheckboxChange()"
       >
-        Sky</jqxCheckBox
+        天空</jqxCheckBox
       >
       <jqxCheckBox
         #terrainCheckbox
@@ -48,7 +48,7 @@
         [checked]="!settings.noTerrain"
         (onChange)="handleTerrainCheckboxChange()"
       >
-        Terrain</jqxCheckBox
+        地形</jqxCheckBox
       >
       <jqxCheckBox
         #windTurbineCheckbox
@@ -57,7 +57,7 @@
         [checked]="!settings.noWindTurbine"
         (onChange)="handleWindTurbineCheckboxChange()"
       >
-        Wind turbine</jqxCheckBox
+        風力發電機</jqxCheckBox
       >
       <jqxCheckBox
         #abutmentsCheckbox
@@ -66,7 +66,7 @@
         [checked]="!settings.noAbutments"
         (onChange)="handleAbutmentsCheckboxChange()"
       >
-        Abutments</jqxCheckBox
+        橋台</jqxCheckBox
       >
       <jqxCheckBox
         #truckCheckbox
@@ -75,7 +75,7 @@
         [checked]="!settings.noTruck"
         (onChange)="handleTruckCheckboxChange()"
       >
-        Truck</jqxCheckBox
+        卡車</jqxCheckBox
       >
       <jqxCheckBox
         #memberColorsCheckbox
@@ -84,7 +84,7 @@
         [checked]="!settings.noMemberColors"
         (onChange)="handleMemberColorsCheckbox()"
       >
-        Member colors</jqxCheckBox
+        桿件受力色彩</jqxCheckBox
       >
       <jqxCheckBox
         #exaggerationCheckbox
@@ -93,11 +93,11 @@
         [checked]="!settings.noExaggeration"
         (onChange)="handleExaggerationCheckbox()"
       >
-        Exaggeration</jqxCheckBox
+        放大形變效果</jqxCheckBox
       >
     </div>
     <div class="right-controls">
-      <div class="brightness-label">Brightness</div>
+      <div class="brightness-label">亮度</div>
       <div class="brightness-icons">
         <img src="img/bright.png" />
         <img src="img/dim.png" />

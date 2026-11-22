@@ -3,24 +3,24 @@
 
 <confirmation-dialog
   #dialog
-  [headerHtml]="'Contest welcome'"
+  [headerHtml]="'歡迎參加橋梁設計競賽'"
   [buttons]="['close']"
   [timeout]="6000"
   [width]="800"
   [height]="380"
 >
   <div class="container">
-    <div class="welcome">Welcome and good luck with...</div>
+    <div class="welcome">歡迎並祝您順利完成…</div>
     <div class="contest-name">
       <div>
         @if (contestParametersService.parameters.contestName) {
           {{ contestParametersService.parameters.contestName }}
         } @else {
-          Your local
+          您的地區
         }
       </div>
     </div>
-    <div class="subtitle">Bridge Design Contest</div>
-    <div class="explain">This is a special ASCE Bridge Designer version just for contest use.</div>
+    <div class="subtitle">橋梁設計競賽</div>
+    <div class="explain">此為專供競賽使用的橋梁結構設計師特別版本。</div>
   </div>
 </confirmation-dialog>

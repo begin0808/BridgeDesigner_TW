@@ -8,10 +8,10 @@
   [width]="344"
   [height]="300"
 >
-  <div class="header">Edit selected members</div>
+  <div class="header">編輯所選桿件</div>
   <div class="container">
     <div class="inventory-selector">
-      <div class="selector-label">Member properties:</div>
+      <div class="selector-label">桿件材料與規格：</div>
       <inventory-selector
         [vertical]="true"
         [sessionStateKey]="undefined"
@@ -28,7 +28,7 @@
         [textImageRelation]="'imageBeforeText'"
         [imgSrc]="'img/sizeup.png'"
       >
-        Increase member size
+        加大桿件尺寸
       </jqxButton>
     </div>
     <div class="decrease-size-button">
@@ -41,7 +41,7 @@
         [textImageRelation]="'imageBeforeText'"
         [imgSrc]="'img/sizedown.png'"
       >
-        Decrease member size
+        縮小桿件尺寸
       </jqxButton>
     </div>
     <div class="delete-button">
@@ -54,7 +54,7 @@
         [textImageRelation]="'imageBeforeText'"
         [imgSrc]="'img/delete.png'"
       >
-        Delete selection
+        刪除選取項目
       </jqxButton>
     </div>
     <div class="member-list-button">
@@ -68,7 +68,7 @@
         [imgSrc]="'img/memtable.png'"
         [toggled]="true"
       >
-        Member list
+        桿件明細表
       </jqxToggleButton>
     </div>
     <div class="close-button">
@@ -77,7 +77,7 @@
         [height]="26"
         (onClick)="dialog.close()"
       >
-        Close
+        關閉
       </jqxButton>
     </div>
   </div>

@@ -8,16 +8,15 @@
   [width]="640"
   [height]="494"
 >
-  <div class="header">Bridge design analysis</div>
+  <div class="header">橋梁結構分析</div>
   <div class="content">
-    <div class="heading">🙁 Your structural model is unstable. Let's fix it! 🙂</div>
+    <div class="heading">🙁 您的結構模型目前不穩定，一起來修正它吧！ 🙂</div>
     <div class="text">
       <p>
-        Your bridge cannot be load tested because it's unstable. To make it stable, you should change your truss so that
-        it's composed entirely of interconnected triangles. Often this means adding more members.
+        由於結構不穩定，目前無法執行載重測試。要讓桁架穩定，整個結構必須完全由彼此相連的三角形組成——通常這代表需要補上額外的桿件。
       </p>
-      <p>For an explanation of instability and how to correct it, check out the examples below.</p>
-      <p>Click the close button when ready to return to the drawing board.</p>
+      <p>想了解不穩定的原因與修正方法，請參考下方的圖解範例。</p>
+      <p>準備好返回繪圖區修改時，請點擊「關閉」按鈕。</p>
     </div>
     <jqxTabs
       #exampleTabs
@@ -28,91 +27,79 @@
     >
       <ul>
         <!-- Height settings work around jqxTab height calc fail for some browsers. -->
-        <li style="height: 16px;">Example 1</li>
-        <li style="height: 16px;">Example 2</li>
-        <li style="height: 16px;">Example 3</li>
-        <li style="height: 16px;">Example 4</li>
+        <li style="height: 16px;">範例 1</li>
+        <li style="height: 16px;">範例 2</li>
+        <li style="height: 16px;">範例 3</li>
+        <li style="height: 16px;">範例 4</li>
       </ul>
       <div>
         <unstable-bridge-example [exampleNumber]="1">
           <div>
-            (1) This truss is unstable, because the <span class="highlighted">highlighted</span> panel is rectangular,
-            rather than triangular.
+            （1）這座桁架不穩定，因為<span class="highlighted">反白標示</span>的區段是矩形，而非三角形。
           </div>
           <div>
-            (2) The rectangular panel is not rigid, so it cannot carry any load. There is nothing to prevent the entire
-            truss from rotating about its supports, as shown here. It is unstable.
+            （2）矩形框架不具剛性，無法承受載重；沒有桿件能阻止桁架繞著支承點傾倒變形，因此結構不穩定。
           </div>
           <div>
-            (3) To fix the problem, add a diagonal member to divide the rectangular panel into triangles. Now the truss
-            is rigid and can carry load. It is stable.
+            （3）修正方式：加入一根斜向桿件，將矩形分割成兩個三角形。現在整個桁架具備剛性並可承受載重，成為穩定結構。
           </div>
         </unstable-bridge-example>
       </div>
       <div>
         <unstable-bridge-example [exampleNumber]="2">
           <div>
-            (1) This truss is also unstable. When only two members are connected to a joint and those two members lie
-            along a straight line...
+            （1）這座桁架同樣不穩定。當某個節點只連接了兩根桿件，且這兩根桿件位於同一條直線上時…
           </div>
           <div>
-            (2) There is nothing to prevent the center joint from moving perpendicular to the two members, as shown
-            here. The center joint can carry no load. It is unstable.
+            （2）沒有任何桿件能阻止中間節點朝垂直於桿件的方向移動（如圖所示），因此該節點無法承受載重，結構不穩定。
           </div>
-          <div>(3) To fix the problem, add a third member to the unstable joint, or...</div>
-          <div>(4) Delete the unstable joint and the two attached members...</div>
+          <div>（3）修正方式：在該不穩定節點補上第三根桿件，或者…</div>
+          <div>（4）刪除該不穩定節點與相連的兩根桿件…</div>
           <div>
-            (5) Then replace them with a single member. Now the truss is rigid and can carry load. It is stable.
+            （5）改以單一根桿件取代。現在桁架具備剛性並可承受載重，成為穩定結構。
           </div>
         </unstable-bridge-example>
       </div>
       <div>
         <unstable-bridge-example [exampleNumber]="3">
-          <div>(1) This truss is unstable, even though it is made up entirely of triangles.</div>
+          <div>（1）這座桁架即使全部由三角形組成，仍然是不穩定的。</div>
           <div>
-            (2) Because of its configuration, there is nothing to prevent the entire truss from rotating about its
-            supports. It is unstable.
+            （2）因為結構配置分離，沒有桿件能阻止左右兩半繞著支承點發生旋轉，因此整體結構不穩定。
           </div>
           <div>
-            (3) To fix the problem, add a horizontal member connecting the two halves of the truss together. Now the
-            truss is rigid and can carry load. It is stable.
+            （3）修正方式：加入一根水平桿件將左右兩半連接起來。現在整個桁架具備剛性並可承受載重，成為穩定結構。
           </div>
         </unstable-bridge-example>
       </div>
       <div>
         <unstable-bridge-example [exampleNumber]="4">
           <div>
-            (1) This truss is also unstable, because the center panel is four-sided. This example shows that any
-            four-sided panel--not just a rectangular one--can make a truss unstable.
+            （1）這座桁架也不穩定，因為中央區段是一個四邊形。這說明「任何四邊形」（不只是矩形）都會造成桁架不穩定。
           </div>
           <div>
-            (2) The four-sided panel is not rigid, so it cannot carry any load. There is nothing to prevent the entire
-            truss from rotating about its supports. It is unstable.
+            （2）四邊形框架不具剛性，無法承受任何載重，也無法防止整座桁架繞支承點旋轉，因此結構不穩定。
           </div>
           <div>
-            (3) To fix the problem, add a vertical member to divide the four-sided panel into two triangles. Now the
-            truss is rigid and can carry load. It is stable.
+            （3）修正方式：加入一根垂直桿件，將四邊形分割為兩個三角形。現在桁架具備剛性並可承受載重，成為穩定結構。
           </div>
         </unstable-bridge-example>
       </div>
     </jqxTabs>
     <fieldset class="design-tip">
-      <legend>Design tip:</legend>
+      <legend>設計提示：</legend>
       <div>
         <img
           class="tip-icon"
           src="img/tipicon.png"
         />
-        If you're having trouble creating a stable truss, try using a template. On the main menu, click
-        &quot;File&quot;, then &quot;Load template&quot;. The template will show you where to place joints and members
-        to ensure that your truss is stable.
+        如果建立穩定桁架遇到困難，建議先使用設計範本：在上方選單點擊「檔案」→「載入範本…」，範本會以虛線引導節點與桿件位置，幫助您完成穩定的桁架設計。
       </div>
     </fieldset>
     <div class="buttons">
       <jqxButton
         (onClick)="dialog.close()"
         [width]="'110px'"
-        >Close</jqxButton
+        >關閉</jqxButton
       >
     </div>
   </div>

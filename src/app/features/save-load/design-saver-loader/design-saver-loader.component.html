@@ -3,15 +3,14 @@
 
 <confirmation-dialog
 #saveBeforeLoadConfirmationDialog
-[headerHtml]="'Open bridge design'"
-[contentHtml]="'<p>You have unsaved changes. Save now?</p><p><b>Yes</b> to save.<br><b>No</b> to discard your changes.</p></b>'"
+[headerHtml]="'開啟橋梁設計'"
+[contentHtml]="'<p>您有尚未儲存的變更，是否要先儲存？</p><p>點選 <b>是</b> 立即儲存。<br>點選 <b>否</b> 放棄目前的變更。</p>'"
 [buttons]="['yes', 'no', 'cancel']"
 (onButtonClick)="handleConfirmationButtonClick($event)"
 ></confirmation-dialog>
 <input-dialog
 #fileNameInputDialog
-[headerHtml]="'ASCE Bridge Designer'"
-[promptHtml]="'Enter a download file name:'"
-[noteHtml]="`This browser may put all your design files in the <b>Downloads</b> folder. For a 
-better save and load experience, try a Chromium-based browser: Chrome or Edge for example.`"
+[headerHtml]="'橋梁結構設計師'"
+[promptHtml]="'請輸入要下載的檔案名稱：'"
+[noteHtml]="`您目前的瀏覽器可能會將設計檔案統一存放在<b>下載（Downloads）</b>資料夾。若希望獲得更佳的存檔與開檔體驗，建議使用 Chromium 核心瀏覽器（例如 Chrome 或 Edge）。`"
 ></input-dialog>

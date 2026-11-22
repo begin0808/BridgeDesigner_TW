@@ -9,7 +9,7 @@
   [height]="500"
   (onOpen)="handleDialogOpen()"
 >
-  <div class="header">Cost calculations</div>
+  <div class="header">成本計算明細</div>
   <div>
     <div class="scroller">
       <table
@@ -18,11 +18,11 @@
       >
         <thead class="table-header">
           <tr>
-            <th>Type of cost</th>
-            <th colspan="4">Item</th>
-            <th>Calculations</th>
+            <th>成本類型</th>
+            <th colspan="4">項目</th>
+            <th>計算式</th>
             <th></th>
-            <th>Cost</th>
+            <th>費用</th>
           </tr>
         </thead>
         <tbody class="table-body">
@@ -30,24 +30,22 @@
             <tr>
               <td>
                 @if ($first) {
-                  Material cost (M)
+                  材料成本 (M)
                 }
               </td>
-              <td colspan="4">{{ item.material.name }} {{ item.section.name.toLowerCase() }}</td>
+              <td colspan="4">{{ item.material.name }} {{ item.section.name }}</td>
               <td>
-                ({{ toFixed(item.memberKg) }} kg) × ({{ toDollars(item.material.getCostPerKg(item.section)) }} per kg) ×
-                (2 trusses)
+                （{{ toFixed(item.memberKg) }} 公斤）×（每公斤 {{ toDollars(item.material.getCostPerKg(item.section)) }}）×（2 側桁架）
               </td>
               <td class="shrink-to-fit">=</td>
               <td class="numeric">{{ toDollars(item.cost) }}</td>
             </tr>
           }
           <tr>
-            <td>Connection cost (C)</td>
+            <td>接合成本 (C)</td>
             <td colspan="4"></td>
             <td>
-              ({{ bridgeCosts.connectionCount }} joints) × ({{ toDollars(bridgeCosts.connectionFee) }} per joint) × (2
-              trusses)
+              （{{ bridgeCosts.connectionCount }} 個節點）×（每節點 {{ toDollars(bridgeCosts.connectionFee) }}）×（2 側桁架）
             </td>
             <td class="shrink-to-fit">=</td>
             <td class="numeric">{{ toDollars(bridgeCosts.connectionCost) }}</td>
@@ -56,58 +54,56 @@
             <tr>
               <td>
                 @if ($first) {
-                  Product cost (P)
+                  規格品項成本 (P)
                 }
               </td>
               <!-- Following 3 columns cover colspan of other rows. -->
               <td class="numeric">{{ item.count }}</td>
               <td class="shrink-to-fit">—</td>
-              <td>{{ item.material.name }} {{ item.shape.section.name.toLowerCase() }}</td>
+              <td>{{ item.material.name }} {{ item.shape.section.name }}</td>
               <td>{{ item.shape.name }}mm</td>
-              <td>({{ toDollars(bridgeCosts.productFee) }} per product)</td>
+              <td>（每種規格 {{ toDollars(bridgeCosts.productFee) }}）</td>
               <td class="shrink-to-fit">=</td>
               <td class="numeric">{{ toDollars(bridgeCosts.productFee) }}</td>
             </tr>
           }
           <tr>
-            <td>Site cost (S)</td>
-            <td colspan="4">Deck cost</td>
+            <td>場地成本 (S)</td>
+            <td colspan="4">橋面成本</td>
             <td>
-              ({{ siteCosts.panelCount }} each 4-meter panels) × ({{ toDollars(siteCosts.deckCostRate) }} per panel)
+              （{{ siteCosts.panelCount }} 個 4 公尺橋面節段）×（每節段 {{ toDollars(siteCosts.deckCostRate) }}）
             </td>
             <td class="shrink-to-fit">=</td>
             <td class="numeric">{{ toDollars(siteCosts.deckCost) }}</td>
           </tr>
           <tr>
             <td></td>
-            <td colspan="4">Excavation cost</td>
+            <td colspan="4">開挖成本</td>
             <td>
-              ({{ toCount(siteCosts.excavationVolume) }} cubic meters) × ({{ toDollars(siteCosts.excavationCostRate) }}
-              per cubic meter)
+              （{{ toCount(siteCosts.excavationVolume) }} 立方公尺）×（每立方公尺 {{ toDollars(siteCosts.excavationCostRate) }}）
             </td>
             <td class="shrink-to-fit">=</td>
             <td class="numeric">{{ toDollars(siteCosts.excavationCost) }}</td>
           </tr>
           <tr>
             <td></td>
-            <td colspan="4">Abutment cost</td>
+            <td colspan="4">橋台成本</td>
             <td>
-              ({{ siteCosts.abutmentCount }} {{ siteCosts.abutmentType }} abutments) × ({{
+              （{{ siteCosts.abutmentCount }} 座{{ siteCosts.abutmentType }}橋台）×（每座 {{
                 toDollars(siteCosts.abutmentCostRate)
-              }}
-              per abutment)
+              }}）
             </td>
             <td class="shrink-to-fit">=</td>
             <td class="numeric">{{ toDollars(siteCosts.abutmentCost) }}</td>
           </tr>
           <tr>
             <td></td>
-            <td colspan="4">Pier cost</td>
+            <td colspan="4">橋墩成本</td>
             <td>
               @if (siteCosts.isPier) {
-                (1 each {{ siteCosts.pierHeight }} meter pier)
+                （1 座高 {{ siteCosts.pierHeight }} 公尺之橋墩）
               } @else {
-                No pier
+                無橋墩
               }
             </td>
             <td class="shrink-to-fit">=</td>
@@ -115,17 +111,17 @@
           </tr>
           <tr>
             <td></td>
-            <td colspan="4">Anchorage cost</td>
+            <td colspan="4">錨座成本</td>
             <td>
               @switch (siteCosts.anchorageCount) {
                 @case (0) {
-                  No anchorage
+                  無鋼索錨座
                 }
                 @case (1) {
-                  (1 anchorage) @ {{ toDollars(siteCosts.anchorageCost) }}
+                  （1 座鋼索錨座）@ {{ toDollars(siteCosts.anchorageCost) }}
                 }
                 @default {
-                  ({{ siteCosts.anchorageCount }} anchorages) × ({{ toDollars(siteCosts.anchorageCost) }} per anchorage)
+                  （{{ siteCosts.anchorageCount }} 座鋼索錨座）×（每座 {{ toDollars(siteCosts.anchorageCost) }}）
                 }
               }
             </td>
@@ -133,7 +129,7 @@
             <td class="numeric">{{ toDollars(siteCosts.anchorageCost) }}</td>
           </tr>
           <tr class="bottom-line">
-            <td>Total cost</td>
+            <td>總成本</td>
             <td colspan="4">M + C + P + S</td>
             <td>
               {{ toDollars(bridgeCosts.materialCost) }} + {{ toDollars(bridgeCosts.connectionCost) }} +
@@ -151,19 +147,19 @@
         (onClick)="handleCopy()"
         [width]="'110px'"
         style="margin-right: 8px"
-        >Copy</jqxButton
+        >複製表格</jqxButton
       >
       <jqxButton
         (onClick)="handlePrint()"
         [width]="'110px'"
         style="margin-right: 8px"
-        >Print...</jqxButton
+        >列印…</jqxButton
       >
       <jqxButton
         (onClick)="dialog.close()"
         [width]="'110px'"
         style="margin-right: 8px"
-        >Close</jqxButton
+        >關閉</jqxButton
       >
     </div>
   </div>

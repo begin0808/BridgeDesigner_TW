@@ -12,53 +12,51 @@
     #header
     class="header"
   >
-    Design project setup wizard
+    橋梁設計專案設定精靈
   </div>
   <!-- css style.display must be initially empty for all card-X elements -->
   <div
     #content
     class="content"
   >
-    <div class="title-bar card-1"><span class="card-number">1</span> Read the design requirement</div>
-    <div class="title-bar card-2"><span class="card-number">2</span> Enter local contest information</div>
+    <div class="title-bar card-1"><span class="card-number">1</span> 閱讀設計需求</div>
+    <div class="title-bar card-2"><span class="card-number">2</span> 輸入地區競賽代碼</div>
     <div class="title-bar card-3">
-      <span class="card-number">3</span> Select deck elevation and support configuration
+      <span class="card-number">3</span> 選擇橋面高度與支承配置
     </div>
-    <div class="title-bar card-4"><span class="card-number">4</span> Select deck material and truck loading</div>
-    <div class="title-bar card-5"><span class="card-number">5</span> Select a standard truss template (optional)</div>
-    <div class="title-bar card-6"><span class="card-number">6</span> Fill in the title block (optional)</div>
-    <div class="title-bar card-7"><span class="card-number">7</span> Preview: how to design the steel truss</div>
+    <div class="title-bar card-4"><span class="card-number">4</span> 選擇橋面材料與卡車載重</div>
+    <div class="title-bar card-5"><span class="card-number">5</span> 選擇標準桁架範本（選填）</div>
+    <div class="title-bar card-6"><span class="card-number">6</span> 填寫標題欄資訊（選填）</div>
+    <div class="title-bar card-7"><span class="card-number">7</span> 預覽：如何設計鋼桁架橋</div>
     <div class="data-entry card-1">
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">Design requirement</legend>
+        <legend class="grouping-topic">設計需求</legend>
         <div class="paragraph">
-          As a civil engineer working for the state Department of Transportation, you are responsible for designing a
-          truss bridge to carry a two-lane highway across the river valley. Your objectives are:
+          假設您是交通部門的土木工程師，負責設計一座跨越河谷的雙線道公路桁架橋。您的設計目標如下：
         </div>
         <div class="paragraph">
-          (1) To ensure that the bridge can carry its own weight (to include the weight of the reinforced concrete
-          deck), plus the weight of a standard truck loading.
+          （1）確保橋梁能夠承受自身重量（包含鋼筋混凝土橋面重）以及標準卡車行駛的載重。
         </div>
-        <div class="paragraph">(2) To keep the cost of the project as low as possible.</div>
-        <div class="paragraph">For the complete Design Specifications, click the Help button below.</div>
+        <div class="paragraph">（2）在確保結構安全的前提下，盡可能降低工程總成本。</div>
+        <div class="paragraph">如需查閱完整設計規範，請點擊下方的「說明…」按鈕。</div>
       </fieldset>
     </div>
     <div class="data-entry card-2">
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">Local contest code</legend>
-        <div class="paragraph">Are you participating in a local contest?</div>
+        <legend class="grouping-topic">地區競賽代碼</legend>
+        <div class="paragraph">您是否正在參加指定的地區橋梁競賽？</div>
         <jqxRadioButton
           [width]="232"
           [checked]="true"
         >
-          No
+          否
         </jqxRadioButton>
         <jqxRadioButton
           [width]="232"
           (onChange)="handleLocalContestYesRadioChange($event)"
           style="margin-top: 8px"
         >
-          Yes!
+          是！
         </jqxRadioButton>
         <div class="vertical-gap">
           <local-contest-code-input
@@ -70,7 +68,7 @@
     </div>
     <div class="data-entry card-3">
       <fieldset class="grouping">
-        <legend class="grouping-topic">Deck elevation</legend>
+        <legend class="grouping-topic">橋面高程</legend>
         <jqxDropDownList
           #deckElevationList
           [width]="200"
@@ -80,7 +78,7 @@
         ></jqxDropDownList>
       </fieldset>
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">Support configuration</legend>
+        <legend class="grouping-topic">支承配置</legend>
         <div class="control-grouping">
           <jqxRadioButton
             #standardAbutmentsButton
@@ -88,7 +86,7 @@
             [width]="200"
             [checked]="true"
           >
-            Standard abutments
+            標準橋台
           </jqxRadioButton>
           <jqxRadioButton
             #archAbutmentsButton
@@ -97,11 +95,11 @@
             style="margin-top: 8px"
             (onChange)="handleArchAbutmentRadioChange($event)"
           >
-            Arch abutments
+            拱形橋台
           </jqxRadioButton>
           <div class="indent vertical-gap">
             <label>
-              Height of arch:
+              拱高：
               <height-dropdown-list
                 #archHeightList
                 [heights]="archHeights"
@@ -118,7 +116,7 @@
             [width]="200"
             [checked]="true"
           >
-            No pier (one span)
+            無橋墩（單跨）
           </jqxRadioButton>
           <jqxRadioButton
             #isPierButton
@@ -127,11 +125,11 @@
             style="margin-top: 8px"
             (onChange)="handleIsPierRadioChange($event)"
           >
-            Pier (two spans)
+            設置橋墩（雙跨）
           </jqxRadioButton>
           <div class="indent vertical-gap">
             <label>
-              Height of pier:
+              橋墩高度：
               <height-dropdown-list
                 #pierHeightList
                 [heights]="pierHeights"
@@ -149,7 +147,7 @@
             [checked]="true"
             (onUnchecked)="setDesignConditionsFromWidgets()"
           >
-            No cable anchorages
+            無鋼索錨座
           </jqxRadioButton>
           <jqxRadioButton
             #oneAnchorageButton
@@ -158,7 +156,7 @@
             style="margin-top: 8px"
             (onUnchecked)="setDesignConditionsFromWidgets()"
           >
-            One cable anchorage
+            單側鋼索錨座
           </jqxRadioButton>
           <jqxRadioButton
             #twoAnchoragesButton
@@ -167,14 +165,14 @@
             style="margin-top: 8px"
             (onUnchecked)="setDesignConditionsFromWidgets()"
           >
-            Two cable anchorages
+            雙側鋼索錨座
           </jqxRadioButton>
         </div>
       </fieldset>
     </div>
     <div class="data-entry card-4">
       <fieldset class="grouping">
-        <legend class="grouping-topic">Deck material</legend>
+        <legend class="grouping-topic">橋面材料</legend>
         <jqxRadioButton
           #mediumStrengthConcreteButton
           [groupName]="'deckMaterial'"
@@ -182,7 +180,7 @@
           [checked]="true"
           (onUnchecked)="setDesignConditionsFromWidgets()"
         >
-          Medium-strength concrete<br />(0.23 meters thick)
+          中強度混凝土<br />（厚 0.23 公尺）
         </jqxRadioButton>
         <jqxRadioButton
           #highStrengthConcreteButton
@@ -191,11 +189,11 @@
           style="margin-top: 8px"
           (onUnchecked)="setDesignConditionsFromWidgets()"
         >
-          High-strength concrete<br />(0.15 meters thick)
+          高強度混凝土<br />（厚 0.15 公尺）
         </jqxRadioButton>
       </fieldset>
       <fieldset class="grouping vertical-gap fill-row">
-        <legend class="grouping-topic">Loading</legend>
+        <legend class="grouping-topic">載重條件</legend>
         <jqxRadioButton
           #standardTruckLoadButton
           [groupName]="'truckLoad'"
@@ -203,7 +201,7 @@
           [checked]="true"
           (onUnchecked)="setDesignConditionsFromWidgets()"
         >
-          Standard 2.25 kN truck<br />(two lanes)
+          標準 225 kN 卡車<br />（雙車道）
         </jqxRadioButton>
         <jqxRadioButton
           #permitTruckLoadButton
@@ -212,13 +210,13 @@
           style="margin-top: 8px"
           (onUnchecked)="setDesignConditionsFromWidgets()"
         >
-          480 kN permit loading<br />(centered)
+          480 kN 特重卡車載重<br />（單車道居中）
         </jqxRadioButton>
       </fieldset>
     </div>
     <div class="data-entry card-5">
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">Select a template</legend>
+        <legend class="grouping-topic">選擇桁架範本</legend>
         <jqxListBox
           #templateList
           [width]="232"
@@ -230,12 +228,12 @@
     </div>
     <div class="data-entry card-6">
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">Title block information</legend>
+        <legend class="grouping-topic">標題欄資訊</legend>
         <div>
           <label
             for="projectName"
             class="paragraph"
-            >Project name:
+            >專案名稱：
             <div>
               <input
                 #projectNameInput
@@ -252,7 +250,7 @@
           <label
             for="designerName"
             class="paragraph"
-            >Designed by:
+            >設計者：
             <div>
               <input
                 #designerNameInput
@@ -269,7 +267,7 @@
           <label
             for="projectId"
             class="paragraph"
-            >Project ID:
+            >專案編號：
             <div>
               <span class="scenario-id-text">{{ scenarioId }}&nbsp;&#8209;&nbsp;</span
               ><input
@@ -287,28 +285,28 @@
     </div>
     <div class="data-entry card-7">
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">To design the truss:</legend>
+        <legend class="grouping-topic">鋼桁架設計步驟：</legend>
         <ol>
-          <li>Click the Finish button to activate the drawing board.</li>
-          <li>Draw the joints.</li>
-          <li>Draw the members.</li>
-          <li>Run a load test to check the strength of your design.</li>
-          <li>Strengthen any members that fail during the load test.</li>
-          <li>Optimize the design by minimizing its cost.</li>
+          <li>點擊「完成」按鈕進入繪圖區。</li>
+          <li>繪製節點（Joints）。</li>
+          <li>連接桿件（Members）。</li>
+          <li>執行載重測試，檢查橋梁結構強度。</li>
+          <li>強化載重測試中破壞或細長比不合格的桿件。</li>
+          <li>反覆調整並最佳化設計，盡可能降低總成本。</li>
         </ol>
-        <div class="vertical-gap">For more information about the design process, click the Help button below.</div>
+        <div class="vertical-gap">如需更多設計流程說明，請點擊下方的「說明…」按鈕。</div>
       </fieldset>
     </div>
     <div class="graphics">
       <fieldset class="grouping">
-        <legend class="grouping-topic">Deck cross-section</legend>
+        <legend class="grouping-topic">橋面斷面圖</legend>
         <img
           class="deck-cartoon"
           [src]="deckCartoonSrc"
         />
       </fieldset>
       <fieldset class="grouping fill-row">
-        <legend class="grouping-topic">Elevation view</legend>
+        <legend class="grouping-topic">立面預覽圖</legend>
         <canvas
           #elevationCanvas
           class="elevation-canvas"
@@ -316,32 +314,28 @@
           height="200"
         ></canvas>
         <div class="legend">
-          <div class="legenditem bank"><img src="img/legendriverbanks.png" /> - River banks</div>
-          <div class="legenditem excavation"><img src="img/legendexcavation.png" /> - Excavation</div>
-          <div class="legenditem river"><img src="img/legendriver.png" /> - River</div>
-          <div class="legenditem deck"><img src="img/legenddeck.png" /> - Deck</div>
-          <div class="legenditem abutment"><img src="img/legendabutment.png" /> - Abutment</div>
-          <div class="legenditem pier"><img src="img/legendpier.png" /> - Pier</div>
+          <div class="legenditem bank"><img src="img/legendriverbanks.png" /> - 河岸</div>
+          <div class="legenditem excavation"><img src="img/legendexcavation.png" /> - 開挖區</div>
+          <div class="legenditem river"><img src="img/legendriver.png" /> - 河流</div>
+          <div class="legenditem deck"><img src="img/legenddeck.png" /> - 橋面</div>
+          <div class="legenditem abutment"><img src="img/legendabutment.png" /> - 橋台</div>
+          <div class="legenditem pier"><img src="img/legendpier.png" /> - 橋墩</div>
         </div>
       </fieldset>
     </div>
     <div class="tip">
       <fieldset class="fill-row">
-        <legend class="grouping-topic">Design tip</legend>
+        <legend class="grouping-topic">設計提示</legend>
         <div class="card-1">
           <div class="paragraph">
             <img
               class="tip-icon"
               src="img/tipicon.png"
             />
-            The ASCE Bridge Designer {{ edition }} will help you satisfy these design requirements.
+            橋梁結構設計師（{{ edition }}）能協助您完成上述設計需求。
           </div>
           <div class="paragraph">
-            The deck elevation and support configuration (which you will choose in Step&nbsp;3) will be automatically
-            set on the drawing board. The ASCE Bridge Designer will also provide a simulated load test to check your
-            bridge for structural safety using the deck weight and standard truck loading that you will choose in
-            Step&nbsp;4. If your structure is not strong enough to carry the required loads, the ASCE Bridge Designer
-            will highlight members that need more strength.
+            您在步驟&nbsp;3 選擇的橋面高程與支承配置將自動套用於繪圖區。系統也會依據您在步驟&nbsp;4 選擇的橋面重量與卡車載重進行模擬載重測試，驗證結構安全性；若橋梁強度不足，系統將自動標示出需要強化的桿件。
           </div>
         </div>
         <div class="card-2">
@@ -350,14 +344,10 @@
               class="tip-icon"
               src="img/tipicon.png"
             />
-            If you are participating in a local contest using a Local Contest Code furnished by the ASCE Bridge Designer
-            team, you may only use the specific design project (i.e., site configuration and load case) designated for
-            that particular local contest.
+            若您正在參加由主辦單位提供「地區競賽代碼」的競賽，您必須使用該競賽指定的場地配置與載重條件。
           </div>
           <div class="paragraph">
-            When you enter the Local Contest Code here, the site configuration and load case for the context will be
-            automatically set on the Drawing Board. Then, when you click the Next button, the Design Project Setup
-            Wizard will advance to Step&nbsp;5 because the site configuration and load case are already set.
+            在此輸入競賽代碼後，繪圖區將自動套用指定的場地與載重條件；接著點擊「下一步」時，設定精靈會自動跳過步驟 3 與步驟 4，直接前往步驟&nbsp;5。
           </div>
         </div>
         <div class="card-3">
@@ -366,17 +356,13 @@
               class="tip-icon"
               src="img/tipicon.png"
             />
-            The total cost of the design is the Site Cost plus the Truss Cost. The Site Cost is shown below. The Truss
-            Cost will be computed when you design the truss.
+            橋梁總成本為「場地成本」加上「桁架成本」。場地成本顯示於下方；桁架成本則會在您繪製桁架時即時計算。
           </div>
           <div class="paragraph">
-            In general, configurations that increase the Site Cost tend to reduce the Truss Cost and vice versa. For
-            example, a lower deck elevation usually increases the Site Cost because it requires more excavation; but, a
-            lower deck also reduces the Truss Cost because it shortens the span length. Try to find the best balance
-            between these two competing costs.
+            一般而言，增加場地成本的配置往往有助於降低桁架成本，反之亦然。例如：降低橋面高程雖然會因開挖土方較多而提高場地成本，但也能縮短橋梁跨距、減少鋼材用量。請嘗試在兩者之間取得最佳平衡！
           </div>
           <div class="paragraph">
-            For more information on selecting a site configuration, click the Help button below.
+            如需進一步了解場地配置選擇，請點擊下方的「說明…」按鈕。
           </div>
         </div>
         <div class="card-4">
@@ -385,15 +371,13 @@
               class="tip-icon"
               src="img/tipicon.png"
             />
-            Medium-strength concrete is relatively inexpensive, but its use results in a thicker deck, which adds more
-            load to the structure. Greater load will tend to increase the truss cost.
+            中強度混凝土單價較便宜，但橋面較厚且較重，會增加結構的靜載重，進而提高鋼桁架成本。
           </div>
           <div class="paragraph">
-            High-strength concrete is more expensive, but because of its higher strength, the deck can be thinner and
-            thus lighter. Lower loads associated with the deck weight will tend to decrease the truss cost.
+            高強度混凝土單價較高，但因強度較佳、橋面可做得更薄更輕，較低的橋面重量有助於降低桁架成本。
           </div>
-          <div class="paragraph">You may also choose either of the two truck loads shown.</div>
-          <div class="paragraph">For more information on selecting a load case, click the Help button below.</div>
+          <div class="paragraph">您也可以選擇左側兩種卡車載重條件之一。</div>
+          <div class="paragraph">如需更多載重條件說明，請點擊下方的「說明…」按鈕。</div>
         </div>
         <div class="card-5">
           <div class="paragraph">
@@ -401,13 +385,10 @@
               class="tip-icon"
               src="img/tipicon.png"
             />
-            A template is a diagram that depicts a standard truss configuration. If you select a template, it will be
-            displayed in light dotted lines on the Drawing Board. The template will show you where to draw joints and
-            members to ensure that your bridge design is stable.
+            範本是標準桁架結構的參考圖樣。選擇範本後，繪圖區會以淺色虛線顯示該結構輪廓，引導您放置節點與桿件，確保設計出的桁架具備結構穩定性。
           </div>
           <div class="paragraph">
-            A stable truss is one that is composed of interconnected triangles. An unstable truss cannot carry any load.
-            For more information about structural stability, click the Help button below.
+            穩定的桁架是由彼此相連的三角形所組成；不穩定的桁架無法承受任何載重。如需更多結構穩定性說明，請點擊下方的「說明…」按鈕。
           </div>
         </div>
         <div class="card-6">
@@ -416,12 +397,10 @@
               class="tip-icon"
               src="img/tipicon.png"
             />
-            The title block will be displayed on the lower right-hand corner of the Drawing Board and on your printed
-            design drawings.
+            標題欄會顯示在繪圖區的右下角，以及列印出的橋梁工程圖上。
           </div>
           <div class="paragraph">
-            Enter your name in the Designed By box, and use the Project ID box to give your design a unique name or
-            number. You can change these items later by clicking them on the Drawing Board.
+            請在「設計者」欄位輸入您的姓名，並於「專案編號」輸入辨識代號或名稱。之後也可以隨時在繪圖區直接點擊標題欄修改。
           </div>
         </div>
         <div class="card-7">
@@ -430,12 +409,10 @@
               class="tip-icon"
               src="img/tipicon.png"
             />
-            The title block will be displayed on the lower right-hand corner of the Drawing Board and on your printed
-            design drawings.
+            一切準備就緒！點擊下方「完成」按鈕即可開始在繪圖區建立節點與桿件，並隨時進行載重測試與成本最佳化。
           </div>
           <div class="paragraph">
-            Enter your name in the Designed By box, and use the Project ID box to give your design a unique name or
-            number. You can change these items later by clicking directly on the title block of the Drawing Board.
+            標題欄資訊會顯示於繪圖區右下角與列印圖紙上，您之後仍可隨時點擊繪圖區上的標題欄進行修改。
           </div>
         </div>
       </fieldset>
@@ -445,7 +422,7 @@
       class="site-cost"
     >
       <fieldset style="padding-top: 0">
-        <legend>Site cost:</legend>
+        <legend>場地成本：</legend>
         <jqxExpander
           #siteCostExpander
           [width]="'100%'"
@@ -463,9 +440,9 @@
                   {{ toDollars(siteCosts.totalFixedCost) }}
                 }
               </div>
-              <div class="deck-cost-comment">(Includes cost of deck, excavation, and supports; not steel)</div>
+              <div class="deck-cost-comment">（包含橋面、開挖與支承費用；不含鋼材）</div>
               <div class="site-condition">
-                Site condition:
+                場地條件代碼：
                 @if (siteCostExpander.disabled()) {
                   -----
                 } @else {
@@ -477,57 +454,56 @@
           <div>
             <table class="cost-table">
               <tr>
-                <td>Deck cost</td>
+                <td>橋面成本</td>
                 <td>
-                  ({{ siteCosts.panelCount }} each 4-meter panels) × ({{ toDollars(siteCosts.deckCostRate) }} per panel)
+                  （{{ siteCosts.panelCount }} 個 4 公尺橋面節段）×（每節段 {{ toDollars(siteCosts.deckCostRate) }}）
                 </td>
                 <td>=</td>
                 <td>{{ toDollars(siteCosts.deckCost) }}</td>
               </tr>
               <tr>
-                <td>Excavation cost</td>
+                <td>開挖成本</td>
                 <td>
-                  ({{ toCount(siteCosts.excavationVolume) }} cubic meters) × (
-                  {{ toDollars(siteCosts.excavationCostRate) }} per cubic meter)
+                  （{{ toCount(siteCosts.excavationVolume) }} 立方公尺）×（每立方公尺
+                  {{ toDollars(siteCosts.excavationCostRate) }}）
                 </td>
                 <td>=</td>
                 <td>{{ toDollars(siteCosts.excavationCost) }}</td>
               </tr>
               <tr>
-                <td>Abutment cost</td>
+                <td>橋台成本</td>
                 <td>
-                  ({{ siteCosts.abutmentCount }} {{ siteCosts.abutmentType }} abutments) × ({{
+                  （{{ siteCosts.abutmentCount }} 座{{ siteCosts.abutmentType }}橋台）×（{{
                     toDollars(siteCosts.abutmentCostRate)
-                  }})
+                  }}）
                 </td>
                 <td>=</td>
                 <td>{{ toDollars(siteCosts.abutmentCost) }}</td>
               </tr>
               <tr>
-                <td>Pier cost</td>
+                <td>橋墩成本</td>
                 <td>
                   @if (siteCosts.isPier) {
-                    (1 each {{ siteCosts.pierHeight }} meter pier)
+                    （1 座高 {{ siteCosts.pierHeight }} 公尺之橋墩）
                   } @else {
-                    No pier
+                    無橋墩
                   }
                 </td>
                 <td>=</td>
                 <td>{{ toDollars(siteCosts.pierCost) }}</td>
               </tr>
               <tr>
-                <td>Anchorage cost</td>
+                <td>錨座成本</td>
                 <td>
                   @switch (siteCosts.anchorageCount) {
                     @case (0) {
-                      No anchorage
+                      無鋼索錨座
                     }
                     @case (1) {
-                      (1 anchorage) @ {{ toDollars(siteCosts.anchorageCost) }}
+                      （1 座鋼索錨座）@ {{ toDollars(siteCosts.anchorageCost) }}
                     }
                     @default {
-                      ({{ siteCosts.anchorageCount }} anchorages) × ({{ toDollars(siteCosts.anchorageCost) }} per
-                      anchorage)
+                      （{{ siteCosts.anchorageCount }} 座鋼索錨座）×（每座 {{ toDollars(siteCosts.anchorageCost) }}）
                     }
                   }
                 </td>
@@ -536,7 +512,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td class="total">Total site cost</td>
+                <td class="total">場地總成本</td>
                 <td>=</td>
                 <td class="total">{{ toDollars(siteCosts.totalFixedCost) }}</td>
               </tr>
@@ -551,14 +527,14 @@
         (onClick)="handleHelpButtonOnClick()"
         [width]="buttonWidth"
         style="margin-right: 8px"
-        >Help...</jqxButton
+        >說明…</jqxButton
       >
       <jqxButton
         #cancelButton
         (onClick)="dialog.close()"
         [width]="buttonWidth"
         style="margin-right: 8px"
-        >Cancel</jqxButton
+        >取消</jqxButton
       >
       <jqxButton
         #backButton
@@ -566,21 +542,21 @@
         [width]="buttonWidth"
         [disabled]="true"
         style="margin-right: 4px"
-        >&lt;&lt;&nbsp;Back</jqxButton
+        >&lt;&lt;&nbsp;上一步</jqxButton
       >
       <jqxButton
         #nextButton
         (onClick)="handleNextButtonClick()"
         [width]="buttonWidth"
         style="margin-right: 8px"
-        >Next&nbsp;&gt;&gt;</jqxButton
+        >下一步&nbsp;&gt;&gt;</jqxButton
       >
       <jqxButton
         #finishButton
         (onClick)="handleFinishButtonClick()"
         [width]="buttonWidth"
         style="margin-right: 2px"
-        >Finish</jqxButton
+        >完成</jqxButton
       >
     </div>
   </div>

@@ -15,7 +15,7 @@ export class MoveLabelsCommand extends EditCommand {
     private readonly yFrom: number,
     private readonly yTo: number,
   ) {
-    super(`Move labels to height ${yTo.toFixed(2)}`);
+    super(`移動標註至高度 ${yTo.toFixed(2)}`);
   }
 
   public override do(): void {

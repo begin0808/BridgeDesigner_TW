@@ -1,0 +1,176 @@
+<!-- Copyright (c) 2026 BridgeDesigner_TW Contributors
+     SPDX-License-Identifier: GPL-3.0-or-later -->
+
+@if (shouldRender) {
+  @if (isCollapsed) {
+    <button
+      #floatingRoot
+      type="button"
+      class="guide-pill"
+      [class.dragging]="isDragging"
+      [style]="floatingStyle"
+      title="點一下展開課堂 5 步驟引導（也可按住拖曳移動位置）"
+      (pointerdown)="startDrag($event)"
+      (click)="onPillClick()"
+    >
+      <span class="drag-dots">⋮⋮</span>
+      <span>🎓 課堂引導</span>
+      <span class="pill-badge">{{ completedCount }}/{{ steps.length }}</span>
+    </button>
+  } @else {
+    <section
+      #floatingRoot
+      class="guide-card"
+      [class.dragging]="isDragging"
+      [style]="floatingStyle"
+      aria-label="課堂 5 步驟互動引導"
+    >
+      <header
+        class="guide-header"
+        title="按住標題列可自由拖曳移動視窗位置"
+        (pointerdown)="startDrag($event)"
+      >
+        <div class="guide-title-group">
+          <span
+            class="drag-dots"
+            title="拖曳移動"
+            >⋮⋮</span
+          >
+          <span class="guide-title">🎓 課堂 5 步驟互動引導</span>
+          <span class="guide-progress-tag">{{ completedCount }}/{{ steps.length }} 完成</span>
+        </div>
+        <div class="guide-header-actions">
+          <button
+            type="button"
+            class="icon-btn"
+            title="開啟新手圖文速成指南"
+            (click)="openQuickStart()"
+          >
+            📖 速成指南
+          </button>
+          <button
+            type="button"
+            class="icon-btn"
+            title="縮小為浮動標籤"
+            (click)="collapse()"
+          >
+            ─
+          </button>
+          <button
+            type="button"
+            class="icon-btn"
+            title="暫時關閉（可隨時由工具列重新開啟）"
+            (click)="dismiss()"
+          >
+            ✕
+          </button>
+        </div>
+      </header>
+
+      <div class="progress-track">
+        <div
+          class="progress-fill"
+          [style.width.%]="progressPercent"
+        ></div>
+      </div>
+
+      @if (isAllDone) {
+        <div class="all-done-banner">🎉 恭喜完成全部 5 步驟！您已掌握桁架橋設計與載重分析流程！</div>
+      }
+
+      <nav class="step-tabs">
+        @for (step of steps; track step.id; let i = $index) {
+          <button
+            type="button"
+            class="step-tab"
+            [class.active]="i === activeStepIndex"
+            [class.done]="completedFlags[i]"
+            (click)="selectStep(i)"
+          >
+            <span class="step-dot">{{ completedFlags[i] ? '✓' : step.id }}</span>
+            <span class="step-label">{{ step.shortTitle }}</span>
+          </button>
+        }
+      </nav>
+
+      <div class="step-body">
+        <div class="step-heading">
+          <h4>{{ currentStep.title }}</h4>
+          @if (completedFlags[activeStepIndex]) {
+            <span class="done-badge">已完成</span>
+          }
+        </div>
+        <p class="step-desc">{{ currentStep.description }}</p>
+
+        <div class="live-status">
+          @if (activeStepIndex === 0) {
+            <span>目前進度：已建立 <strong>{{ customJointCount }}</strong> 個自訂節點</span>
+          } @else if (activeStepIndex === 1) {
+            <span>目前進度：已連接 <strong>{{ memberCount }}</strong> 支桁架桿件</span>
+          } @else if (activeStepIndex === 2) {
+            <span>測試狀態：<strong>{{ testStatusBadge }}</strong></span>
+          } @else if (activeStepIndex === 3) {
+            @if (isBridgePassing && !completedFlags[3]) {
+              <span>✅ 已通過測試！回繪圖區微調桿件降價，或點下方按鈕確認完成</span>
+            } @else {
+              <span>目前版本：<strong>版本 {{ iterationNumber }}</strong>　|　{{ testStatusBadge }}</span>
+            }
+          } @else {
+            <span>報表狀態：<strong>{{ hasExportedReport ? '✅ 已開啟或匯出報表' : '準備就緒，可隨時列印中文 PDF' }}</strong></span>
+          }
+        </div>
+
+        <div class="step-tip">💡 {{ currentStep.tip }}</div>
+
+        <div class="step-footer">
+          <div class="step-actions-left">
+            <button
+              type="button"
+              class="action-btn"
+              [disabled]="currentStep.actionId === 'test' && memberCount < 3"
+              (click)="runStepAction(currentStep.actionId)"
+            >
+              {{ currentStep.actionLabel }}
+            </button>
+            @if (activeStepIndex === 0 && memberCount === 0) {
+              <button
+                type="button"
+                class="ghost-btn"
+                (click)="openSampleDialog()"
+              >
+                或先看範例橋
+              </button>
+            }
+            @if (activeStepIndex === 3 && isBridgePassing && !completedFlags[3]) {
+              <button
+                type="button"
+                class="confirm-btn"
+                (click)="confirmStep4()"
+              >
+                ✓ 確認已完成
+              </button>
+            }
+          </div>
+          <div class="step-nav-btns">
+            <button
+              type="button"
+              class="nav-btn"
+              [disabled]="activeStepIndex === 0"
+              (click)="prevStep()"
+            >
+              上一步
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              [disabled]="activeStepIndex === steps.length - 1"
+              (click)="nextStep()"
+            >
+              下一步
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+}

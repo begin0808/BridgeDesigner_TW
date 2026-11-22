@@ -13,7 +13,7 @@ const PICKER_ID = 'bridge-design';
 const PICKER_DIR = 'documents';
 const PICKER_TYPES = [
   {
-    description: 'Bridge design',
+    description: '橋梁設計檔',
     accept: { 'text/plain': ['.bdc'] }, // TODO: change to application/octet-stream with obfuscation
   },
 ];

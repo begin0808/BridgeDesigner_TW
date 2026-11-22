@@ -10,7 +10,7 @@ TRIM = True
 
 
 def readStopWords():
-    with open("stop-words.txt", "r") as f:
+    with open("stop-words.txt", "r", encoding="utf-8") as f:
         return f.read()
 
 
@@ -82,13 +82,12 @@ class Indexer(HTMLParser):
             self.indent("data:", data)
         match self.state:
             case "in-title":
-                self.current_title += " "
                 self.current_title += data
             case "in-text":
                 # Remove HTML escapes.
                 data = re.sub(r"&[^;]*;", " ", data.strip())
                 if TRIM:
-                    data = re.sub(r'&[^;]*;|[-:,"?!();]|\.$|\. ', " ", data)
+                    data = re.sub(r'&[^;]*;|[-:,"?!();，。、；：！？（）「」『』《》【】—…]|\.$|\. ', " ", data)
                     data = re.sub(r"\s+", " ", data)
                 if data == "":
                     return
@@ -121,37 +120,43 @@ class Indexer(HTMLParser):
 
 
 def quote(s):
-    return f"`{s}`" if "'" in s else f"'{s}'"
+    escaped = s.replace("\\", "\\\\").replace("'", "\\'")
+    return f"'{escaped}'"
 
 
-PREAMBLE = """type HelpIndexData = {
-  id: string,
-  title: string,
-  text: string,
+PREAMBLE = """/* Copyright (c) 2025-2026 Gene Ressler
+   SPDX-License-Identifier: GPL-3.0-or-later */
+
+type HelpIndexData = {
+  id: string;
+  title: string;
+  text: string;
 };
 
 export const HELP_INDEX_DATA: HelpIndexData[] = ["""
 
 indexer = Indexer()
-with open("../help-topic/help-topic.component.html", "r") as file:
+with open("../help-topic/help-topic.component.html", "r", encoding="utf-8") as file:
     indexer.feed(file.read())
 
 if DEBUG:
     pprint.pp(indexer.data)
 else:
-    with open("index-data.ts", "w") as f:
+    with open("index-data.ts", "w", encoding="utf-8") as f:
         print(PREAMBLE, file=f)
         chunk_size = 100
         for id, (title, text) in sorted(
             indexer.data.items(), key=lambda item: item[1][0].lower()
         ):
+            clean_title = re.sub(r"\s+", " ", title).strip()
             text_chunks = [
                 f"{quote(text[i:i + chunk_size])}"
                 for i in range(0, len(text), chunk_size)
-            ]
+            ] or ["''"]
+            joined_chunks = " +\n          ".join(text_chunks)
             print("  {", file=f)
             print(f"    id: '{id}',", file=f)
-            print(f"    title: {quote(title)},", file=f)
-            print(f"    text: {' +\n          '.join(text_chunks)}", file=f)
+            print(f"    title: {quote(clean_title)},", file=f)
+            print(f"    text: {joined_chunks},", file=f)
             print("  },", file=f)
         print("];", file=f)

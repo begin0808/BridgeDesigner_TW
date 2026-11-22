@@ -11,7 +11,7 @@ export type SketchMember = {
 
 export class BridgeSketchModel {
   /** A placeholder denoting no bridge sketch model. */
-  public static readonly ABSENT = new BridgeSketchModel('[none]');
+  public static readonly ABSENT = new BridgeSketchModel('（不使用範本）');
 
   public readonly joints: Point2DInterface[] = [];
   public readonly members: SketchMember[] = [];

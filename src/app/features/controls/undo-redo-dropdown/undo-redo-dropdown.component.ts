@@ -17,7 +17,7 @@ import { EventOrigin, EventInfo } from '../../../shared/services/event-broker.se
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UndoRedoDropdownComponent implements AfterViewInit {
-  private static readonly CANCEL_ITEM: EditCommand = new EditCommandPlaceholder('Cancel');
+  private static readonly CANCEL_ITEM: EditCommand = new EditCommandPlaceholder('取消');
 
   @Input({ required: true }) operation!: string;
   @Input({ required: true }) actionEmitter!: Subject<EventInfo<number>>;
@@ -100,7 +100,7 @@ export class UndoRedoDropdownComponent implements AfterViewInit {
 
   handleMouseoverItem(index: number) {
     const toastIndex = this.commandList.length - 1;
-    const prompt = index < toastIndex ? `${this.operation} ${index + 1} command${index === 0 ? '' : 's'}` : 'Cancel';
+    const prompt = index < toastIndex ? `${this.operation} ${index + 1} 項操作` : '取消';
     this.listBox.updateAt({ label: prompt }, toastIndex);
   }
 

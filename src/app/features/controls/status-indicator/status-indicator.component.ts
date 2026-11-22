@@ -47,7 +47,7 @@ export class StatusIndicatorComponent implements AfterViewInit {
         this.setIcon(this.analysisService.status);
       } else {
         this.iconSrc = 'img/working.png';
-        this.iconTitle = 'The design changed since last tested.';
+        this.iconTitle = '設計已修改，尚未重新執行載重測試。';
       }
     });
   }

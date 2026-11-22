@@ -168,8 +168,8 @@ export class MemberDetailsDialogComponent implements AfterViewInit {
     this.selectedMember = member;
     this.memberCost = DOLLARS_FORMATTER.format(BridgeCostService.getMemberTotalCost(member));
     this.memberLength = FIXED_FORMATTER.format(member.lengthM);
-    this.passFailCompression = member.compressionForceStrengthRatio > 1 ? 'fail' : 'pass';
-    this.passFailTension = member.tensionForceStrengthRatio > 1 ? 'fail' : 'pass';
+    this.passFailCompression = member.compressionForceStrengthRatio > 1 ? '失敗' : '通過';
+    this.passFailTension = member.tensionForceStrengthRatio > 1 ? '失敗' : '通過';
     // Highlight the member in the drafting panel and also select its material.
     this.elementSelectorService.setSelectedMembers([member.index], EventOrigin.MEMBER_DETAILS_DIALOG);
     this.changeDetectorRef.detectChanges();

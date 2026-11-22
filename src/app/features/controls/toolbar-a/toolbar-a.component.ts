@@ -13,6 +13,7 @@ import { StatusIndicatorComponent } from '../status-indicator/status-indicator.c
 import { CostIndicatorComponent } from '../cost-indicator/cost-indicator.component';
 import { IterationIndicatorComponent } from '../iteration-indicator/iteration-indicator.component';
 import { DebugDisplayComponent } from '../debug-display/debug-display.component';
+import { ToolbarGuideButtonsComponent } from '../../tutorial/toolbar-guide-buttons/toolbar-guide-buttons.component';
 
 const enum Tools {
   NEW,
@@ -37,6 +38,7 @@ const enum Tools {
   STATUS,
   LOAD_TEST_REPORT,
   MEMBER_DETAILS_REPORT,
+  GUIDE_BUTTONS,
   DEBUG_DISPLAY,
 }
 
@@ -59,6 +61,7 @@ export class ToolbarAComponent implements AfterViewInit {
     'custom | ' +
     'button | ' +
     'button | ' +
+    'custom | ' +
     'custom';
 
   @ViewChild('toolbar') toolbar!: jqxToolBarComponent;
@@ -75,54 +78,54 @@ export class ToolbarAComponent implements AfterViewInit {
   initTools(_type?: string, index?: number, tool?: any, _menuToolInitialization?: boolean): any {
     switch (index) {
       case Tools.NEW:
-        WidgetHelper.initToolbarImgButton('Make new bridge', 'img/new.png', tool);
+        WidgetHelper.initToolbarImgButton('建立新橋梁設計', 'img/new.png', tool);
         break;
       case Tools.OPEN:
-        WidgetHelper.initToolbarImgButton('Open an existing bridge', 'img/open.png', tool);
+        WidgetHelper.initToolbarImgButton('開啟現有橋梁檔案', 'img/open.png', tool);
         break;
       case Tools.SAVE:
-        WidgetHelper.initToolbarImgButton('Save current bridge', 'img/save.png', tool);
+        WidgetHelper.initToolbarImgButton('儲存目前橋梁設計', 'img/save.png', tool);
         break;
       case Tools.PRINT:
-        WidgetHelper.initToolbarImgButton('Print current bridge', 'img/print.png', tool);
+        WidgetHelper.initToolbarImgButton('列印目前橋梁設計', 'img/print.png', tool);
         break;
       case Tools.PRINT_3D:
-        WidgetHelper.initToolbarImgButton('Export OBJ file to 3d print', 'img/print3d.png', tool);
+        WidgetHelper.initToolbarImgButton('匯出 3D 列印 OBJ 檔', 'img/print3d.png', tool);
         break;
       case Tools.DESIGN:
-        WidgetHelper.initToolbarImgToggleButton('Design bridge', 'img/design.png', tool, {
+        WidgetHelper.initToolbarImgToggleButton('回到繪圖設計模式', 'img/design.png', tool, {
           toggled: true,
           disabled: true,
         });
         break;
       case Tools.LOAD_TEST:
-        WidgetHelper.initToolbarImgToggleButton('Run a load test', 'img/loadtest.png', tool, { disabled: true });
+        WidgetHelper.initToolbarImgToggleButton('執行載重測試', 'img/loadtest.png', tool, { disabled: true });
         break;
       case Tools.SELECT_ALL:
-        WidgetHelper.initToolbarImgButton('Select all', 'img/selectall.png', tool);
+        WidgetHelper.initToolbarImgButton('全選', 'img/selectall.png', tool);
         break;
       case Tools.DELETE:
-        WidgetHelper.initToolbarImgButton('Delete selection', 'img/delete.png', tool);
+        WidgetHelper.initToolbarImgButton('刪除選取項目', 'img/delete.png', tool);
         break;
       case Tools.UNDO:
-        WidgetHelper.initToolbarImgButton('Undo changes', 'img/undo.png', tool, true);
+        WidgetHelper.initToolbarImgButton('復原上一步', 'img/undo.png', tool, true);
         break;
       case Tools.UNDO_MULTIPLE:
-        WidgetHelper.initToolbarImgToggleButton('Undo multiple changes', 'img/drop.png', tool, { disabled: true });
+        WidgetHelper.initToolbarImgToggleButton('復原多項操作', 'img/drop.png', tool, { disabled: true });
         const undoDropdown = UndoRedoDropdownComponent.appendDropdownTool(tool);
         const undoComponentRef = this.componentService.load(UndoRedoDropdownComponent, undoDropdown);
-        undoComponentRef.setInput('operation', 'Undo');
+        undoComponentRef.setInput('operation', '復原');
         undoComponentRef.setInput('actionEmitter', this.eventBrokerService.undoRequest);
         undoComponentRef.instance.initialize(tool, this.undoManagerService.done);
         break;
       case Tools.REDO:
-        WidgetHelper.initToolbarImgButton('Redo undone changes', 'img/redo.png', tool, true);
+        WidgetHelper.initToolbarImgButton('重做已復原的操作', 'img/redo.png', tool, true);
         break;
       case Tools.REDO_MULTIPLE:
-        WidgetHelper.initToolbarImgToggleButton('Redo multiple changes', 'img/drop.png', tool, { disabled: true });
+        WidgetHelper.initToolbarImgToggleButton('重做多項操作', 'img/drop.png', tool, { disabled: true });
         const redoDropdown = UndoRedoDropdownComponent.appendDropdownTool(tool);
         const redoComponentRef = this.componentService.load(UndoRedoDropdownComponent, redoDropdown);
-        redoComponentRef.setInput('operation', 'Redo');
+        redoComponentRef.setInput('operation', '重做');
         redoComponentRef.setInput('actionEmitter', this.eventBrokerService.redoRequest);
         redoComponentRef.instance.initialize(tool, this.undoManagerService.undone);
         break;
@@ -130,28 +133,31 @@ export class ToolbarAComponent implements AfterViewInit {
         this.componentService.load(IterationIndicatorComponent, tool[0]);
         break;
       case Tools.BACK_ITERATION:
-        WidgetHelper.initToolbarImgButton('To previous iteration', 'img/left.png', tool, true);
+        WidgetHelper.initToolbarImgButton('切換至上一個設計版本', 'img/left.png', tool, true);
         break;
       case Tools.FORWARD_ITERATION:
-        WidgetHelper.initToolbarImgButton('To next iteration', 'img/right.png', tool, true);
+        WidgetHelper.initToolbarImgButton('切換至下一個設計版本', 'img/right.png', tool, true);
         break;
       case Tools.GOTO_ITERATION:
-        WidgetHelper.initToolbarImgButton('Choose a previous iteration', 'img/goto.png', tool);
+        WidgetHelper.initToolbarImgButton('選擇歷史設計版本', 'img/goto.png', tool);
         break;
       case Tools.COST:
         this.componentService.load(CostIndicatorComponent, tool[0]);
         break;
       case Tools.COST_REPORT:
-        WidgetHelper.initToolbarImgButton('Show cost details', 'img/calculator.png', tool);
+        WidgetHelper.initToolbarImgButton('顯示成本計算明細', 'img/calculator.png', tool);
         break;
       case Tools.STATUS:
         this.componentService.load(StatusIndicatorComponent, tool[0]);
         break;
       case Tools.LOAD_TEST_REPORT:
-        WidgetHelper.initToolbarImgButton('Show load test details', 'img/loadtestreport.png', tool, true);
+        WidgetHelper.initToolbarImgButton('顯示載重測試結果', 'img/loadtestreport.png', tool, true);
         break;
       case Tools.MEMBER_DETAILS_REPORT:
-        WidgetHelper.initToolbarImgButton('Show member analysis', 'img/memberreport.png', tool, true);
+        WidgetHelper.initToolbarImgButton('顯示桿件受力分析', 'img/memberreport.png', tool, true);
+        break;
+      case Tools.GUIDE_BUTTONS:
+        this.componentService.load(ToolbarGuideButtonsComponent, tool[0]);
         break;
       case Tools.DEBUG_DISPLAY:
         this.componentService.load(DebugDisplayComponent, tool[0]);

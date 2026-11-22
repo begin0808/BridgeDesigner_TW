@@ -13,14 +13,14 @@
     #header
     class="header"
   >
-    Load a sample design
+    載入範例設計
   </div>
   <div
     #content
     class="content"
   >
     <div class="top-row">
-      <div class="select-label">Select a sample:</div>
+      <div class="select-label">選擇一個範例：</div>
     </div>
     <div class="left-column">
       <jqxListBox
@@ -33,7 +33,7 @@
         (onSelect)="handleSelect()"
       >
       </jqxListBox>
-      <div class="dialog-topic">Preview:</div>
+      <div class="dialog-topic">預覽：</div>
       <canvas
         #preview
         class="preview"
@@ -44,13 +44,13 @@
     </div>
     <div class="right-column">
       <fieldset class="design-tip">
-        <legend class="dialog-topic">Design tip:</legend>
+        <legend class="dialog-topic">設計提示：</legend>
         <div>
           <img
             class="tip-icon"
             src="img/tipicon.png"
           />
-          You can use the up and down arrow keys to scroll through the list while previewing each truss below.
+          您可以使用鍵盤的上下方向鍵切換清單，並在下方即時預覽各種桁架橋範例。
         </div>
       </fieldset>
       <div>
@@ -59,7 +59,7 @@
           (onClick)="dialog.close()"
           style="float: right; margin-top: 40px; margin-right: 8px"
           [width]="'110px'"
-          >Cancel</jqxButton
+          >取消</jqxButton
         >
       </div>
       <div>
@@ -68,7 +68,7 @@
           (onClick)="handleOkClick()"
           style="float: right; margin-top: 16px; margin-right: 8px"
           [width]="'110px'"
-          >OK</jqxButton
+          >確定</jqxButton
         >
       </div>
     </div>

@@ -20,7 +20,7 @@ export class MoveJointCommand extends EditCommand {
     private readonly bridge: BridgeModel,
     private readonly memberSplitter: MemberSplitter,
   ) {
-    super(`Move joint to (${toJoint.x}, ${toJoint.y})`);
+    super(`移動節點至 (${toJoint.x}, ${toJoint.y})`);
   }
 
   public static create(

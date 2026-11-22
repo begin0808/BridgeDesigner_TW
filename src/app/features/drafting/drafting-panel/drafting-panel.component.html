@@ -40,25 +40,25 @@
       />
     </div>
     <div class="designer-name">
-      Designed by:
+      設計者：
       <input
         #designerNameInput
         style="width: 200px"
         type="text"
         maxlength="40"
-        placeholder="Your name!"
+        placeholder="輸入您的姓名！"
         [(ngModel)]="bridgeService.bridge.designedBy"
       />
     </div>
     <div class="project-id">
-      Project ID:
+      專案編號：
       <span class="scenario-id-text">000{{ bridgeService.bridge.designConditions.tag }}&nbsp;&#8209;&nbsp;</span
       ><input
         #projectIdInput
         style="width: 200px"
         type="text"
         maxlength="40"
-        placeholder="Your project ID!"
+        placeholder="輸入專案編號！"
         [(ngModel)]="bridgeService.bridge.projectId"
       />
     </div>

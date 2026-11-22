@@ -3,12 +3,12 @@
 
 <confirmation-dialog
   #dialog
-  [headerHtml]="'Continue previous work?'"
+  [headerHtml]="'繼續上次的設計進度？'"
   [buttons]="['yes', 'no']"
   [rememberKey]="'freshStart.dialog'"
   (onButtonClick)="handleButtonClick($event)"
 >
-  <p>Your earlier work is ready to go. Would you like to continue?</p>
-  <p>If so, click <b>Yes</b>.</p>
-  <p>If not, and you'd like a fresh start, click <b>No</b>.</p>
+  <p>您上次的設計進度已自動保留，是否要繼續編輯？</p>
+  <p>若要繼續上次進度，請點擊 <b>是</b>。</p>
+  <p>若要重新開始新設計，請點擊 <b>否</b>。</p>
 </confirmation-dialog>

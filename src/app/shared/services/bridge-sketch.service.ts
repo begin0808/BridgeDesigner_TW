@@ -37,16 +37,16 @@ export class BridgeSketchService {
       if (conditions.underClearance <= 16) {
         // Standard arches.
         models.push(
-          this.populatePrattContinuousArch(new BridgeSketchModel('Continuous arch - Pratt', conditions)),
-          this.populateHoweContinuousArch(new BridgeSketchModel('Continuous arch - Howe', conditions)),
-          this.populateWarrenContinuousArch(new BridgeSketchModel('Continuous arch - Warren', conditions)),
+          this.populatePrattContinuousArch(new BridgeSketchModel('連續拱橋－普拉特式 (Pratt)', conditions)),
+          this.populateHoweContinuousArch(new BridgeSketchModel('連續拱橋－豪式 (Howe)', conditions)),
+          this.populateWarrenContinuousArch(new BridgeSketchModel('連續拱橋－華倫式 (Warren)', conditions)),
         );
         // 3-hinge arches if odd number of deck joints.
         if (conditions.loadedJointCount % 2 === 1) {
           models.push(
-            this.populatePratt3HingeArch(new BridgeSketchModel('3-hinge arch - Pratt', conditions)),
-            this.populateHowe3HingeArch(new BridgeSketchModel('3-hinge arch - Howe', conditions)),
-            this.populateWarren3HingeArch(new BridgeSketchModel('3-hinge arch - Warren', conditions)),
+            this.populatePratt3HingeArch(new BridgeSketchModel('三鉸拱橋－普拉特式 (Pratt)', conditions)),
+            this.populateHowe3HingeArch(new BridgeSketchModel('三鉸拱橋－豪式 (Howe)', conditions)),
+            this.populateWarren3HingeArch(new BridgeSketchModel('三鉸拱橋－華倫式 (Warren)', conditions)),
           );
         }
       }
@@ -54,17 +54,17 @@ export class BridgeSketchService {
       if (conditions.overClearance >= DesignConditions.PANEL_SIZE_WORLD) {
         // Through trusses.
         models.push(
-          this.populatePrattThruTruss(new BridgeSketchModel('Through truss - Pratt', conditions)),
-          this.populateHoweThruTruss(new BridgeSketchModel('Through truss - Howe', conditions)),
-          this.populateWarrenThruTruss(new BridgeSketchModel('Through truss - Warren', conditions)),
+          this.populatePrattThruTruss(new BridgeSketchModel('下承式桁架－普拉特式 (Pratt)', conditions)),
+          this.populateHoweThruTruss(new BridgeSketchModel('下承式桁架－豪式 (Howe)', conditions)),
+          this.populateWarrenThruTruss(new BridgeSketchModel('下承式桁架－華倫式 (Warren)', conditions)),
         );
       }
       if (conditions.underClearance >= DesignConditions.PANEL_SIZE_WORLD) {
         // Deck trusses
         models.push(
-          this.populatePrattDeckTruss(new BridgeSketchModel('Deck truss - Pratt', conditions)),
-          this.populateHoweDeckTruss(new BridgeSketchModel('Deck truss - Howe', conditions)),
-          this.populateWarrenDeckTruss(new BridgeSketchModel('Deck truss - Warren', conditions)),
+          this.populatePrattDeckTruss(new BridgeSketchModel('上承式桁架－普拉特式 (Pratt)', conditions)),
+          this.populateHoweDeckTruss(new BridgeSketchModel('上承式桁架－豪式 (Howe)', conditions)),
+          this.populateWarrenDeckTruss(new BridgeSketchModel('上承式桁架－華倫式 (Warren)', conditions)),
         );
       }
     } else if (
@@ -74,8 +74,8 @@ export class BridgeSketchService {
     ) {
       // Anchored cable bridges.
       models.push(
-        this.populateCableStayedWarrenTruss(new BridgeSketchModel('Cable-stayed Warren truss', conditions)),
-        this.populateSuspendedWarrenTruss(new BridgeSketchModel('Suspended Warren truss', conditions)),
+        this.populateCableStayedWarrenTruss(new BridgeSketchModel('斜張華倫桁架橋', conditions)),
+        this.populateSuspendedWarrenTruss(new BridgeSketchModel('懸索華倫桁架橋', conditions)),
       );
     }
     this.bridgeSketchDataService.addSketchesFromDataForConditions(models, conditions);

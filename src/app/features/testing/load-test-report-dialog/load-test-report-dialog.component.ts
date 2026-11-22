@@ -11,6 +11,7 @@ import jsPDF from 'jspdf';
 import { autoTable, HookData } from 'jspdf-autotable';
 import { Member } from '../../../shared/classes/member.model';
 import { WidgetHelper } from '../../../shared/classes/widget-helper';
+import { PDF_ZH_FONT, PdfFontService } from '../../../shared/services/pdf-font.service';
 
 @Component({
   selector: 'load-test-report-dialog',
@@ -27,6 +28,7 @@ export class LoadTestReportDialogComponent implements AfterViewInit{
     readonly bridgeService: BridgeService,
     private readonly changeDetector: ChangeDetectorRef,
     private readonly eventBrokerService: EventBrokerService,
+    private readonly pdfFontService: PdfFontService,
   ) {}
 
   async handleCopy(): Promise<void> {
@@ -43,21 +45,24 @@ export class LoadTestReportDialogComponent implements AfterViewInit{
     this.changeToken = '';
   }
 
-  handlePrint(): void {
+  async handlePrint(): Promise<void> {
+    const previewWindow = this.pdfFontService.openPreviewPlaceholder();
     const doc = new jsPDF({ format: 'letter', orientation: 'portrait' });
+    await this.pdfFontService.applyFont(doc);
+    doc.setProperties({ title: '載重測試結果' });
     autoTable(doc, {
       html: '.test-report-member-table',
-      styles: { fontSize: 8 },
+      styles: { font: PDF_ZH_FONT, fontSize: 8 },
+      headStyles: { font: PDF_ZH_FONT },
       useCss: true,
       didDrawPage: (data: HookData) => {
+        doc.setFont(PDF_ZH_FONT, 'normal');
         doc.setFontSize(8);
         var pageHeight = doc.internal.pageSize.getHeight();
-        doc.text(`Page ${data.pageNumber}`, data.settings.margin.left, pageHeight - 10);
+        doc.text(`第 ${data.pageNumber} 頁`, data.settings.margin.left, pageHeight - 10);
       },
     });
-    const blob = doc.output('blob');
-    const url = URL.createObjectURL(blob);
-    window.open(url, '_blank');
+    this.pdfFontService.displayPdf(doc, previewWindow);
   }
 
   ngAfterViewInit(): void {
@@ -67,8 +72,8 @@ export class LoadTestReportDialogComponent implements AfterViewInit{
 
 function getLoadTestReportText(members: Member[]): string {
   const lines: string[] = [
-    '#\tMaterial\tCross-section\tSize (mm)\tLength (m)\tSlenderness\tCompression force\t' +
-      'Compression strength\tCompression status\tTension force\tTension strength\tTension status',
+    '#\t材料種類\t斷面形狀\t尺寸 (mm)\t長度 (m)\t細長比\t壓力 (kN)\t' +
+      '抗壓強度\t抗壓狀態\t拉力 (kN)\t抗拉強度\t抗拉狀態',
   ];
   for (const m of members) {
     const line =

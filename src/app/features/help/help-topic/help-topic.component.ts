@@ -71,7 +71,7 @@ export class HelpTopicComponent implements AfterViewInit, OnChanges {
     // Copy topic to scratch window just for printing.
     const printWindow = Utility.assertNotNull(window.open());
     const printDoc = printWindow.document;
-    printDoc.title = 'ASCE Bridge Designer Help';
+    printDoc.title = '橋梁結構設計師說明';
 
     // Establish the base URL. Firefox needs a full path.
     const base = printDoc.createElement('base');
@@ -88,7 +88,7 @@ export class HelpTopicComponent implements AfterViewInit, OnChanges {
     const style = printDoc.createElement('style');
     style.textContent = `
       body {
-        font-family: Verdana, Arial, sans-serif;
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', Verdana, Arial, sans-serif;
         font-style: normal;
         font-size: 13px;
       }

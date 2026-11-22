@@ -3,20 +3,20 @@
 
 <div class="container">
   <div class="search-term-input">
-    <label for="search-term">Search for...
+    <label for="search-term">搜尋關鍵字…
       <input
         #searchTermInput
         type="text"
         id="search-term"
         name="search-term"
         maxlength="100"
-        placeholder="Examples: 'member' 'title:truss'"
+        placeholder="範例：「桿件」、「細長比」、「標題:桁架」"
         (input)="handleSearchTermInputInput()"
         (keydown)="handleSearchTermInputKeyDown($event)"
     /></label>
   </div>
   <div class="search-results">
-    <div class="results-label">Results:</div>
+    <div class="results-label">搜尋結果：</div>
     <jqxListBox
       style="border: none;margin-left: 4px;"
       [displayMember]="'title'"

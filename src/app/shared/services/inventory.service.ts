@@ -35,18 +35,19 @@ export abstract class CrossSection {
     readonly index: number,
     readonly name: string,
     readonly shortName: SectionShortName,
+    readonly displayShortName: string,
   ) {}
 
   public abstract createShapes(): Shape[];
 
   public toString(): string {
-    return this.shortName;
+    return this.displayShortName;
   }
 }
 
 class BarCrossSection extends CrossSection {
   constructor() {
-    super(0, 'Solid Bar', 'Bar');
+    super(0, '實心方鋼', 'Bar', '實心');
   }
 
   public override createShapes(): Shape[] {
@@ -61,7 +62,7 @@ class BarCrossSection extends CrossSection {
 
 class TubeCrossSection extends CrossSection {
   constructor() {
-    super(1, 'Hollow Tube', 'Tube');
+    super(1, '空心方管', 'Tube', '空心');
   }
 
   public override createShapes(): Shape[] {
@@ -122,9 +123,9 @@ class Inventory {
   static readonly CROSS_SECTIONS: CrossSection[] = [new BarCrossSection(), new TubeCrossSection()];
 
   static readonly MATERIALS: Material[] = [
-    new Material(0, 'Carbon steel', 'CS', 200000000, 250000, 7850, [4.3, 6.3]),
-    new Material(1, 'High-strength low-alloy steel', 'HSS', 200000000, 345000, 7850, [5.6, 7.0]),
-    new Material(2, 'Quenched & tempered steel', 'QTS', 200000000, 485000, 7850, [6.0, 7.7]),
+    new Material(0, '碳鋼 (CS)', '碳鋼', 200000000, 250000, 7850, [4.3, 6.3]),
+    new Material(1, '高強度低合金鋼 (HSS)', '高強鋼', 200000000, 345000, 7850, [5.6, 7.0]),
+    new Material(2, '淬火調質鋼 (QTS)', '調質鋼', 200000000, 485000, 7850, [6.0, 7.7]),
   ];
 
   static readonly SHAPES: Shape[][] = Inventory.CROSS_SECTIONS.map(cs => cs.createShapes());
