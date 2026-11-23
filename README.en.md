@@ -14,7 +14,7 @@
 
 This repository is an **unofficial, free, non-commercial Traditional Chinese (`zh-Hant`, Taiwan terminology) educational localization** of [gene-ressler/bridge-designer](https://github.com/gene-ressler/bridge-designer) (*Bridge Designer, Cloud Edition*, formerly West Point Bridge Designer / ASCE Bridge Designer).
 
-It was created for **Taiwanese high school Living Technology (高中生活科技)** structural engineering classes so students and teachers can explore truss bridge design, finite-element load testing, slenderness/buckling mechanics, and cost optimization directly in their native language without a language barrier.
+It was created for **Traditional Chinese educators, students, and learners** so anyone studying structural engineering can explore truss bridge design, finite-element load testing, slenderness/buckling mechanics, and cost optimization directly in their native language without a language barrier.
 
 ---
 
