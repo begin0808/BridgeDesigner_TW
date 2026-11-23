@@ -34,11 +34,12 @@ classroom-guide {
   .guide-card {
     width: 396px;
     max-width: calc(100vw - 84px);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
     background: #fff;
     border: 1px solid #cbd5e1;
     border-radius: 10px;
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
-    overflow: hidden;
     color: #1e293b;
   }
   .guide-header {

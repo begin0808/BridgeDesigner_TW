@@ -22,6 +22,7 @@ export class PdfFontService {
   public async applyFont(doc: jsPDF): Promise<boolean> {
     const base64 = await this.loadFontBase64();
     if (!base64) {
+      alert('繁體中文字型載入失敗，請檢查網路連線後重試。');
       return false;
     }
     doc.addFileToVFS(FONT_FILE_NAME, base64);
@@ -50,15 +51,25 @@ export class PdfFontService {
     return win;
   }
 
-  /** Displays the generated PDF blob in the pre-opened preview window (or a new tab as fallback). */
-  public displayPdf(doc: jsPDF, previewWindow: Window | null): void {
+  /**
+   * Displays the generated PDF blob in the pre-opened preview window,
+   * or triggers a direct download fallback if the browser blocked popups.
+   */
+  public displayPdf(doc: jsPDF, previewWindow: Window | null, fallbackFileName: string = 'bridge-designer.pdf'): void {
     const blob = doc.output('blob');
     const url = URL.createObjectURL(blob);
     if (previewWindow && !previewWindow.closed) {
       previewWindow.location.href = url;
     } else {
-      window.open(url, '_blank');
+      // Popup was blocked: fall back to direct download so the user never loses the generated PDF.
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fallbackFileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
   }
 
   private loadFontBase64(): Promise<string | null> {
@@ -68,12 +79,14 @@ export class PdfFontService {
           const response = await fetch(FONT_ASSET_URL);
           if (!response.ok) {
             console.error('Failed to load PDF Chinese font:', response.status, response.statusText);
+            this.fontBase64Promise = undefined;
             return null;
           }
           const buffer = await response.arrayBuffer();
           return arrayBufferToBase64(buffer);
         } catch (err) {
           console.error('Error loading PDF Chinese font:', err);
+          this.fontBase64Promise = undefined;
           return null;
         }
       })();

@@ -87,7 +87,7 @@ export class UndoManagerSessionStateService {
       case 'move-labels':
         return MoveLabelsCommand.rehydrate(editCommand, this.bridgeService.draftingPanelState);
       case 'placeholder':
-        return new EditCommandPlaceholder('Cancel');
+        return new EditCommandPlaceholder('取消');
       default:
         return Utility.assertNever(editCommand.tag);
     }

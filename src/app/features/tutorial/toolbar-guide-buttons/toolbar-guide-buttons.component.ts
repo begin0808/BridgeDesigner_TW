@@ -16,7 +16,8 @@ import { TutorialService } from '../tutorial.service';
         (click)="openQuickStart()"
       >
         <span class="btn-icon">📖</span>
-        <span>新手速成指南</span>
+        <span class="btn-text-full">新手速成指南</span>
+        <span class="btn-text-short">指南</span>
       </button>
       <button
         type="button"
@@ -25,7 +26,8 @@ import { TutorialService } from '../tutorial.service';
         (click)="toggleClassroomGuide()"
       >
         <span class="btn-icon">🎓</span>
-        <span>課堂 5 步驟引導</span>
+        <span class="btn-text-full">課堂 5 步驟引導</span>
+        <span class="btn-text-short">引導</span>
       </button>
       <a
         class="guide-btn guide-btn-link"
@@ -44,16 +46,18 @@ import { TutorialService } from '../tutorial.service';
       .guide-toolbar-group {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        gap: 5px;
         height: 100%;
-        padding: 0 4px;
+        padding: 0 3px;
       }
       .guide-btn {
         display: inline-flex;
         align-items: center;
         gap: 4px;
         height: 24px;
-        padding: 0 9px;
+        padding: 0 8px;
         border-radius: 4px;
         font-size: 12px;
         font-weight: 600;
@@ -91,6 +95,23 @@ import { TutorialService } from '../tutorial.service';
       }
       .btn-icon {
         font-size: 13px;
+      }
+      .btn-text-short {
+        display: none;
+      }
+      @media (max-width: 1240px) {
+        .guide-btn-link {
+          display: none;
+        }
+        .btn-text-full {
+          display: none;
+        }
+        .btn-text-short {
+          display: inline;
+        }
+        .guide-btn {
+          padding: 0 6px;
+        }
       }
     `,
   ],

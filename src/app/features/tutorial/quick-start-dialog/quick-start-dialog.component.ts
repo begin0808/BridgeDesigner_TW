@@ -5,9 +5,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   HostListener,
   OnDestroy,
   OnInit,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -24,9 +26,11 @@ export type QuickStartTab = 'steps' | 'tools' | 'mechanics' | 'faq';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuickStartDialogComponent implements OnInit, OnDestroy {
+  @ViewChild('closeBtn') closeBtn?: ElementRef<HTMLButtonElement>;
   isOpen = false;
   activeTab: QuickStartTab = 'steps';
   private readonly subs = new Subscription();
+  private previousActiveElement: HTMLElement | null = null;
 
   readonly toolItems = [
     { icon: 'img/joint.png', name: '節點工具', desc: '在繪圖區格線上點擊放置新的橋梁連接節點（點在灰色範本圓圈上最容易對齊）。' },
@@ -52,8 +56,18 @@ export class QuickStartDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs.add(
       this.tutorialService.quickStartOpen$.subscribe(open => {
+        if (open && !this.isOpen) {
+          this.previousActiveElement = document.activeElement as HTMLElement | null;
+        }
+        const wasOpen = this.isOpen;
         this.isOpen = open;
         this.cdr.markForCheck();
+        if (open) {
+          setTimeout(() => this.closeBtn?.nativeElement.focus(), 0);
+        } else if (wasOpen && this.previousActiveElement) {
+          this.previousActiveElement.focus();
+          this.previousActiveElement = null;
+        }
       }),
     );
   }

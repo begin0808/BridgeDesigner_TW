@@ -163,6 +163,13 @@ export class Utility {
     return `${date.getDate()} ${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
   }
 
+  public static getZhDate(date: Date = new Date(Date.now())): string {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}/${m}/${d}`;
+  }
+
   /** Returns the number of one bits in the integer n. */
   public static countOnes(n: number) {
     let count: number = 0;

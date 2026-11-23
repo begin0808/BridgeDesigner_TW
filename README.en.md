@@ -1,5 +1,5 @@
 <!-- Copyright (c) 2025-2026 Gene Ressler
-     Modified in 2026 (2026-11-22) for Traditional Chinese educational localization (BridgeDesigner_TW).
+     Modified in 2026 (2026-11-23) for Traditional Chinese educational localization (BridgeDesigner_TW).
      SPDX-License-Identifier: GPL-3.0-or-later -->
 
 # Bridge Designer, Cloud Edition — Unofficial Traditional Chinese Educational Fork (`BridgeDesigner_TW`)
@@ -24,19 +24,20 @@ It was created for **Traditional Chinese educators, students, and learners** so 
    - Upstream repository: [gene-ressler/bridge-designer](https://github.com/gene-ressler/bridge-designer)
    - Original copyright: **Copyright © 2025-2026 Gene Ressler** (original authors: Steve Ressler, PE, PhD & Gene Ressler, PhD).
    - License: Released as a whole under the **[GNU General Public License v3.0 or later (GPL-3.0-or-later)](COPYING)**, retaining the full upstream Git commit history and original file copyright headers.
-   - **Modification Notice (GPLv3 Section 5(a))**: Modified on **2026-11-22** by `BridgeDesigner_TW` contributors to add Traditional Chinese localization, CJK PDF font rendering, CJK full-text help search, and interactive classroom onboarding widgets.
+   - **Modification Notice (GPLv3 Section 5(a))**: Last modified on **2026-11-23** by `BridgeDesigner_TW` contributors to add Traditional Chinese localization, CJK PDF font rendering, CJK full-text help search, and interactive classroom onboarding widgets.
 2. **Embedded Traditional Chinese Font**
-   - `public/fonts/NotoSansTC-Regular.ttf` (Noto Sans TC) is licensed under the **[SIL Open Font License 1.1](public/fonts/OFL.txt)** (license text included in `public/fonts/OFL.txt`).
+   - `public/fonts/NotoSansTC-Regular.ttf` (Noto Sans TC, Google's open-source distribution derived from Source Han Sans) is licensed under the **[SIL Open Font License 1.1](public/fonts/OFL.txt)** (copyright notice and license text included in `public/fonts/OFL.txt`).
 3. **Non-Commercial Educational Use Notice (`jqwidgets-ng`)**
-   - The upstream project depends on `jqwidgets-ng`, whose free license (CC BY-NC 3.0) applies to non-commercial / educational use.
+   - The upstream project depends on `jqwidgets-ng` (see [jQWidgets License](https://www.jqwidgets.com/license/) for non-commercial terms).
    - **This fork and its GitHub Pages site are strictly for free, ad-free, non-commercial educational use only**, and must not be used for commercial purposes or real-world structural engineering.
-4. **No Official Affiliation or Endorsement**
-   - This project is **not affiliated with, sponsored by, or endorsed by** the United States Military Academy (West Point / USMA), the American Society of Civil Engineers (ASCE), or the upstream authors.
+4. **No Warranty & No Official Affiliation**
+   - This software is provided "as is", without any express or implied warranty or guarantee of any kind by the upstream authors, USMA, ASCE, or any third party.
+   - This project is **not affiliated with, sponsored by, or endorsed by** the United States Military Academy (West Point / USMA), the American Society of Civil Engineers (ASCE), or the upstream authors. Any retained ASCE marks/banners identify the upstream origin only.
    - For the official English release, please visit the [ASCE Bridge Designer Official Website](https://www.asce.org/career-growth/pre-college-outreach/bridge-designer).
 
 ---
 
-## Summary of Modifications (`2026-11-22`)
+## Summary of Modifications (`2026-11-23`)
 
 - **Complete UI Localization (`zh-Hant`)**: Translated all menus, toolbars, setup wizard, materials & cross-section labels, drafting title block & annotations, member table (including empty-state guidance), load test & cost reports, member details, instability/slenderness dialogs, 3D animation controls, design iterations, save/load, 3D print export UI, sample bridges, and templates.
 - **Traditional Chinese PDF Export**: Added lazy-loaded static TrueType font support (`src/app/shared/services/pdf-font.service.ts` + `NotoSansTC-Regular.ttf`) for `jsPDF` & `jspdf-autotable` so exported engineering drawings, load test reports, and cost reports render Traditional Chinese cleanly.

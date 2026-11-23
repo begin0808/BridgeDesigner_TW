@@ -49,3 +49,6 @@ Thumbs.db
 
 # Experiments
 **/gitignore
+
+# Local promotional media (voice recordings, videos, audit drafts)
+/promo_media/

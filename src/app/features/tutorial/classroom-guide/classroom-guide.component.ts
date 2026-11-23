@@ -8,6 +8,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  NgZone,
   OnDestroy,
   ViewChild,
   ViewEncapsulation,
@@ -17,6 +18,7 @@ import { AnalysisService, AnalysisStatus } from '../../../shared/services/analys
 import { BridgeService } from '../../../shared/services/bridge.service';
 import { DesignConditionsService } from '../../../shared/services/design-conditions.service';
 import { EventBrokerService, EventOrigin } from '../../../shared/services/event-broker.service';
+import { AnalysisValidityService } from '../../controls/management/analysis-validity.service';
 import { UiMode } from '../../controls/management/ui-state.service';
 import { TutorialService } from '../tutorial.service';
 import { EditEffect } from '../../../shared/classes/editing';
@@ -65,7 +67,7 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
       shortTitle: '載重測試',
       title: '步驟 3：執行載重測試（Load Test）',
       description: '將所有節點連接完整後，點擊上方工具列的「載重測試」按鈕，觀看卡車行駛過橋的 3D 受力模擬動畫！',
-      tip: '小技巧：測試前可先看上方「狀態」燈號；如果跳出不穩定提示，代表還有節點沒組成三角形。',
+      tip: '小技巧：測試後可看上方「狀態」燈號：綠色＝通過、紅色＝未通過；若跳出不穩定提示，代表還有節點未組成三角形。',
       actionLabel: '立即執行載重測試',
       actionId: 'test',
     },
@@ -75,7 +77,7 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
       title: '步驟 4：看懂紅藍受力並優化設計',
       description:
         '測試後桿件會上色：紅色＝受壓、藍色＝受拉，右側「受力／強度比 > 1.00」代表會破壞。用「選取工具（↖）」點選桿件，在上方調整尺寸、鋼材或改用「空心方管」來補強與降價！',
-      tip: '工程挑戰：受壓桿件（紅色）改用「空心方管」最抗挫屈；若已直接通過測試，可微調桿件降價或按下方按鈕標記完成！',
+      tip: '工程挑戰：受壓桿件（紅色）改用「空心方管」最抗挫屈；若已直接通過測試，可微調桿件降價並重新測試，或按下方按鈕標記完成！',
       actionLabel: '切換至選取工具',
       actionId: 'select',
     },
@@ -84,7 +86,7 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
       shortTitle: '匯出報告',
       title: '步驟 5：匯出繁體中文 PDF 報表交作業',
       description: '設計通過載重測試且滿意造價後，點擊上方「報告 → 載重測試結果」或「檔案 → 列印」，即可匯出繁體中文 PDF 報表與設計圖！',
-      tip: '也別忘了點「檔案 → 儲存」把 .bdc 設計檔存下來，下次上課可以繼續優化。',
+      tip: '也別忘了點「檔案 → 儲存」把 .bdc 設計檔存下來，下次可以繼續優化。',
       actionLabel: '開啟載重測試報告',
       actionId: 'report',
     },
@@ -95,6 +97,12 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
   uiMode: UiMode = 'initial';
   activeStepIndex = 0;
 
+  // Cached progress state (avoids array re-allocations during template checks)
+  completedFlags: boolean[] = [false, false, false, false, false];
+  completedCount = 0;
+  isAllDone = false;
+  progressPercent = 0;
+
   // Draggable position (null = default bottom-left CSS position)
   posX: number | null = null;
   posY: number | null = null;
@@ -103,13 +111,16 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
   private dragOffsetY = 0;
   private dragMoved = false;
   private autoCollapsedForAnimation = false;
+  private activeMoveListener?: (ev: PointerEvent) => void;
+  private activeUpListener?: () => void;
 
-  // Live progress state
+  // Live progress tracking
   customJointCount = 0;
   memberCount = 0;
   hasTested = false;
   lastTestStatus: AnalysisStatus = AnalysisStatus.NONE;
   hasEditedAfterTest = false;
+  hasOptimizedAndPassed = false;
   hasViewedMemberDetails = false;
   hasConfirmedStep4 = false;
   hasExportedReport = false;
@@ -119,37 +130,13 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private readonly analysisService: AnalysisService,
+    private readonly analysisValidityService: AnalysisValidityService,
     private readonly bridgeService: BridgeService,
     private readonly cdr: ChangeDetectorRef,
     private readonly eventBrokerService: EventBrokerService,
+    private readonly ngZone: NgZone,
     private readonly tutorialService: TutorialService,
   ) {}
-
-  get completedFlags(): boolean[] {
-    const step1 = this.customJointCount > 0;
-    const step2 = this.memberCount >= 3;
-    const step3 = this.hasTested;
-    const step4 =
-      this.lastTestStatus === AnalysisStatus.PASSES &&
-      (this.hasEditedAfterTest ||
-        this.hasViewedMemberDetails ||
-        this.hasConfirmedStep4 ||
-        this.bridgeService.bridge.iterationNumber >= 2);
-    const step5 = this.hasExportedReport;
-    return [step1, step2, step3, step4, step5];
-  }
-
-  get completedCount(): number {
-    return this.completedFlags.filter(Boolean).length;
-  }
-
-  get isAllDone(): boolean {
-    return this.completedCount === this.steps.length;
-  }
-
-  get progressPercent(): number {
-    return Math.round((this.completedCount / this.steps.length) * 100);
-  }
 
   get currentStep(): GuideStep {
     return this.steps[this.activeStepIndex];
@@ -161,13 +148,20 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
     return this.isVisible && (this.uiMode !== 'initial' || hasActiveBridge);
   }
 
+  get isTestCurrent(): boolean {
+    return this.analysisValidityService.isLastAnalysisValid && this.analysisService.status > AnalysisStatus.UNSTABLE;
+  }
+
   get isBridgePassing(): boolean {
-    return this.lastTestStatus === AnalysisStatus.PASSES;
+    return this.analysisValidityService.isLastAnalysisValid && this.analysisService.status === AnalysisStatus.PASSES;
   }
 
   get testStatusBadge(): string {
     if (!this.hasTested) {
       return '尚未測試';
+    }
+    if (!this.analysisValidityService.isLastAnalysisValid) {
+      return '⚠️ 設計已修改，請重新執行載重測試';
     }
     switch (this.lastTestStatus) {
       case AnalysisStatus.PASSES:
@@ -199,9 +193,10 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
   }
 
   startDrag(event: PointerEvent): void {
-    // Don't start drag when clicking interactive buttons inside header.
+    // Allow dragging the collapsed .guide-pill button itself, while ignoring header action buttons.
     const target = event.target as HTMLElement | null;
-    if (target && target.closest('button')) {
+    const btn = target?.closest('button');
+    if (btn && !btn.classList.contains('guide-pill')) {
       return;
     }
     const el = this.floatingRoot?.nativeElement;
@@ -215,10 +210,19 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
     this.dragOffsetY = event.clientY - rect.top;
     event.preventDefault();
     this.cdr.markForCheck();
+
+    // Attach global pointer listeners ONLY while dragging, outside Angular zone to avoid idle CD ticks.
+    this.detachDragListeners();
+    this.ngZone.runOutsideAngular(() => {
+      this.activeMoveListener = (ev: PointerEvent) => this.handleDragMove(ev);
+      this.activeUpListener = () => this.handleDragEnd();
+      window.addEventListener('pointermove', this.activeMoveListener);
+      window.addEventListener('pointerup', this.activeUpListener);
+      window.addEventListener('pointercancel', this.activeUpListener);
+    });
   }
 
-  @HostListener('window:pointermove', ['$event'])
-  onPointerMove(event: PointerEvent): void {
+  private handleDragMove(event: PointerEvent): void {
     if (!this.isDragging) {
       return;
     }
@@ -234,16 +238,34 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
     }
     this.posX = nextX;
     this.posY = nextY;
-    this.cdr.markForCheck();
+    if (el) {
+      el.style.left = `${nextX}px`;
+      el.style.top = `${nextY}px`;
+      el.style.bottom = 'auto';
+    }
   }
 
-  @HostListener('window:pointerup')
-  onPointerUp(): void {
+  private handleDragEnd(): void {
+    this.detachDragListeners();
     if (!this.isDragging) {
       return;
     }
-    this.isDragging = false;
-    this.cdr.markForCheck();
+    this.ngZone.run(() => {
+      this.isDragging = false;
+      this.cdr.markForCheck();
+    });
+  }
+
+  private detachDragListeners(): void {
+    if (this.activeMoveListener) {
+      window.removeEventListener('pointermove', this.activeMoveListener);
+      this.activeMoveListener = undefined;
+    }
+    if (this.activeUpListener) {
+      window.removeEventListener('pointerup', this.activeUpListener);
+      window.removeEventListener('pointercancel', this.activeUpListener);
+      this.activeUpListener = undefined;
+    }
   }
 
   @HostListener('window:resize')
@@ -285,7 +307,6 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
         this.uiMode = info.data;
         if (info.data === 'animation') {
           this.hasTested = true;
-          // Auto-collapse during 3D load-test animation so the truck & bridge stay completely unobstructed.
           if (!this.isCollapsed) {
             this.autoCollapsedForAnimation = true;
             this.tutorialService.setGuideCollapsed(true);
@@ -314,8 +335,10 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
         this.lastTestStatus = this.analysisService.status;
         this.hasTested = this.lastTestStatus !== AnalysisStatus.NONE;
         this.hasEditedAfterTest = false;
+        this.hasOptimizedAndPassed = false;
         this.hasViewedMemberDetails = false;
         this.hasConfirmedStep4 = false;
+        this.hasExportedReport = false;
         this.refreshProgress(true);
       }),
     );
@@ -324,14 +347,18 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
         const mask = info.data.effectsMask;
         if (this.hasTested && (mask & (EditEffect.MEMBERS | EditEffect.JOINTS | EditEffect.CHANGE)) !== 0) {
           this.hasEditedAfterTest = true;
+          this.hasConfirmedStep4 = false;
         }
-        this.refreshProgress(true);
+        this.refreshProgress(false);
       }),
     );
     this.subs.add(
       this.eventBrokerService.analysisCompletion.subscribe(info => {
         this.hasTested = true;
         this.lastTestStatus = info.data;
+        if (info.data === AnalysisStatus.PASSES && this.hasEditedAfterTest) {
+          this.hasOptimizedAndPassed = true;
+        }
         this.refreshProgress(true);
       }),
     );
@@ -345,7 +372,6 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
       merge(
         this.eventBrokerService.printRequest,
         this.eventBrokerService.analysisReportRequest,
-        this.eventBrokerService.costReportRequest,
       ).subscribe(() => {
         this.hasExportedReport = true;
         this.refreshProgress(false);
@@ -356,7 +382,22 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.detachDragListeners();
     this.subs.unsubscribe();
+  }
+
+  private computeCompletedFlags(): boolean[] {
+    const step1 = this.customJointCount > 0;
+    const step2 = this.memberCount >= 3;
+    const step3 = this.hasTested;
+    const step4 =
+      this.isBridgePassing &&
+      (this.hasOptimizedAndPassed ||
+        this.hasViewedMemberDetails ||
+        this.hasConfirmedStep4 ||
+        this.bridgeService.bridge.iterationNumber >= 2);
+    const step5 = this.hasExportedReport;
+    return [step1, step2, step3, step4, step5];
   }
 
   private refreshProgress(autoAdvance: boolean): void {
@@ -365,7 +406,12 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
     const prescribed = this.bridgeService.designConditions.prescribedJoints.length;
     this.customJointCount = Math.max(0, bridge.joints.length - prescribed);
     this.memberCount = bridge.members.length;
-    const nextFlags = this.completedFlags;
+
+    const nextFlags = this.computeCompletedFlags();
+    this.completedFlags = nextFlags;
+    this.completedCount = nextFlags.filter(Boolean).length;
+    this.isAllDone = this.completedCount === this.steps.length;
+    this.progressPercent = Math.round((this.completedCount / this.steps.length) * 100);
 
     if (autoAdvance && !prevFlags[this.activeStepIndex] && nextFlags[this.activeStepIndex]) {
       const nextIncomplete = nextFlags.findIndex(done => !done);
@@ -426,7 +472,8 @@ export class ClassroomGuideComponent implements AfterViewInit, OnDestroy {
         this.eventBrokerService.editModeSelection.next({ origin: EventOrigin.APP, data: 2 });
         break;
       case 'report':
-        if (this.lastTestStatus > AnalysisStatus.UNSTABLE) {
+        // Respect analysis validity: never open a stale Load Test Report with NaN values after edits.
+        if (this.isTestCurrent) {
           this.eventBrokerService.analysisReportRequest.next({ origin: EventOrigin.APP, data: undefined });
         } else {
           this.eventBrokerService.printRequest.next({ origin: EventOrigin.APP, data: undefined });

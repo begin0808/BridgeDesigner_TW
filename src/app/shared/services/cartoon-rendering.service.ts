@@ -55,10 +55,10 @@ export class CartoonRenderingService {
     const savedFillStyle = ctx.fillStyle;
     const savedFont = ctx.font;
 
-    const text = 'Title block';
+    const text = '標題欄';
     ctx.textAlign = 'right';
     ctx.textBaseline = 'bottom';
-    ctx.font = 'italic 12px sans-serif';
+    ctx.font = "12px 'Noto Sans TC', 'Microsoft JhengHei', sans-serif";
     const textMetrics = ctx.measureText(text);
     const margin = 8;
     const height = margin + textMetrics.actualBoundingBoxAscent + margin;

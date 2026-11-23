@@ -13,18 +13,20 @@ const HELP_SCHEMA = {
   text: 'string',
 } as const;
 
-/** Custom tokenizer supporting both Traditional Chinese (unigrams + bigrams) and English/alphanumeric terms. */
+const TITLE_PREFIX_RE = /^(?:title|標題)\s*[:：]\s*/i;
+
+/** Custom tokenizer supporting Traditional Chinese (unigrams + bigrams), fullwidth NFKC normalization, and English/alphanumeric terms. */
 function tokenizeCjk(raw: string): string[] {
   if (typeof raw !== 'string') {
     return [String(raw)];
   }
   const tokens: string[] = [];
-  const lower = raw.toLowerCase();
-  const asciiWords = lower.match(/[a-z0-9_]+/g);
+  const normalized = raw.normalize('NFKC').toLowerCase();
+  const asciiWords = normalized.match(/[a-z0-9_]+/g);
   if (asciiWords) {
     tokens.push(...asciiWords);
   }
-  const cjkRuns = lower.match(/[\u4e00-\u9fff\u3400-\u4dbf]+/g);
+  const cjkRuns = normalized.match(/[\u4e00-\u9fff\u3400-\u4dbf]+/g);
   if (cjkRuns) {
     for (const run of cjkRuns) {
       for (let i = 0; i < run.length; i++) {
@@ -58,17 +60,23 @@ export class HelpIndexService {
     insertMultiple(this.helpDb, HELP_INDEX_DATA, 300);
   }
 
-  public search(term: string): Results<HelpTopic> {
-    let properties: 'title'[] | '*' = '*';
-    if (term.startsWith('title:')) {
-      term = term.slice(6);
-      properties = ['title'];
-    } else if (term.startsWith('標題:') || term.startsWith('標題：')) {
-      term = term.slice(3);
+  public search(rawTerm: string): Results<HelpTopic> {
+    let term = rawTerm.normalize('NFKC').trim();
+    let properties: ('title' | 'text')[] = ['title', 'text'];
+    const prefixMatch = term.match(TITLE_PREFIX_RE);
+    if (prefixMatch) {
+      term = term.slice(prefixMatch[0].length).trim();
       properties = ['title'];
     }
+    if (!term) {
+      return {
+        elapsed: { raw: 0, formatted: '0ns' },
+        hits: [],
+        count: 0,
+      };
+    }
     const searchParams: SearchParams<Orama<typeof HELP_SCHEMA>> = {
-      term: term.trim(),
+      term,
       properties,
       boost: { title: 3 },
       limit: 100,

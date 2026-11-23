@@ -59,7 +59,7 @@ export class TitleBlockPdfRenderingService {
           content: `成本：${DOLLARS_FORMATTER.format(this.bridgeCostService.allCosts)}`,
           colSpan: 2,
         },
-        `日期：${Utility.getStandardDate()}`,
+        `日期：${Utility.getZhDate()}`,
         `版本：${this.bridgeService.bridge.iterationNumber}`,
       ],
       /\S/.test(designedBy)

@@ -59,7 +59,7 @@
           <button
             type="button"
             class="icon-btn"
-            title="暫時關閉（可隨時由工具列重新開啟）"
+            title="關閉引導（可由工具列或「說明」選單重新開啟）"
             (click)="dismiss()"
           >
             ✕
@@ -130,7 +130,7 @@
               [disabled]="currentStep.actionId === 'test' && memberCount < 3"
               (click)="runStepAction(currentStep.actionId)"
             >
-              {{ currentStep.actionLabel }}
+              {{ currentStep.actionId === 'report' && !isTestCurrent ? '列印中文設計圖 PDF' : currentStep.actionLabel }}
             </button>
             @if (activeStepIndex === 0 && memberCount === 0) {
               <button
