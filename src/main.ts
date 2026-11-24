@@ -6,9 +6,6 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { areBrowserFeaturesMissing } from './app/features/browser/browser-checks';
 
-/** Removes watermarks from jqWidgets. */
-jqx.credits = '71208878-FCD1-4EC7-9249-BA0F153A5DE8';
-
 if (areBrowserFeaturesMissing()) {
    window.location.replace('browserinfo/');
 } else {

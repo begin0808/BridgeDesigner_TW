@@ -1,5 +1,5 @@
 <!-- Copyright (c) 2025-2026 Gene Ressler
-     Modified in 2026 (2026-11-23) for Traditional Chinese educational localization (BridgeDesigner_TW).
+     Modified in 2026 (2026-11-24) for Traditional Chinese educational localization (BridgeDesigner_TW).
      SPDX-License-Identifier: GPL-3.0-or-later -->
 
 # 橋梁結構設計師（繁體中文教學版） / Bridge Designer, Cloud Edition (zh-Hant)
@@ -13,7 +13,7 @@
 ## 授權、修改紀錄與非商業教育使用聲明
 
 - **原專案與版權**：本專案改作自開源軟體 [gene-ressler/bridge-designer](https://github.com/gene-ressler/bridge-designer)（原名 West Point Bridge Designer / ASCE Bridge Designer, Cloud Edition，原始碼版權 © 2025-2026 Gene Ressler）。
-- **修改聲明（依 GNU GPLv3 第 5(a) 條）**：本專案為**非官方繁體中文教學修改版**（最後重大修改日期：**2026-11-23**），針對繁體中文使用者與各類結構工程教學需求進行全面繁體中文化、中文 PDF 匯出字型支援、中文說明文件全文檢索與課堂互動引導增強。
+- **修改聲明（依 GNU GPLv3 第 5(a) 條）**：本專案為**非官方繁體中文教學修改版**（最後重大修改日期：**2026-11-24**），針對繁體中文使用者與各類結構工程教學需求進行全面繁體中文化、中文 PDF 匯出字型支援、中文說明文件全文檢索與課堂互動引導增強。
 - **開源授權**：本專案整體依原專案之 **[GNU General Public License v3.0 (GPL-3.0-or-later)](COPYING)** 授權條款公開原始碼釋出，並保留原作者完整 Git 提交歷史與各檔案版權宣告。
 - **中文字型授權**：內嵌之 Noto Sans TC（與思源黑體同源之 Google 開源發行字型）採 **[SIL Open Font License 1.1](public/fonts/OFL.txt)** 授權。
 - **非商業教育用途聲明（第三方元件庫）**：原專案使用之 UI 元件庫 `jqwidgets-ng` 僅限非商業用途免費使用（詳見 [jQWidgets 授權條款](https://www.jqwidgets.com/license/)）。**本專案與部署網站僅供免費、無廣告之非商業教育與學習使用，嚴禁作為商業用途或實際工程設計施工依據。**
